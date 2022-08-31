@@ -80,6 +80,21 @@ stock dpp_process(const line[])
 			return 0;
 		}
 	}
+	if(!strcmp(funcgroup[0], "import::file"))
+	{
+		for(new i; i < strlen(args[1]); i++)
+		{
+			if(args[1][i] == '\"') strdel(args[1], i, i+1);
+		}
+		new filename[64];
+		format(filename, sizeof filename, "%s.dpp", args[1]);
+		if(fexist(filename)) dpp_executefile(filename);
+		else
+		{
+			dpp_error("Cannot read from file: \"%s\"", filename);
+			return 0;
+		}
+	}
 	if(!strcmp(funcgroup[0], "using::user"))
 	{
 		for(new i; i < dpp_maxfuncs; i++)

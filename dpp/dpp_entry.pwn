@@ -14,7 +14,7 @@
 #pragma warning disable 204
 #pragma warning disable 211
 #pragma option -;+
-#define DPP_DEBUG 1
+#define DPP_DEBUG 0
 #define dpp_maxfuncs 1000
 
 // REQUIRED.
@@ -38,6 +38,6 @@ new dpp_interpreter = 1;
 
 main()
 {
-	dpp_execute();
+	dpp_execute("script.dpp");
 	return 1;
 }

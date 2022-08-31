@@ -75,14 +75,14 @@ stock dpp_parseline(const code[], destln[][], delimiter)
 
 new content[16000];
 
-stock dpp_execute()
+stock dpp_execute(const script[])
 {
 	dpp_print("Interpreter version %i.%i.%i-R%i - by: DEntisT",DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
 	dpp_print("Executing the entry script...");
 	dpp_nullcomment();
 	dpp_execheader("script.dpp");
 	dpp_nullcomment();
-	new File:file = fopen("script.dpp", io_read), rlen;
+	new File:file = fopen(script, io_read), rlen;
 	new codelines[1024][1024];
 	if(file)
 	{
@@ -110,6 +110,36 @@ stock dpp_execute()
 	dpp_comment();
 	dpp_nullcomment();
 	dpp_print("The interpreter reached the EOS point.");
+	return 1;
+}
+
+new subcontent[16000];
+
+stock dpp_executefile(const script[])
+{
+	new File:file = fopen(script, io_read), rlen;
+	new codelines[1024][1024];
+	if(file)
+	{
+		while(rlen = fread(file, subcontent))
+		{
+			for(new i; i < strlen(subcontent); i++)
+			{
+				if(subcontent[i] == ';' && subcontent[i+1] == ' ') strdel(subcontent, i+1, i+2);
+				if(subcontent[i] == '\t') strdel(subcontent, i, i+1);
+				if(subcontent[i] == '\n') strdel(subcontent, i, i+1);
+			}
+			dpp_parsecode(subcontent, codelines);
+			for(new i; i < 1024; i++)
+			{
+				dpp_process(codelines[i]);
+			}
+		}
+	}
+	else if(!file)
+	{
+		dpp_error("Invalid file.");
+	}
 	return 1;
 }
 
