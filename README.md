@@ -1,7 +1,7 @@
 # D++
-:zap: ¤ The scripting language made for a SA:MP server.
+:zap: ¤ D++ is a simple scripting language written in Pawn.
 
-- Example code:
+- For the impatient, here is the example code:
 ```pawn
 import::package.console;
 import::package.system;
@@ -24,3 +24,6 @@ using::console.cout,"Hello World";
 [12:44:50]                                                
 [12:44:50] >> D++ | INFO: The interpreter reached the EOS point.
 ```
+## Documentation
+
+- Importable packages and functions - [read here](dpp_packages.md).
