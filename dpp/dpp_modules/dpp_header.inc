@@ -112,3 +112,16 @@ stock dpp_execute()
 	dpp_print("The interpreter reached the EOS point.");
 	return 1;
 }
+
+stock dpp_subexecute(const code[])
+{
+	new codelines[1024][1024];
+
+	dpp_parsecode(code, codelines);
+	//dpp_debug("Executing:\n\n%s", code);
+	for(new i; i < 1024; i++)
+	{
+		dpp_subprocess(codelines[i]);
+	}
+	return 1;
+}
