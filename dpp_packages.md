@@ -15,6 +15,7 @@ using::console.cout,"some words.";
 - Provides random, usually internal, functions.
 
 ### `rem`
+- Comments.
 ```pawn
 using::system.rem,"SOME TEXT";
 ```
