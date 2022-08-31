@@ -34,7 +34,10 @@ stock dpp_process(const line[])
 			{
 				dpp_currentfuncid = i;
 				dpp_validfunc[i] = 1;
-				strcat(dpp_funcname[i], funcgroup[1]);
+				strins(dpp_funcname[i], funcgroup[1], 0, 64);
+				dpp_debug("funcgroup[1]:%s",funcgroup[1]);
+				dpp_debug("dpp_funcname[i]:%s",dpp_funcname[i]);
+				dpp_debug("dpp_currentfuncid:%i",dpp_currentfuncid);
 				return 1;
 			}
 		}
@@ -64,7 +67,11 @@ stock dpp_process(const line[])
 		if(!strcmp(funcgroup[1], "console"))
 		{
 			dpp_config[console_pkg] = 1;
-			//dpp_debug("Package \"console\" successfully imported.");
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "system"))
+		{
+			dpp_config[system_pkg] = 1;
 			return 1;
 		}
 		else
@@ -121,6 +128,42 @@ stock dpp_process(const line[])
 		else
 		{
 			dpp_error("Unknown function in the package \"console\".");
+			return 0;
+		}
+	}
+	if(!strcmp(funcgroup[0], "using::system"))
+	{
+		if(dpp_config[system_pkg] == 0)
+		{
+			dpp_error("Package \"system\" is not imported.");
+			return 1;
+		}
+		// If the function used it "print"
+		if(!strcmp(funcgroup[1], "rem"))
+		{
+			new mul, str[100];
+			strmid(str, args[1], 0, 100);
+			for(new i; i < strlen(args[1]); i++)
+			{
+				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+			}
+			if(mul == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.");
+				return 0;
+			}
+			if(mul != 2)
+			{
+				dpp_error("Argument error.");
+				return 0;
+			}
+
+			// do nothing, this is a comment
+			return 1;
+		}
+		else
+		{
+			dpp_error("Unknown function in the package \"system\".");
 			return 0;
 		}
 	}

@@ -22,7 +22,8 @@
 
 enum dpp_enumset
 {
-	console_pkg
+	console_pkg,
+	system_pkg
 };
 
 new dpp_config[dpp_enumset];
