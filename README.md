@@ -4,7 +4,9 @@
 - Example code:
 ```pawn
 import::package.console;
+import::package.system;
 
+using::system.rem,"Basic cout example.";
 using::console.cout,"Hello World";
 ```
 
