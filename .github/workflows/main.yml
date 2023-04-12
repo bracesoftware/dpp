@@ -1,4 +1,4 @@
-name: Damn Larper - sampctl test build
+name: D++ - sampctl test build
 on:
   push:
     branches: [ "main" ]
@@ -18,6 +18,6 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: Damn_Larper_Build_Test
+          name: DPP_Build_Test
           path: sampctl_build.pwn
           retention-days: 1
