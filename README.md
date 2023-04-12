@@ -26,5 +26,6 @@ using::console.cout,"Hello World";
 ```
 ## Documentation
 
+- Options you can modify using `pragma::option` - [read here](dpp_options.md).
 - Importable packages and functions - [read here](dpp_packages.md).
 - Examples - [see here](dpp_example.md).
