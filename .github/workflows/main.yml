@@ -1,0 +1,23 @@
+name: Damn Larper - sampctl test build
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: AGraber/sampctl-action@v1
+        with:
+              version: '1.10.0'
+      - run: sampctl package build --forceEnsure
+      - run: sampctl version
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Damn_Larper_Build_Test
+          path: sampctl_build.pwn
+          retention-days: 1
