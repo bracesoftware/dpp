@@ -33,6 +33,10 @@ new dpp_funcname[dpp_maxfuncs][64];
 new dpp_funccodeblock[dpp_maxfuncs][1024];
 new dpp_interpreter = 1;
 
+//OPTIONS
+
+new dpp_option_debug = 0;
+
 #include "dpp_modules/dpp_header.inc"
 #include "dpp_modules/dpp_interpreter.inc"
 

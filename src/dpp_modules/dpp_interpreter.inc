@@ -30,6 +30,12 @@ stock dpp_process(const line[])
 	dpp_parseline(line, args, ',');
 	dpp_parseline(args[0], funcgroup, '.');
 
+	//using::console.cout,"Hello World";
+
+	//	funcgroup[0]	using::console
+	//	funcgroup[1]	cout
+	//	args[1]			"Hello World"
+
 	if(!strcmp(funcgroup[0], "decl::func"))
 	{
 		dpp_createfunc(funcgroup[1]);
@@ -52,6 +58,36 @@ stock dpp_process(const line[])
 		dpp_debug("dpp_currentfuncid:%i",dpp_currentfuncid);
 		strcat(dpp_funccodeblock[dpp_currentfuncid], codeblockline);
 		return 1;
+	}
+
+	if(!strcmp(funcgroup[0], "pragma::option"))
+	{
+		if(!strcmp(funcgroup[1], "debug"))
+		{
+			if(!strcmp(args[1], "false"))
+			{
+				dpp_option_debug = 0;
+				dpp_print("Debug has been disabled.");
+				return 1;
+			}
+			if(!strcmp(args[1], "true"))
+			{
+				dpp_option_debug = 1;
+				dpp_print("Debug has been enabled.");
+				return 1;
+			}
+			else
+			{
+				dpp_error("Wrong option value at \"%s\": value can be either 'true' or 'false'.", line);
+			}
+			return 1;
+		}
+		
+		else
+		{
+			dpp_error("Unknown option \"%s\".", funcgroup[1]);
+			return 0;
+		}
 	}
 
 	if(!strcmp(funcgroup[0], "import::package"))
