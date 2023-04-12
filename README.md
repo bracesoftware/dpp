@@ -27,3 +27,4 @@ using::console.cout,"Hello World";
 ## Documentation
 
 - Importable packages and functions - [read here](dpp_packages.md).
+- Examples - [see here](dpp_example.md).
