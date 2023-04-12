@@ -116,7 +116,7 @@ stock dpp_process(const line[])
 		}
 		new filename[64];
 		format(filename, sizeof filename, "%s.dpp", args[1]);
-		if(fexist(filename)) dpp_executefile(filename);
+		if(fexist(filename)) return dpp_executefile(filename);
 		else
 		{
 			dpp_error("Cannot read from file: \"%s\"", filename);
@@ -209,6 +209,11 @@ stock dpp_process(const line[])
 			dpp_error("Unknown function in the package \"system\".");
 			return 0;
 		}
+	}
+	
+	if(strlen(line) > 5)
+	{
+		dpp_error("Unknown element \"%s\".", line);
 	}
 	return 1;
 }

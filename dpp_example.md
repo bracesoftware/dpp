@@ -12,7 +12,7 @@ using::console.cout,"Hual is a fucking bitch";
 decl::func.testfunc;
 decl::begin;
 using::console.cout,"testfunc works.";
-decl:end;
+decl::end;
 
 using::user.testfunc;
 ```
