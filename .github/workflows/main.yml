@@ -28,11 +28,4 @@ jobs:
           retention-days: 12 
           if-no-files-found: error
           
-          path: |
-            gamemodes/output.amx
-            pawn.json
-            LICENSE
-            README.md
-            !dependencies/
-            !*.pwn
-            !*.txt
+          path: src/dpp_entry.pwn
