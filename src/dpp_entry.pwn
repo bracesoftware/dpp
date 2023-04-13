@@ -10,6 +10,11 @@
  *
  */
 
+
+#if !defined SAMP_MODE
+ 	#define SAMP_MODE 1
+#endif
+
 #pragma dynamic 215750000
 #pragma warning disable 204
 #pragma warning disable 211
@@ -39,9 +44,20 @@ new dpp_option_debug = 0;
 
 #include "dpp_modules/dpp_header.inc"
 #include "dpp_modules/dpp_interpreter.inc"
+#if SAMP_MODE == 1
+#include "dpp_modules/dpp_samp.inc"
+#endif
 
 main()
 {
 	dpp_execute("script.dpp");
+	dpp_nullcomment();
+	dpp_nullcomment();
+	dpp_comment();
+	dpp_print("The SAMP script will continue running in the background.");
+	dpp_comment();
+	dpp_nullcomment();
+	dpp_nullcomment();
+	CallLocalFunction("DPP_GAMEMODEINIT", "");
 	return 1;
 }

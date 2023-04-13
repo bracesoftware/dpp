@@ -29,6 +29,7 @@ using::console.cout,"Hello World";
 - Options you can modify using `pragma::option` - [read here](dpp_options.md).
 - Importable packages and functions - [read here](dpp_packages.md).
 - Examples - [see here](dpp_example.md).
+- SA:MP and open.mp scripting - [see here](dpp_sampomp.md).
 
 
 ### Worried about the latest updates?
