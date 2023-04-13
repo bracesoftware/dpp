@@ -29,3 +29,8 @@ using::console.cout,"Hello World";
 - Options you can modify using `pragma::option` - [read here](dpp_options.md).
 - Importable packages and functions - [read here](dpp_packages.md).
 - Examples - [see here](dpp_example.md).
+
+
+### Worried about the latest updates?
+
+Just regularly check the [workflow runs](https://github.com/samp-api/dpp/actions)! Always select the latest workflow to download the latest build artifacts from.
