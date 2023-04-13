@@ -102,6 +102,11 @@ stock dpp_process(const line[])
 			dpp_config[system_pkg] = 1;
 			return 1;
 		}
+		if(!strcmp(funcgroup[1], "samp"))
+		{
+			dpp_config[samp_pkg] = 1;
+			return 1;
+		}
 		else
 		{
 			dpp_error("Unknown package \"%s\".", funcgroup[1]);
@@ -202,6 +207,42 @@ stock dpp_process(const line[])
 			}
 
 			// do nothing, this is a comment
+			return 1;
+		}
+		else
+		{
+			dpp_error("Unknown function in the package \"system\".");
+			return 0;
+		}
+	}
+	if(!strcmp(funcgroup[0], "using::samp"))
+	{
+		if(dpp_config[samp_pkg] == 0)
+		{
+			dpp_error("Package \"samp\" is not imported.");
+			return 1;
+		}
+		// If the function used it "print"
+		if(!strcmp(funcgroup[1], "SetGameModeText"))
+		{
+			new mul, str[100];
+			strmid(str, args[1], 0, 100);
+			for(new i; i < strlen(args[1]); i++)
+			{
+				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+			}
+			if(mul == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.");
+				return 0;
+			}
+			if(mul != 2)
+			{
+				dpp_error("Argument error.");
+				return 0;
+			}
+
+			SetGameModeText(args[1]);
 			return 1;
 		}
 		else

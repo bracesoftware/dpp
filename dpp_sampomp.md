@@ -1,6 +1,7 @@
 # Supported callbacks
 
 ## `OnGameModeInit`
+
 Code:
 
 ```cpp
@@ -29,3 +30,17 @@ Output:
 ```
 
 # Supported functions
+
+## `SetGameModeText`
+
+Code:
+
+```cpp
+using::samp.SetGameModeText,"d++ test";
+```
+
+Output:
+
+```
+Gamemode text will be updated to "d++ test".
+```

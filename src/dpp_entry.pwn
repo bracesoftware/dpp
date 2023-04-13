@@ -28,7 +28,8 @@
 enum dpp_enumset
 {
 	console_pkg,
-	system_pkg
+	system_pkg,
+	samp_pkg
 };
 
 new dpp_config[dpp_enumset];
