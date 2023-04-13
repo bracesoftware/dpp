@@ -26,3 +26,19 @@ public DPP_GAMEMODEINIT()
 
 	return 1;
 }
+
+public OnGameModeExit()
+{
+	for(new i; i < dpp_maxfuncs; i++)
+	{
+		if(!strcmp(dpp_funcname[i], "OnGameModeExit"))
+		{
+			dpp_subexecute(dpp_funccodeblock[i]);
+			dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
+			dpp_debug("\"OnGameModeInit\" called.");
+			return 1;
+		}
+	}
+
+	return 1;
+}

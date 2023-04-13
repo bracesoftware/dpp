@@ -29,6 +29,33 @@ Output:
 [08:47:02] [Info] Legacy Network started on port 7777
 ```
 
+## `OnGameModeExit`
+
+Code:
+
+```cpp
+decl::func.OnGameModeExit;
+decl::begin;
+	using::console.cout,"OnGameModeExit works";
+decl::end;
+```
+
+Output:
+```
+[08:47:02] [Info] |==============================================|
+[08:47:02] [Info]                                                
+[08:47:02] [Info] >> D++ | INFO: The interpreter reached the EOS point.
+[08:47:02] [Info]                                                
+[08:47:02] [Info]                                                
+[08:47:02] [Info] |==============================================|
+[08:47:02] [Info] >> D++ | INFO: The SAMP script will continue running in the background.
+[08:47:02] [Info] |==============================================|
+[08:47:02] [Info]                                                
+[08:47:02] [Info]                                                
+[08:47:02] [Info] Legacy Network started on port 7777
+[08:47:02] [Info] OnGameModeExit works
+```
+
 # Supported functions
 
 ## `SetGameModeText`
