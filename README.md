@@ -34,4 +34,4 @@ using::console.cout,"Hello World";
 
 ### Worried about the latest updates?
 
-Just regularly check the [workflow runs](https://github.com/samp-api/dpp/actions)! Always select the latest workflow to download the latest build artifacts from.
+Just regularly check the [workflow runs](https://github.com/samp-api/dpp/actions)! Always select the latest **successful** workflow to download the latest build artifacts from.

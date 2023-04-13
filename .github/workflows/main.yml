@@ -24,8 +24,16 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: DPP_AMX_PreRelease
+          name: DPP_AMX_PreRelease_SAMP
           retention-days: 12 
           if-no-files-found: error
           
           path: src/dpp_entry.amx
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: DPP_AMX_PreRelease
+          retention-days: 12 
+          if-no-files-found: error
+          
+          path: src/dpp_entry_s.amx
