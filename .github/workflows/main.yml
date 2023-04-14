@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
      
-      - uses: AGraber/sampctl-action@v2
+      - uses: AGraber/sampctl-action@v1
         with:
           version: '1.10.0'
        
