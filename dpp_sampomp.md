@@ -58,6 +58,11 @@ Output:
 
 # Supported functions
 
+Note that before using these functions you must import the `samp` package first:
+```cpp
+import::package.samp;
+```
+
 ## `SetGameModeText`
 
 Code:
