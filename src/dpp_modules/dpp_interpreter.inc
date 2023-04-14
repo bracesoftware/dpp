@@ -41,16 +41,17 @@ stock dpp_process(const line[])
 		dpp_createfunc(funcgroup[1]);
 		return 1;
 	}
-	if(!strcmp(line, "decl::begin"))
+	if(!strcmp(funcgroup[0], "do"))
 	{
 		dpp_interpreter = 0;
 		return 1;
 	}
-	if(!strcmp(line, "decl::end"))
+	if(!strcmp(funcgroup[0], "end"))
 	{
 		dpp_interpreter = 1;
 		return 1;
 	}
+
 	if(dpp_interpreter == 0)
 	{
 		format(codeblockline, sizeof codeblockline, "%s;", line);

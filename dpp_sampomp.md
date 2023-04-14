@@ -8,9 +8,9 @@ Code:
 using::system.rem,"OnGameModeInit should be called by itself.";
 
 decl::func.OnGameModeInit;
-decl::begin;
+do;
 	using::console.cout,"OnGameModeInit works";
-decl::end;
+end;
 ```
 
 Output:
@@ -35,9 +35,9 @@ Code:
 
 ```cpp
 decl::func.OnGameModeExit;
-decl::begin;
+do;
 	using::console.cout,"OnGameModeExit works";
-decl::end;
+end;
 ```
 
 Output:

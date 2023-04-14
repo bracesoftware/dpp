@@ -12,9 +12,9 @@
 
 #define dpp_header 1
 
-#define DPP_VERSION_MAJOR 0
+#define DPP_VERSION_MAJOR 2
 #define DPP_VERSION_MINOR 0
-#define DPP_VERSION_PATCH 1
+#define DPP_VERSION_PATCH 0
 #define DPP_VERSION_RELEASE 1
 #define isnull(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
 #define dpp_execheader%0(%1) print("|====================| "%1" |====================|")
@@ -37,14 +37,16 @@ stock dpp_parsecode(const code[], destln[][])
 		index,
 		len;
 
-	while(i <= strlen(code))
+	// Lets assume code = "decl::end;"
+
+	while(i <= strlen(code)) // do this down there while 'i' is smaller than length of "decl::end;"
 	{
-		if(code[i] == ';' || i == strlen(code))
+		if(code[i] == ';' || i == strlen(code)) // if at certain point i reaches the ';' char, or it reaches the end,then:
 		{
-			len = strmid(destln[index], code, start, i, 128);
-			destln[index][len] = 0;
-			start = i+1;
-			index++;
+			len = strmid(destln[index], code, start, i, 128); // store "decl::end" without a ';' into destln 
+			destln[index][len] = 0; // clear the last char
+			start = i+1; // set start to be for 1 bigger
+			index++; // set an index to be for  1 bigger
 		}
 		i++;
 	}
@@ -112,10 +114,12 @@ stock dpp_execute(const script[])
 				if(content[i] == '\t') strdel(content, i, i+1);
 				if(content[i] == '\n') strdel(content, i, i+1);
 			}
+			dpp_debug("content: '%s'", content);
 			dpp_parsecode(content, codelines);
 			//dpp_debug("Executing:\n\n%s", content);
 			for(new i; i < 1024; i++)
 			{
+				if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
 				dpp_process(codelines[i]);
 			}
 		}

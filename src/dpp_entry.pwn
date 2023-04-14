@@ -45,12 +45,15 @@ new dpp_option_debug = 0;
 
 #include "dpp_modules/dpp_header.inc"
 #include "dpp_modules/dpp_interpreter.inc"
+#include "dpp_modules/dpp_utils.inc"
 #if SAMP_MODE == 1
 #include "dpp_modules/dpp_samp.inc"
 #endif
 
 main()
 {
+	dpp_nullcomment();
+	dpp_nullcomment();
 	dpp_execute("script.dpp");
 	dpp_nullcomment();
 	dpp_nullcomment();
