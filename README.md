@@ -1,4 +1,12 @@
-# D++
+<p align="center">
+  <img width="200" align="center" src="dpp_logo.png">
+</p>
+<h2 align = "center">Welcome to the <b>D++</b> Wiki</h2>
+<h4 align = "center">
+  The Simplest Multi-purpose Programming Language
+</h4>
+
+# Introduction
 :zap: ¤ D++ is a simple scripting language written in Pawn.
 
 - For the impatient, here is the example code:
