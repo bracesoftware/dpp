@@ -20,6 +20,7 @@ jobs:
           version: '1.10.0'
        
       - run: sampctl p build --forceEnsure
+      - run: sampctl package release
       - run: sampctl version
 
       - uses: actions/upload-artifact@v3
