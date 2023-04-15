@@ -42,3 +42,12 @@ public OnGameModeExit()
 
 	return 1;
 }
+
+///////////// FUNCS
+
+stock SetMaxPlayers(maxplayers)
+{
+	new rconcmd[50];
+	format(rconcmd, 50, "maxplayers %i", maxplayers);
+	return SendRconCommand(rconcmd);
+}

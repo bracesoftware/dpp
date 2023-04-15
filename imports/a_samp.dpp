@@ -1,0 +1,5 @@
+using::system.rem,"a_samp for D++";
+
+const::define.int,MAX_PLAYERS,1000;
+const::define.int,MAX_ACTORS,1000;
+const::define.int,MAX_VEHICLES,2000;

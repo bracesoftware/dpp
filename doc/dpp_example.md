@@ -1,7 +1,7 @@
 # Example
 
 `script.dpp`:
-```cpp
+```pawn
 pragma::option.debug,false;
 
 import::package.console;
@@ -38,7 +38,7 @@ end;
 ```
 
 `test.dpp`:
-```cpp
+```pawn
 using::console.cout,"Test is imported.";
 
 using::console.cout,"interesting...";

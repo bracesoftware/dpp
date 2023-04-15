@@ -26,7 +26,7 @@ stock dpp_process(const line[])
 		return 1;
 	}
 	new codeblockline[1024];
-	new args[10][100], funcgroup[2][20];
+	new args[10][dpp_argcharsize], funcgroup[2][20];
 	dpp_parseline(line, args, ',');
 	dpp_parseline(args[0], funcgroup, '.');
 
@@ -61,10 +61,209 @@ stock dpp_process(const line[])
 		return 1;
 	}
 
+	for(new i; i < 10; i++)
+	{
+		dpp_argarraycheck(args[i]);
+	}
+
+	if(!strcmp(funcgroup[0], "const::define"))
+	{
+		if(!strcmp(funcgroup[1], "int"))
+		{
+			/*new mul, str[dpp_argcharsize];
+			strmid(str, args[1], 0, dpp_argcharsize);
+			for(new i; i < strlen(args[1]); i++)
+			{
+				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+			}
+			if(mul == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.");
+				return 0;
+			}
+			if(mul != 2)
+			{
+				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+				return 0;
+			}*/
+
+			if(!dpp_isnumeric(args[2]))
+			{
+				dpp_error("Argument error; value must be an integer.");
+				return 0;
+			}
+
+			dpp_createintconst(args[1],strval(args[2]));
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "bool"))
+		{
+			/*new mul, str[dpp_argcharsize];
+			strmid(str, args[1], 0, dpp_argcharsize);
+			for(new i; i < strlen(args[1]); i++)
+			{
+				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+			}
+			if(mul == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.");
+				return 0;
+			}
+			if(mul != 2)
+			{
+				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+				return 0;
+			}*/
+
+			if(strcmp(args[2],"true") && strcmp(args[2],"false"))
+			{
+				dpp_error("Argument error; value must be either 'true' or 'false'.");
+				return 0;
+			}
+
+			new dpp_boolval;
+
+
+			if(!strcmp(args[2], "false"))
+			{
+				dpp_boolval = 0;
+			}
+			if(!strcmp(args[2], "true"))
+			{
+				dpp_boolval = 1;
+			}
+
+			dpp_createboolconst(args[1],dpp_boolval);
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "str"))
+		{
+			/*new mul, str[dpp_argcharsize];
+			strmid(str, args[1], 0, dpp_argcharsize);
+			for(new i; i < strlen(args[1]); i++)
+			{
+				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+			}
+			if(mul == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.");
+				return 0;
+			}
+			if(mul != 2)
+			{
+				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+				return 0;
+			}*/
+
+			new mul2, str2[dpp_argcharsize];
+			strmid(str2, args[2], 0, dpp_argcharsize);
+			for(new i; i < strlen(args[2]); i++)
+			{
+				if(args[2][i] == '\"') mul2++, strdel(args[2], i, i+1);
+			}
+			if(mul2 == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.");
+				return 0;
+			}
+			if(mul2 != 2)
+			{
+				dpp_error("Argument error; [%i] \"%s\"", mul2, args[2]);
+				return 0;
+			}
+
+			dpp_createstrconst(args[1],args[2]);
+			return 1;
+		}
+		
+		else
+		{
+			dpp_error("Unknown symbol type \"%s\".", funcgroup[1]);
+			return 0;
+		}
+	}
+
+	if(!strcmp(funcgroup[0], "const::undef"))
+	{
+		if(!strcmp(funcgroup[1], "int"))
+		{
+			/*new mul, str[dpp_argcharsize];
+			strmid(str, args[1], 0, dpp_argcharsize);
+			for(new i; i < strlen(args[1]); i++)
+			{
+				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+			}
+			if(mul == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.");
+				return 0;
+			}
+			if(mul != 2)
+			{
+				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+				return 0;
+			}*/
+
+			dpp_deleteintconst(args[1]);
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "bool"))
+		{
+			/*new mul, str[dpp_argcharsize];
+			strmid(str, args[1], 0, dpp_argcharsize);
+			for(new i; i < strlen(args[1]); i++)
+			{
+				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+			}
+			if(mul == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.");
+				return 0;
+			}
+			if(mul != 2)
+			{
+				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+				return 0;
+			}*/
+
+			dpp_deleteboolconst(args[1]);
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "str"))
+		{
+			/*new mul, str[dpp_argcharsize];
+			strmid(str, args[1], 0, dpp_argcharsize);
+			for(new i; i < strlen(args[1]); i++)
+			{
+				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+			}
+			if(mul == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.");
+				return 0;
+			}
+			if(mul != 2)
+			{
+				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+				return 0;
+			}*/
+
+			dpp_deletestrconst(args[1]);
+			return 1;
+		}
+		
+		else
+		{
+			dpp_error("Unknown symbol type \"%s\".", funcgroup[1]);
+			return 0;
+		}
+	}
+
 	if(!strcmp(funcgroup[0], "pragma::option"))
 	{
 		if(!strcmp(funcgroup[1], "debug"))
 		{
+			dpp_argarraycheck(args[1]);
 			if(!strcmp(args[1], "false"))
 			{
 				dpp_option_debug = 0;
@@ -79,7 +278,7 @@ stock dpp_process(const line[])
 			}
 			else
 			{
-				dpp_error("Wrong option value at \"%s\": value can be either 'true' or 'false'.", line);
+				dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
 			}
 			return 1;
 		}
@@ -153,8 +352,8 @@ stock dpp_process(const line[])
 		// If the function used it "print"
 		if(!strcmp(funcgroup[1], "cout"))
 		{
-			new mul, str[100];
-			strmid(str, args[1], 0, 100);
+			new mul, str[dpp_argcharsize];
+			strmid(str, args[1], 0, dpp_argcharsize);
 			for(new i; i < strlen(args[1]); i++)
 			{
 				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
@@ -166,7 +365,7 @@ stock dpp_process(const line[])
 			}
 			if(mul != 2)
 			{
-				dpp_error("Argument error.");
+				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
 				return 0;
 			}
 
@@ -190,8 +389,8 @@ stock dpp_process(const line[])
 		// If the function used it "print"
 		if(!strcmp(funcgroup[1], "rem"))
 		{
-			new mul, str[100];
-			strmid(str, args[1], 0, 100);
+			new mul, str[dpp_argcharsize];
+			strmid(str, args[1], 0, dpp_argcharsize);
 			for(new i; i < strlen(args[1]); i++)
 			{
 				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
@@ -203,7 +402,7 @@ stock dpp_process(const line[])
 			}
 			if(mul != 2)
 			{
-				dpp_error("Argument error.");
+				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
 				return 0;
 			}
 
@@ -223,11 +422,10 @@ stock dpp_process(const line[])
 			dpp_error("Package \"samp\" is not imported.");
 			return 1;
 		}
-		// If the function used it "print"
 		if(!strcmp(funcgroup[1], "SetGameModeText"))
 		{
-			new mul, str[100];
-			strmid(str, args[1], 0, 100);
+			new mul, str[dpp_argcharsize];
+			strmid(str, args[1], 0, dpp_argcharsize);
 			for(new i; i < strlen(args[1]); i++)
 			{
 				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
@@ -239,13 +437,26 @@ stock dpp_process(const line[])
 			}
 			if(mul != 2)
 			{
-				dpp_error("Argument error.");
+				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
 				return 0;
 			}
 
 			SetGameModeText(args[1]);
 			return 1;
 		}
+
+		if(!strcmp(funcgroup[1], "SetMaxPlayers"))
+		{
+			if(!dpp_isnumeric(args[1]))
+			{
+				dpp_error("Argument error; value must be an integer.");
+				return 0;
+			}
+
+			SetMaxPlayers(strval(args[1]));
+			return 1;
+		}
+
 		else
 		{
 			dpp_error("Unknown function in the package \"system\".");

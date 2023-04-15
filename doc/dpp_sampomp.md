@@ -4,7 +4,7 @@
 
 Code:
 
-```cpp
+```pawn
 using::system.rem,"OnGameModeInit should be called by itself.";
 
 decl::func.OnGameModeInit;
@@ -33,7 +33,7 @@ Output:
 
 Code:
 
-```cpp
+```pawn
 decl::func.OnGameModeExit;
 do;
 	using::console.cout,"OnGameModeExit works";
@@ -59,7 +59,7 @@ Output:
 # Supported functions
 
 Note that before using these functions you must import the `samp` package first:
-```cpp
+```pawn
 import::package.samp;
 ```
 
@@ -67,7 +67,7 @@ import::package.samp;
 
 Code:
 
-```cpp
+```pawn
 using::samp.SetGameModeText,"d++ test";
 ```
 

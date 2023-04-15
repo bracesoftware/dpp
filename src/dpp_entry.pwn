@@ -1,14 +1,14 @@
 /*
- *
- * D++ Scripting Language
- *     Made for a SA:MP server
- *
- * Entry point
- *
- * 
- * - by: DEntisT, (c) 2022
- *
- */
+*
+* D++ Scripting Language
+*     Made for a SA:MP server
+*
+* Entry point
+*
+* 
+* - by: DEntisT, (c) 2022
+*
+*/
 
 
 #if !defined SAMP_MODE
@@ -21,6 +21,12 @@
 #pragma option -;+
 #define DPP_DEBUG 1
 #define dpp_maxfuncs 1000
+#define dpp_maxconst 100
+#define dpp_argcharsize 100
+
+#define dpp_const_type_int 1
+#define dpp_const_type_bool 2
+#define dpp_const_type_str 3
 
 // REQUIRED.
 #include <open.mp>
@@ -43,9 +49,11 @@ new dpp_interpreter = 1;
 
 new dpp_option_debug = 0;
 
+//includes
 #include "dpp_modules/dpp_header.inc"
-#include "dpp_modules/dpp_interpreter.inc"
 #include "dpp_modules/dpp_utils.inc"
+#include "dpp_modules/dpp_const.inc"
+#include "dpp_modules/dpp_interpreter.inc"
 #if SAMP_MODE == 1
 #include "dpp_modules/dpp_samp.inc"
 #endif
