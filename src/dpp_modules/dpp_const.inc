@@ -94,7 +94,7 @@ stock dpp_createintconst(const name[], value)
 			if(dpp_isnumeric(name)) name_error = 1;
 			if(name_error == 1)
 			{
-				dpp_error("Invalid symbol name.");
+				dpp_error("Invalid symbol name.",);
 				return 1;
 			}
 
@@ -126,7 +126,7 @@ stock dpp_createboolconst(const name[], value)
 			if(dpp_isnumeric(name)) name_error = 1;
 			if(name_error == 1)
 			{
-				dpp_error("Invalid symbol name.");
+				dpp_error("Invalid symbol name.",);
 				return 1;
 			}
 
@@ -158,7 +158,7 @@ stock dpp_createstrconst(const name[], const value[])
 			if(dpp_isnumeric(name)) name_error = 1;
 			if(name_error == 1)
 			{
-				dpp_error("Invalid symbol name.");
+				dpp_error("Invalid symbol name.",);
 				return 1;
 			}
 

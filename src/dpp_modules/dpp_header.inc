@@ -26,7 +26,16 @@
 #elseif DPP_DEBUG == 0
 #define dpp_debug%0(%1)%2;
 #endif
-#define dpp_error%0(%1) printf(">> D++ | ERROR: "%1)
+
+new
+    dpp_error_str[1024];
+
+#define __line,) __line)
+
+
+#define dpp_error%0(%1,%2) format(dpp_error_str,sizeof dpp_error_str,">> D++ | ERROR (dpp.amx @ %s:%i): "%1,__file,__line,%2)&& \
+    print(dpp_error_str) 
+ //printf(">> D++ | ERROR (dpp.amx @ %s:%i): %s",__file,__line,%1)
 #define dpp_warning%0(%1) printf(">> D++ | WARNING: "%1)
 
 stock dpp_parsecode(const code[], destln[][])
@@ -126,7 +135,7 @@ stock dpp_execute(const script[])
 	}
 	else if(!file)
 	{
-		dpp_error("Invalid file.");
+		dpp_error("Invalid file.",);
 	}
 	dpp_nullcomment();
 	dpp_comment();
@@ -160,7 +169,7 @@ stock dpp_executefile(const script[])
 	}
 	else if(!file)
 	{
-		dpp_error("Invalid file.");
+		dpp_error("Invalid file.",);
 	}
 	return 1;
 }
@@ -174,6 +183,57 @@ stock dpp_subexecute(const code[])
 	for(new i; i < 1024; i++)
 	{
 		dpp_subprocess(codelines[i]);
+	}
+	return 1;
+}
+
+
+///////////////FUNC CALLING/////////////////////
+stock dpp_argfunccheck(arg[])
+{
+	new newvalue[dpp_argcharsize];
+	for(new i; i < dpp_maxfuncs; i++)
+	{
+		if(!strcmp(dpp_funcname[i], arg))
+		{
+			if(dpp_validfunc[i] == 1)
+			{
+				dpp_returned[i] = 0;
+				dpp_processfunc = i;
+				dpp_subexecute(dpp_funccodeblock[i]);
+				dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
+
+				/////////////////////////////////////
+
+				if(dpp_returntype[i] == dpp_rtn_type_int)
+				{
+					format(newvalue, dpp_argcharsize, "%i", 
+						dpp_funcreturn_int[i]);
+				}
+				if(dpp_returntype[i] == dpp_rtn_type_bool)
+				{
+					if(dpp_funcreturn_bool[i] == 1)
+					{
+						strmid(arg, "true", 0, dpp_argcharsize, dpp_argcharsize);
+					}
+					if(dpp_funcreturn_bool[i] == 0)
+					{
+						strmid(arg, "false", 0, dpp_argcharsize, dpp_argcharsize);
+					}
+				}
+				if(dpp_returntype[i] == dpp_rtn_type_str)
+				{
+					format(newvalue, dpp_argcharsize, "\"%s\"", 
+						dpp_funcreturn_str[i]);
+				}
+				
+				if(dpp_returntype[i] != dpp_rtn_type_bool)
+				{
+					strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
+				}
+				return 1;
+			}
+		}
 	}
 	return 1;
 }

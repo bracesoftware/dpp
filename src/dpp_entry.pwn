@@ -28,6 +28,10 @@
 #define dpp_const_type_bool 2
 #define dpp_const_type_str 3
 
+#define dpp_rtn_type_int 1
+#define dpp_rtn_type_bool 2
+#define dpp_rtn_type_str 3
+
 // REQUIRED.
 #include <open.mp>
 
@@ -43,6 +47,16 @@ new dpp_currentfuncid = 0;
 new dpp_validfunc[dpp_maxfuncs];
 new dpp_funcname[dpp_maxfuncs][64];
 new dpp_funccodeblock[dpp_maxfuncs][1024];
+
+new dpp_funcreturn_int[dpp_maxfuncs];
+new dpp_funcreturn_bool[dpp_maxfuncs];
+new dpp_funcreturn_str[dpp_maxfuncs][1024];
+
+new dpp_returned[dpp_maxfuncs];
+new dpp_returntype[dpp_maxfuncs];
+
+new dpp_processfunc = 0;
+
 new dpp_interpreter = 1;
 
 //OPTIONS

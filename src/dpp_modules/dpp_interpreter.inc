@@ -36,6 +36,8 @@ stock dpp_process(const line[])
 	//	funcgroup[1]	cout
 	//	args[1]			"Hello World"
 
+
+
 	if(!strcmp(funcgroup[0], "decl::func"))
 	{
 		dpp_createfunc(funcgroup[1]);
@@ -52,6 +54,7 @@ stock dpp_process(const line[])
 		return 1;
 	}
 
+
 	if(dpp_interpreter == 0)
 	{
 		format(codeblockline, sizeof codeblockline, "%s;", line);
@@ -64,6 +67,7 @@ stock dpp_process(const line[])
 	for(new i; i < 10; i++)
 	{
 		dpp_argarraycheck(args[i]);
+		dpp_argfunccheck(args[i]);
 	}
 
 	if(!strcmp(funcgroup[0], "const::define"))
@@ -89,7 +93,7 @@ stock dpp_process(const line[])
 
 			if(!dpp_isnumeric(args[2]))
 			{
-				dpp_error("Argument error; value must be an integer.");
+				dpp_error("Argument error; value must be an integer.",);
 				return 0;
 			}
 
@@ -117,7 +121,7 @@ stock dpp_process(const line[])
 
 			if(strcmp(args[2],"true") && strcmp(args[2],"false"))
 			{
-				dpp_error("Argument error; value must be either 'true' or 'false'.");
+				dpp_error("Argument error; value must be either 'true' or 'false'.",);
 				return 0;
 			}
 
@@ -163,7 +167,7 @@ stock dpp_process(const line[])
 			}
 			if(mul2 == 0)
 			{
-				dpp_error("You need to use '\"' to start a string.");
+				dpp_error("You need to use '\"' to start a string.",);
 				return 0;
 			}
 			if(mul2 != 2)
@@ -334,6 +338,8 @@ stock dpp_process(const line[])
 		{
 			if(!strcmp(dpp_funcname[i], funcgroup[1]))
 			{
+				dpp_returned[i] = 0;
+				dpp_processfunc = i;
 				dpp_subexecute(dpp_funccodeblock[i]);
 				dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
 				return 1;
@@ -342,11 +348,99 @@ stock dpp_process(const line[])
 		dpp_error("Function \"%s\" isn't registered.", funcgroup[1]);
 		return 1;
 	}
+	if(!strcmp(funcgroup[0], "return"))
+	{
+		if(dpp_processfunc == 0)
+		{
+			dpp_error("Expression \"return\" can be only used inside a function code block.",);
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "int"))
+		{
+			if(!dpp_isnumeric(args[1]))
+			{
+				dpp_error("Return value must be an integer.",);
+				return 1;
+			}
+
+			new int_return = strval(args[1]);
+
+			dpp_returned[dpp_processfunc] = 1;
+			dpp_returntype[dpp_processfunc] = dpp_rtn_type_int;
+			dpp_funcreturn_int[dpp_processfunc] = int_return;
+
+			dpp_processfunc = 0;
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "bool"))
+		{
+			if(!strcmp(args[1], "true"))
+			{
+				dpp_returned[dpp_processfunc] = 1;
+				dpp_returntype[dpp_processfunc] = dpp_rtn_type_bool;
+				dpp_funcreturn_bool[dpp_processfunc] = 1;
+
+				dpp_processfunc = 0;
+				return 1;
+			}
+			if(!strcmp(args[1], "false"))
+			{
+				dpp_returned[dpp_processfunc] = 1;
+				dpp_returntype[dpp_processfunc] = dpp_rtn_type_bool;
+				dpp_funcreturn_bool[dpp_processfunc] = 0;
+
+				dpp_processfunc = 0;
+				return 1;
+			}
+			else
+			{
+				dpp_error("Return value must be either \"true\" or \"false\".",);
+			}
+
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "str"))
+		{
+			new mul, str[dpp_argcharsize];
+			strmid(str, args[1], 0, dpp_argcharsize);
+			for(new i; i < strlen(args[1]); i++)
+			{
+				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+			}
+			if(mul == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.",);
+				return 0;
+			}
+			if(mul != 2)
+			{
+				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+				return 0;
+			}
+
+			dpp_returned[dpp_processfunc] = 1;
+			dpp_returntype[dpp_processfunc] = dpp_rtn_type_str;
+			strmid(dpp_funcreturn_str[dpp_processfunc],args[1],0,
+				dpp_argcharsize,dpp_argcharsize);
+
+			dpp_debug("dpp_funcreturn_str[dpp_processfunc] : \"%s\"\nargs[1] : \"%s\"",dpp_funcreturn_str[dpp_processfunc],args[1]);
+
+			dpp_processfunc = 0;
+			return 1;
+		}
+
+		else
+		{
+			dpp_error("Unknown return type \"%s\".", funcgroup[1]);
+		}
+		return 1;
+	}
+
 	if(!strcmp(funcgroup[0], "using::console"))
 	{
 		if(dpp_config[console_pkg] == 0)
 		{
-			dpp_error("Package \"console\" is not imported.");
+			dpp_error("Package \"console\" is not imported.",);
 			return 1;
 		}
 		// If the function used it "print"
@@ -360,7 +454,7 @@ stock dpp_process(const line[])
 			}
 			if(mul == 0)
 			{
-				dpp_error("You need to use '\"' to start a string.");
+				dpp_error("You need to use '\"' to start a string.",);
 				return 0;
 			}
 			if(mul != 2)
@@ -375,7 +469,7 @@ stock dpp_process(const line[])
 		}
 		else
 		{
-			dpp_error("Unknown function in the package \"console\".");
+			dpp_error("Unknown function in the package \"console\".",);
 			return 0;
 		}
 	}
@@ -383,7 +477,7 @@ stock dpp_process(const line[])
 	{
 		if(dpp_config[system_pkg] == 0)
 		{
-			dpp_error("Package \"system\" is not imported.");
+			dpp_error("Package \"system\" is not imported.",);
 			return 1;
 		}
 		// If the function used it "print"
@@ -397,7 +491,7 @@ stock dpp_process(const line[])
 			}
 			if(mul == 0)
 			{
-				dpp_error("You need to use '\"' to start a string.");
+				dpp_error("You need to use '\"' to start a string.",);
 				return 0;
 			}
 			if(mul != 2)
@@ -411,7 +505,7 @@ stock dpp_process(const line[])
 		}
 		else
 		{
-			dpp_error("Unknown function in the package \"system\".");
+			dpp_error("Unknown function in the package \"system\".",);
 			return 0;
 		}
 	}
@@ -419,7 +513,7 @@ stock dpp_process(const line[])
 	{
 		if(dpp_config[samp_pkg] == 0)
 		{
-			dpp_error("Package \"samp\" is not imported.");
+			dpp_error("Package \"samp\" is not imported.",);
 			return 1;
 		}
 		if(!strcmp(funcgroup[1], "SetGameModeText"))
@@ -432,7 +526,7 @@ stock dpp_process(const line[])
 			}
 			if(mul == 0)
 			{
-				dpp_error("You need to use '\"' to start a string.");
+				dpp_error("You need to use '\"' to start a string.",);
 				return 0;
 			}
 			if(mul != 2)
@@ -449,7 +543,7 @@ stock dpp_process(const line[])
 		{
 			if(!dpp_isnumeric(args[1]))
 			{
-				dpp_error("Argument error; value must be an integer.");
+				dpp_error("Argument error; value must be an integer.",);
 				return 0;
 			}
 
@@ -459,7 +553,7 @@ stock dpp_process(const line[])
 
 		else
 		{
-			dpp_error("Unknown function in the package \"system\".");
+			dpp_error("Unknown function in the package \"system\".",);
 			return 0;
 		}
 	}
