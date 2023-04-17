@@ -17,6 +17,7 @@ public DPP_GAMEMODEINIT()
 	{
 		if(!strcmp(dpp_funcname[i], "OnGameModeInit"))
 		{
+			dpp_processfunc = i;
 			dpp_subexecute(dpp_funccodeblock[i]);
 			dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
 			dpp_debug("\"OnGameModeInit\" called.");
@@ -33,6 +34,7 @@ public OnGameModeExit()
 	{
 		if(!strcmp(dpp_funcname[i], "OnGameModeExit"))
 		{
+			dpp_processfunc = i;
 			dpp_subexecute(dpp_funccodeblock[i]);
 			dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
 			dpp_debug("\"OnGameModeInit\" called.");
