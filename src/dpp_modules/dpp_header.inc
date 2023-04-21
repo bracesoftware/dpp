@@ -50,6 +50,21 @@ stock dpp_parsecode(const code[], destln[][])
 
 	while(i <= strlen(code)) // do this down there while 'i' is smaller than length of "decl::end;"
 	{
+		/*if(strcmp(code, "{")) // if at certain point i reaches the ';' char, or it reaches the end,then:
+		{
+			len = strmid(destln[index], "{", start, i, 128); // store "decl::end" without a ';' into destln 
+			destln[index][len] = 0; // clear the last char
+			start = i+1; // set start to be for 1 bigger
+			index++; // set an index to be for  1 bigger
+		}
+		if(strcmp(code, "}")) // if at certain point i reaches the ';' char, or it reaches the end,then:
+		{
+			len = strmid(destln[index], "}", start, i, 128); // store "decl::end" without a ';' into destln 
+			destln[index][len] = 0; // clear the last char
+			start = i+1; // set start to be for 1 bigger
+			index++; // set an index to be for  1 bigger
+		}*/
+
 		if(code[i] == ';' || i == strlen(code)) // if at certain point i reaches the ';' char, or it reaches the end,then:
 		{
 			len = strmid(destln[index], code, start, i, 128); // store "decl::end" without a ';' into destln 
@@ -58,6 +73,11 @@ stock dpp_parsecode(const code[], destln[][])
 			index++; // set an index to be for  1 bigger
 		}
 		i++;
+		
+		if(strlen(code) != 0)
+		{
+			dpp_debug("Parsecode backtrace:\n\tcode: '%s'\n\ti: %i\n\tstart: %i\n\tindex: %i\n\tlen: %i\n\tdestln[%i]: '%s'\n\tlen (destln[%i]): %i",code,i,start,index,len,index,destln[index],index,strlen(destln[index]));
+		}
 	}
 	return 1;
 }

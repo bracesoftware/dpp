@@ -19,6 +19,9 @@ decl::begin;
 decl::end;
 */
 
+new process_backtrace[2048];
+new process_bcktrc[1024];
+
 stock dpp_process(const line[])
 {
 	if(isnull(line))
@@ -36,14 +39,34 @@ stock dpp_process(const line[])
 	//	funcgroup[1]	cout
 	//	args[1]			"Hello World"
 
+	//Cleanup:
+	format(process_backtrace,sizeof process_backtrace,
+		"Process backtrace:");
+	format(process_bcktrc,sizeof process_bcktrc,"");
 
+	format(process_bcktrc,sizeof process_bcktrc,"\n\tline: '%s'",line);	
+	strcat(process_backtrace, process_bcktrc);
+
+	for(new i; i < 2; i++)
+	{
+		format(process_bcktrc,sizeof process_bcktrc,"\n\tfuncgroup[%i]: '%s'",i,funcgroup[i]);	
+		strcat(process_backtrace, process_bcktrc);
+	}
+
+	for(new i; i < 10; i++)
+	{
+		format(process_bcktrc,sizeof process_bcktrc,"\n\targs[%i]: '%s'",i,args[i]);	
+		strcat(process_backtrace, process_bcktrc);
+	}
+
+	dpp_debug("%s", process_backtrace);
 
 	if(!strcmp(funcgroup[0], "decl::func"))
 	{
 		dpp_createfunc(funcgroup[1]);
 		return 1;
 	}
-	if(!strcmp(funcgroup[0], "do"))
+	/*if(!strcmp(funcgroup[0], "do"))
 	{
 		dpp_interpreter = 0;
 		return 1;
@@ -52,7 +75,18 @@ stock dpp_process(const line[])
 	{
 		dpp_interpreter = 1;
 		return 1;
+	}*/
+	if(funcgroup[0][0] == '{')
+	{
+		dpp_interpreter = 0;
+		return 1;
 	}
+	if(funcgroup[0][0] == '}')
+	{
+		dpp_interpreter = 1;
+		return 1;
+	}
+
 
 
 	if(dpp_interpreter == 0)

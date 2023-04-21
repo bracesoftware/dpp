@@ -3,10 +3,10 @@
 Code:
 ```pawn
 decl::func.testFunc;
-do;
+{
 	using::console.cout,"testFunc was called.";
 	return.str,"testFunc returned this.";
-end;
+}
 
 using::console.cout,testFunc;
 ```
@@ -25,12 +25,12 @@ You can also return booleans and strings!
 
 ```pawn
 decl::func.testFunc;
-do;
+{
 	return.int,1;
-end;
+}
 
 decl::func.testFunc;
-do;
+{
 	return.bool,true;
-end;
+}
 ```

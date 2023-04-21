@@ -8,9 +8,9 @@ Code:
 using::system.rem,"OnGameModeInit should be called by itself.";
 
 decl::func.OnGameModeInit;
-do;
+{
 	using::console.cout,"OnGameModeInit works";
-end;
+}
 ```
 
 Output:
@@ -35,9 +35,9 @@ Code:
 
 ```pawn
 decl::func.OnGameModeExit;
-do;
+{
 	using::console.cout,"OnGameModeExit works";
-end;
+}
 ```
 
 Output:
