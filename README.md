@@ -21,16 +21,28 @@ using::console.cout,"Hello World";
 - Code output:
 
 ```
-[12:44:50] >> D++ | INFO: Interpreter version 0.0.1-R1 - by: DEntisT
-[12:44:50] >> D++ | INFO: Executing the entry script...
-[12:44:50]                                                
-[12:44:50] |====================| script.dpp |====================|
-[12:44:50]                                                
-[12:44:50] Hello World
-[12:44:50]                                                
-[12:44:50] |==============================================|
-[12:44:50]                                                
-[12:44:50] >> D++ | INFO: The interpreter reached the EOS point.
+[19:19:44] [Info] |======================================|
+[19:19:44] [Info]                                         
+[19:19:44] [Info]                    D++                  
+[19:19:44] [Info]          Interpreter is loading...      
+[19:19:44] [Info]                                         
+[19:19:44] [Info]         Version: 3.0.0-R1          
+[19:19:44] [Info]                                         
+[19:19:44] [Info]                By: DEntisT              
+[19:19:44] [Info]                                         
+[19:19:44] [Info] |======================================|
+[19:19:44] [Info]                                         
+[19:19:44] [Info]                                         
+[19:19:44] [Info] >> D++ | INFO: Debug component loaded...
+[19:19:44] [Info] >> D++ | INFO: Executing the entry script...
+[19:19:44] [Info]                                                
+[19:19:44] [Info] |====================| index.dpp |====================|
+[19:19:44] [Info] 
+[19:19:44] [Info] Hello World
+[19:19:44] [Info]                                                
+[19:19:44] [Info] |==============================================|
+[19:19:44] [Info]                                                
+[19:19:44] [Info] >> D++ | INFO: The interpreter reached the EOS point.
 ```
 ## Documentation
 

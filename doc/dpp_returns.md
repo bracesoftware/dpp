@@ -2,11 +2,11 @@
 
 Code:
 ```pawn
-decl::func.testFunc;
-{
+public&func.testFunc;
+do;
 	using::console.cout,"testFunc was called.";
 	return.str,"testFunc returned this.";
-}
+end;
 
 using::console.cout,testFunc;
 ```
@@ -24,13 +24,13 @@ Output:
 You can also return booleans and strings!
 
 ```pawn
-decl::func.testFunc;
-{
+public&func.testFunc;
+do;
 	return.int,1;
-}
+end;
 
-decl::func.testFunc;
-{
+public&func.testFunc;
+do;
 	return.bool,true;
-}
+end;
 ```

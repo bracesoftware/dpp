@@ -19,14 +19,27 @@
 #pragma warning disable 204
 #pragma warning disable 211
 #pragma option -;+
+
+#define DPP_VERSION_MAJOR 3
+#define DPP_VERSION_MINOR 0
+#define DPP_VERSION_PATCH 0
+#define DPP_VERSION_RELEASE 1
+
 #define DPP_DEBUG 1
+#define DPP_BRACES 0
+
 #define dpp_maxfuncs 1000
 #define dpp_maxconst 100
+#define dpp_maxvar 100
 #define dpp_argcharsize 100
 
 #define dpp_const_type_int 1
 #define dpp_const_type_bool 2
 #define dpp_const_type_str 3
+
+#define dpp_var_type_int 1
+#define dpp_var_type_bool 2
+#define dpp_var_type_str 3
 
 #define dpp_rtn_type_int 1
 #define dpp_rtn_type_bool 2
@@ -67,7 +80,10 @@ new dpp_option_debug = 0;
 #include "dpp_modules/dpp_header.inc"
 #include "dpp_modules/dpp_utils.inc"
 #include "dpp_modules/dpp_const.inc"
+#include "dpp_modules/dpp_vars.inc"
+
 #include "dpp_modules/dpp_interpreter.inc"
+
 #if SAMP_MODE == 1
 #include "dpp_modules/dpp_samp.inc"
 #endif
@@ -76,7 +92,7 @@ main()
 {
 	dpp_nullcomment();
 	dpp_nullcomment();
-	dpp_execute("script.dpp");
+	dpp_execute("index.dpp");
 	dpp_nullcomment();
 	dpp_nullcomment();
 	dpp_comment();

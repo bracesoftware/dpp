@@ -10,15 +10,6 @@
  *
  */
 
-/*
-import::package.console;
-using::console.cout("Hello World")
-decl::func.myfunc;
-decl::begin;
-	using::console.print,"myfunc called.";
-decl::end;
-*/
-
 new process_backtrace[2048];
 new process_bcktrc[1024];
 
@@ -61,12 +52,12 @@ stock dpp_process(const line[])
 
 	dpp_debug("%s", process_backtrace);
 
-	if(!strcmp(funcgroup[0], "decl::func"))
+	if(!strcmp(funcgroup[0], "public&func"))
 	{
 		dpp_createfunc(funcgroup[1]);
 		return 1;
 	}
-	/*if(!strcmp(funcgroup[0], "do"))
+	if(!strcmp(funcgroup[0], "do"))
 	{
 		dpp_interpreter = 0;
 		return 1;
@@ -75,23 +66,33 @@ stock dpp_process(const line[])
 	{
 		dpp_interpreter = 1;
 		return 1;
-	}*/
-	if(funcgroup[0][0] == '{')
+	}
+
+	#if DPP_BRACES == 1
+	new line_wo_brace[1024];
+	new char_idx = strlen(funcgroup[0]) - 1;
+	if(funcgroup[0][char_idx] == '{')
 	{
 		dpp_interpreter = 0;
+		strmid(line_wo_brace, line, 0, strlen(line));
+		strdel(line_wo_brace, 0, 1);
 		return 1;
 	}
-	if(funcgroup[0][0] == '}')
+	if(funcgroup[0][char_idx] == '}')
 	{
 		dpp_interpreter = 1;
 		return 1;
 	}
+	#endif
 
 
 
 	if(dpp_interpreter == 0)
 	{
 		format(codeblockline, sizeof codeblockline, "%s;", line);
+		#if DPP_BRACES == 1
+		format(codeblockline, sizeof codeblockline, "%s;", line_wo_brace);
+		#endif
 		dpp_debug("codeblockline:%s",codeblockline);
 		dpp_debug("dpp_currentfuncid:%i",dpp_currentfuncid);
 		strcat(dpp_funccodeblock[dpp_currentfuncid], codeblockline);
@@ -102,29 +103,22 @@ stock dpp_process(const line[])
 	{
 		dpp_argarraycheck(args[i]);
 		dpp_argfunccheck(args[i]);
+		dpp_argvarcheck(args[i]);
 	}
+
+	///////////////////////////////////////////////////////
+	////
+	////
+	////			CONST SYS
+	////
+	////
+	///////////////////////////////////////////////////////
+
 
 	if(!strcmp(funcgroup[0], "const::define"))
 	{
 		if(!strcmp(funcgroup[1], "int"))
 		{
-			/*new mul, str[dpp_argcharsize];
-			strmid(str, args[1], 0, dpp_argcharsize);
-			for(new i; i < strlen(args[1]); i++)
-			{
-				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
-			}
-			if(mul == 0)
-			{
-				dpp_error("You need to use '\"' to start a string.");
-				return 0;
-			}
-			if(mul != 2)
-			{
-				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
-				return 0;
-			}*/
-
 			if(!dpp_isnumeric(args[2]))
 			{
 				dpp_error("Argument error; value must be an integer.",);
@@ -136,23 +130,6 @@ stock dpp_process(const line[])
 		}
 		if(!strcmp(funcgroup[1], "bool"))
 		{
-			/*new mul, str[dpp_argcharsize];
-			strmid(str, args[1], 0, dpp_argcharsize);
-			for(new i; i < strlen(args[1]); i++)
-			{
-				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
-			}
-			if(mul == 0)
-			{
-				dpp_error("You need to use '\"' to start a string.");
-				return 0;
-			}
-			if(mul != 2)
-			{
-				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
-				return 0;
-			}*/
-
 			if(strcmp(args[2],"true") && strcmp(args[2],"false"))
 			{
 				dpp_error("Argument error; value must be either 'true' or 'false'.",);
@@ -176,23 +153,6 @@ stock dpp_process(const line[])
 		}
 		if(!strcmp(funcgroup[1], "str"))
 		{
-			/*new mul, str[dpp_argcharsize];
-			strmid(str, args[1], 0, dpp_argcharsize);
-			for(new i; i < strlen(args[1]); i++)
-			{
-				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
-			}
-			if(mul == 0)
-			{
-				dpp_error("You need to use '\"' to start a string.");
-				return 0;
-			}
-			if(mul != 2)
-			{
-				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
-				return 0;
-			}*/
-
 			new mul2, str2[dpp_argcharsize];
 			strmid(str2, args[2], 0, dpp_argcharsize);
 			for(new i; i < strlen(args[2]); i++)
@@ -225,67 +185,16 @@ stock dpp_process(const line[])
 	{
 		if(!strcmp(funcgroup[1], "int"))
 		{
-			/*new mul, str[dpp_argcharsize];
-			strmid(str, args[1], 0, dpp_argcharsize);
-			for(new i; i < strlen(args[1]); i++)
-			{
-				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
-			}
-			if(mul == 0)
-			{
-				dpp_error("You need to use '\"' to start a string.");
-				return 0;
-			}
-			if(mul != 2)
-			{
-				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
-				return 0;
-			}*/
-
 			dpp_deleteintconst(args[1]);
 			return 1;
 		}
 		if(!strcmp(funcgroup[1], "bool"))
 		{
-			/*new mul, str[dpp_argcharsize];
-			strmid(str, args[1], 0, dpp_argcharsize);
-			for(new i; i < strlen(args[1]); i++)
-			{
-				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
-			}
-			if(mul == 0)
-			{
-				dpp_error("You need to use '\"' to start a string.");
-				return 0;
-			}
-			if(mul != 2)
-			{
-				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
-				return 0;
-			}*/
-
 			dpp_deleteboolconst(args[1]);
 			return 1;
 		}
 		if(!strcmp(funcgroup[1], "str"))
 		{
-			/*new mul, str[dpp_argcharsize];
-			strmid(str, args[1], 0, dpp_argcharsize);
-			for(new i; i < strlen(args[1]); i++)
-			{
-				if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
-			}
-			if(mul == 0)
-			{
-				dpp_error("You need to use '\"' to start a string.");
-				return 0;
-			}
-			if(mul != 2)
-			{
-				dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
-				return 0;
-			}*/
-
 			dpp_deletestrconst(args[1]);
 			return 1;
 		}
@@ -296,6 +205,179 @@ stock dpp_process(const line[])
 			return 0;
 		}
 	}
+
+	///////////////////////////////////////////////////////
+	////
+	////
+	////			VAR SYS
+	////
+	////
+	///////////////////////////////////////////////////////
+
+	if(!strcmp(funcgroup[0], "var::define"))
+	{
+		if(!strcmp(funcgroup[1], "int"))
+		{
+			if(!dpp_isnumeric(args[2]))
+			{
+				dpp_error("Argument error; value must be an integer.",);
+				return 0;
+			}
+
+			dpp_createintvar(args[1],strval(args[2]));
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "bool"))
+		{
+			if(strcmp(args[2],"true") && strcmp(args[2],"false"))
+			{
+				dpp_error("Argument error; value must be either 'true' or 'false'.",);
+				return 0;
+			}
+
+			new dpp_boolval;
+
+
+			if(!strcmp(args[2], "false"))
+			{
+				dpp_boolval = 0;
+			}
+			if(!strcmp(args[2], "true"))
+			{
+				dpp_boolval = 1;
+			}
+
+			dpp_createboolvar(args[1],dpp_boolval);
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "str"))
+		{
+			new mul2, str2[dpp_argcharsize];
+			strmid(str2, args[2], 0, dpp_argcharsize);
+			for(new i; i < strlen(args[2]); i++)
+			{
+				if(args[2][i] == '\"') mul2++, strdel(args[2], i, i+1);
+			}
+			if(mul2 == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.",);
+				return 0;
+			}
+			if(mul2 != 2)
+			{
+				dpp_error("Argument error; [%i] \"%s\"", mul2, args[2]);
+				return 0;
+			}
+
+			dpp_createstrvar(args[1],args[2]);
+			return 1;
+		}
+		
+		else
+		{
+			dpp_error("Unknown symbol type \"%s\".", funcgroup[1]);
+			return 0;
+		}
+	}
+
+	if(!strcmp(funcgroup[0], "var::undef"))
+	{
+		if(!strcmp(funcgroup[1], "int"))
+		{
+			dpp_deleteintvar(args[1]);
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "bool"))
+		{
+			dpp_deleteboolvar(args[1]);
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "str"))
+		{
+			dpp_deletestrvar(args[1]);
+			return 1;
+		}
+		
+		else
+		{
+			dpp_error("Unknown symbol type \"%s\".", funcgroup[1]);
+			return 0;
+		}
+	}
+
+	if(!strcmp(funcgroup[0], "var::set"))
+	{
+		if(!strcmp(funcgroup[1], "int"))
+		{
+			if(!dpp_isnumeric(args[2]))
+			{
+				dpp_error("Argument error; value must be an integer.",);
+				return 0;
+			}
+
+			dpp_setintvar(args[1],strval(args[2]));
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "bool"))
+		{
+			if(strcmp(args[2],"true") && strcmp(args[2],"false"))
+			{
+				dpp_error("Argument error; value must be either 'true' or 'false'.",);
+				return 0;
+			}
+
+			new dpp_boolval;
+
+
+			if(!strcmp(args[2], "false"))
+			{
+				dpp_boolval = 0;
+			}
+			if(!strcmp(args[2], "true"))
+			{
+				dpp_boolval = 1;
+			}
+
+			dpp_setboolvar(args[1],dpp_boolval);
+			return 1;
+		}
+		if(!strcmp(funcgroup[1], "str"))
+		{
+			new mul2, str2[dpp_argcharsize];
+			strmid(str2, args[2], 0, dpp_argcharsize);
+			for(new i; i < strlen(args[2]); i++)
+			{
+				if(args[2][i] == '\"') mul2++, strdel(args[2], i, i+1);
+			}
+			if(mul2 == 0)
+			{
+				dpp_error("You need to use '\"' to start a string.",);
+				return 0;
+			}
+			if(mul2 != 2)
+			{
+				dpp_error("Argument error; [%i] \"%s\"", mul2, args[2]);
+				return 0;
+			}
+
+			dpp_setstrvar(args[1],args[2]);
+			return 1;
+		}
+		
+		else
+		{
+			dpp_error("Unknown symbol type \"%s\".", funcgroup[1]);
+			return 0;
+		}
+	}
+
+	///////////////////////////////////////////////////////
+	////
+	////
+	////			PRAGMA OPT SYS
+	////
+	////
+	///////////////////////////////////////////////////////
 
 	if(!strcmp(funcgroup[0], "pragma::option"))
 	{
@@ -328,6 +410,14 @@ stock dpp_process(const line[])
 		}
 	}
 
+	///////////////////////////////////////////////////////
+	////
+	////
+	////			PACKAGE SYS
+	////
+	////
+	///////////////////////////////////////////////////////
+
 	if(!strcmp(funcgroup[0], "import::package"))
 	{
 		if(!strcmp(funcgroup[1], "console"))
@@ -351,6 +441,15 @@ stock dpp_process(const line[])
 			return 0;
 		}
 	}
+
+	///////////////////////////////////////////////////////
+	////
+	////
+	////			IMPORT SYS
+	////
+	////
+	///////////////////////////////////////////////////////
+
 	if(!strcmp(funcgroup[0], "import::file"))
 	{
 		for(new i; i < strlen(args[1]); i++)
@@ -366,6 +465,15 @@ stock dpp_process(const line[])
 			return 0;
 		}
 	}
+
+	///////////////////////////////////////////////////////
+	////
+	////
+	////			USER FUNC SYS
+	////
+	////
+	///////////////////////////////////////////////////////
+
 	if(!strcmp(funcgroup[0], "using::user"))
 	{
 		for(new i; i < dpp_maxfuncs; i++)
@@ -382,6 +490,15 @@ stock dpp_process(const line[])
 		dpp_error("Function \"%s\" isn't registered.", funcgroup[1]);
 		return 1;
 	}
+
+	///////////////////////////////////////////////////////
+	////
+	////
+	////			RETURN SYS
+	////
+	////
+	///////////////////////////////////////////////////////
+
 	if(!strcmp(funcgroup[0], "return"))
 	{
 		if(dpp_processfunc == 0)
@@ -470,6 +587,14 @@ stock dpp_process(const line[])
 		return 1;
 	}
 
+	///////////////////////////////////////////////////////
+	////
+	////
+	////			CONSOLE PKG FUNC SYS
+	////
+	////
+	///////////////////////////////////////////////////////
+
 	if(!strcmp(funcgroup[0], "using::console"))
 	{
 		if(dpp_config[console_pkg] == 0)
@@ -507,6 +632,15 @@ stock dpp_process(const line[])
 			return 0;
 		}
 	}
+
+	///////////////////////////////////////////////////////
+	////
+	////
+	////			SYSTEM PKG FUNC SYS
+	////
+	////
+	///////////////////////////////////////////////////////
+
 	if(!strcmp(funcgroup[0], "using::system"))
 	{
 		if(dpp_config[system_pkg] == 0)
@@ -543,6 +677,16 @@ stock dpp_process(const line[])
 			return 0;
 		}
 	}
+
+	///////////////////////////////////////////////////////
+	////
+	////
+	////			SAMP PKG FUNC SYS
+	////
+	////
+	///////////////////////////////////////////////////////
+
+	
 	if(!strcmp(funcgroup[0], "using::samp"))
 	{
 		if(dpp_config[samp_pkg] == 0)

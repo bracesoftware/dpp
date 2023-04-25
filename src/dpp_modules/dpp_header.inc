@@ -12,10 +12,6 @@
 
 #define dpp_header 1
 
-#define DPP_VERSION_MAJOR 2
-#define DPP_VERSION_MINOR 0
-#define DPP_VERSION_PATCH 0
-#define DPP_VERSION_RELEASE 1
 #define isnull(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
 #define dpp_execheader%0(%1) print("|====================| "%1" |====================|")
 #define dpp_comment%0(%1) print("|==============================================|")
@@ -126,10 +122,26 @@ new content[16000];
 
 stock dpp_execute(const script[])
 {
-	dpp_print("Interpreter version %i.%i.%i-R%i - by: DEntisT",DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
+	print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("                   D++                  ");
+    print("         Interpreter is loading...      ");
+    print("                                        ");
+    printf("        Version: %i.%i.%i-R%i          ", DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
+    print("                                        ");
+    print("               By: DEntisT              ");
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("                                        ");
+	//dpp_print("Interpreter version %i.%i.%i-R%i - by: DEntisT",DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
+	#if DPP_DEBUG == 1
+    dpp_print("Debug component loaded...");
+    #endif
 	dpp_print("Executing the entry script...");
 	dpp_nullcomment();
-	dpp_execheader("script.dpp");
+	dpp_execheader("index.dpp");
 	dpp_nullcomment();
 	new File:file = fopen(script, io_read), rlen;
 	new codelines[1024][1024];
