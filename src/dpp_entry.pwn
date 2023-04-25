@@ -72,6 +72,10 @@ new dpp_processfunc = 0;
 
 new dpp_interpreter = 1;
 
+// process cache
+
+new dpp_terminated = 0;
+
 //OPTIONS
 
 new dpp_option_debug = 0;

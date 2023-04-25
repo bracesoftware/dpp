@@ -15,6 +15,10 @@ new process_bcktrc[1024];
 
 stock dpp_process(const line[])
 {
+	if(dpp_terminated == 1)
+	{
+		return 1;
+	}
 	if(isnull(line))
 	{
 		return 1;
@@ -65,6 +69,12 @@ stock dpp_process(const line[])
 	if(!strcmp(funcgroup[0], "end"))
 	{
 		dpp_interpreter = 1;
+		return 1;
+	}
+	if(!strcmp(funcgroup[0], "exit"))
+	{
+		dpp_terminated = 1;
+		dpp_print("Process terminated; restart the machine.");
 		return 1;
 	}
 

@@ -52,6 +52,7 @@ using::console.cout,"Hello World";
 - Importable packages and functions - [read here](doc/dpp_packages.md).
 - Variables and constants - [see here](doc/dpp_const.md).
 - Function calling and value returning - [see here](doc/dpp_returns.md).
+- Miscellaneous things - [see here](doc/dpp_misc.md).
 
 ### Other info
 
