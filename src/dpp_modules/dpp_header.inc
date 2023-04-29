@@ -126,12 +126,16 @@ stock dpp_checkforifexpression(const code[], dest1[], dest2[], const delimiter[]
     return 1;
 }
 
-stock dpp_createfunc(const funcname[])
+stock dpp_createfunc(const funcname[], autoform = 0)
 {
     for(new i; i < dpp_maxfuncs; i++)
     {
         if(dpp_validfunc[i] == 0)
         {
+            if(autoform == 1)
+            {
+                dpp_autoform[i] = 1;
+            }
             dpp_currentfuncid = i;
             dpp_validfunc[i] = 1;
             strmid(dpp_funcname[i], funcname, 0, 64);

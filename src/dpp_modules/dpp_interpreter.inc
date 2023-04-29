@@ -68,7 +68,21 @@ stock dpp_process(const line[])
 
     if(!strcmp(funcgroup[0], "public&form"))
     {
+        new isautoform = 0;
+        if(!strcmp(funcgroup[1], "OnGameModeInit")) isautoform = 1;
+        if(!strcmp(funcgroup[1], "OnGameModeExit")) isautoform = 1;
+
+        if(isautoform == 1)
+        {
+            dpp_warning("'%s' is a name of an existing auto form.", funcgroup[1]);
+        }
+
         dpp_createfunc(funcgroup[1]);
+        return 1;
+    }
+    if(!strcmp(funcgroup[0], "auto&form"))
+    {
+        dpp_createfunc(funcgroup[1], 1);
         return 1;
     }
     if(!strcmp(funcgroup[0], "do"))

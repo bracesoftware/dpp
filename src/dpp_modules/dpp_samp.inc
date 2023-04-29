@@ -17,6 +17,7 @@ public DPP_GAMEMODEINIT()
     {
         if(!strcmp(dpp_funcname[i], "OnGameModeInit"))
         {
+            if(dpp_autoform[i] == 0) return 1;
             dpp_processfunc = i;
             dpp_subexecute(dpp_funccodeblock[i]);
             dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
@@ -34,6 +35,7 @@ public OnGameModeExit()
     {
         if(!strcmp(dpp_funcname[i], "OnGameModeExit"))
         {
+            if(dpp_autoform[i] == 0) return 1;
             dpp_processfunc = i;
             dpp_subexecute(dpp_funccodeblock[i]);
             dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);

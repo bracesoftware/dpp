@@ -61,7 +61,7 @@ using::samp.SetGameModeText,"d++ test";
 ```pawn
 using::system.rem,"OnGameModeInit should be called by itself.";
 
-public&form.OnGameModeInit;
+auto&form.OnGameModeInit;
 do;
 	using::console.cout,"OnGameModeInit works";
 end;
@@ -72,7 +72,7 @@ end;
 - Called when the gamemode unloads.
 
 ```pawn
-public&form.OnGameModeExit;
+auto&form.OnGameModeExit;
 do;
 	using::console.cout,"OnGameModeExit works";
 end;
