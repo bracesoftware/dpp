@@ -25,6 +25,13 @@ stock dpp_process(const line[])
     }
     new codeblockline[1024];
     new args[10][dpp_argcharsize], funcgroup[2][20];
+
+    new extracode[3000];
+    new line2[3000];
+    new isifexpression = 0;
+    strmid(line2, line, 0, strlen(line), strlen(line));
+    dpp_checkforifexpression(line, line2, extracode, "->", isifexpression);
+    
     dpp_parseline(line, args, ',');
     dpp_parseline(args[0], funcgroup, '.');
 
@@ -53,6 +60,9 @@ stock dpp_process(const line[])
         format(process_bcktrc,sizeof process_bcktrc,"\n\targs[%i]: '%s'",i,args[i]);    
         strcat(process_backtrace, process_bcktrc);
     }
+
+    format(process_bcktrc,sizeof process_bcktrc,"\n\textracode: '%s'",extracode);    
+    strcat(process_backtrace, process_bcktrc);
 
     dpp_debug("%s", process_backtrace);
 
@@ -114,6 +124,31 @@ stock dpp_process(const line[])
         dpp_argarraycheck(args[i]);
         dpp_argfunccheck(args[i]);
         dpp_argvarcheck(args[i]);
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            IF-EXPRESSIONS SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(isifexpression == 1) //if.equ,1,1->using::console.cout,"1 is 1";
+    {
+        dpp_parseline(line2, args, ',');
+        dpp_parseline(args[0], funcgroup, '.');
+        if(!strcmp(funcgroup[0], "if"))
+        {
+            if(!strcmp(funcgroup[1], "equ"))
+            {
+                if(!strcmp(args[1], args[2]))
+                {
+                    dpp_subexecute(extracode);
+                }
+            }
+            dpp_error("Unknown if-expression element.",);
+        }      
     }
 
     ///////////////////////////////////////////////////////
