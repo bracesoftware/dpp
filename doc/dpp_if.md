@@ -4,7 +4,7 @@
 - If-expressions are also possible in D++:
 
 ```pawn
-if.equ,1,1->using::console.cout,"1 is 1";
+if.equ,1,1->using::console.println,"1 is 1";
 ```
 
 You also may compare variables, consants and vice-versa.
@@ -12,7 +12,7 @@ You also may compare variables, consants and vice-versa.
 ```pawn
 var::define.str,myvar,"myvar worked.";
 
-if.equ,myvar,"myvar worked."->using::console.cout,myvar;
+if.equ,myvar,"myvar worked."->using::console.println,myvar;
 ```
 
 ## If-methods

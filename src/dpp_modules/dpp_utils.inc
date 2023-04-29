@@ -10,6 +10,7 @@
  *
 */
 
+#define dpp_ismathoperator(%0) (%0=='+'||%0=='-'||%0=='*'||%0=='/'||%0=='^')
 #define dpp_isinrange(%0,%1,%2) (((%0)-((%1)+cellmin))<((%2)-((%1)+cellmin))) 
 // creds Y_Less
 

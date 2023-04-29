@@ -66,6 +66,31 @@ stock dpp_process(const line[])
 
     dpp_debug("%s", process_backtrace);
 
+    if(!strcmp(funcgroup[0], "end"))
+    {
+        dpp_sysreturned = 0;
+        dpp_interpreter = 1;
+        return 1;
+    }
+
+    if(!strcmp(funcgroup[0], "do"))
+    {
+        dpp_interpreter = 0;
+        return 1;
+    }
+
+    //if(dpp_sysreturned == 1) return 1;
+
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            IMPL
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+
     if(!strcmp(funcgroup[0], "public&form"))
     {
         new isautoform = 0;
@@ -88,16 +113,6 @@ stock dpp_process(const line[])
     if(!strcmp(funcgroup[0], "hook&form"))
     {
         dpp_createfunc(funcgroup[1], 0, 1);
-        return 1;
-    }
-    if(!strcmp(funcgroup[0], "do"))
-    {
-        dpp_interpreter = 0;
-        return 1;
-    }
-    if(!strcmp(funcgroup[0], "end"))
-    {
-        dpp_interpreter = 1;
         return 1;
     }
     if(!strcmp(funcgroup[0], "exit"))
@@ -143,6 +158,7 @@ stock dpp_process(const line[])
         dpp_argarraycheck(args[i]);
         dpp_argfunccheck(args[i]);
         dpp_argvarcheck(args[i]);
+        dpp_argmathcheck(args[i]);
     }
 
     ///////////////////////////////////////////////////////
@@ -164,6 +180,7 @@ stock dpp_process(const line[])
             dpp_argarraycheck(args[i]);
             dpp_argfunccheck(args[i]);
             dpp_argvarcheck(args[i]);
+            dpp_argmathcheck(args[i]);
         }
 
         if(!strcmp(funcgroup[0], "if"))
@@ -172,7 +189,7 @@ stock dpp_process(const line[])
             {
                 if(!strcmp(args[1], args[2]))
                 {
-                    dpp_subexecute(extracode);
+                    dpp_subexecute2(extracode);
                 }
                 return 1;
             }
@@ -181,7 +198,7 @@ stock dpp_process(const line[])
             {
                 if(strcmp(args[1], args[2]))
                 {
-                    dpp_subexecute(extracode);
+                    dpp_subexecute2(extracode);
                 }
                 return 1;
             }
@@ -561,7 +578,7 @@ stock dpp_process(const line[])
     ///////////////////////////////////////////////////////
     ////
     ////
-    ////            PACKAGE SYS
+    ////            COMPONENT SYS
     ////
     ////
     ///////////////////////////////////////////////////////
@@ -581,6 +598,11 @@ stock dpp_process(const line[])
         if(!strcmp(funcgroup[1], "samp"))
         {
             dpp_config[samp_comp] = 1;
+            return 1;
+        }
+        if(!strcmp(funcgroup[1], "math"))
+        {
+            dpp_config[math_comp] = 1;
             return 1;
         }
         else
@@ -632,7 +654,7 @@ stock dpp_process(const line[])
                 {
                     dpp_returned[i] = 0;
                     dpp_processfunc = i;
-                    dpp_subexecute(dpp_funccodeblock[i]);
+                    dpp_subexecute(dpp_funccodeblock[i], i);
                     dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
 
                     if(dpp_option_hooking == 1)
@@ -645,7 +667,7 @@ stock dpp_process(const line[])
                                 {
                                     dpp_returned[hookfuncid] = 0;
                                     dpp_processfunc = hookfuncid;
-                                    dpp_subexecute(dpp_funccodeblock[hookfuncid]);
+                                    dpp_subexecute(dpp_funccodeblock[hookfuncid], hookfuncid);
                                     dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[999]);
                                 }
                             }
@@ -689,6 +711,7 @@ stock dpp_process(const line[])
             dpp_funcreturn_int[dpp_processfunc] = int_return;
 
             dpp_processfunc = 0;
+            dpp_sysreturned = 1;
             return 1;
         }
         if(!strcmp(funcgroup[1], "bool"))
@@ -700,6 +723,7 @@ stock dpp_process(const line[])
                 dpp_funcreturn_bool[dpp_processfunc] = 1;
 
                 dpp_processfunc = 0;
+                dpp_sysreturned = 1;
                 return 1;
             }
             if(!strcmp(args[1], "false"))
@@ -709,6 +733,7 @@ stock dpp_process(const line[])
                 dpp_funcreturn_bool[dpp_processfunc] = 0;
 
                 dpp_processfunc = 0;
+                dpp_sysreturned = 1;
                 return 1;
             }
             else
@@ -745,6 +770,7 @@ stock dpp_process(const line[])
             dpp_debug("dpp_funcreturn_str[dpp_processfunc] : \"%s\"\nargs[1] : \"%s\"",dpp_funcreturn_str[dpp_processfunc],args[1]);
 
             dpp_processfunc = 0;
+            dpp_sysreturned = 1;
             return 1;
         }
 
@@ -771,7 +797,7 @@ stock dpp_process(const line[])
             return 1;
         }
         // If the function used it "print"
-        if(!strcmp(funcgroup[1], "cout"))
+        if(!strcmp(funcgroup[1], "println"))
         {
             new mul, str[dpp_argcharsize];
             strmid(str, args[1], 0, dpp_argcharsize);
@@ -790,6 +816,26 @@ stock dpp_process(const line[])
                 return 0;
             }
 
+            //dpp_debug("Line \"%s\" successfully executed.", line);
+            print(args[1]);
+            return 1;
+        }
+
+        if(!strcmp(funcgroup[1], "cout"))
+        {
+            new coutargerr = 0;
+
+            for(new i; i < strlen(args[1]); i++)
+            {
+                if(args[1][i] == '\"') coutargerr = 1;
+                if(args[1][i] == ' ') coutargerr = 1;
+                if(args[1][i] == '\t') coutargerr = 1;
+            }
+
+            if(coutargerr == 1)
+            {
+                dpp_error("Invalid symbols in the argument 1.",);
+            }
             //dpp_debug("Line \"%s\" successfully executed.", line);
             print(args[1]);
             return 1;
@@ -900,6 +946,34 @@ stock dpp_process(const line[])
         else
         {
             dpp_error("Unknown form in the component \"samp\".",);
+            return 0;
+        }
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            MATH comp FUNC SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    
+    if(!strcmp(funcgroup[0], "using::math"))
+    {
+        if(dpp_config[math_comp] == 0)
+        {
+            dpp_error("Component \"math\" is not imported.",);
+            return 1;
+        }
+        if(!strcmp(funcgroup[1], "func"))
+        {
+            return 1;
+        }
+
+        else
+        {
+            dpp_error("Unknown form in the component \"math\".",);
             return 0;
         }
     }

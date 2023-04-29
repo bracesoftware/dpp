@@ -14,8 +14,8 @@
 import::package.console;
 import::package.system;
 
-using::system.rem,"Basic cout example.";
-using::console.cout,"Hello World";
+using::system.rem,"Basic println example.";
+using::console.println,"Hello World";
 ```
 
 - Code output:
@@ -55,6 +55,8 @@ using::console.cout,"Hello World";
 - [Variables](doc/dpp_vars.md)
 - [Forms and types of forms](doc/dpp_forms.md)
 - [If-expressions](doc/dpp_if.md)
+- [Instructions](doc/dpp_instruct.md)
+- [Classes](doc/dpp_class.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info

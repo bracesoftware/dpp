@@ -52,7 +52,8 @@ enum dpp_enumset
 {
     console_comp,
     system_comp,
-    samp_comp
+    samp_comp,
+    math_comp
 };
 
 new dpp_config[dpp_enumset];
@@ -78,6 +79,7 @@ new dpp_interpreter = 1;
 // process cache
 
 new dpp_terminated = 0;
+new dpp_sysreturned = 0;
 
 //OPTIONS
 
@@ -90,6 +92,7 @@ new dpp_option_hooking = 1;
 #include "dpp_modules/dpp_utils.inc"
 #include "dpp_modules/dpp_const.inc"
 #include "dpp_modules/dpp_vars.inc"
+#include "dpp_modules/dpp_math.inc"
 
 #include "dpp_modules/dpp_interpreter.inc"
 

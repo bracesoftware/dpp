@@ -1,7 +1,7 @@
 # Forms
 - Functions in programming are blocks of precisely defined and chronologically ordered instructions that are executed when the function is called. In D++, those are renamed to forms.
 
-- Forms may be native forms and user forms.
+- Forms may be native forms, user forms and hook forms.
 
 ---------------------------------------------------------------------------------------------------------
 
@@ -11,10 +11,10 @@
 
 ```pawn
 import::component.console;
-using::console.cout,"Hello World";
+using::console.println,"Hello World";
 ```
 
-So you are using the `using` procedure on a `console` component to use the `cout` form - brilliant!
+So you are using the `using` procedure on a `console` component to use the `println` form - brilliant!
 
 ---------------------------------------------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ So you are using the `using` procedure on a `console` component to use the `cout
 ```pawn
 public&form.formname;
 do;
-	using::console.cout,"my first user form";
+	using::console.println,"my first user form";
 end;
 ```
 
@@ -36,7 +36,7 @@ You also may return values.
 ```pawn
 public&form.formname;
 do;
-	using::console.cout,"my first user form";
+	using::console.println,"my first user form";
 	return.str,"this was returned";
 end;
 ```
@@ -46,11 +46,11 @@ Then you can use this user form as an argument in a native form.
 ```pawn
 public&form.formname;
 do;
-	using::console.cout,"my first user form";
+	using::console.println,"my first user form";
 	return.str,"this was returned";
 end;
 
-using::console.cout,formname;
+using::console.println,formname;
 ```
 
 To call an user form, use:
@@ -68,7 +68,7 @@ using::user.formname;
 ```pawn
 const::define.str,CONST_NAME,"constant worked";
 
-using::console.cout,CONST_NAME;
+using::console.println,CONST_NAME;
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -79,19 +79,19 @@ using::console.cout,CONST_NAME;
 ```pawn
 public&form.functobehooked;
 do;
-	using::console.cout,"HOOKED";
+	using::console.println,"HOOKED";
 	return.int,1;
 end;
 
 hook&form.functobehooked;
 do;
-	using::console.cout,"HOOKED 1";
+	using::console.println,"HOOKED 1";
 	return.int,1;
 end;
 
 hook&form.functobehooked;
 do;
-	using::console.cout,"HOOKED 2";
+	using::console.println,"HOOKED 2";
 	return.int,1;
 end;
 

@@ -21,7 +21,7 @@ public DPP_GAMEMODEINIT()
             if(dpp_hookform[i] == 0)
             {
                 dpp_processfunc = i;
-                dpp_subexecute(dpp_funccodeblock[i]);
+                dpp_subexecute(dpp_funccodeblock[i],i);
                 dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
                 dpp_debug("\"OnGameModeInit\" called.");
 
@@ -35,7 +35,7 @@ public DPP_GAMEMODEINIT()
                             {
                                 dpp_returned[hookfuncid] = 0;
                                 dpp_processfunc = hookfuncid;
-                                dpp_subexecute(dpp_funccodeblock[hookfuncid]);
+                                dpp_subexecute(dpp_funccodeblock[hookfuncid],hookfuncid);
                                 dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[999]);
                             }
                         }
@@ -57,7 +57,7 @@ public OnGameModeExit()
         {
             if(dpp_autoform[i] == 0) return 1;
             dpp_processfunc = i;
-            dpp_subexecute(dpp_funccodeblock[i]);
+            dpp_subexecute(dpp_funccodeblock[i],i);
             dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
             dpp_debug("\"OnGameModeInit\" called.");
             if(dpp_hookform[i] == 0)
@@ -72,7 +72,7 @@ public OnGameModeExit()
                             {
                                 dpp_returned[hookfuncid] = 0;
                                 dpp_processfunc = hookfuncid;
-                                dpp_subexecute(dpp_funccodeblock[hookfuncid]);
+                                dpp_subexecute(dpp_funccodeblock[hookfuncid],hookfuncid);
                                 dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[999]);
                             }
                         }

@@ -15,7 +15,14 @@ import::component.console;
 - Character output.
 
 ```pawn
-using::console.cout,"some words.";
+using::console.cout,1;
+```
+
+### Form: `println`
+- Text line output.
+
+```pawn
+using::console.cout,"Hello World!";
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -63,7 +70,7 @@ using::system.rem,"OnGameModeInit should be called by itself.";
 
 auto&form.OnGameModeInit;
 do;
-	using::console.cout,"OnGameModeInit works";
+	using::console.println,"OnGameModeInit works";
 end;
 ```
 
@@ -74,7 +81,7 @@ end;
 ```pawn
 auto&form.OnGameModeExit;
 do;
-	using::console.cout,"OnGameModeExit works";
+	using::console.println,"OnGameModeExit works";
 end;
 ```
 

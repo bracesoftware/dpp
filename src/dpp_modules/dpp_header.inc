@@ -126,6 +126,23 @@ stock dpp_checkforifexpression(const code[], dest1[], dest2[], const delimiter[]
     return 1;
 }
 
+stock dpp_extract(const src[], dest[], startchar, endchar)
+{
+    new
+        start,
+        end;
+
+    for(new i; i < strlen(src); i++)
+    {
+        if(src[i] == startchar) start = i;
+        if(src[i] == endchar) end = i;
+    }
+
+    strmid(dest, src, start, end, strlen(src));
+    dpp_debug("Extracted : \"%s\"",dest);
+    return 1;
+}
+
 stock dpp_createfunc(const funcname[], autoform = 0, hookform = 0)
 {
     new alreadyexists;
@@ -253,7 +270,22 @@ stock dpp_executefile(const script[])
     return 1;
 }
 
-stock dpp_subexecute(const code[])
+stock dpp_subexecute(const code[], funcid)
+{
+    #pragma unused funcid
+    //if(dpp_returned[funcid] == 0) return 1;
+    new codelines[1024][1024];
+
+    dpp_parsecode(code, codelines);
+    //dpp_debug("Executing:\n\n%s", code);
+    for(new i; i < 1024; i++)
+    {
+        dpp_subprocess(codelines[i]);
+    }
+    return 1;
+}
+
+stock dpp_subexecute2(const code[])
 {
     new codelines[1024][1024];
 
@@ -279,7 +311,7 @@ stock dpp_argfunccheck(arg[])
             {
                 dpp_returned[i] = 0;
                 dpp_processfunc = i;
-                dpp_subexecute(dpp_funccodeblock[i]);
+                dpp_subexecute(dpp_funccodeblock[i],i);
                 dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
 
                 /////////////////////////////////////
