@@ -14,3 +14,10 @@ var::define.str,myvar,"myvar worked.";
 
 if.equ,myvar,"myvar worked."->using::console.cout,myvar;
 ```
+
+## If-methods
+
+If-method is a new term used to describe the way how are you comparing the 2 elements, there are few if-methods:
+
+- `equ` - check if 2 elements are equal.
+- `notequ` - check if 2 elements are not equal.
