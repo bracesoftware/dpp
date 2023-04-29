@@ -475,6 +475,13 @@ stock dpp_process(const line[])
                 dpp_print("Debug has been enabled.");
                 return 1;
             }
+
+            if(!strcmp(args[1], "default"))
+            {
+                dpp_option_debug = 0;
+                dpp_print("Debug has been disabled.");
+                return 1;
+            }
             else
             {
                 dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
@@ -491,6 +498,13 @@ stock dpp_process(const line[])
                 return 1;
             }
             if(!strcmp(args[1], "true"))
+            {
+                dpp_option_warnings = 1;
+                dpp_print("Warning system has been enabled.");
+                return 1;
+            }
+
+            if(!strcmp(args[1], "default"))
             {
                 dpp_option_warnings = 1;
                 dpp_print("Warning system has been enabled.");
