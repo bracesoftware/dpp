@@ -1,27 +1,24 @@
 # Constants
+- In computer programming, a constant is a value that should not be altered by the program during normal execution, i.e., the value is constant.
 
-You can create constants and use them in your code. Constants can be integers, booleans and strings!
-
-## Integers
+- You also may make constants in D++:
 
 ```pawn
-const::define.int,TEST_INT,1;
-
+const::define.int,MY_FIRST_CONST,1;
 ```
 
-
-## Booleans
+This is an integer constant, to undefine it:
 
 ```pawn
-const::define.bool,DEBUG_OPTION,false;
-
-pragma::option.debug,DEBUG_OPTION;
+const::undef.int,MY_FIRST_CONST;
 ```
 
-## Strings
+You also may create boolean and string constants:
 
 ```pawn
-const::define.str,TEST_STRING,"TEST_STRING value works!";
+const::define.bool,MY_FIRST_CONST,true;
+const::define.str,MY_FIRST_CONST,"string";
 
-using::console.cout,TEST_STRING;
+const::undef.bool,MY_FIRST_CONST,1;
+const::undef.str,MY_FIRST_CONST,1;
 ```

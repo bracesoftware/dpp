@@ -50,17 +50,16 @@ using::console.cout,"Hello World";
 
 - [Interpreter options](doc/dpp_options.md)
 - [Interpreter components](doc/dpp_components.md)
-- Modules
-- Constants
-- Variables
-- Forms - native and user forms
-- If-expressions
-- Miscellaneous
+- [Modules](doc/dpp_modules.md)
+- [Constants](doc/dpp_const.md)
+- [Variables](doc/dpp_vars.md)
+- [Forms - native and user forms](doc/dpp_forms.md)
+- [If-expressions](doc/dpp_if.md)
+- [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info
 
 - Examples - [see here](doc/dpp_example.md).
-- SA:MP and open.mp scripting - [see here](doc/dpp_sampomp.md).
 
 
 ### Worried about the latest updates?

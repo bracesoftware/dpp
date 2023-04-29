@@ -515,18 +515,18 @@ stock dpp_process(const line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "import::file"))
+    if(!strcmp(funcgroup[0], "import::module"))
     {
         for(new i; i < strlen(args[1]); i++)
         {
             if(args[1][i] == '\"') strdel(args[1], i, i+1);
         }
         new filename[64];
-        format(filename, sizeof filename, "%s.dpp", args[1]);
+        format(filename, sizeof filename, "modules/%s.dpp", args[1]);
         if(fexist(filename)) return dpp_executefile(filename);
         else
         {
-            dpp_error("Cannot read from file: \"%s\"", filename);
+            dpp_error("Cannot read from module: \"%s\"", filename);
             return 0;
         }
     }
