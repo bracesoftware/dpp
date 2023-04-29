@@ -81,6 +81,7 @@ new dpp_terminated = 0;
 //OPTIONS
 
 new dpp_option_debug = 0;
+new dpp_option_warnings = 1;
 
 //includes
 #include "dpp_modules/dpp_header.inc"

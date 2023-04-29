@@ -32,7 +32,7 @@ new
 #define dpp_error%0(%1,%2) format(dpp_error_str,sizeof dpp_error_str,">> D++ | ERROR (dpp.amx @ %s:%i): "%1,__file,__line,%2)&& \
     print(dpp_error_str) 
  //printf(">> D++ | ERROR (dpp.amx @ %s:%i): %s",__file,__line,%1)
-#define dpp_warning%0(%1) printf(">> D++ | WARNING: "%1)
+#define dpp_warning%0(%1) if(dpp_option_warnings==1)printf(">> D++ | WARNING: "%1)
 
 stock dpp_parsecode(const code[], destln[][])
 {

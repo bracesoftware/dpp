@@ -481,6 +481,27 @@ stock dpp_process(const line[])
             }
             return 1;
         }
+        if(!strcmp(funcgroup[1], "warnings"))
+        {
+            dpp_argarraycheck(args[1]);
+            if(!strcmp(args[1], "false"))
+            {
+                dpp_option_warnings = 0;
+                dpp_print("Warning system has been disabled.");
+                return 1;
+            }
+            if(!strcmp(args[1], "true"))
+            {
+                dpp_option_warnings = 1;
+                dpp_print("Warning system has been enabled.");
+                return 1;
+            }
+            else
+            {
+                dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
+            }
+            return 1;
+        }
         
         else
         {
