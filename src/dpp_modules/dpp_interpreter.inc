@@ -139,6 +139,7 @@ stock dpp_process(const line[])
         dpp_isifexp = 0;
         dpp_parseline(line2, args, ',');
         dpp_parseline(args[0], funcgroup, '.');
+        
         if(!strcmp(funcgroup[0], "if"))
         {
             if(!strcmp(funcgroup[1], "equ"))
@@ -147,6 +148,16 @@ stock dpp_process(const line[])
                 {
                     dpp_subexecute(extracode);
                 }
+                return 1;
+            }
+
+            if(!strcmp(funcgroup[1], "notequ"))
+            {
+                if(strcmp(args[1], args[2]))
+                {
+                    dpp_subexecute(extracode);
+                }
+                return 1;
             }
             dpp_error("Unknown if-expression element : \"%s\"",funcgroup[1]);
         }
