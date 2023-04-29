@@ -100,7 +100,7 @@ stock dpp_parseline(const code[], destln[][], delimiter)
     return 1;
 }
 
-stock dpp_checkforifexpression(const code[], dest1[], dest2[], const delimiter[], contains_expression = 0)
+stock dpp_checkforifexpression(const code[], dest1[], dest2[], const delimiter[])
 {
     new
         delimiter_start,
@@ -110,11 +110,11 @@ stock dpp_checkforifexpression(const code[], dest1[], dest2[], const delimiter[]
     {
         if(code[i] == delimiter[0] && code[i+1] == delimiter[1])
         {
-            contains_expression = 1;
+            dpp_isifexp = 1;
             delimiter_start = i;
             delimiter_end = i+1;
             strmid(dest1, code, 0, delimiter_start, 3000);
-            strmid(dest2, code, delimiter_end, strlen(code), 3000);
+            strmid(dest2, code, delimiter_end+1, strlen(code), 3000);
 
             // strmid(dest[], const source[], start, end, maxlength=sizeof dest)
 

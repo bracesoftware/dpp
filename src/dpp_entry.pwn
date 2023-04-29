@@ -69,6 +69,7 @@ new dpp_returned[dpp_maxfuncs];
 new dpp_returntype[dpp_maxfuncs];
 
 new dpp_processfunc = 0;
+new dpp_isifexp = 0;
 
 new dpp_interpreter = 1;
 

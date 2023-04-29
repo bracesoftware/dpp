@@ -28,9 +28,9 @@ stock dpp_process(const line[])
 
     new extracode[3000];
     new line2[3000];
-    new isifexpression = 0;
+    
     strmid(line2, line, 0, strlen(line), strlen(line));
-    dpp_checkforifexpression(line, line2, extracode, "->", isifexpression);
+    dpp_checkforifexpression(line, line2, extracode, "->");
     
     dpp_parseline(line, args, ',');
     dpp_parseline(args[0], funcgroup, '.');
@@ -134,8 +134,9 @@ stock dpp_process(const line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(isifexpression == 1) //if.equ,1,1->using::console.cout,"1 is 1";
+    if(dpp_isifexp == 1) //if.equ,1,1->using::console.cout,"1 is 1";
     {
+        dpp_isifexp = 0;
         dpp_parseline(line2, args, ',');
         dpp_parseline(args[0], funcgroup, '.');
         if(!strcmp(funcgroup[0], "if"))
@@ -147,8 +148,9 @@ stock dpp_process(const line[])
                     dpp_subexecute(extracode);
                 }
             }
-            dpp_error("Unknown if-expression element.",);
-        }      
+            dpp_error("Unknown if-expression element : \"%s\"",funcgroup[1]);
+        }
+        return 1;
     }
 
     ///////////////////////////////////////////////////////
