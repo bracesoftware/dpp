@@ -126,12 +126,29 @@ stock dpp_checkforifexpression(const code[], dest1[], dest2[], const delimiter[]
     return 1;
 }
 
-stock dpp_createfunc(const funcname[], autoform = 0)
+stock dpp_createfunc(const funcname[], autoform = 0, hookform = 0)
 {
+    new alreadyexists;
+    for(new i; i < dpp_maxfuncs; i++)
+    {
+        if(!strcmp(dpp_funcname[i], funcname))
+        {
+            if(dpp_validfunc[i] == 1) alreadyexists = 1;
+        }
+    }   
     for(new i; i < dpp_maxfuncs; i++)
     {
         if(dpp_validfunc[i] == 0)
         {
+            if(alreadyexists == 1 && hookform == 0)
+            {
+                dpp_error("Form \"%s\" already exists.",funcname);
+                return 1;
+            }
+            if(hookform == 1)
+            {
+                dpp_hookform[i] = 1;
+            }
             if(autoform == 1)
             {
                 dpp_autoform[i] = 1;

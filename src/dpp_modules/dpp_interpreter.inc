@@ -85,6 +85,11 @@ stock dpp_process(const line[])
         dpp_createfunc(funcgroup[1], 1);
         return 1;
     }
+    if(!strcmp(funcgroup[0], "hook&form"))
+    {
+        dpp_createfunc(funcgroup[1], 0, 1);
+        return 1;
+    }
     if(!strcmp(funcgroup[0], "do"))
     {
         dpp_interpreter = 0;
@@ -517,6 +522,35 @@ stock dpp_process(const line[])
             return 1;
         }
         
+        if(!strcmp(funcgroup[1], "hooking"))
+        {
+            dpp_argarraycheck(args[1]);
+            if(!strcmp(args[1], "false"))
+            {
+                dpp_option_hooking = 0;
+                dpp_print("Hooking system has been disabled.");
+                return 1;
+            }
+            if(!strcmp(args[1], "true"))
+            {
+                dpp_option_hooking = 1;
+                dpp_print("Hooking system has been enabled.");
+                return 1;
+            }
+
+            if(!strcmp(args[1], "default"))
+            {
+                dpp_option_hooking = 1;
+                dpp_print("Hooking system has been enabled.");
+                return 1;
+            }
+            else
+            {
+                dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
+            }
+            return 1;
+        }
+
         else
         {
             dpp_error("Unknown option \"%s\".", funcgroup[1]);
@@ -594,11 +628,31 @@ stock dpp_process(const line[])
         {
             if(!strcmp(dpp_funcname[i], funcgroup[1]))
             {
-                dpp_returned[i] = 0;
-                dpp_processfunc = i;
-                dpp_subexecute(dpp_funccodeblock[i]);
-                dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
-                return 1;
+                if(dpp_hookform[i] == 0)
+                {
+                    dpp_returned[i] = 0;
+                    dpp_processfunc = i;
+                    dpp_subexecute(dpp_funccodeblock[i]);
+                    dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
+
+                    if(dpp_option_hooking == 1)
+                    {
+                        for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
+                        {
+                            if(!strcmp(dpp_funcname[hookfuncid], funcgroup[1]))
+                            {
+                                if(dpp_hookform[hookfuncid] == 1)
+                                {
+                                    dpp_returned[hookfuncid] = 0;
+                                    dpp_processfunc = hookfuncid;
+                                    dpp_subexecute(dpp_funccodeblock[hookfuncid]);
+                                    dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[999]);
+                                }
+                            }
+                        }
+                    }
+                    return 1;
+                }
             }
         }
         dpp_error("Form \"%s\" isn't registered.", funcgroup[1]);

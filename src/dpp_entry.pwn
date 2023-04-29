@@ -61,6 +61,7 @@ new dpp_validfunc[dpp_maxfuncs];
 new dpp_funcname[dpp_maxfuncs][64];
 new dpp_funccodeblock[dpp_maxfuncs][1024];
 new dpp_autoform[dpp_maxfuncs];
+new dpp_hookform[dpp_maxfuncs];
 
 new dpp_funcreturn_int[dpp_maxfuncs];
 new dpp_funcreturn_bool[dpp_maxfuncs];
@@ -82,6 +83,7 @@ new dpp_terminated = 0;
 
 new dpp_option_debug = 0;
 new dpp_option_warnings = 1;
+new dpp_option_hooking = 1;
 
 //includes
 #include "dpp_modules/dpp_header.inc"

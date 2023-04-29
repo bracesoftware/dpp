@@ -70,3 +70,30 @@ const::define.str,CONST_NAME,"constant worked";
 
 using::console.cout,CONST_NAME;
 ```
+
+---------------------------------------------------------------------------------------------------------
+
+## Hook forms
+- You can hook already existing forms using **hook forms**.
+
+```pawn
+public&form.functobehooked;
+do;
+	using::console.cout,"HOOKED";
+	return.int,1;
+end;
+
+hook&form.functobehooked;
+do;
+	using::console.cout,"HOOKED 1";
+	return.int,1;
+end;
+
+hook&form.functobehooked;
+do;
+	using::console.cout,"HOOKED 2";
+	return.int,1;
+end;
+
+using::user.functobehooked;
+```

@@ -20,3 +20,13 @@ You can toggle D++ warning system on or off.
 pragma::option.warnings,false;
 pragma::option.warnings,true;
 ```
+
+## `hooking`
+- Default value: `true`
+
+You can toggle D++ hooking system on or off.
+
+```pawn
+pragma::option.hooking,false;
+pragma::option.hooking,true;
+```
