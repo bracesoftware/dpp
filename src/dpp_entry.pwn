@@ -12,7 +12,7 @@
 
 
 #if !defined SAMP_MODE
- 	#define SAMP_MODE 1
+    #define SAMP_MODE 1
 #endif
 
 #pragma dynamic 215750000
@@ -50,9 +50,9 @@
 
 enum dpp_enumset
 {
-	console_pkg,
-	system_pkg,
-	samp_pkg
+    console_pkg,
+    system_pkg,
+    samp_pkg
 };
 
 new dpp_config[dpp_enumset];
@@ -94,16 +94,16 @@ new dpp_option_debug = 0;
 
 main()
 {
-	dpp_nullcomment();
-	dpp_nullcomment();
-	dpp_execute("index.dpp");
-	dpp_nullcomment();
-	dpp_nullcomment();
-	dpp_comment();
-	dpp_print("The SAMP script will continue running in the background.");
-	dpp_comment();
-	dpp_nullcomment();
-	dpp_nullcomment();
-	CallLocalFunction("DPP_GAMEMODEINIT", "");
-	return 1;
+    dpp_nullcomment();
+    dpp_nullcomment();
+    dpp_execute("index.dpp");
+    dpp_nullcomment();
+    dpp_nullcomment();
+    dpp_comment();
+    dpp_print("The SAMP script will continue running in the background.");
+    dpp_comment();
+    dpp_nullcomment();
+    dpp_nullcomment();
+    CallLocalFunction("DPP_GAMEMODEINIT", "");
+    return 1;
 }

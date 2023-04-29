@@ -36,93 +36,93 @@ new
 
 stock dpp_parsecode(const code[], destln[][])
 {
-	new 
-		i, 
-		start,
-		index,
-		len;
+    new 
+        i, 
+        start,
+        index,
+        len;
 
-	// Lets assume code = "decl::end;"
+    // Lets assume code = "decl::end;"
 
-	while(i <= strlen(code)) // do this down there while 'i' is smaller than length of "decl::end;"
-	{
-		/*if(strcmp(code, "{")) // if at certain point i reaches the ';' char, or it reaches the end,then:
-		{
-			len = strmid(destln[index], "{", start, i, 128); // store "decl::end" without a ';' into destln 
-			destln[index][len] = 0; // clear the last char
-			start = i+1; // set start to be for 1 bigger
-			index++; // set an index to be for  1 bigger
-		}
-		if(strcmp(code, "}")) // if at certain point i reaches the ';' char, or it reaches the end,then:
-		{
-			len = strmid(destln[index], "}", start, i, 128); // store "decl::end" without a ';' into destln 
-			destln[index][len] = 0; // clear the last char
-			start = i+1; // set start to be for 1 bigger
-			index++; // set an index to be for  1 bigger
-		}*/
+    while(i <= strlen(code)) // do this down there while 'i' is smaller than length of "decl::end;"
+    {
+        /*if(strcmp(code, "{")) // if at certain point i reaches the ';' char, or it reaches the end,then:
+        {
+            len = strmid(destln[index], "{", start, i, 128); // store "decl::end" without a ';' into destln 
+            destln[index][len] = 0; // clear the last char
+            start = i+1; // set start to be for 1 bigger
+            index++; // set an index to be for  1 bigger
+        }
+        if(strcmp(code, "}")) // if at certain point i reaches the ';' char, or it reaches the end,then:
+        {
+            len = strmid(destln[index], "}", start, i, 128); // store "decl::end" without a ';' into destln 
+            destln[index][len] = 0; // clear the last char
+            start = i+1; // set start to be for 1 bigger
+            index++; // set an index to be for  1 bigger
+        }*/
 
-		if(code[i] == ';' || i == strlen(code)) // if at certain point i reaches the ';' char, or it reaches the end,then:
-		{
-			len = strmid(destln[index], code, start, i, 128); // store "decl::end" without a ';' into destln 
-			destln[index][len] = 0; // clear the last char
-			start = i+1; // set start to be for 1 bigger
-			index++; // set an index to be for  1 bigger
-		}
-		i++;
-		
-		if(strlen(code) != 0)
-		{
-			dpp_debug("Parsecode backtrace:\n\tcode: '%s'\n\ti: %i\n\tstart: %i\n\tindex: %i\n\tlen: %i\n\tdestln[%i]: '%s'\n\tlen (destln[%i]): %i",code,i,start,index,len,index,destln[index],index,strlen(destln[index]));
-		}
-	}
-	return 1;
+        if(code[i] == ';' || i == strlen(code)) // if at certain point i reaches the ';' char, or it reaches the end,then:
+        {
+            len = strmid(destln[index], code, start, i, 128); // store "decl::end" without a ';' into destln 
+            destln[index][len] = 0; // clear the last char
+            start = i+1; // set start to be for 1 bigger
+            index++; // set an index to be for  1 bigger
+        }
+        i++;
+        
+        if(strlen(code) != 0)
+        {
+            dpp_debug("Parsecode backtrace:\n\tcode: '%s'\n\ti: %i\n\tstart: %i\n\tindex: %i\n\tlen: %i\n\tdestln[%i]: '%s'\n\tlen (destln[%i]): %i",code,i,start,index,len,index,destln[index],index,strlen(destln[index]));
+        }
+    }
+    return 1;
 }
 
 stock dpp_parseline(const code[], destln[][], delimiter)
 {
-	new 
-		i, 
-		start,
-		index,
-		len;
+    new 
+        i, 
+        start,
+        index,
+        len;
 
-	while(i <= strlen(code))
-	{
-		if(code[i] == delimiter || i == strlen(code))
-		{
-			len = strmid(destln[index], code, start, i, 128);
-			destln[index][len] = 0;
-			start = i+1;
-			index++;
-		}
-		i++;
-	}
-	return 1;
+    while(i <= strlen(code))
+    {
+        if(code[i] == delimiter || i == strlen(code))
+        {
+            len = strmid(destln[index], code, start, i, 128);
+            destln[index][len] = 0;
+            start = i+1;
+            index++;
+        }
+        i++;
+    }
+    return 1;
 }
 
 stock dpp_createfunc(const funcname[])
 {
-	for(new i; i < dpp_maxfuncs; i++)
-	{
-		if(dpp_validfunc[i] == 0)
-		{
-			dpp_currentfuncid = i;
-			dpp_validfunc[i] = 1;
-			strmid(dpp_funcname[i], funcname, 0, 64);
-			dpp_debug("funcgroup[1]:%s",funcname);
-			dpp_debug("dpp_funcname[i]:%s",dpp_funcname[i]);
-			dpp_debug("dpp_currentfuncid:%i",dpp_currentfuncid);
-			return 1;
-		}
-	}
-	return 1;
+    for(new i; i < dpp_maxfuncs; i++)
+    {
+        if(dpp_validfunc[i] == 0)
+        {
+            dpp_currentfuncid = i;
+            dpp_validfunc[i] = 1;
+            strmid(dpp_funcname[i], funcname, 0, 64);
+            dpp_debug("funcgroup[1]:%s",funcname);
+            dpp_debug("dpp_funcname[i]:%s",dpp_funcname[i]);
+            dpp_debug("dpp_currentfuncid:%i",dpp_currentfuncid);
+            return 1;
+        }
+    }
+    return 1;
 }
 
 new content[16000];
 
 stock dpp_execute(const script[])
 {
-	print("                                        ");
+    print("                                        ");
     print("|======================================|");
     print("                                        ");
     print("                   D++                  ");
@@ -135,137 +135,137 @@ stock dpp_execute(const script[])
     print("|======================================|");
     print("                                        ");
     print("                                        ");
-	//dpp_print("Interpreter version %i.%i.%i-R%i - by: DEntisT",DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
-	#if DPP_DEBUG == 1
+    //dpp_print("Interpreter version %i.%i.%i-R%i - by: DEntisT",DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
+    #if DPP_DEBUG == 1
     dpp_print("Debug component loaded...");
     #endif
-	dpp_print("Executing the entry script...");
-	dpp_nullcomment();
-	dpp_execheader("index.dpp");
-	dpp_nullcomment();
-	new File:file = fopen(script, io_read), rlen;
-	new codelines[1024][1024];
-	if(file)
-	{
-		while(rlen = fread(file, content))
-		{
-			for(new i; i < strlen(content); i++)
-			{
-				if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
-				if(content[i] == '\t') strdel(content, i, i+1);
-				if(content[i] == '\n') strdel(content, i, i+1);
-			}
-			dpp_debug("content: '%s'", content);
-			dpp_parsecode(content, codelines);
-			//dpp_debug("Executing:\n\n%s", content);
-			for(new i; i < 1024; i++)
-			{
-				if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
-				dpp_process(codelines[i]);
-			}
-		}
-	}
-	else if(!file)
-	{
-		dpp_error("Invalid file.",);
-	}
-	dpp_nullcomment();
-	dpp_comment();
-	dpp_nullcomment();
-	dpp_print("The interpreter reached the EOS point.");
-	return 1;
+    dpp_print("Executing the entry script...");
+    dpp_nullcomment();
+    dpp_execheader("index.dpp");
+    dpp_nullcomment();
+    new File:file = fopen(script, io_read), rlen;
+    new codelines[1024][1024];
+    if(file)
+    {
+        while(rlen = fread(file, content))
+        {
+            for(new i; i < strlen(content); i++)
+            {
+                if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
+                if(content[i] == '\t') strdel(content, i, i+1);
+                if(content[i] == '\n') strdel(content, i, i+1);
+            }
+            dpp_debug("content: '%s'", content);
+            dpp_parsecode(content, codelines);
+            //dpp_debug("Executing:\n\n%s", content);
+            for(new i; i < 1024; i++)
+            {
+                if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
+                dpp_process(codelines[i]);
+            }
+        }
+    }
+    else if(!file)
+    {
+        dpp_error("Invalid file.",);
+    }
+    dpp_nullcomment();
+    dpp_comment();
+    dpp_nullcomment();
+    dpp_print("The interpreter reached the EOS point.");
+    return 1;
 }
 
 new subcontent[16000];
 
 stock dpp_executefile(const script[])
 {
-	new File:file = fopen(script, io_read), rlen;
-	new codelines[1024][1024];
-	if(file)
-	{
-		while(rlen = fread(file, subcontent))
-		{
-			for(new i; i < strlen(subcontent); i++)
-			{
-				if(subcontent[i] == ';' && subcontent[i+1] == ' ') strdel(subcontent, i+1, i+2);
-				if(subcontent[i] == '\t') strdel(subcontent, i, i+1);
-				if(subcontent[i] == '\n') strdel(subcontent, i, i+1);
-			}
-			dpp_parsecode(subcontent, codelines);
-			for(new i; i < 1024; i++)
-			{
-				dpp_process(codelines[i]);
-			}
-		}
-	}
-	else if(!file)
-	{
-		dpp_error("Invalid file.",);
-	}
-	return 1;
+    new File:file = fopen(script, io_read), rlen;
+    new codelines[1024][1024];
+    if(file)
+    {
+        while(rlen = fread(file, subcontent))
+        {
+            for(new i; i < strlen(subcontent); i++)
+            {
+                if(subcontent[i] == ';' && subcontent[i+1] == ' ') strdel(subcontent, i+1, i+2);
+                if(subcontent[i] == '\t') strdel(subcontent, i, i+1);
+                if(subcontent[i] == '\n') strdel(subcontent, i, i+1);
+            }
+            dpp_parsecode(subcontent, codelines);
+            for(new i; i < 1024; i++)
+            {
+                dpp_process(codelines[i]);
+            }
+        }
+    }
+    else if(!file)
+    {
+        dpp_error("Invalid file.",);
+    }
+    return 1;
 }
 
 stock dpp_subexecute(const code[])
 {
-	new codelines[1024][1024];
+    new codelines[1024][1024];
 
-	dpp_parsecode(code, codelines);
-	//dpp_debug("Executing:\n\n%s", code);
-	for(new i; i < 1024; i++)
-	{
-		dpp_subprocess(codelines[i]);
-	}
-	return 1;
+    dpp_parsecode(code, codelines);
+    //dpp_debug("Executing:\n\n%s", code);
+    for(new i; i < 1024; i++)
+    {
+        dpp_subprocess(codelines[i]);
+    }
+    return 1;
 }
 
 
 ///////////////FUNC CALLING/////////////////////
 stock dpp_argfunccheck(arg[])
 {
-	new newvalue[dpp_argcharsize];
-	for(new i; i < dpp_maxfuncs; i++)
-	{
-		if(!strcmp(dpp_funcname[i], arg))
-		{
-			if(dpp_validfunc[i] == 1)
-			{
-				dpp_returned[i] = 0;
-				dpp_processfunc = i;
-				dpp_subexecute(dpp_funccodeblock[i]);
-				dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
+    new newvalue[dpp_argcharsize];
+    for(new i; i < dpp_maxfuncs; i++)
+    {
+        if(!strcmp(dpp_funcname[i], arg))
+        {
+            if(dpp_validfunc[i] == 1)
+            {
+                dpp_returned[i] = 0;
+                dpp_processfunc = i;
+                dpp_subexecute(dpp_funccodeblock[i]);
+                dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
 
-				/////////////////////////////////////
+                /////////////////////////////////////
 
-				if(dpp_returntype[i] == dpp_rtn_type_int)
-				{
-					format(newvalue, dpp_argcharsize, "%i", 
-						dpp_funcreturn_int[i]);
-				}
-				if(dpp_returntype[i] == dpp_rtn_type_bool)
-				{
-					if(dpp_funcreturn_bool[i] == 1)
-					{
-						strmid(arg, "true", 0, dpp_argcharsize, dpp_argcharsize);
-					}
-					if(dpp_funcreturn_bool[i] == 0)
-					{
-						strmid(arg, "false", 0, dpp_argcharsize, dpp_argcharsize);
-					}
-				}
-				if(dpp_returntype[i] == dpp_rtn_type_str)
-				{
-					format(newvalue, dpp_argcharsize, "\"%s\"", 
-						dpp_funcreturn_str[i]);
-				}
-				
-				if(dpp_returntype[i] != dpp_rtn_type_bool)
-				{
-					strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
-				}
-				return 1;
-			}
-		}
-	}
-	return 1;
+                if(dpp_returntype[i] == dpp_rtn_type_int)
+                {
+                    format(newvalue, dpp_argcharsize, "%i", 
+                        dpp_funcreturn_int[i]);
+                }
+                if(dpp_returntype[i] == dpp_rtn_type_bool)
+                {
+                    if(dpp_funcreturn_bool[i] == 1)
+                    {
+                        strmid(arg, "true", 0, dpp_argcharsize, dpp_argcharsize);
+                    }
+                    if(dpp_funcreturn_bool[i] == 0)
+                    {
+                        strmid(arg, "false", 0, dpp_argcharsize, dpp_argcharsize);
+                    }
+                }
+                if(dpp_returntype[i] == dpp_rtn_type_str)
+                {
+                    format(newvalue, dpp_argcharsize, "\"%s\"", 
+                        dpp_funcreturn_str[i]);
+                }
+                
+                if(dpp_returntype[i] != dpp_rtn_type_bool)
+                {
+                    strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
+                }
+                return 1;
+            }
+        }
+    }
+    return 1;
 }
