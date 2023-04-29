@@ -18,10 +18,30 @@ public DPP_GAMEMODEINIT()
         if(!strcmp(dpp_funcname[i], "OnGameModeInit"))
         {
             if(dpp_autoform[i] == 0) return 1;
-            dpp_processfunc = i;
-            dpp_subexecute(dpp_funccodeblock[i]);
-            dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
-            dpp_debug("\"OnGameModeInit\" called.");
+            if(dpp_hookform[i] == 0)
+            {
+                dpp_processfunc = i;
+                dpp_subexecute(dpp_funccodeblock[i]);
+                dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
+                dpp_debug("\"OnGameModeInit\" called.");
+
+                if(dpp_option_hooking == 1)
+                {
+                    for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
+                    {
+                        if(!strcmp(dpp_funcname[hookfuncid], "OnGameModeInit"))
+                        {
+                            if(dpp_hookform[hookfuncid] == 1)
+                            {
+                                dpp_returned[hookfuncid] = 0;
+                                dpp_processfunc = hookfuncid;
+                                dpp_subexecute(dpp_funccodeblock[hookfuncid]);
+                                dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[999]);
+                            }
+                        }
+                    }
+                }
+            }
             return 1;
         }
     }
@@ -40,6 +60,25 @@ public OnGameModeExit()
             dpp_subexecute(dpp_funccodeblock[i]);
             dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
             dpp_debug("\"OnGameModeInit\" called.");
+            if(dpp_hookform[i] == 0)
+            {
+                if(dpp_option_hooking == 1)
+                {
+                    for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
+                    {
+                        if(!strcmp(dpp_funcname[hookfuncid], "OnGameModeExit"))
+                        {
+                            if(dpp_hookform[hookfuncid] == 1)
+                            {
+                                dpp_returned[hookfuncid] = 0;
+                                dpp_processfunc = hookfuncid;
+                                dpp_subexecute(dpp_funccodeblock[hookfuncid]);
+                                dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[999]);
+                            }
+                        }
+                    }
+                }
+            }
             return 1;
         }
     }

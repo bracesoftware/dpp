@@ -53,7 +53,7 @@ using::console.cout,"Hello World";
 - [Modules](doc/dpp_modules.md)
 - [Constants](doc/dpp_const.md)
 - [Variables](doc/dpp_vars.md)
-- [Forms - native and user forms](doc/dpp_forms.md)
+- [Forms and types of forms](doc/dpp_forms.md)
 - [If-expressions](doc/dpp_if.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
