@@ -140,6 +140,13 @@ stock dpp_process(const line[])
         dpp_parseline(line2, args, ',');
         dpp_parseline(args[0], funcgroup, '.');
         
+        for(new i; i < 10; i++)
+        {
+            dpp_argarraycheck(args[i]);
+            dpp_argfunccheck(args[i]);
+            dpp_argvarcheck(args[i]);
+        }
+        
         if(!strcmp(funcgroup[0], "if"))
         {
             if(!strcmp(funcgroup[1], "equ"))
