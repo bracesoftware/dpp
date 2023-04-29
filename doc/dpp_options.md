@@ -1,4 +1,4 @@
-# Modifiable options
+# Interpreter options
 You can modify some interpreter options using `pragma::option`.
 
 ## `debug`

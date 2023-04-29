@@ -146,7 +146,7 @@ stock dpp_process(const line[])
             dpp_argfunccheck(args[i]);
             dpp_argvarcheck(args[i]);
         }
-        
+
         if(!strcmp(funcgroup[0], "if"))
         {
             if(!strcmp(funcgroup[1], "equ"))
@@ -483,26 +483,26 @@ stock dpp_process(const line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "import::package"))
+    if(!strcmp(funcgroup[0], "import::component"))
     {
         if(!strcmp(funcgroup[1], "console"))
         {
-            dpp_config[console_pkg] = 1;
+            dpp_config[console_comp] = 1;
             return 1;
         }
         if(!strcmp(funcgroup[1], "system"))
         {
-            dpp_config[system_pkg] = 1;
+            dpp_config[system_comp] = 1;
             return 1;
         }
         if(!strcmp(funcgroup[1], "samp"))
         {
-            dpp_config[samp_pkg] = 1;
+            dpp_config[samp_comp] = 1;
             return 1;
         }
         else
         {
-            dpp_error("Unknown package \"%s\".", funcgroup[1]);
+            dpp_error("Unknown component \"%s\".", funcgroup[1]);
             return 0;
         }
     }
@@ -552,7 +552,7 @@ stock dpp_process(const line[])
                 return 1;
             }
         }
-        dpp_error("Function \"%s\" isn't registered.", funcgroup[1]);
+        dpp_error("Form \"%s\" isn't registered.", funcgroup[1]);
         return 1;
     }
 
@@ -568,7 +568,7 @@ stock dpp_process(const line[])
     {
         if(dpp_processfunc == 0)
         {
-            dpp_error("Expression \"return\" can be only used inside a function code block.",);
+            dpp_error("Expression \"return\" can be only used inside a form code block.",);
             return 1;
         }
         if(!strcmp(funcgroup[1], "int"))
@@ -655,16 +655,16 @@ stock dpp_process(const line[])
     ///////////////////////////////////////////////////////
     ////
     ////
-    ////            CONSOLE PKG FUNC SYS
+    ////            CONSOLE comp FUNC SYS
     ////
     ////
     ///////////////////////////////////////////////////////
 
     if(!strcmp(funcgroup[0], "using::console"))
     {
-        if(dpp_config[console_pkg] == 0)
+        if(dpp_config[console_comp] == 0)
         {
-            dpp_error("Package \"console\" is not imported.",);
+            dpp_error("Component \"console\" is not imported.",);
             return 1;
         }
         // If the function used it "print"
@@ -693,7 +693,7 @@ stock dpp_process(const line[])
         }
         else
         {
-            dpp_error("Unknown function in the package \"console\".",);
+            dpp_error("Unknown form in the component \"console\".",);
             return 0;
         }
     }
@@ -701,16 +701,16 @@ stock dpp_process(const line[])
     ///////////////////////////////////////////////////////
     ////
     ////
-    ////            SYSTEM PKG FUNC SYS
+    ////            SYSTEM comp FUNC SYS
     ////
     ////
     ///////////////////////////////////////////////////////
 
     if(!strcmp(funcgroup[0], "using::system"))
     {
-        if(dpp_config[system_pkg] == 0)
+        if(dpp_config[system_comp] == 0)
         {
-            dpp_error("Package \"system\" is not imported.",);
+            dpp_error("Component \"system\" is not imported.",);
             return 1;
         }
         // If the function used it "print"
@@ -738,7 +738,7 @@ stock dpp_process(const line[])
         }
         else
         {
-            dpp_error("Unknown function in the package \"system\".",);
+            dpp_error("Unknown form in the component \"system\".",);
             return 0;
         }
     }
@@ -746,7 +746,7 @@ stock dpp_process(const line[])
     ///////////////////////////////////////////////////////
     ////
     ////
-    ////            SAMP PKG FUNC SYS
+    ////            SAMP comp FUNC SYS
     ////
     ////
     ///////////////////////////////////////////////////////
@@ -754,9 +754,9 @@ stock dpp_process(const line[])
     
     if(!strcmp(funcgroup[0], "using::samp"))
     {
-        if(dpp_config[samp_pkg] == 0)
+        if(dpp_config[samp_comp] == 0)
         {
-            dpp_error("Package \"samp\" is not imported.",);
+            dpp_error("Component \"samp\" is not imported.",);
             return 1;
         }
         if(!strcmp(funcgroup[1], "SetGameModeText"))
@@ -796,7 +796,7 @@ stock dpp_process(const line[])
 
         else
         {
-            dpp_error("Unknown function in the package \"system\".",);
+            dpp_error("Unknown form in the component \"samp\".",);
             return 0;
         }
     }

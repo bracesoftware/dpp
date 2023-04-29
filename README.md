@@ -48,11 +48,14 @@ using::console.cout,"Hello World";
 
 ### The language
 
-- Options you can modify using `pragma::option` - [read here](doc/dpp_options.md).
-- Importable packages and functions - [read here](doc/dpp_packages.md).
-- Variables and constants - [see here](doc/dpp_const.md).
-- Function calling and value returning - [see here](doc/dpp_returns.md).
-- Miscellaneous things - [see here](doc/dpp_misc.md).
+- [Interpreter options](doc/dpp_options.md)
+- [Interpreter components](doc/dpp_components.md)
+- Modules
+- Constants
+- Variables
+- Forms - native and user forms
+- If-expressions
+- Miscellaneous
 
 ### Other info
 
