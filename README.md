@@ -11,8 +11,8 @@
 
 - For the impatient, here is the example code:
 ```pawn
-import::package.console;
-import::package.system;
+import::component.console;
+import::component.system;
 
 using::system.rem,"Basic println example.";
 using::console.println,"Hello World";
