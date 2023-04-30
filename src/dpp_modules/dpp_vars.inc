@@ -109,7 +109,7 @@ stock dpp_createintvar(name[], value)
                 strmid(name, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
             }
 
-            dpp_debug("varant \"%s\" assigned a value : %i",name,value);
+            dpp_debug("variable \"%s\" assigned a value : %i",name,value);
             strmid(dpp_vardata[i][var_name], name, 0, 64);
             dpp_vardata[i][integervalue] = value;
             dpp_vardata[i][var_type] = dpp_var_type_int;
@@ -148,7 +148,7 @@ stock dpp_createboolvar(name[], value)
                 strmid(name, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
             }
 
-            dpp_debug("varant \"%s\" assigned a value : %s",name,value ? "true" : "false");
+            dpp_debug("variable \"%s\" assigned a value : %s",name,value ? "true" : "false");
             strmid(dpp_vardata[i][var_name], name, 0, 64);
             dpp_vardata[i][boolvalue] = value;
             dpp_vardata[i][var_type] = dpp_var_type_bool;
@@ -187,7 +187,7 @@ stock dpp_createstrvar(name[], const value[])
                 strmid(name, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
             }
 
-            dpp_debug("varant \"%s\" assigned a value : \"%s\"",name,value);
+            dpp_debug("variable \"%s\" assigned a value : \"%s\"",name,value);
             strmid(dpp_vardata[i][var_name], name, 0, 64);
             strmid(dpp_vardata[i][stringvalue], value, 0, 256);
             dpp_vardata[i][var_type] = dpp_var_type_str;
@@ -260,7 +260,7 @@ stock dpp_deleteintvar(const name[])
             {
                 if(dpp_vardata[i][var_type] != dpp_var_type_int)
                 {
-                    dpp_error("varant \"%s\" is not an integer.", name);
+                    dpp_error("variable \"%s\" is not an integer.", name);
                     return 1;
                 }
 
@@ -270,7 +270,7 @@ stock dpp_deleteintvar(const name[])
                 return 1;
             }
         }
-        dpp_error("varant \"%s\" not found.", name);
+        dpp_error("variable \"%s\" not found.", name);
     }
     return 1;
 }
@@ -285,7 +285,7 @@ stock dpp_deleteboolvar(const name[])
             {
                 if(dpp_vardata[i][var_type] != dpp_var_type_bool)
                 {
-                    dpp_error("varant \"%s\" is not a boolean.", name);
+                    dpp_error("variable \"%s\" is not a boolean.", name);
                     return 1;
                 }
 
@@ -295,7 +295,7 @@ stock dpp_deleteboolvar(const name[])
                 return 1;
             }
         }
-        dpp_error("varant \"%s\" not found.", name);
+        dpp_error("variable \"%s\" not found.", name);
     }
     return 1;
 }
@@ -310,7 +310,7 @@ stock dpp_deletestrvar(const name[])
             {
                 if(dpp_vardata[i][var_type] != dpp_var_type_str)
                 {
-                    dpp_error("varant \"%s\" is not a string.", name);
+                    dpp_error("variable \"%s\" is not a string.", name);
                     return 1;
                 }
 
@@ -320,7 +320,7 @@ stock dpp_deletestrvar(const name[])
                 return 1;
             }
         }
-        dpp_error("varant \"%s\" not found.", name);
+        dpp_error("variable \"%s\" not found.", name);
     }
     return 1;
 }

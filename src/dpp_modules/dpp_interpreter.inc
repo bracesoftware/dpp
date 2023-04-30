@@ -66,6 +66,26 @@ stock dpp_process(const line[])
 
     dpp_debug("%s", process_backtrace);
 
+    for(new i; i < strlen(funcgroup[0]); i++)
+    {
+        if(funcgroup[0][i] == '\t') strdel(funcgroup[0], i,i+1);
+        if(funcgroup[0][i] == '\n') strdel(funcgroup[0], i,i+1);
+        if(funcgroup[0][i] == ' ') strdel(funcgroup[0], i,i+1);
+    }
+    for(new i; i < strlen(funcgroup[1]); i++)
+    {
+        if(funcgroup[1][i] == '\t') strdel(funcgroup[1], i,i+1);
+        if(funcgroup[1][i] == '\n') strdel(funcgroup[1], i,i+1);
+        if(funcgroup[1][i] == ' ') strdel(funcgroup[1], i,i+1);
+    }
+
+    if(!strcmp(funcgroup[0], "exit"))
+    {
+        dpp_terminated = 1;
+        dpp_print("Process terminated; restart the machine.");
+        return 1;
+    }
+
     if(!strcmp(funcgroup[0], "end"))
     {
         dpp_sysreturned = 0;
@@ -133,12 +153,6 @@ stock dpp_process(const line[])
         dpp_createfunc(funcgroup[1], 0, 1);
         return 1;
     }
-    if(!strcmp(funcgroup[0], "exit"))
-    {
-        dpp_terminated = 1;
-        dpp_print("Process terminated; restart the machine.");
-        return 1;
-    }
 
     #if DPP_BRACES == 1
     new line_wo_brace[1024];
@@ -173,6 +187,15 @@ stock dpp_process(const line[])
 
     for(new i; i < 10; i++)
     {
+        if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
+            !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
+            !strcmp(funcgroup[0], "var::set")){
+            if(i == 1)
+            {
+                dpp_argclasscheck(args[i]);
+                i = 2;
+            }
+        }
         dpp_argclasscheck(args[i]);
         dpp_argarraycheck(args[i]);
         dpp_argfunccheck(args[i]);
@@ -223,6 +246,17 @@ stock dpp_process(const line[])
         
         for(new i; i < 10; i++)
         {
+            if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
+                !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
+                !strcmp(funcgroup[0], "var::set"))
+                {
+                    if(i == 1)
+                    {
+                        dpp_argclasscheck(args[i]);
+                        i = 2;
+                    }
+                }
+
             dpp_argclasscheck(args[i]);
             dpp_argarraycheck(args[i]);
             dpp_argfunccheck(args[i]);

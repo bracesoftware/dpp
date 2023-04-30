@@ -10,16 +10,11 @@
 *
 */
 
-#define dpp_classelement_var 0
-#define dpp_classelement_const 1
-#define dpp_classelement_form 2
-
 stock dpp_argclasscheck(arg[])
 {
     new 
         newvalue[dpp_argcharsize],
         classvalid = 0,
-        classelementvalid[3] = {0,0,0},
         funcgroup[2][100];
     dpp_parseline(arg, funcgroup, ':');
 
@@ -32,56 +27,53 @@ stock dpp_argclasscheck(arg[])
         }
     }
 
+    if(classvalid == 0)
+    {
+        dpp_debug("Class is not a valid class.");
+        return 1;
+    }
+
+    format(newvalue,sizeof(newvalue),"DPPCf@%s_%s",funcgroup[0],funcgroup[1]);
+    dpp_debug("Class backtrace 1:\n\tnewvalue : '%s'",newvalue);
+
     for(new i = 1; i < dpp_maxfuncs; i++)
     {
-        if(!strcmp(dpp_funcname[i],funcgroup[1]) && dpp_validfunc[i] == 1)
+        if(!strcmp(dpp_funcname[i],newvalue) && dpp_validfunc[i] == 1)
         {
-            classelementvalid[dpp_classelement_form] = 1;
+            strmid(arg, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
+            
             break;
         }
     }
+
+    format(newvalue,sizeof(newvalue),"DPPCc@%s_%s",funcgroup[0],funcgroup[1]);
+    dpp_debug("Class backtrace 2:\n\tnewvalue : '%s'",newvalue);
 
     for(new i = 1; i < dpp_maxconst; i++)
     {
-        if(!strcmp(dpp_constdata[i][const_name],funcgroup[1]) && dpp_constdata[i][const_valid] == 1)
+        if(!strcmp(dpp_constdata[i][const_name],newvalue) && dpp_constdata[i][const_valid] == 1)
         {
-            classelementvalid[dpp_classelement_const] = 1;
+            strmid(arg, newvalue, 0, dpp_argcharsize,dpp_argcharsize);//classelementvalid[dpp_classelement_const] = 1;
             break;
         }
     }
+
+    format(newvalue,sizeof(newvalue),"DPPCv@%s_%s",funcgroup[0],funcgroup[1]);
+    dpp_debug("Class backtrace 3:\n\tnewvalue : '%s'",newvalue);
 
     for(new i = 1; i < dpp_maxvar; i++)
     {
-        if(!strcmp(dpp_vardata[i][var_name],funcgroup[1]) && dpp_vardata[i][var_valid] == 1)
+        if(!strcmp(dpp_vardata[i][var_name],newvalue) && dpp_vardata[i][var_valid] == 1)
         {
-            classelementvalid[dpp_classelement_var] = 1;
+            strmid(arg, newvalue, 0, dpp_argcharsize,dpp_argcharsize);//classelementvalid[dpp_classelement_var] = 1;
             break;
         }
     }
 
-    if(classvalid == 1 && (classelementvalid[0] == 1 || classelementvalid[1] == 1 || classelementvalid[2] == 1))
-    {
-        if(classelementvalid[dpp_classelement_var] == 1)
-        {
-            format(newvalue,sizeof(newvalue),"DPPCv@%s_%s",funcgroup[0],funcgroup[1]);
-            strmid(arg, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
-            return 1;
-        }
-        if(classelementvalid[dpp_classelement_const] == 1)
-        {
-            format(newvalue,sizeof(newvalue),"DPPCc@%s_%s",funcgroup[0],funcgroup[1]);
-            strmid(arg, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
-            return 1;
-        }
-        if(classelementvalid[dpp_classelement_form] == 1)
-        {
-            format(newvalue,sizeof(newvalue),"DPPCf@%s_%s",funcgroup[0],funcgroup[1]);
-            strmid(arg, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
-            return 1;
-        }
-    }
+    //dpp_debug("Class backtrace 4:\n\tclassvalid : '%i'\n\tclasselementvalid[0] : '%i'\n\tclasselementvalid[1] : '%i'\n\tclasselementvalid[2] : '%i'",classvalid,classelementvalid[0],classelementvalid[1],classelementvalid[2]);
 
-    dpp_debug("Class backtrace:\n\tfuncgroup[0] : '%s'\n\tfuncgroup[1] : '%s'\n\targ : '%s'",funcgroup[0],funcgroup[1],arg);
+
+    dpp_debug("Class backtrace 4:\n\tfuncgroup[0] : '%s'\n\tfuncgroup[1] : '%s'\n\targ : '%s'",funcgroup[0],funcgroup[1],arg);
     return 1;
 }
 
@@ -107,7 +99,7 @@ stock dpp_createclass(const name[])
             }
 
             dpp_validclass[i] = 1;
-            strmid(dpp_classname[i], name, 0, strlen(dpp_classname[i]), strlen(dpp_classname[i]));
+            strmid(dpp_classname[i], name, 0, 64,64);
             dpp_workingclassid = i;
             return 1;
         }

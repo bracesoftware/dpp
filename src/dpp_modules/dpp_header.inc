@@ -12,6 +12,7 @@
 
 #define dpp_header 1
 
+#define dpp_info dpp_print
 #define isnull(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
 #define dpp_execheader%0(%1) print("|====================| "%1" |====================|")
 #define dpp_comment%0(%1) print("|==============================================|")
@@ -134,7 +135,6 @@ stock dpp_checkforifexpression(const code[], dest1[], dest2[], const delimiter[]
             return 1;
         }
     }
-    dpp_debug("Could not parse code : \"%s\"", code);
     return 1;
 }
 
@@ -246,6 +246,10 @@ stock dpp_execute(const script[])
             for(new i; i < 1024; i++)
             {
                 if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
+                if(dpp_terminated == 1)
+                {
+                    break;
+                }
                 dpp_process(codelines[i]);
             }
         }
