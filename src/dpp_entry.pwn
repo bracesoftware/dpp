@@ -20,6 +20,7 @@
 #pragma warning disable 211
 #pragma option -;+
 
+#define dpp_invalidclass 100
 #define DPP_VERSION_MAJOR 3
 #define DPP_VERSION_MINOR 0
 #define DPP_VERSION_PATCH 0
@@ -74,9 +75,12 @@ new dpp_funccodeblock[dpp_maxfuncs][1024];
 new dpp_autoform[dpp_maxfuncs];
 new dpp_hookform[dpp_maxfuncs];
 
+//format(stackfile,sizeof stackfile,"ID : %i | VALID : %i | NAME: \"%s\"",i,dpp_validfunc[i],dpp_funcname[i]);
+//dpp_savelog("stackoutput.dpplog");
+
 new dpp_validclass[dpp_maxclass];
 new dpp_classname[dpp_maxclass];
-new dpp_workingclassid = 0;
+new dpp_workingclassid = dpp_invalidclass;
 
 new dpp_funcreturn_int[dpp_maxfuncs];
 new dpp_funcreturn_bool[dpp_maxfuncs];
@@ -93,6 +97,7 @@ new dpp_interpreter = 1;
 // project config
 
 new dpp_projname[128];
+new dpp_stackoutput = 0;
 
 // process cache
 
@@ -139,5 +144,76 @@ main()
     dpp_nullcomment();
     dpp_nullcomment();
     CallLocalFunction("DPP_GAMEMODEINIT", "");
+    if(dpp_stackoutput == 1)
+    {
+        CallLocalFunction("dpp_dostackoutput", "");
+    }
+    return 1;
+}
+
+dpp_dostackoutput();
+public dpp_dostackoutput()
+{
+    new stackfile[512];
+    if(fexist("stackoutput.dpplog")) fremove("stackoutput.dpplog");
+    dpp_nullcomment();
+    dpp_comment();
+    dpp_print("Loading the stack...");
+    dpp_print("Loading the forms stack...");
+    dpp_comment();
+    dpp_savelog("stackoutput.dpplog","===============================================================");
+    dpp_savelog("stackoutput.dpplog","FORMS");
+    dpp_savelog("stackoutput.dpplog","===============================================================");
+    for(new i; i < dpp_maxfuncs; i++)
+    {
+        format(stackfile,sizeof stackfile,"ID : %i | VALID : %i | NAME: \"%s\"",
+            i,
+            dpp_validfunc[i],
+            dpp_funcname[i]);
+        dpp_savelog("stackoutput.dpplog",stackfile);
+    }
+    dpp_comment();
+    dpp_print("Loading the const stack...");
+    dpp_comment();
+    dpp_savelog("stackoutput.dpplog","===============================================================");
+    dpp_savelog("stackoutput.dpplog","CONSTANTS");
+    dpp_savelog("stackoutput.dpplog","===============================================================");
+    for(new i; i < dpp_maxconst; i++)
+    {
+        format(stackfile,sizeof stackfile,"ID : %i | VALID : %i | NAME: \"%s\"",
+            i,
+            dpp_constdata[i][const_valid],
+            dpp_constdata[i][const_name]);
+        dpp_savelog("stackoutput.dpplog",stackfile);
+    }
+    dpp_comment();
+    dpp_print("Loading the vars stack...");
+    dpp_comment();
+    dpp_savelog("stackoutput.dpplog","===============================================================");
+    dpp_savelog("stackoutput.dpplog","VARS");
+    dpp_savelog("stackoutput.dpplog","===============================================================");
+    for(new i; i < dpp_maxvar; i++)
+    {
+        format(stackfile,sizeof stackfile,"ID : %i | VALID : %i | NAME: \"%s\"",
+            i,
+            dpp_vardata[i][var_valid],
+            dpp_vardata[i][var_name]);
+        dpp_savelog("stackoutput.dpplog",stackfile);
+    }
+    dpp_comment();
+    dpp_print("Loading the class stack...");
+    dpp_comment();
+    dpp_savelog("stackoutput.dpplog","===============================================================");
+    dpp_savelog("stackoutput.dpplog","CLASSES");
+    dpp_savelog("stackoutput.dpplog","===============================================================");
+    for(new i; i < dpp_maxvar; i++)
+    {
+        format(stackfile,sizeof stackfile,"ID : %i | VALID : %i | NAME: \"%s\"",
+            i,
+            dpp_validclass[i],
+            dpp_classname[i]);
+        dpp_savelog("stackoutput.dpplog",stackfile);
+    }
+
     return 1;
 }

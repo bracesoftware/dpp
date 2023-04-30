@@ -9,3 +9,13 @@ Below is the list of project settings:
 ```ini
 project_name=MY NEW PROJECT
 ```
+
+## `stack_output`
+
+```ini
+stack_output=true
+```
+
+```ini
+stack_output=false
+```

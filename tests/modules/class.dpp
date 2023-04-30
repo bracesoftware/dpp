@@ -17,18 +17,6 @@ using::user.dogInfo:dogRace;
 
 using::console.cout,dogInfo:age;
 
-public&class.manInfo;
-
-	var::define.str,name,"Alex";
-
-class.end;
-
-hook&class.manInfo;
-
-	var::define.int,age,86;
-
-class.end;
-
 hook&class.dogInfo;
 
 	var::define.str,owner,"Tommy";
@@ -41,6 +29,18 @@ using::console.println,dogInfo:owner;
 
 	using::console.println,dogInfo:owner;
 
+
+public&class.manInfo;
+
+	var::define.str,name,"Alex";
+
+class.end;
+
+hook&class.manInfo;
+
+	var::define.int,age,86;
+
+class.end;
 
 using::console.println,manInfo:name;
 using::console.cout,manInfo:age;

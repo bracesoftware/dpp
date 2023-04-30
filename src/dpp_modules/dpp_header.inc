@@ -185,7 +185,7 @@ stock dpp_createfunc(funcname[], autoform = 0, hookform = 0)
             dpp_currentfuncid = i;
             dpp_validfunc[i] = 1;
 
-            if(dpp_workingclassid != 0)
+            if(dpp_workingclassid != dpp_invalidclass)
             {
                 new newvalue[dpp_argcharsize];
                 format(newvalue,sizeof(newvalue),"DPPCf@%s_%s",dpp_classname[dpp_workingclassid],funcname);
@@ -427,4 +427,33 @@ public DPP_ENTRYPOINT()
     }
 
     return 1;
+}
+
+// stack output
+
+stock void:dpp_savelog(const file[],const message[]) 
+{
+    new formatted_message[ 256 ], 
+        second, 
+        minutes, 
+        day2, 
+        day, 
+        year, 
+        month;
+
+    getdate(year, month, day);
+
+    gettime(second, minutes, day2);
+    
+    format(formatted_message, 
+        sizeof formatted_message, 
+        "%d:%d:%d | %d:%d:%d @ >> D++ | LOG: %s\r\n ", 
+        day, month, year, 
+        second, minutes, day2, message);
+
+    new File:LogFile = fopen(file, io_append);
+
+    fwrite(LogFile, formatted_message);
+
+    fclose(LogFile);
 }

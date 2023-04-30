@@ -18,7 +18,7 @@ stock dpp_argclasscheck(arg[])
         funcgroup[2][100];
     dpp_parseline(arg, funcgroup, ':');
 
-    for(new i = 1; i < dpp_maxclass; i++)
+    for(new i; i < dpp_maxclass; i++)
     {
         if(!strcmp(dpp_classname[i],funcgroup[0]) && dpp_validclass[i] == 1)
         {
@@ -79,7 +79,7 @@ stock dpp_argclasscheck(arg[])
 
 stock dpp_createclass(const name[])
 {
-    for(new i = 1; i < dpp_maxclass; i++)
+    for(new i; i < dpp_maxclass; i++)
     {
         if(dpp_validclass[i] == 0)
         {
@@ -109,7 +109,7 @@ stock dpp_createclass(const name[])
 
 stock dpp_hookclass(const name[])
 {
-    for(new i = 1; i < dpp_maxclass; i++)
+    for(new i; i < dpp_maxclass; i++)
     {
         if(!strcmp(dpp_classname[i],name) && dpp_validclass[i] == 1)
         {

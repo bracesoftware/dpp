@@ -225,7 +225,7 @@ stock dpp_process(const line[])
     {
         if(!strcmp(funcgroup[1],"end"))
         {
-            dpp_workingclassid = 0;
+            dpp_workingclassid = dpp_invalidclass;
         }
         return 1;
     }

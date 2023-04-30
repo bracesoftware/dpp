@@ -98,7 +98,7 @@ stock dpp_createintconst(name[], value)
                 return 1;
             }
 
-            if(dpp_workingclassid != 0)
+            if(dpp_workingclassid != dpp_invalidclass)
             {
                 new newvalue[dpp_argcharsize];
                 format(newvalue,sizeof(newvalue),"DPPCc@%s_%s",dpp_classname[dpp_workingclassid],name);
@@ -137,7 +137,7 @@ stock dpp_createboolconst(name[], value)
                 return 1;
             }
 
-            if(dpp_workingclassid != 0)
+            if(dpp_workingclassid != dpp_invalidclass)
             {
                 new newvalue[dpp_argcharsize];
                 format(newvalue,sizeof(newvalue),"DPPCc@%s_%s",dpp_classname[dpp_workingclassid],name);
@@ -176,7 +176,7 @@ stock dpp_createstrconst(name[], const value[])
                 return 1;
             }
 
-            if(dpp_workingclassid != 0)
+            if(dpp_workingclassid != dpp_invalidclass)
             {
                 new newvalue[dpp_argcharsize];
                 format(newvalue,sizeof(newvalue),"DPPCc@%s_%s",dpp_classname[dpp_workingclassid],name);

@@ -53,9 +53,25 @@ stock dpp_projfileprocess(const line[])
     new address[2][512];
     dpp_parseline(line,address,'=');
 
+    //project_name
     if(!strcmp(address[0], "project_name"))
     {
         strmid(dpp_projname,address[1],0,128,128);
+        return 1;
+    }
+    //stack_output
+    if(!strcmp(address[0], "stack_output"))
+    {
+        if(!strcmp(address[1], "true"))
+        {
+            dpp_stackoutput = 1;
+            return 1;
+        }
+        if(!strcmp(address[1], "false"))
+        {
+            dpp_stackoutput = 0;
+            return 1;
+        }
         return 1;
     }
     return 1;
