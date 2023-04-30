@@ -1,0 +1,36 @@
+var::define.str,myvar,"myvar worked.";
+
+using::console.println,myvar;
+
+var::set.str,myvar,"myvar worked again.";
+
+using::console.println,myvar;
+
+if.equ,1,1->using::console.println,"1 is 1";
+if.notequ,2,1->using::console.println,"2 is not 1";
+if.notequ,1,1->using::console.println,"1 is not 1";
+if.equ,1,100->using::console.println,"1 is 100";
+
+if.equ,myvar,"myvar worked."->using::console.println,myvar;
+if.equ,false,true->using::console.println,"false is equal to true";
+
+
+public&form.functobehooked;
+do;
+	using::console.println,"HOOKED";
+	return.int,1;
+end;
+
+hook&form.functobehooked;
+do;
+	using::console.println,"HOOKED 1";
+	return.int,1;
+end;
+
+hook&form.functobehooked;
+do;
+	using::console.println,"HOOKED 2";
+	return.int,1;
+end;
+
+using::user.functobehooked;

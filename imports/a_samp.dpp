@@ -4,7 +4,7 @@ import::package.samp;
 
 hook&form.OnGameModeInit;
 do;
-	using::console.cout,"D++ 'a_samp' module loaded.";
+	using::console.println,"D++ 'a_samp' module loaded.";
 	return.int,1;
 end;
 

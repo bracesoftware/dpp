@@ -36,7 +36,7 @@ stock dpp_argclasscheck(arg[])
     format(newvalue,sizeof(newvalue),"DPPCf@%s_%s",funcgroup[0],funcgroup[1]);
     dpp_debug("Class backtrace 1:\n\tnewvalue : '%s'",newvalue);
 
-    for(new i = 1; i < dpp_maxfuncs; i++)
+    for(new i; i < dpp_maxfuncs; i++)
     {
         if(!strcmp(dpp_funcname[i],newvalue) && dpp_validfunc[i] == 1)
         {
@@ -49,7 +49,7 @@ stock dpp_argclasscheck(arg[])
     format(newvalue,sizeof(newvalue),"DPPCc@%s_%s",funcgroup[0],funcgroup[1]);
     dpp_debug("Class backtrace 2:\n\tnewvalue : '%s'",newvalue);
 
-    for(new i = 1; i < dpp_maxconst; i++)
+    for(new i; i < dpp_maxconst; i++)
     {
         if(!strcmp(dpp_constdata[i][const_name],newvalue) && dpp_constdata[i][const_valid] == 1)
         {
@@ -61,7 +61,7 @@ stock dpp_argclasscheck(arg[])
     format(newvalue,sizeof(newvalue),"DPPCv@%s_%s",funcgroup[0],funcgroup[1]);
     dpp_debug("Class backtrace 3:\n\tnewvalue : '%s'",newvalue);
 
-    for(new i = 1; i < dpp_maxvar; i++)
+    for(new i; i < dpp_maxvar; i++)
     {
         if(!strcmp(dpp_vardata[i][var_name],newvalue) && dpp_vardata[i][var_valid] == 1)
         {

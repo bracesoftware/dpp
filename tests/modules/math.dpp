@@ -1,0 +1,15 @@
+import::component.math;
+
+using::console.cout,add?1:1;
+using::console.cout,div?111:111;
+using::console.cout,mul?2:2;
+using::console.cout,exp?2:2;
+using::console.cout,sub?2:2;
+
+if.equ,div?5:5,add?1:0->using::console.println,"Math test passed!";
+
+var::define.int,MATHVAR,add?1:1;
+using::console.cout,MATHVAR;
+
+var::define.int,MATHVAR22,add?6:MATHVAR;
+using::console.cout,MATHVAR22;

@@ -1,0 +1,30 @@
+public&class.dogInfo;
+
+	var::define.str,dogName,"Alexander";
+
+	const::define.int,dogAge,15;
+
+	public&form.dogRace;
+	do;
+		using::console.println,"This is a bulldog.";
+		return.int,1;
+	end;
+
+class.end;
+
+using::console.println,dogInfo:dogName;
+using::user.dogInfo:dogRace;
+
+using::console.cout,dogInfo:dogAge;
+
+hook&class.dogInfo;
+
+	var::define.str,dogOwner,"Tommy";
+
+class.end;
+
+using::console.println,dogInfo:dogOwner;
+
+	if.equ,1,1->	var::set.str,dogInfo:dogOwner,"Y_Less";
+
+	using::console.println,dogInfo:dogOwner;

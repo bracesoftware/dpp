@@ -15,6 +15,8 @@ var::define.str,myvar,"myvar worked.";
 if.equ,myvar,"myvar worked."->using::console.println,myvar;
 ```
 
+---------------------------------------------------------------------------------------------------------
+
 ## If-methods
 
 If-method is a new term used to describe the way how are you comparing the 2 elements, there are few if-methods:

@@ -1,6 +1,8 @@
 # Instructions
 - In D++, instructions are small form-like arguments which have a simple task to do. For example, mathematical expressions such as division, multiplication and so on. Components can also contain them predefined.
 
+---------------------------------------------------------------------------------------------------------
+
 ## Component: `math`
 You'll need to import the `math` component to use math instructions.
 
@@ -33,6 +35,8 @@ using::console.cout,div?1:1;
 ```pawn
 using::console.cout,exp?1:1;
 ```
+
+---------------------------------------------------------------------------------------------------------
 
 Little example:
 

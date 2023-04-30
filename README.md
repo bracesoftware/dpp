@@ -50,6 +50,7 @@ using::console.println,"Hello World";
 
 - [Interpreter options](doc/dpp_options.md)
 - [Interpreter components](doc/dpp_components.md)
+- [Third-party API](doc/dpp_api.md)
 - [Modules](doc/dpp_modules.md)
 - [Constants](doc/dpp_const.md)
 - [Variables](doc/dpp_vars.md)

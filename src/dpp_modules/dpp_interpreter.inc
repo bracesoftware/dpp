@@ -696,6 +696,29 @@ stock dpp_process(const line[])
     ///////////////////////////////////////////////////////
     ////
     ////
+    ////            API SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(!strcmp(funcgroup[0], "import::api"))
+    {
+        if(!strcmp(funcgroup[1], "discord"))
+        {
+            dpp_apis[discord] = 1;
+            return 1;
+        }
+        
+        else
+        {
+            dpp_error("Unknown API \"%s\".", funcgroup[1]);
+            return 0;
+        }
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
     ////            IMPORT SYS
     ////
     ////

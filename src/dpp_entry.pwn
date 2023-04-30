@@ -59,6 +59,14 @@ enum dpp_enumset
 };
 
 new dpp_config[dpp_enumset];
+
+enum dpp_enumset2
+{
+    discord
+};
+
+new dpp_apis[dpp_enumset2];
+
 new dpp_currentfuncid = 0;
 new dpp_validfunc[dpp_maxfuncs];
 new dpp_funcname[dpp_maxfuncs][64];
@@ -105,6 +113,8 @@ new dpp_option_hooking = 1;
 #include "dpp_modules/dpp_class.inc"
 
 #include "dpp_modules/dpp_interpreter.inc"
+
+#include "dpp_thirdpartyapi/dpp_discord.inc"
 
 #if SAMP_MODE == 1
 #include "dpp_modules/dpp_samp.inc"

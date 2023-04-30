@@ -1,0 +1,10 @@
+using::console.println,"Test is imported.";
+
+using::console.println,"interesting...";
+
+const::define.str,TEST_STRING,"TEST_STRING value works!";
+
+using::console.println,TEST_STRING;
+
+const::define.str,OMG,"OMG actually works";
+using::console.println,OMG;
