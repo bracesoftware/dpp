@@ -118,7 +118,7 @@ main()
     dpp_nullcomment();
     dpp_nullcomment();
     dpp_comment();
-    dpp_print("The SAMP script will continue running in the background.");
+    dpp_print("The SA:MP/open.mp script will continue running in the background.");
     dpp_comment();
     dpp_nullcomment();
     dpp_nullcomment();

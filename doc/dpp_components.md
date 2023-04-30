@@ -43,6 +43,21 @@ using::system.rem,"SOME TEXT";
 
 ---------------------------------------------------------------------------------------------------------
 
+### Automated user form: `main`
+
+- Called when the code gets executed.
+
+```pawn
+auto&form.main;
+do;
+	using::console.println,"Hello World from main";
+	return.int,1;
+end;
+```
+
+
+---------------------------------------------------------------------------------------------------------
+
 ## Component: `samp`
 - Provides a set of forms used to interact with the SAMP or open.mp server.
 
