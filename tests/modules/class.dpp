@@ -1,8 +1,8 @@
 public&class.dogInfo;
 
-	var::define.str,dogName,"Alexander";
+	var::define.str,name,"Alexander";
 
-	const::define.int,dogAge,15;
+	const::define.int,age,15;
 
 	public&form.dogRace;
 	do;
@@ -12,19 +12,35 @@ public&class.dogInfo;
 
 class.end;
 
-using::console.println,dogInfo:dogName;
+using::console.println,dogInfo:name;
 using::user.dogInfo:dogRace;
 
-using::console.cout,dogInfo:dogAge;
+using::console.cout,dogInfo:age;
 
-hook&class.dogInfo;
+public&class.manInfo;
 
-	var::define.str,dogOwner,"Tommy";
+	var::define.str,name,"Alex";
 
 class.end;
 
-using::console.println,dogInfo:dogOwner;
+hook&class.manInfo;
 
-	if.equ,1,1->	var::set.str,dogInfo:dogOwner,"Y_Less";
+	var::define.int,age,86;
 
-	using::console.println,dogInfo:dogOwner;
+class.end;
+
+hook&class.dogInfo;
+
+	var::define.str,owner,"Tommy";
+
+class.end;
+
+using::console.println,dogInfo:owner;
+
+	if.equ,1,1->	var::set.str,dogInfo:owner,"Y_Less";
+
+	using::console.println,dogInfo:owner;
+
+
+using::console.println,manInfo:name;
+using::console.cout,manInfo:age;

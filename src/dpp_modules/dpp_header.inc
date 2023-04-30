@@ -223,6 +223,12 @@ stock dpp_execute(const script[])
     #if DPP_DEBUG == 1
     dpp_print("Debug component loaded...");
     #endif
+    dpp_comment();
+    dpp_nullcomment();
+    dpp_prepareproject("config.dppproj");
+    dpp_print("Project file for '%s' project loaded.",dpp_projname);
+    dpp_nullcomment();
+    dpp_comment();
     dpp_print("Executing the entry script...");
     dpp_nullcomment();
     dpp_execheader("index.dpp");

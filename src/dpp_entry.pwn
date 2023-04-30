@@ -90,6 +90,10 @@ new dpp_isifexp = 0;
 
 new dpp_interpreter = 1;
 
+// project config
+
+new dpp_projname[128];
+
 // process cache
 
 new dpp_terminated = 0;
@@ -106,6 +110,7 @@ new dpp_option_hooking = 1;
 
 //includes
 #include "dpp_modules/dpp_header.inc"
+#include "dpp_modules/dpp_proj.inc"
 #include "dpp_modules/dpp_utils.inc"
 #include "dpp_modules/dpp_const.inc"
 #include "dpp_modules/dpp_vars.inc"
@@ -122,6 +127,7 @@ new dpp_option_hooking = 1;
 
 main()
 {
+    strmid(dpp_projname,"Unnamed project",0,128,128);
     dpp_nullcomment();
     dpp_nullcomment();
     dpp_execute("index.dpp");

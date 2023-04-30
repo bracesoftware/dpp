@@ -46,6 +46,8 @@ using::console.println,"Hello World";
 ```
 ## Documentation
 
+- [Project management](doc/dpp_proj.md)
+
 ### The language
 
 - [Interpreter options](doc/dpp_options.md)

@@ -1,6 +1,6 @@
 using::system.rem,"a_samp for D++";
 
-import::package.samp;
+import::component.samp;
 
 hook&form.OnGameModeInit;
 do;
