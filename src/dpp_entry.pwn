@@ -31,6 +31,8 @@
 #define dpp_maxfuncs 1000
 #define dpp_maxconst 100
 #define dpp_maxvar 100
+#define dpp_maxclass 100
+
 #define dpp_argcharsize 100
 
 #define dpp_const_type_int 1
@@ -64,6 +66,10 @@ new dpp_funccodeblock[dpp_maxfuncs][1024];
 new dpp_autoform[dpp_maxfuncs];
 new dpp_hookform[dpp_maxfuncs];
 
+new dpp_validclass[dpp_maxclass];
+new dpp_classname[dpp_maxclass];
+new dpp_workingclassid = 0;
+
 new dpp_funcreturn_int[dpp_maxfuncs];
 new dpp_funcreturn_bool[dpp_maxfuncs];
 new dpp_funcreturn_str[dpp_maxfuncs][1024];
@@ -81,6 +87,9 @@ new dpp_interpreter = 1;
 new dpp_terminated = 0;
 new dpp_sysreturned = 0;
 
+new dpp_warningcount = 0;
+new dpp_errorcount = 0;
+
 //OPTIONS
 
 new dpp_option_debug = 0;
@@ -93,6 +102,7 @@ new dpp_option_hooking = 1;
 #include "dpp_modules/dpp_const.inc"
 #include "dpp_modules/dpp_vars.inc"
 #include "dpp_modules/dpp_math.inc"
+#include "dpp_modules/dpp_class.inc"
 
 #include "dpp_modules/dpp_interpreter.inc"
 

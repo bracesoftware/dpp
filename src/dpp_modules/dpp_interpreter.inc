@@ -90,12 +90,30 @@ stock dpp_process(const line[])
     ////
     ///////////////////////////////////////////////////////
 
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            FORM SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+
 
     if(!strcmp(funcgroup[0], "public&form"))
     {
         new isautoform = 0;
-        if(!strcmp(funcgroup[1], "OnGameModeInit")) isautoform = 1;
-        if(!strcmp(funcgroup[1], "OnGameModeExit")) isautoform = 1;
+        //system autoforms
+        if(dpp_config[system_comp] == 1)
+        {
+            if(!strcmp(funcgroup[1], "main")) isautoform = 1;
+        }
+        //samp autoforms
+        if(dpp_config[samp_comp] == 1)
+        {
+            if(!strcmp(funcgroup[1], "OnGameModeInit")) isautoform = 1;
+            if(!strcmp(funcgroup[1], "OnGameModeExit")) isautoform = 1;
+        }
 
         if(isautoform == 1)
         {
@@ -155,10 +173,38 @@ stock dpp_process(const line[])
 
     for(new i; i < 10; i++)
     {
+        dpp_argclasscheck(args[i]);
         dpp_argarraycheck(args[i]);
         dpp_argfunccheck(args[i]);
         dpp_argvarcheck(args[i]);
         dpp_argmathcheck(args[i]);
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            CLASS SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(!strcmp(funcgroup[0], "public&class"))
+    {
+        dpp_createclass(funcgroup[1]);
+        return 1;
+    }
+    if(!strcmp(funcgroup[0], "hook&class"))
+    {
+        dpp_hookclass(funcgroup[1]);
+        return 1;
+    }
+    if(!strcmp(funcgroup[0], "class"))
+    {
+        if(!strcmp(funcgroup[1],"end"))
+        {
+            dpp_workingclassid = 0;
+        }
+        return 1;
     }
 
     ///////////////////////////////////////////////////////
@@ -177,6 +223,7 @@ stock dpp_process(const line[])
         
         for(new i; i < 10; i++)
         {
+            dpp_argclasscheck(args[i]);
             dpp_argarraycheck(args[i]);
             dpp_argfunccheck(args[i]);
             dpp_argvarcheck(args[i]);

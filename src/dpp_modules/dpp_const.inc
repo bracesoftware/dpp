@@ -77,7 +77,7 @@ stock dpp_argarraycheck(arg[])
 
 ///////////////////////////CREATE/////////////////////////////
 
-stock dpp_createintconst(const name[], value)
+stock dpp_createintconst(name[], value)
 {
     for(new i; i < dpp_maxconst; i++)
     {
@@ -96,6 +96,13 @@ stock dpp_createintconst(const name[], value)
             {
                 dpp_error("Invalid symbol name.",);
                 return 1;
+            }
+
+            if(dpp_workingclassid != 0)
+            {
+                new newvalue[dpp_argcharsize];
+                format(newvalue,sizeof(newvalue),"DPPCc@%s_%s",dpp_classname[dpp_workingclassid],name);
+                strmid(name, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
             }
 
             dpp_debug("Constant \"%s\" assigned a value : %i",name,value);
@@ -109,7 +116,7 @@ stock dpp_createintconst(const name[], value)
     return 1;
 }
 
-stock dpp_createboolconst(const name[], value)
+stock dpp_createboolconst(name[], value)
 {
     for(new i; i < dpp_maxconst; i++)
     {
@@ -128,6 +135,13 @@ stock dpp_createboolconst(const name[], value)
             {
                 dpp_error("Invalid symbol name.",);
                 return 1;
+            }
+
+            if(dpp_workingclassid != 0)
+            {
+                new newvalue[dpp_argcharsize];
+                format(newvalue,sizeof(newvalue),"DPPCc@%s_%s",dpp_classname[dpp_workingclassid],name);
+                strmid(name, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
             }
 
             dpp_debug("Constant \"%s\" assigned a value : %s",name,value ? "true" : "false");
@@ -141,7 +155,7 @@ stock dpp_createboolconst(const name[], value)
     return 1;
 }
 
-stock dpp_createstrconst(const name[], const value[])
+stock dpp_createstrconst(name[], const value[])
 {
     for(new i; i < dpp_maxconst; i++)
     {
@@ -160,6 +174,13 @@ stock dpp_createstrconst(const name[], const value[])
             {
                 dpp_error("Invalid symbol name.",);
                 return 1;
+            }
+
+            if(dpp_workingclassid != 0)
+            {
+                new newvalue[dpp_argcharsize];
+                format(newvalue,sizeof(newvalue),"DPPCc@%s_%s",dpp_classname[dpp_workingclassid],name);
+                strmid(name, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
             }
 
             dpp_debug("Constant \"%s\" assigned a value : \"%s\"",name,value);

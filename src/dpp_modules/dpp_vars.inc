@@ -3,7 +3,7 @@
 * D++ Scripting Language
 *     Made for a SA:MP server
 *
-* Support for varants
+* Support for vars
 *
 * 
 * - by: DEntisT, (c) 2022
@@ -81,7 +81,7 @@ stock dpp_argvarcheck(arg[])
 
 ///////////////////////////CREATE/////////////////////////////
 
-stock dpp_createintvar(const name[], value)
+stock dpp_createintvar(name[], value)
 {
     for(new i; i < dpp_maxvar; i++)
     {
@@ -100,6 +100,13 @@ stock dpp_createintvar(const name[], value)
             {
                 dpp_error("Invalid symbol name.",);
                 return 1;
+            }
+
+            if(dpp_workingclassid != 0)
+            {
+                new newvalue[dpp_argcharsize];
+                format(newvalue,sizeof(newvalue),"DPPCv@%s_%s",dpp_classname[dpp_workingclassid],name);
+                strmid(name, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
             }
 
             dpp_debug("varant \"%s\" assigned a value : %i",name,value);
@@ -113,7 +120,7 @@ stock dpp_createintvar(const name[], value)
     return 1;
 }
 
-stock dpp_createboolvar(const name[], value)
+stock dpp_createboolvar(name[], value)
 {
     for(new i; i < dpp_maxvar; i++)
     {
@@ -132,6 +139,13 @@ stock dpp_createboolvar(const name[], value)
             {
                 dpp_error("Invalid symbol name.",);
                 return 1;
+            }
+
+            if(dpp_workingclassid != 0)
+            {
+                new newvalue[dpp_argcharsize];
+                format(newvalue,sizeof(newvalue),"DPPCv@%s_%s",dpp_classname[dpp_workingclassid],name);
+                strmid(name, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
             }
 
             dpp_debug("varant \"%s\" assigned a value : %s",name,value ? "true" : "false");
@@ -145,7 +159,7 @@ stock dpp_createboolvar(const name[], value)
     return 1;
 }
 
-stock dpp_createstrvar(const name[], const value[])
+stock dpp_createstrvar(name[], const value[])
 {
     for(new i; i < dpp_maxvar; i++)
     {
@@ -164,6 +178,13 @@ stock dpp_createstrvar(const name[], const value[])
             {
                 dpp_error("Invalid symbol name.",);
                 return 1;
+            }
+
+            if(dpp_workingclassid != 0)
+            {
+                new newvalue[dpp_argcharsize];
+                format(newvalue,sizeof(newvalue),"DPPCv@%s_%s",dpp_classname[dpp_workingclassid],name);
+                strmid(name, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
             }
 
             dpp_debug("varant \"%s\" assigned a value : \"%s\"",name,value);
@@ -183,14 +204,11 @@ stock dpp_setintvar(const name[], value)
 {
     for(new i; i < dpp_maxvar; i++)
     {
-        if(!strcmp(dpp_vardata[i][var_name], name))
+        if(!strcmp(dpp_vardata[i][var_name], name) && dpp_vardata[i][var_valid] == 1)
         {
-            if(dpp_vardata[i][var_valid] == 1)
-            {
-                dpp_debug("\"%s\" value changed to \"%i\"", name, value);
-                dpp_vardata[i][integervalue] = value;
-                return 1;
-            }
+            dpp_debug("\"%s\" value changed to \"%i\"", name, value);
+            dpp_vardata[i][integervalue] = value;
+            return 1;
         }
     }
     dpp_error("INT : Unable to find a variable: '%s'",name);
@@ -201,14 +219,11 @@ stock dpp_setboolvar(const name[], value)
 {
     for(new i; i < dpp_maxvar; i++)
     {
-        if(!strcmp(dpp_vardata[i][var_name], name))
+        if(!strcmp(dpp_vardata[i][var_name], name) && dpp_vardata[i][var_valid] == 1)
         {
-            if(dpp_vardata[i][var_valid] == 1)
-            {
-                dpp_debug("\"%s\" value changed to \"%s\"", name, value ? "true" : "false");
-                dpp_vardata[i][boolvalue] = value;
-                return 1;
-            }
+            dpp_debug("\"%s\" value changed to \"%s\"", name, value ? "true" : "false");
+            dpp_vardata[i][boolvalue] = value;
+            return 1;
         }
     }
     dpp_error("BOOL : Unable to find a variable: '%s'",name);
@@ -219,14 +234,11 @@ stock dpp_setstrvar(const name[], const value[])
 {
     for(new i; i < dpp_maxvar; i++)
     {
-        if(!strcmp(dpp_vardata[i][var_name], name))
+        if(!strcmp(dpp_vardata[i][var_name], name) && dpp_vardata[i][var_valid] == 1)
         {
-            if(dpp_vardata[i][var_valid] == 1)
-            {
-                dpp_debug("\"%s\" value changed to \"%s\"", name, value);
-                strmid(dpp_vardata[i][stringvalue], value, 0, 256);
-                return 1;
-            }
+            dpp_debug("\"%s\" value changed to \"%s\"", name, value);
+            strmid(dpp_vardata[i][stringvalue], value, 0, 256);
+            return 1;
         }
     }
     dpp_error("STR : Unable to find a variable: '%s'",name);

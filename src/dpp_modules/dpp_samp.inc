@@ -13,6 +13,11 @@
 DPP_GAMEMODEINIT();
 public DPP_GAMEMODEINIT()
 {
+    if(dpp_config[samp_comp] == 0)
+    {
+        return 1;
+    }
+
     for(new i; i < dpp_maxfuncs; i++)
     {
         if(!strcmp(dpp_funcname[i], "OnGameModeInit"))
@@ -51,6 +56,11 @@ public DPP_GAMEMODEINIT()
 
 public OnGameModeExit()
 {
+    if(dpp_config[samp_comp] == 0)
+    {
+        return 1;
+    }
+
     for(new i; i < dpp_maxfuncs; i++)
     {
         if(!strcmp(dpp_funcname[i], "OnGameModeExit"))

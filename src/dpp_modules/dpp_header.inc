@@ -30,9 +30,21 @@ new
 
 
 #define dpp_error%0(%1,%2) format(dpp_error_str,sizeof dpp_error_str,">> D++ | ERROR (dpp.amx @ %s:%i): "%1,__file,__line,%2)&& \
-    print(dpp_error_str) 
+    print(dpp_error_str)&&dpp_incerrcnt()
  //printf(">> D++ | ERROR (dpp.amx @ %s:%i): %s",__file,__line,%1)
-#define dpp_warning%0(%1) if(dpp_option_warnings==1)printf(">> D++ | WARNING: "%1)
+#define dpp_warning%0(%1) if(dpp_option_warnings==1)dpp_incwarncnt()&&printf(">> D++ | WARNING: "%1)
+
+stock dpp_incerrcnt()
+{
+    dpp_errorcount = dpp_errorcount+1;
+    return 1;
+}
+
+stock dpp_incwarncnt()
+{
+    dpp_warningcount = dpp_warningcount+1;
+    return 1;
+}
 
 stock dpp_parsecode(const code[], destln[][])
 {
@@ -143,7 +155,7 @@ stock dpp_extract(const src[], dest[], startchar, endchar)
     return 1;
 }
 
-stock dpp_createfunc(const funcname[], autoform = 0, hookform = 0)
+stock dpp_createfunc(funcname[], autoform = 0, hookform = 0)
 {
     new alreadyexists;
     for(new i; i < dpp_maxfuncs; i++)
@@ -172,6 +184,14 @@ stock dpp_createfunc(const funcname[], autoform = 0, hookform = 0)
             }
             dpp_currentfuncid = i;
             dpp_validfunc[i] = 1;
+
+            if(dpp_workingclassid != 0)
+            {
+                new newvalue[dpp_argcharsize];
+                format(newvalue,sizeof(newvalue),"DPPCf@%s_%s",dpp_classname[dpp_workingclassid],funcname);
+                strmid(funcname, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
+            }
+
             strmid(dpp_funcname[i], funcname, 0, 64);
             dpp_debug("funcgroup[1]:%s",funcname);
             dpp_debug("dpp_funcname[i]:%s",dpp_funcname[i]);
@@ -207,6 +227,7 @@ stock dpp_execute(const script[])
     dpp_nullcomment();
     dpp_execheader("index.dpp");
     dpp_nullcomment();
+
     new File:file = fopen(script, io_read), rlen;
     new codelines[1024][1024];
     if(file)
@@ -228,7 +249,9 @@ stock dpp_execute(const script[])
                 dpp_process(codelines[i]);
             }
         }
+        CallLocalFunction("DPP_ENTRYPOINT", "");
     }
+
     else if(!file)
     {
         dpp_error("Invalid file.",);
@@ -237,6 +260,7 @@ stock dpp_execute(const script[])
     dpp_comment();
     dpp_nullcomment();
     dpp_print("The interpreter reached the EOS point.");
+    dpp_print("Process finished with %i errors and %i warnings.", dpp_errorcount,dpp_warningcount);
     return 1;
 }
 
@@ -346,5 +370,51 @@ stock dpp_argfunccheck(arg[])
             }
         }
     }
+    return 1;
+}
+
+// system autoforms
+
+DPP_ENTRYPOINT();
+public DPP_ENTRYPOINT()
+{
+    if(dpp_config[system_comp] == 0)
+    {
+        return 1;
+    }
+    
+    for(new i; i < dpp_maxfuncs; i++)
+    {
+        if(!strcmp(dpp_funcname[i], "main"))
+        {
+            if(dpp_autoform[i] == 0) return 1;
+            if(dpp_hookform[i] == 0)
+            {
+                dpp_processfunc = i;
+                dpp_subexecute(dpp_funccodeblock[i],i);
+                dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
+                dpp_debug("\"main\" called.");
+
+                if(dpp_option_hooking == 1)
+                {
+                    for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
+                    {
+                        if(!strcmp(dpp_funcname[hookfuncid], "main"))
+                        {
+                            if(dpp_hookform[hookfuncid] == 1)
+                            {
+                                dpp_returned[hookfuncid] = 0;
+                                dpp_processfunc = hookfuncid;
+                                dpp_subexecute(dpp_funccodeblock[hookfuncid],hookfuncid);
+                                dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[999]);
+                            }
+                        }
+                    }
+                }
+            }
+            return 1;
+        }
+    }
+
     return 1;
 }
