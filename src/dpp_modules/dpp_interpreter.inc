@@ -195,7 +195,7 @@ stock dpp_process(const line[])
     {
         if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
             !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
-            !strcmp(funcgroup[0], "var::set")){
+            !strcmp(funcgroup[0], "var::set") || (!strcmp(funcgroup[0], "using::system") && !strcmp(funcgroup[1], "arginit"))){
             if(i == 1)
             {
                 dpp_argclasscheck(args[i]);
@@ -254,7 +254,7 @@ stock dpp_process(const line[])
         {
             if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
                 !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
-                !strcmp(funcgroup[0], "var::set"))
+                !strcmp(funcgroup[0], "var::set") || (!strcmp(funcgroup[0], "using::system") && !strcmp(funcgroup[1], "arginit")))
                 {
                     if(i == 1)
                     {
@@ -1015,6 +1015,54 @@ stock dpp_process(const line[])
 
             // do nothing, this is a comment
             return 1;
+        }
+        if(!strcmp(funcgroup[1], "arginit"))
+        {
+            for(new i; i < dpp_maxfuncs; i++)
+            {
+                if(!strcmp(dpp_funcname[i], args[1]))
+                {
+                    if(dpp_hookform[i] == 0)
+                    {
+                        for(new argid; argid < dpp_maxformargs; argid++)
+                        {
+                            strmid(dpp_args[i][argid][dpp_argvalue],
+                                args[argid+1+1],
+                                0,
+                                dpp_argcharsize,
+                                dpp_argcharsize);
+                        }
+        
+                        if(dpp_option_hooking == 1)
+                        {
+                            for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
+                            {
+                                if(!strcmp(dpp_funcname[hookfuncid], args[1]))
+                                {
+                                    if(dpp_hookform[hookfuncid] == 1)
+                                    {
+                                        for(new argid; argid < dpp_maxformargs; argid++)
+                                        {
+                                            /*strmid(dpp_args[hookfuncid][argid][dpp_argname],
+                                                dpp_args[i][argid][dpp_argname],
+                                                0,
+                                                dpp_argcharsize,
+                                                dpp_argcharsize);*/
+                                            strmid(dpp_args[hookfuncid][argid][dpp_argvalue],
+                                                args[argid+1+1],
+                                                0,
+                                                dpp_argcharsize,
+                                                dpp_argcharsize);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        return 1;
+                    }
+                }
+            }
+            dpp_error("Form \"%s\" is not registered.",args[1]);
         }
         else
         {

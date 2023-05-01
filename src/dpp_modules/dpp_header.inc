@@ -350,10 +350,51 @@ stock dpp_argfunccheck(arg[])
         {
             if(dpp_validfunc[i] == 1)
             {
-                dpp_returned[i] = 0;
-                dpp_processfunc = i;
-                dpp_subexecute(dpp_funccodeblock[i],i);
-                dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[i]);
+                if(dpp_hookform[i] == 0)
+                {
+                    /*for(new argid; argid < dpp_maxformargs; argid++)
+                    {
+                        strmid(dpp_args[i][argid][dpp_argvalue],
+                            args[argid+1],
+                            0,
+                            dpp_argcharsize,
+                            dpp_argcharsize);
+                    }*/
+                    dpp_returned[i] = 0;
+                    dpp_processfunc = i;
+                    dpp_subexecute(dpp_funccodeblock[i], i);
+                    dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[i]);
+
+                    if(dpp_option_hooking == 1)
+                    {
+                        for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
+                        {
+                            if(!strcmp(dpp_funcname[hookfuncid], arg))
+                            {
+                                if(dpp_hookform[hookfuncid] == 1)
+                                {
+                                    /*for(new argid; argid < dpp_maxformargs; argid++)
+                                    {
+                                        strmid(dpp_args[hookfuncid][argid][dpp_argname],
+                                            dpp_args[i][argid][dpp_argname],
+                                            0,
+                                            dpp_argcharsize,
+                                            dpp_argcharsize);
+                                        strmid(dpp_args[hookfuncid][argid][dpp_argvalue],
+                                            args[argid+1],
+                                            0,
+                                            dpp_argcharsize,
+                                            dpp_argcharsize);
+                                    }*/
+                                    dpp_returned[hookfuncid] = 0;
+                                    dpp_processfunc = hookfuncid;
+                                    dpp_subexecute(dpp_funccodeblock[hookfuncid], hookfuncid);
+                                    dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[hookfuncid]);
+                                }
+                            }
+                        }
+                    }
+                }
 
                 /////////////////////////////////////
 

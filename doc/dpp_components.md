@@ -41,6 +41,18 @@ import::component.system;
 using::system.rem,"SOME TEXT";
 ```
 
+### Form: `arginit`
+- Used to initialize the arguments.
+
+```pawn
+public&form.arginit_test?playerid,string;
+do;
+	return.int,1;
+end;
+
+using::system.arginit,arginit_test,1,"Hello!";
+```
+
 ---------------------------------------------------------------------------------------------------------
 
 ### Automated user form: `main`

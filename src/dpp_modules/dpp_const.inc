@@ -32,6 +32,20 @@ enum __dpp_const_val
 new dpp_constdata[dpp_maxconst][__dpp_const_val];
 
 /////////////////////////////////////////////////////
+stock dpp_argformargcheck(arg[])
+{
+    //i.e., playerid@OnPlayerConnect
+    new newvalue[dpp_argcharsize];
+    new systemarg[2][128];
+
+    dpp_parseline(arg,systemarg,'@');
+    for(new i; i < dpp_maxfuncs; i++)
+    {
+        if(!strcmp("ee","ee")){}
+    }
+    return 1;
+}
+/////////////////////////////////////////////////////
 stock dpp_argarraycheck(arg[])
 {
     new newvalue[dpp_argcharsize];
