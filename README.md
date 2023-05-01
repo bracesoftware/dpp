@@ -60,6 +60,7 @@ using::console.println,"Hello World";
 - [If-expressions](doc/dpp_if.md)
 - [Instructions](doc/dpp_instruct.md)
 - [Classes](doc/dpp_class.md)
+- [Passing arguments to user forms](doc/dpp_userargs.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info

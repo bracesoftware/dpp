@@ -29,7 +29,9 @@
 #define DPP_DEBUG 1
 #define DPP_BRACES 0
 
-#define dpp_maxfuncs 1000
+#define dpp_maxformargs 10
+
+#define dpp_maxfuncs 100
 #define dpp_maxconst 100
 #define dpp_maxvar 100
 #define dpp_maxclass 100
@@ -74,6 +76,12 @@ new dpp_funcname[dpp_maxfuncs][64];
 new dpp_funccodeblock[dpp_maxfuncs][1024];
 new dpp_autoform[dpp_maxfuncs];
 new dpp_hookform[dpp_maxfuncs];
+enum __dpp_argcache
+{
+    dpp_argname[32],
+    dpp_argvalue[1024]
+}
+new dpp_args[dpp_maxfuncs][dpp_maxformargs][__dpp_argcache];
 
 //format(stackfile,sizeof stackfile,"ID : %i | VALID : %i | NAME: \"%s\"",i,dpp_validfunc[i],dpp_funcname[i]);
 //dpp_savelog("stackoutput.dpplog");
@@ -154,7 +162,7 @@ main()
 dpp_dostackoutput();
 public dpp_dostackoutput()
 {
-    new stackfile[512];
+    new stackfile[512],argfile[256];
     if(fexist("stackoutput.dpplog")) fremove("stackoutput.dpplog");
     dpp_nullcomment();
     dpp_comment();
@@ -166,10 +174,17 @@ public dpp_dostackoutput()
     dpp_savelog("stackoutput.dpplog","===============================================================");
     for(new i; i < dpp_maxfuncs; i++)
     {
-        format(stackfile,sizeof stackfile,"ID : %i | VALID : %i | NAME: \"%s\"",
+        format(stackfile,sizeof stackfile,"ID : %i | VALID : %i | NAME: \"%s\"\n\n",
             i,
             dpp_validfunc[i],
             dpp_funcname[i]);
+        for(new argid; argid < dpp_maxformargs; argid++)
+        {
+            format(argfile, sizeof argfile, "\n\nARG[%i] NAME : \"%s\" | ARG[%i] VALUE : \"%s\"",
+                argid,dpp_args[i][argid][dpp_argname],
+                argid,dpp_args[i][argid][dpp_argvalue]);
+            strcat(stackfile, argfile);
+        }
         dpp_savelog("stackoutput.dpplog",stackfile);
     }
     dpp_comment();

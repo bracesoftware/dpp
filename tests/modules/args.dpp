@@ -1,0 +1,6 @@
+public&form.form?text;
+do;
+	using::console.println,text;
+end;
+
+using::user.form,"text";

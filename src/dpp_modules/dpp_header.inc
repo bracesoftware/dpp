@@ -155,7 +155,7 @@ stock dpp_extract(const src[], dest[], startchar, endchar)
     return 1;
 }
 
-stock dpp_createfunc(funcname[], autoform = 0, hookform = 0)
+stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0)
 {
     new alreadyexists;
     for(new i; i < dpp_maxfuncs; i++)
@@ -190,6 +190,13 @@ stock dpp_createfunc(funcname[], autoform = 0, hookform = 0)
                 new newvalue[dpp_argcharsize];
                 format(newvalue,sizeof(newvalue),"DPPCf@%s_%s",dpp_classname[dpp_workingclassid],funcname);
                 strmid(funcname, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
+            }
+
+            new formargs[dpp_maxformargs][100];
+            dpp_parseline(args,formargs,'&');
+            for(new argid; argid < dpp_maxformargs; argid++)
+            {
+                strmid(dpp_args[i][argid][dpp_argname],formargs[argid],0,100,100);
             }
 
             strmid(dpp_funcname[i], funcname, 0, 64);
@@ -346,7 +353,7 @@ stock dpp_argfunccheck(arg[])
                 dpp_returned[i] = 0;
                 dpp_processfunc = i;
                 dpp_subexecute(dpp_funccodeblock[i],i);
-                dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
+                dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[i]);
 
                 /////////////////////////////////////
 
@@ -402,7 +409,7 @@ public DPP_ENTRYPOINT()
             {
                 dpp_processfunc = i;
                 dpp_subexecute(dpp_funccodeblock[i],i);
-                dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
+                dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[i]);
                 dpp_debug("\"main\" called.");
 
                 if(dpp_option_hooking == 1)
@@ -416,7 +423,7 @@ public DPP_ENTRYPOINT()
                                 dpp_returned[hookfuncid] = 0;
                                 dpp_processfunc = hookfuncid;
                                 dpp_subexecute(dpp_funccodeblock[hookfuncid],hookfuncid);
-                                dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[999]);
+                                dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[hookfuncid]);
                             }
                         }
                     }

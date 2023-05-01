@@ -24,7 +24,7 @@ stock dpp_process(const line[])
         return 1;
     }
     new codeblockline[1024];
-    new args[10][dpp_argcharsize], funcgroup[2][20];
+    new args[20][dpp_argcharsize], funcgroup[2][1024];
 
     new extracode[3000];
     new line2[3000];
@@ -123,6 +123,8 @@ stock dpp_process(const line[])
     if(!strcmp(funcgroup[0], "public&form"))
     {
         new isautoform = 0;
+        new arguments[2][1024];
+        dpp_parseline(funcgroup[1],arguments,'?');
         //system autoforms
         if(dpp_config[system_comp] == 1)
         {
@@ -140,17 +142,21 @@ stock dpp_process(const line[])
             dpp_warning("'%s' is a name of an existing auto form.", funcgroup[1]);
         }
 
-        dpp_createfunc(funcgroup[1]);
+        dpp_createfunc(arguments[0],arguments[1]);
         return 1;
     }
     if(!strcmp(funcgroup[0], "auto&form"))
     {
-        dpp_createfunc(funcgroup[1], 1);
+        new arguments[2][1024];
+        dpp_parseline(funcgroup[1],arguments,'?');
+        dpp_createfunc(arguments[0],arguments[1],1);
         return 1;
     }
     if(!strcmp(funcgroup[0], "hook&form"))
     {
-        dpp_createfunc(funcgroup[1], 0, 1);
+        new arguments[2][1024];
+        dpp_parseline(funcgroup[1],arguments,'?');
+        dpp_createfunc(arguments[0],arguments[1],0,1);
         return 1;
     }
 
@@ -756,10 +762,18 @@ stock dpp_process(const line[])
             {
                 if(dpp_hookform[i] == 0)
                 {
+                    for(new argid; argid < dpp_maxformargs; argid++)
+                    {
+                        strmid(dpp_args[i][argid][dpp_argvalue],
+                            args[argid+1],
+                            0,
+                            dpp_argcharsize,
+                            dpp_argcharsize);
+                    }
                     dpp_returned[i] = 0;
                     dpp_processfunc = i;
                     dpp_subexecute(dpp_funccodeblock[i], i);
-                    dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[999]);
+                    dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[i]);
 
                     if(dpp_option_hooking == 1)
                     {
@@ -769,10 +783,23 @@ stock dpp_process(const line[])
                             {
                                 if(dpp_hookform[hookfuncid] == 1)
                                 {
+                                    for(new argid; argid < dpp_maxformargs; argid++)
+                                    {
+                                        /*strmid(dpp_args[hookfuncid][argid][dpp_argname],
+                                            dpp_args[i][argid][dpp_argname],
+                                            0,
+                                            dpp_argcharsize,
+                                            dpp_argcharsize);*/
+                                        strmid(dpp_args[hookfuncid][argid][dpp_argvalue],
+                                            args[argid+1],
+                                            0,
+                                            dpp_argcharsize,
+                                            dpp_argcharsize);
+                                    }
                                     dpp_returned[hookfuncid] = 0;
                                     dpp_processfunc = hookfuncid;
                                     dpp_subexecute(dpp_funccodeblock[hookfuncid], hookfuncid);
-                                    dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[999]);
+                                    dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[hookfuncid]);
                                 }
                             }
                         }
