@@ -45,7 +45,7 @@ using::system.rem,"SOME TEXT";
 - Used to initialize the arguments.
 
 ```pawn
-public&form.arginit_test?playerid,string;
+public&form.arginit_test?playerid&string;
 do;
 	return.int,1;
 end;
