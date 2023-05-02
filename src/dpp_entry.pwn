@@ -29,6 +29,8 @@
 #define DPP_DEBUG 1
 #define DPP_BRACES 0
 
+#define dpp_maxcodelines 2048
+
 #define dpp_maxformargs 10
 
 #define dpp_maxfuncs 100
@@ -49,6 +51,9 @@
 #define dpp_rtn_type_int 1
 #define dpp_rtn_type_bool 2
 #define dpp_rtn_type_str 3
+
+new subcontent[16000];
+new content[16000];
 
 // REQUIRED.
 #include <open.mp>
@@ -121,7 +126,11 @@ new dpp_option_debug = 0;
 new dpp_option_warnings = 1;
 new dpp_option_hooking = 1;
 
+// data
+new dpp_compiled = 0;
+
 //includes
+
 #include "dpp_modules/dpp_header.inc"
 #include "dpp_modules/dpp_proj.inc"
 #include "dpp_modules/dpp_utils.inc"
@@ -138,12 +147,16 @@ new dpp_option_hooking = 1;
 #include "dpp_modules/dpp_samp.inc"
 #endif
 
+
+#include "dpp_compiler/dpp_index.inc"
+
 main()
 {
     strmid(dpp_projname,"Unnamed project",0,128,128);
     dpp_nullcomment();
     dpp_nullcomment();
-    dpp_execute("index.dpp");
+    dpp_compile("index.dpp");
+    if(dpp_compiled == 1) dpp_execute("index.dppc");
     dpp_nullcomment();
     dpp_nullcomment();
     dpp_comment();

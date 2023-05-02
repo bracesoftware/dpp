@@ -209,19 +209,13 @@ stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0)
     return 1;
 }
 
-new content[16000];
-
 stock dpp_execute(const script[])
 {
+    format(content,sizeof content, "\t");
     print("                                        ");
     print("|======================================|");
     print("                                        ");
-    print("                   D++                  ");
     print("         Interpreter is loading...      ");
-    print("                                        ");
-    printf("        Version: %i.%i.%i-R%i          ", DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
-    print("                                        ");
-    print("               By: DEntisT              ");
     print("                                        ");
     print("|======================================|");
     print("                                        ");
@@ -230,19 +224,21 @@ stock dpp_execute(const script[])
     #if DPP_DEBUG == 1
     dpp_print("Debug component loaded...");
     #endif
+    dpp_nullcomment();
     dpp_comment();
     dpp_nullcomment();
     dpp_prepareproject("config.dppproj");
     dpp_print("Project file for '%s' project loaded.",dpp_projname);
     dpp_nullcomment();
     dpp_comment();
+    dpp_nullcomment();
     dpp_print("Executing the entry script...");
     dpp_nullcomment();
-    dpp_execheader("index.dpp");
+    dpp_execheader("index.dppc");
     dpp_nullcomment();
 
     new File:file = fopen(script, io_read), rlen;
-    new codelines[1024][1024];
+    new codelines[dpp_maxcodelines][1024];
     if(file)
     {
         while(rlen = fread(file, content))
@@ -256,7 +252,7 @@ stock dpp_execute(const script[])
             dpp_debug("content: '%s'", content);
             dpp_parsecode(content, codelines);
             //dpp_debug("Executing:\n\n%s", content);
-            for(new i; i < 1024; i++)
+            for(new i; i < dpp_maxcodelines; i++)
             {
                 if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
                 if(dpp_terminated == 1)
@@ -281,12 +277,10 @@ stock dpp_execute(const script[])
     return 1;
 }
 
-new subcontent[16000];
-
 stock dpp_executefile(const script[])
 {
     new File:file = fopen(script, io_read), rlen;
-    new codelines[1024][1024];
+    new codelines[dpp_maxcodelines][1024];
     if(file)
     {
         while(rlen = fread(file, subcontent))
@@ -298,7 +292,7 @@ stock dpp_executefile(const script[])
                 if(subcontent[i] == '\n') strdel(subcontent, i, i+1);
             }
             dpp_parsecode(subcontent, codelines);
-            for(new i; i < 1024; i++)
+            for(new i; i < dpp_maxcodelines; i++)
             {
                 dpp_process(codelines[i]);
             }

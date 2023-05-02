@@ -1,6 +1,12 @@
 public&form.form?text;
 do;
 	using::console.println,text@form;
+	return.str,text@form;
 end;
 
 using::user.form,"Argument passed to a function!";
+
+using::system.arginit,form,"Argument passed to a function again!";
+using::console.println,form;
+
+if.equ,add?1:1,2->if.notequ,1,2->using::console.println,"Biggest if test passed";
