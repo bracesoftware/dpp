@@ -34,3 +34,10 @@ do;
 end;
 
 using::user.functobehooked,"oh lol",1,false;
+
+
+public&form.arginit_test?playerid&string;
+do;
+end;
+
+using::system.arginit,arginit_test,1,"Hello!";

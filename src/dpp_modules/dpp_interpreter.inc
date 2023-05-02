@@ -207,6 +207,7 @@ stock dpp_process(const line[])
         dpp_argfunccheck(args[i]);
         dpp_argvarcheck(args[i]);
         dpp_argmathcheck(args[i]);
+        dpp_argformargcheck(args[i]);
     }
 
     ///////////////////////////////////////////////////////
@@ -268,6 +269,7 @@ stock dpp_process(const line[])
             dpp_argfunccheck(args[i]);
             dpp_argvarcheck(args[i]);
             dpp_argmathcheck(args[i]);
+            dpp_argformargcheck(args[i]);
         }
 
         if(!strcmp(funcgroup[0], "if"))

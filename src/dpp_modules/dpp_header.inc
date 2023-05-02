@@ -505,3 +505,52 @@ stock void:dpp_savelog(const file[],const message[])
 
     fclose(LogFile);
 }
+
+//////////
+
+stock dpp_argformargcheck(arg[])
+{
+    //i.e., playerid@OnPlayerConnect
+    new newvalue[dpp_argcharsize];
+    new 
+        systemarg[2][128],
+        formvalid = 0,
+        formid = 0,
+        argvalid = 0,
+        argid = 0;
+
+    dpp_parseline(arg,systemarg,'@');
+    for(new i; i < dpp_maxfuncs; i++)
+    {
+        if(!strcmp(dpp_funcname[i],systemarg[1]))
+        {
+            if(dpp_validfunc[i] == 1 && dpp_hookform[i] == 0)
+            {
+                formvalid = 1;
+                formid = i;
+                break;
+            }
+        }
+    }
+
+    if(formvalid == 1)
+    {
+        for(new i; i < dpp_maxformargs; i++)
+        {
+            if(!strcmp(dpp_args[formid][i][dpp_argname],systemarg[0]))
+            {
+                argid = i;
+                argvalid = 1;
+                break;
+            }
+        }
+    }
+
+    if(formvalid == 1 && argvalid == 1)
+    {
+        format(newvalue,sizeof newvalue,"%s",dpp_args[formid][argid][dpp_argvalue]);
+
+        strmid(arg, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
+    }
+    return 1;
+}

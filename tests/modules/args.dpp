@@ -1,6 +1,6 @@
 public&form.form?text;
 do;
-	using::console.println,text;
+	using::console.println,text@form;
 end;
 
-using::user.form,"text";
+using::user.form,"Argument passed to a function!";
