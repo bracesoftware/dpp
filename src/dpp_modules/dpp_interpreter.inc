@@ -28,6 +28,7 @@ stock dpp_process(const line[])
 
     new extracode[3000];
     new line2[3000];
+    new dpp_funcfound;
     
     strmid(line2, line, 0, strlen(line), strlen(line));
     dpp_checkforifexpression(line, line2, extracode, "->");
@@ -922,62 +923,9 @@ stock dpp_process(const line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "using::console"))
+    if(dpp_funcfound == 0)
     {
-        if(dpp_config[console_comp] == 0)
-        {
-            dpp_error("Component \"console\" is not imported.",);
-            return 1;
-        }
-        // If the function used it "print"
-        if(!strcmp(funcgroup[1], "println"))
-        {
-            new mul, str[dpp_argcharsize];
-            strmid(str, args[1], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[1]); i++)
-            {
-                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
-            }
-            if(mul == 0)
-            {
-                dpp_error("You need to use '\"' to start a string.",);
-                return 0;
-            }
-            if(mul != 2)
-            {
-                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
-                return 0;
-            }
-
-            //dpp_debug("Line \"%s\" successfully executed.", line);
-            print(args[1]);
-            return 1;
-        }
-
-        if(!strcmp(funcgroup[1], "cout"))
-        {
-            new coutargerr = 0;
-
-            for(new i; i < strlen(args[1]); i++)
-            {
-                if(args[1][i] == '\"') coutargerr = 1;
-                if(args[1][i] == ' ') coutargerr = 1;
-                if(args[1][i] == '\t') coutargerr = 1;
-            }
-
-            if(coutargerr == 1)
-            {
-                dpp_error("Invalid symbols in the argument 1.",);
-            }
-            //dpp_debug("Line \"%s\" successfully executed.", line);
-            print(args[1]);
-            return 1;
-        }
-        else
-        {
-            dpp_error("Unknown form in the component \"console\".",);
-            return 0;
-        }
+        dpp_funcfound = CallLocalFunction("dpp_processconsole", "ss", funcgroup,args);
     }
 
     ///////////////////////////////////////////////////////
@@ -988,89 +936,9 @@ stock dpp_process(const line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "using::system"))
+    if(dpp_funcfound == 0)
     {
-        if(dpp_config[system_comp] == 0)
-        {
-            dpp_error("Component \"system\" is not imported.",);
-            return 1;
-        }
-        // If the function used it "print"
-        if(!strcmp(funcgroup[1], "rem"))
-        {
-            new mul, str[dpp_argcharsize];
-            strmid(str, args[1], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[1]); i++)
-            {
-                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
-            }
-            if(mul == 0)
-            {
-                dpp_error("You need to use '\"' to start a string.",);
-                return 0;
-            }
-            if(mul != 2)
-            {
-                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
-                return 0;
-            }
-
-            // do nothing, this is a comment
-            return 1;
-        }
-        if(!strcmp(funcgroup[1], "arginit"))
-        {
-            for(new i; i < dpp_maxfuncs; i++)
-            {
-                if(!strcmp(dpp_funcname[i], args[1]))
-                {
-                    if(dpp_hookform[i] == 0)
-                    {
-                        for(new argid; argid < dpp_maxformargs; argid++)
-                        {
-                            strmid(dpp_args[i][argid][dpp_argvalue],
-                                args[argid+1+1],
-                                0,
-                                dpp_argcharsize,
-                                dpp_argcharsize);
-                        }
-        
-                        if(dpp_option_hooking == 1)
-                        {
-                            for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
-                            {
-                                if(!strcmp(dpp_funcname[hookfuncid], args[1]))
-                                {
-                                    if(dpp_hookform[hookfuncid] == 1)
-                                    {
-                                        for(new argid; argid < dpp_maxformargs; argid++)
-                                        {
-                                            /*strmid(dpp_args[hookfuncid][argid][dpp_argname],
-                                                dpp_args[i][argid][dpp_argname],
-                                                0,
-                                                dpp_argcharsize,
-                                                dpp_argcharsize);*/
-                                            strmid(dpp_args[hookfuncid][argid][dpp_argvalue],
-                                                args[argid+1+1],
-                                                0,
-                                                dpp_argcharsize,
-                                                dpp_argcharsize);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        return 1;
-                    }
-                }
-            }
-            dpp_error("Form \"%s\" is not registered.",args[1]);
-        }
-        else
-        {
-            dpp_error("Unknown form in the component \"system\".",);
-            return 0;
-        }
+        dpp_funcfound = CallLocalFunction("dpp_processsystem", "ss", funcgroup,args);
     }
 
     ///////////////////////////////////////////////////////
@@ -1081,54 +949,9 @@ stock dpp_process(const line[])
     ////
     ///////////////////////////////////////////////////////
 
-    
-    if(!strcmp(funcgroup[0], "using::samp"))
+    if(dpp_funcfound == 0)
     {
-        if(dpp_config[samp_comp] == 0)
-        {
-            dpp_error("Component \"samp\" is not imported.",);
-            return 1;
-        }
-        if(!strcmp(funcgroup[1], "SetGameModeText"))
-        {
-            new mul, str[dpp_argcharsize];
-            strmid(str, args[1], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[1]); i++)
-            {
-                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
-            }
-            if(mul == 0)
-            {
-                dpp_error("You need to use '\"' to start a string.",);
-                return 0;
-            }
-            if(mul != 2)
-            {
-                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
-                return 0;
-            }
-
-            SetGameModeText(args[1]);
-            return 1;
-        }
-
-        if(!strcmp(funcgroup[1], "SetMaxPlayers"))
-        {
-            if(!dpp_isnumeric(args[1]))
-            {
-                dpp_error("Argument error; value must be an integer.",);
-                return 0;
-            }
-
-            SetMaxPlayers(strval(args[1]));
-            return 1;
-        }
-
-        else
-        {
-            dpp_error("Unknown form in the component \"samp\".",);
-            return 0;
-        }
+        dpp_funcfound = CallLocalFunction("dpp_processsamp", "ss", funcgroup,args);
     }
 
     ///////////////////////////////////////////////////////
@@ -1139,29 +962,18 @@ stock dpp_process(const line[])
     ////
     ///////////////////////////////////////////////////////
 
-    
-    if(!strcmp(funcgroup[0], "using::math"))
+    if(dpp_funcfound == 0)
     {
-        if(dpp_config[math_comp] == 0)
-        {
-            dpp_error("Component \"math\" is not imported.",);
-            return 1;
-        }
-        if(!strcmp(funcgroup[1], "func"))
-        {
-            return 1;
-        }
-
-        else
-        {
-            dpp_error("Unknown form in the component \"math\".",);
-            return 0;
-        }
+        dpp_funcfound = CallLocalFunction("dpp_processmath", "ss", funcgroup,args);
     }
     
-    if(strlen(line) > 5)
+    ////////////////////
+    if(dpp_funcfound == 0)
     {
-        dpp_error("Unknown element \"%s\".", line);
+        if(strlen(line) > 5)
+        {
+            dpp_error("Unknown element \"%s\".", line);
+        }
     }
     return 1;
 }

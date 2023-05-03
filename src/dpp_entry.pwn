@@ -147,8 +147,14 @@ new dpp_compiled = 0;
 #include "dpp_modules/dpp_samp.inc"
 #endif
 
-
+//compiler sys
 #include "dpp_compiler/dpp_index.inc"
+
+// component impl
+#include "dpp_components/dpp_system.inc"
+#include "dpp_components/dpp_console.inc"
+#include "dpp_components/dpp_samp.inc"
+#include "dpp_components/dpp_math.inc"
 
 main()
 {
