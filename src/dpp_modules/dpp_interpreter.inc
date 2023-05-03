@@ -967,6 +967,22 @@ stock dpp_process(const line[])
         dpp_funcfound = CallLocalFunction("dpp_processmath", "ss", funcgroup,args);
     }
     
+
+
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            DISCORD API FUNC SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(dpp_funcfound == 0)
+    {
+        dpp_funcfound = CallLocalFunction("dpp_processdiscord", "ss", funcgroup,args);
+    }
+
     ////////////////////
     if(dpp_funcfound == 0)
     {

@@ -10,11 +10,6 @@
 *
 */
 
-
-#if !defined SAMP_MODE
-    #define SAMP_MODE 1
-#endif
-
 #pragma dynamic 215750000
 #pragma warning disable 204
 #pragma warning disable 211
@@ -130,22 +125,14 @@ new dpp_option_hooking = 1;
 new dpp_compiled = 0;
 
 //includes
-
 #include "dpp_modules/dpp_header.inc"
 #include "dpp_modules/dpp_proj.inc"
 #include "dpp_modules/dpp_utils.inc"
 #include "dpp_modules/dpp_const.inc"
 #include "dpp_modules/dpp_vars.inc"
-#include "dpp_modules/dpp_math.inc"
+#include "dpp_modules/dpp_mathimpl.inc"
 #include "dpp_modules/dpp_class.inc"
-
 #include "dpp_modules/dpp_interpreter.inc"
-
-#include "dpp_thirdpartyapi/dpp_discord.inc"
-
-#if SAMP_MODE == 1
-#include "dpp_modules/dpp_samp.inc"
-#endif
 
 //compiler sys
 #include "dpp_compiler/dpp_index.inc"
@@ -155,6 +142,9 @@ new dpp_compiled = 0;
 #include "dpp_components/dpp_console.inc"
 #include "dpp_components/dpp_samp.inc"
 #include "dpp_components/dpp_math.inc"
+
+//api impl
+#include "dpp_thirdpartyapi/dpp_discord.inc"
 
 main()
 {
