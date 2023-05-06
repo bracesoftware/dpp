@@ -11,20 +11,24 @@ Import the API using:
 import::api.discord;
 ```
 
-### Form: ` `
-- ???
+### Form: `discord_bot_send_message`
+- Equivalent to `DCC_SendChannelMessage` in Pawn.
 ```pawn
-
+using::discord.discord_bot_send_message,01234567890,"Message";
 ```
 
 ---------------------------------------------------------------------------------------------------------
 
-### Automated user form: ` `
+### Automated user form: `discord_init`
 
-- ???
+- Called when the Discord bot loads.
 
 ```pawn
-
+auto&form.discord_init;
+do;
+	using::discord.discord_bot_send_message,01234567890,"Message";
+	return.int,1;
+end;
 ```
 
 

@@ -90,3 +90,4 @@ import::module,"vars";
 import::module,"math";
 import::module,"class";
 import::module,"args";
+import::module,"discord";

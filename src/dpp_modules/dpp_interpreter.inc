@@ -137,6 +137,11 @@ stock dpp_process(const line[])
             if(!strcmp(funcgroup[1], "OnGameModeInit")) isautoform = 1;
             if(!strcmp(funcgroup[1], "OnGameModeExit")) isautoform = 1;
         }
+        //discord api autoforms
+        if(dpp_apis[discord] == 1)
+        {
+            if(!strcmp(funcgroup[1], "discord_init")) isautoform = 1;
+        }
 
         if(isautoform == 1)
         {

@@ -32,6 +32,9 @@ new
 
 #define dpp_error%0(%1,%2) format(dpp_error_str,sizeof dpp_error_str,">> D++ | ERROR (dpp.amx @ %s:%i): "%1,__file,__line,%2)&& \
     print(dpp_error_str)&&dpp_incerrcnt()
+
+#define dpp_apierror%0(%3,%1,%2) format(dpp_error_str,sizeof dpp_error_str,">> D++ | API ("%3") ERROR (dpp.amx @ %s:%i): "%1,__file,__line,%2)&& \
+    print(dpp_error_str)&&dpp_incerrcnt()
  //printf(">> D++ | ERROR (dpp.amx @ %s:%i): %s",__file,__line,%1)
 #define dpp_warning%0(%1) if(dpp_option_warnings==1)dpp_incwarncnt()&&printf(">> D++ | WARNING: "%1)
 

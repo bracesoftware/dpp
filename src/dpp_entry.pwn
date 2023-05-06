@@ -53,6 +53,9 @@ new content[16000];
 // REQUIRED.
 #include <open.mp>
 
+//THIRD PARTY API
+#include "dpp_natives/dpp_dcc.inc"
+
 enum dpp_enumset
 {
     console_comp,
@@ -165,6 +168,7 @@ main()
     {
         CallLocalFunction("dpp_dostackoutput", "");
     }
+    CallLocalFunction("DPP_discord_init", "");
     return 1;
 }
 

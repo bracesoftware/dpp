@@ -1,0 +1,12 @@
+using::console.println,"Discord was included";
+
+import::api.discord;
+
+auto&form.discord_init;
+do;
+	using::console.println,"discord_init called";
+	using::discord.discord_bot_send_message,1012321101377962014,"THIS WAS SENT FROM D++!!!";
+	return.int,1;
+end;
+
+using::console.println,"Discord was included again?";
