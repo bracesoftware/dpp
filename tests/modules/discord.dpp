@@ -10,3 +10,24 @@ do;
 end;
 
 using::console.println,"Discord was included again?";
+
+var::define.str,test,"test succedeed";
+const::define.int,test2,1;
+var::define.str,test3,"hmmm {test}"
+
+using::console.println,"{test2}st format test: {test} \, {test3}";
+
+public&form.dppprint?message;
+do;
+	using::console.println,message@dppprint;
+end;
+
+using::user.dppprint,"{test}";
+
+
+var::define.int,testvar,0;
+while.notequ,testvar,10->var::set.int,testvar,add?testvar:1&using::console.println,"{testvar}";
+
+while.equ,testvar,10->var::set.int,testvar,add?testvar:1&using::console.println,"This should be printed only once!";
+
+if.equ,1,1->while.equ,testvar,11->var::set.int,testvar,add?testvar:1&using::console.println,"This should be printed again!";

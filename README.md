@@ -9,41 +9,6 @@
 ## Introduction
 :zap: ¤ D++ is a simple scripting language written in Pawn. It is made purely for fun and with an intention to learn more about Pawn itself, thus D++ should not be taken as a serious language. However, the language itself is still impressive considering it is written in Pawn.
 
-- For the impatient, here is the example code:
-```pawn
-import::component.console;
-import::component.system;
-
-using::system.rem,"Basic println example.";
-using::console.println,"Hello World";
-```
-
-- Code output:
-
-```
-[19:19:44] [Info] |======================================|
-[19:19:44] [Info]                                         
-[19:19:44] [Info]                    D++                  
-[19:19:44] [Info]          Interpreter is loading...      
-[19:19:44] [Info]                                         
-[19:19:44] [Info]         Version: 3.0.0-R1          
-[19:19:44] [Info]                                         
-[19:19:44] [Info]                By: DEntisT              
-[19:19:44] [Info]                                         
-[19:19:44] [Info] |======================================|
-[19:19:44] [Info]                                         
-[19:19:44] [Info]                                         
-[19:19:44] [Info] >> D++ | INFO: Debug component loaded...
-[19:19:44] [Info] >> D++ | INFO: Executing the entry script...
-[19:19:44] [Info]                                                
-[19:19:44] [Info] |====================| index.dpp |====================|
-[19:19:44] [Info] 
-[19:19:44] [Info] Hello World
-[19:19:44] [Info]                                                
-[19:19:44] [Info] |==============================================|
-[19:19:44] [Info]                                                
-[19:19:44] [Info] >> D++ | INFO: The interpreter reached the EOS point.
-```
 ## Documentation
 
 - [Project management](doc/dpp_proj.md)
@@ -58,6 +23,7 @@ using::console.println,"Hello World";
 - [Variables](doc/dpp_vars.md)
 - [Forms and types of forms](doc/dpp_forms.md)
 - [If-expressions](doc/dpp_if.md)
+- [While-loops](doc/dpp_while.md)
 - [Instructions](doc/dpp_instruct.md)
 - [Classes](doc/dpp_class.md)
 - [Passing arguments to user forms](doc/dpp_userargs.md)
