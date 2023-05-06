@@ -10,7 +10,7 @@
 *
 */
 
-#pragma dynamic 215750000
+#pragma dynamic 21575000000000
 #pragma warning disable 204
 #pragma warning disable 211
 #pragma option -;+
@@ -25,6 +25,7 @@
 #define DPP_BRACES 0
 
 #define dpp_maxcodelines 2048
+#define dpp_maxformatlen 2048
 
 #define dpp_maxformargs 10
 
@@ -164,11 +165,11 @@ main()
     dpp_nullcomment();
     dpp_nullcomment();
     CallLocalFunction("DPP_GAMEMODEINIT", "");
+    CallLocalFunction("DPP_discord_init", "");
     if(dpp_stackoutput == 1)
     {
         CallLocalFunction("dpp_dostackoutput", "");
     }
-    CallLocalFunction("DPP_discord_init", "");
     return 1;
 }
 

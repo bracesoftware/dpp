@@ -208,12 +208,16 @@ stock dpp_process(const line[])
                 i = 2;
             }
         }
+
+        dpp_removeslashes(args[i]);
         dpp_argclasscheck(args[i]);
         dpp_argarraycheck(args[i]);
         dpp_argfunccheck(args[i]);
         dpp_argvarcheck(args[i]);
         dpp_argmathcheck(args[i]);
         dpp_argformargcheck(args[i]);
+
+        dpp_formatarg(args[i]);
     }
 
     ///////////////////////////////////////////////////////
@@ -270,12 +274,15 @@ stock dpp_process(const line[])
                     }
                 }
 
+            dpp_removeslashes(args[i]);
             dpp_argclasscheck(args[i]);
             dpp_argarraycheck(args[i]);
             dpp_argfunccheck(args[i]);
             dpp_argvarcheck(args[i]);
             dpp_argmathcheck(args[i]);
             dpp_argformargcheck(args[i]);
+
+            dpp_formatarg(args[i]);
         }
 
         if(!strcmp(funcgroup[0], "if"))
