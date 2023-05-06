@@ -102,7 +102,7 @@ new dpp_returned[dpp_maxfuncs];
 new dpp_returntype[dpp_maxfuncs];
 
 new dpp_processfunc = 0;
-new dpp_isifexp = 0;
+new dpp_isconditional = 0;
 
 new dpp_interpreter = 1;
 
@@ -244,5 +244,11 @@ public dpp_dostackoutput()
         dpp_savelog("stackoutput.dpplog",stackfile);
     }
 
+    return 1;
+}
+
+DPP_ProcessCode(line[]); public DPP_ProcessCode(line[])
+{
+    dpp_process(line);
     return 1;
 }

@@ -24,17 +24,25 @@ stock dpp_process(const line[])
         return 1;
     }
     new codeblockline[1024];
-    new args[20][dpp_argcharsize], funcgroup[2][1024];
+    new
+        args[20][dpp_argcharsize], 
+        funcgroup[2][1024],
+        args_const[20][dpp_argcharsize];
 
     new extracode[3000];
     new line2[3000];
     new dpp_funcfound;
     
     strmid(line2, line, 0, strlen(line), strlen(line));
-    dpp_checkforifexpression(line, line2, extracode, "->");
-    
+    dpp_checkforconditionals(line, line2, extracode, "->");
+
     dpp_parseline(line, args, ',');
     dpp_parseline(args[0], funcgroup, '.');
+
+    for(new i; i < 15; i++)
+    {
+        strmid(args_const[i], args[i],0,dpp_argcharsize,dpp_argcharsize);
+    }
 
     //using::console.cout,"Hello World";
 
@@ -56,7 +64,7 @@ stock dpp_process(const line[])
         strcat(process_backtrace, process_bcktrc);
     }
 
-    for(new i; i < 10; i++)
+    for(new i; i < 20; i++)
     {
         format(process_bcktrc,sizeof process_bcktrc,"\n\targs[%i]: '%s'",i,args[i]);    
         strcat(process_backtrace, process_bcktrc);
@@ -255,11 +263,16 @@ stock dpp_process(const line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(dpp_isifexp == 1) //if.equ,1,1->using::console.cout,"1 is 1";
+    if(dpp_isconditional == 1)
     {
-        dpp_isifexp = 0;
+        dpp_isconditional = 0;
         dpp_parseline(line2, args, ',');
         dpp_parseline(args[0], funcgroup, '.');
+
+        for(new i; i < 15; i++)
+        {
+            strmid(args_const[i], args[i],0,dpp_argcharsize,dpp_argcharsize);
+        }
         
         for(new i; i < 10; i++)
         {
@@ -284,7 +297,8 @@ stock dpp_process(const line[])
 
             dpp_formatarg(args[i]);
         }
-
+        // IF CHECKS
+        //if.equ,1,1->using::console.cout,"1 is 1";
         if(!strcmp(funcgroup[0], "if"))
         {
             if(!strcmp(funcgroup[1], "equ"))
@@ -304,7 +318,74 @@ stock dpp_process(const line[])
                 }
                 return 1;
             }
-            dpp_error("Unknown if-expression element : \"%s\"",funcgroup[1]);
+            dpp_error("Unknown if-expression method : \"%s\"",funcgroup[1]);
+        }
+        // WHILE LOOPS
+        //while.notequ,testvar,1->var::set.int,testvar,add?testvar:1&using::console.println,"{testvar}";
+        if(!strcmp(funcgroup[0], "while"))
+        {
+            new 
+                whileloopcode[2][1024];
+            
+            dpp_parseline(extracode,whileloopcode,'&');
+            if(!strcmp(funcgroup[1], "equ"))
+            {
+                do
+                {
+                    for(new whilecodeid; whilecodeid < 2; whilecodeid++)
+                    {
+                        dpp_subexecute2(whileloopcode[whilecodeid]);
+                    }
+
+                    for(new i; i < 15; i++)
+                    {
+                        strmid(args[i], args_const[i],0,dpp_argcharsize,dpp_argcharsize);
+
+                        dpp_removeslashes(args[i]);
+                        dpp_argclasscheck(args[i]);
+                        dpp_argarraycheck(args[i]);
+                        dpp_argfunccheck(args[i]);
+                        dpp_argvarcheck(args[i]);
+                        dpp_argmathcheck(args[i]);
+                        dpp_argformargcheck(args[i]);
+                        dpp_formatarg(args[i]);
+                    }
+
+                    //dpp_print("While loop backtrace\nconst arg 1 : %s\t\t| const arg 2 : %s\narg 1 : %s\t\t| arg 2 : %s",args_const[1],args_const[2],args[1],args[2]);
+                }
+                while(dpp_strcmp(args[1], args[2]));
+                return 1;
+            }
+
+            if(!strcmp(funcgroup[1], "notequ"))
+            {
+                do
+                {
+                    for(new whilecodeid; whilecodeid < 2; whilecodeid++)
+                    {
+                        dpp_subexecute2(whileloopcode[whilecodeid]);
+                    }
+
+                    for(new i; i < 15; i++)
+                    {
+                        strmid(args[i], args_const[i],0,dpp_argcharsize,dpp_argcharsize);
+                        
+                        dpp_removeslashes(args[i]);
+                        dpp_argclasscheck(args[i]);
+                        dpp_argarraycheck(args[i]);
+                        dpp_argfunccheck(args[i]);
+                        dpp_argvarcheck(args[i]);
+                        dpp_argmathcheck(args[i]);
+                        dpp_argformargcheck(args[i]);
+                        dpp_formatarg(args[i]);
+                    }
+
+                    //dpp_print("While loop backtrace\nconst arg 1 : %s\t\t| const arg 2 : %s\narg 1 : %s\t\t| arg 2 : %s",args_const[1],args_const[2],args[1],args[2]);
+                }
+                while(!dpp_strcmp(args[1], args[2]));
+                return 1;
+            }
+            dpp_error("Unknown while-loop method : \"%s\"",funcgroup[1]);
         }
         return 1;
     }

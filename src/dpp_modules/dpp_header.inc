@@ -125,7 +125,7 @@ stock dpp_removeslashes(arg[])
     return 1;
 }
 
-stock dpp_checkforifexpression(const code[], dest1[], dest2[], const delimiter[])
+stock dpp_checkforconditionals(const code[], dest1[], dest2[], const delimiter[])
 {
     new
         delimiter_start,
@@ -135,7 +135,7 @@ stock dpp_checkforifexpression(const code[], dest1[], dest2[], const delimiter[]
     {
         if(code[i] == delimiter[0] && code[i+1] == delimiter[1])
         {
-            dpp_isifexp = 1;
+            dpp_isconditional = 1;
             delimiter_start = i;
             delimiter_end = i+1;
             strmid(dest1, code, 0, delimiter_start, 3000);
@@ -147,6 +147,22 @@ stock dpp_checkforifexpression(const code[], dest1[], dest2[], const delimiter[]
             return 1;
         }
     }
+    return 1;
+}
+
+stock dpp_cwlu(const constargs[], modargs[])
+{
+    strmid(modargs, constargs, 0, dpp_argcharsize, dpp_argcharsize);
+
+    dpp_removeslashes(modargs);
+    dpp_argclasscheck(modargs);
+    dpp_argarraycheck(modargs);
+    dpp_argfunccheck(modargs);
+    dpp_argvarcheck(modargs);
+    dpp_argmathcheck(modargs);
+    dpp_argformargcheck(modargs);
+
+    dpp_formatarg(modargs);
     return 1;
 }
 

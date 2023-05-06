@@ -98,3 +98,15 @@ stock dpp_strreplace(string[], const search[], const replacement[], bool:ignorec
     return count;
 }
 
+stock bool:dpp_strcmp(const str1[], const str2[], bool:ignorecase = false) //creds slice
+{
+    new
+        c1 = (str1[0] > 255) ? str1{0} : str1[0],
+        c2 = (str2[0] > 255) ? str2{0} : str2[0]
+    ;
+
+    if (!c1 != !c2)
+        return false;
+
+    return !strcmp(str1, str2, ignorecase);
+}
