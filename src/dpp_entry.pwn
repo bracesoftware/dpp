@@ -128,6 +128,7 @@ new dpp_errorcount = 0;
 new dpp_option_debug = 0;
 new dpp_option_warnings = 1;
 new dpp_option_hooking = 1;
+new dpp_option_escapechar = '\\';
 
 // data
 new dpp_compiled = 0;

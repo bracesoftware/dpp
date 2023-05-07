@@ -771,6 +771,19 @@ stock dpp_process(const line[])
             }
             return 1;
         }
+        //dpp_option_escapechar
+        if(!strcmp(funcgroup[1], "ctrlchar"))
+        {
+            dpp_argarraycheck(args[1]);
+
+            if(!strcmp(args[1], "default"))
+            {
+                dpp_option_escapechar = '\\';
+                return 1;
+            }
+            dpp_option_escapechar = args[1][0];
+            return 1;
+        }
 
         else
         {

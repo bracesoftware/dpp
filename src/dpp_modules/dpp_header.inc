@@ -104,7 +104,7 @@ stock dpp_parseline(const code[], destln[][], delimiter)
 
     while(i <= strlen(code))
     {
-        if((code[i-1] != '\\' && code[i] == delimiter) || i == strlen(code))
+        if((code[i-1] != dpp_option_escapechar && code[i] == delimiter) || i == strlen(code))
         {
             len = strmid(destln[index], code, start, i, 128);
             destln[index][len] = 0;
@@ -120,7 +120,7 @@ stock dpp_removeslashes(arg[])
 {
     for(new i; i < strlen(arg); i++)
     {
-        if(arg[i] == '\\') strdel(arg, i,i+1);
+        if(arg[i] == dpp_option_escapechar) strdel(arg, i,i+1);
     }
     return 1;
 }

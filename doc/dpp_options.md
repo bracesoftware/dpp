@@ -30,3 +30,12 @@ You can toggle D++ hooking system on or off.
 pragma::option.hooking,false;
 pragma::option.hooking,true;
 ```
+
+## `ctrlchar`
+- Default value: `\`
+
+Change the parsing escape character.
+
+```pawn
+pragma::option.ctrlchar,*;
+```
