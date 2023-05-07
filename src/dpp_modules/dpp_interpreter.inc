@@ -15,6 +15,21 @@ new process_bcktrc[1024];
 
 stock dpp_process(const line[])
 {
+    new
+        iscomment = 0;
+
+    if(!strcmp(line,"/*"))
+    {
+        iscomment = 1;
+    }
+    if(!strcmp(line,"*/"))
+    {
+        iscomment = 0;
+    }
+    if(iscomment == 1)
+    {
+        return 1;
+    }
     if(dpp_terminated == 1)
     {
         return 1;
@@ -213,6 +228,7 @@ stock dpp_process(const line[])
             if(i == 1)
             {
                 dpp_argclasscheck(args[i]);
+                dpp_argformargcheck(args[i]);
                 i = 2;
             }
         }
@@ -283,6 +299,7 @@ stock dpp_process(const line[])
                     if(i == 1)
                     {
                         dpp_argclasscheck(args[i]);
+                        dpp_argformargcheck(args[i]);
                         i = 2;
                     }
                 }
