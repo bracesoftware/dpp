@@ -16,8 +16,8 @@
 #pragma option -;+
 
 #define dpp_invalidclass 100
-#define DPP_VERSION_MAJOR 3
-#define DPP_VERSION_MINOR 1
+#define DPP_VERSION_MAJOR 4
+#define DPP_VERSION_MINOR 0
 #define DPP_VERSION_PATCH 0
 #define DPP_VERSION_RELEASE 1
 
@@ -62,7 +62,8 @@ enum dpp_enumset
     console_comp,
     system_comp,
     samp_comp,
-    math_comp
+    math_comp,
+    files_comp
 };
 
 new dpp_config[dpp_enumset];
@@ -106,6 +107,9 @@ new dpp_isconditional = 0;
 
 new dpp_interpreter = 1;
 
+new File:dpp_filehandle;
+new dpp_fhandleused = 0;
+
 // project config
 
 new dpp_projname[128];
@@ -146,6 +150,7 @@ new dpp_compiled = 0;
 #include "dpp_components/dpp_console.inc"
 #include "dpp_components/dpp_samp.inc"
 #include "dpp_components/dpp_math.inc"
+#include "dpp_components/dpp_files.inc"
 
 //api impl
 #include "dpp_thirdpartyapi/dpp_discord.inc"

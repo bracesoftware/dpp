@@ -113,3 +113,55 @@ end;
 ```
 
 ---------------------------------------------------------------------------------------------------------
+
+
+## Component: `files`
+- Provides file-related forms.
+
+Import the component using:
+```pawn
+import::component.files;
+```
+
+### Form: `open_for_write`
+- Opens a file with an intention to write data into it. File is created if it does not exist.
+
+```pawn
+using::files.open_for_write,"file_name.txt";
+```
+
+### Form: `open_for_read`
+- Opens a file with an intention to read data from it. File is created if it does not exist.
+
+```pawn
+using::files.open_for_read,"file_name.txt";
+```
+
+### Form: `open_for_append`
+- Opens a file with an intention to append data into it. File is created if it does not exist.
+
+```pawn
+using::files.open_for_append,"file_name.txt";
+```
+
+### Form: `read`
+- Reads data from the opened file and stores it into a variable.
+
+```pawn
+var::define.str,dest_string,"something that should change";
+using::files.read,dest_string;
+```
+
+### Form: `write`
+- Writes data into the opened file.
+
+```pawn
+using::files.write,"wrote this into file_name.txt";
+```
+
+### Form: `close`
+- Closes the opened file.
+
+```pawn
+using::files.close;
+```

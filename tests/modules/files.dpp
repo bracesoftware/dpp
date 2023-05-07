@@ -1,0 +1,23 @@
+using::console.println,"Files included";
+
+import::component.files;
+
+using::files.open_for_write,"testfile.omg";
+using::files.write,"wrote this nigga";
+using::files.close;
+
+using::files.open_for_read,"testfile.omg";
+var::define.str,myvar_to_test_files,"This should not be here";
+using::files.read,myvar_to_test_files;
+using::console.println,"{myvar_to_test_files}";
+using::files.close;
+
+using::files.open_for_append,"newfile.omg";
+using::files.write,"first line";
+using::files.write,"second line";
+using::files.write,"third line";
+using::files.close;
+
+var::define.int,testintagainomg__aa,364;
+
+using::console.println,"{testintagainomg__aa}";

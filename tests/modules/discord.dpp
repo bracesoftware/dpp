@@ -5,7 +5,7 @@ import::api.discord;
 auto&form.discord_init;
 do;
 	using::console.println,"discord_init called";
-	using::discord.discord_bot_send_message,1012321101377962014,"THIS WAS SENT FROM D++!!!";
+	using::discord.discord_bot_send_message,1012320061278662696,"THIS WAS SENT FROM D++!!!";
 	return.int,1;
 end;
 
@@ -20,6 +20,7 @@ using::console.println,"{test2}st format test: {test} \, {test3}";
 public&form.dppprint?message;
 do;
 	using::console.println,message@dppprint;
+	return.int,1;
 end;
 
 using::user.dppprint,"{test}";
@@ -31,3 +32,4 @@ while.notequ,testvar,10->var::set.int,testvar,add?testvar:1&using::console.print
 while.equ,testvar,10->var::set.int,testvar,add?testvar:1&using::console.println,"This should be printed only once!";
 
 if.equ,1,1->while.equ,testvar,11->var::set.int,testvar,add?testvar:1&using::console.println,"This should be printed again!";
+

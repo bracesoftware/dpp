@@ -224,7 +224,9 @@ stock dpp_process(const line[])
     {
         if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
             !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
-            !strcmp(funcgroup[0], "var::set") || (!strcmp(funcgroup[0], "using::system") && !strcmp(funcgroup[1], "arginit"))){
+            !strcmp(funcgroup[0], "var::set") ||
+                (!strcmp(funcgroup[0], "using::system") && !strcmp(funcgroup[1], "arginit")) ||
+                (!strcmp(funcgroup[0], "using::files") && !strcmp(funcgroup[1], "read"))){
             if(i == 1)
             {
                 dpp_argclasscheck(args[i]);
@@ -274,7 +276,7 @@ stock dpp_process(const line[])
     ///////////////////////////////////////////////////////
     ////
     ////
-    ////            IF-EXPRESSIONS SYS
+    ////            CONDITIONAL-EXPRESSIONS SYS
     ////
     ////
     ///////////////////////////////////////////////////////
@@ -294,7 +296,9 @@ stock dpp_process(const line[])
         {
             if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
                 !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
-                !strcmp(funcgroup[0], "var::set") || (!strcmp(funcgroup[0], "using::system") && !strcmp(funcgroup[1], "arginit")))
+                !strcmp(funcgroup[0], "var::set") || 
+                (!strcmp(funcgroup[0], "using::system") && !strcmp(funcgroup[1], "arginit")) ||
+                (!strcmp(funcgroup[0], "using::files") && !strcmp(funcgroup[1], "read")))
                 {
                     if(i == 1)
                     {
@@ -805,6 +809,11 @@ stock dpp_process(const line[])
             dpp_config[math_comp] = 1;
             return 1;
         }
+        if(!strcmp(funcgroup[1], "files"))
+        {
+            dpp_config[files_comp] = 1;
+            return 1;
+        }
         else
         {
             dpp_error("Unknown component \"%s\".", funcgroup[1]);
@@ -1075,6 +1084,19 @@ stock dpp_process(const line[])
     if(dpp_funcfound == 0)
     {
         dpp_funcfound = CallLocalFunction("dpp_processmath", "ss", funcgroup,args);
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            FILES comp FUNC SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(dpp_funcfound == 0)
+    {
+        dpp_funcfound = CallLocalFunction("dpp_processfiles", "ss", funcgroup,args);
     }
     
 
