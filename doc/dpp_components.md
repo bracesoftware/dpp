@@ -1,6 +1,12 @@
 # Interpreter components
 - Functions in D++ are called **forms**; to use certain *native forms*, you need to import standard built-in components into your code. For example - to use `cout`, you need to have a `console` interpreter component imported. Below, you can find the full list of available components.
 
+## Contents
+- [`console`](#component-console)
+- [`system`](#component-system)
+- [`samp`](#component-samp)
+- [`files`](#component-files)
+
 ---------------------------------------------------------------------------------------------------------
 
 ## Component: `console`
