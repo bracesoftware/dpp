@@ -21,6 +21,28 @@ public dpp_processfiles(funcgroup[][],args[][])
             dpp_error("Component \"files\" is not imported.",);
             return 1;
         }
+        if(!strcmp(funcgroup[1], "delete"))
+        {
+            new mul, str[dpp_argcharsize];
+            strmid(str, args[1], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[1]); i++)
+            {
+                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+            }
+            if(mul == 0)
+            {
+                dpp_error("You need to use '\"' to start a string.",);
+                return 1;
+            }
+            if(mul != 2)
+            {
+                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+                return 1;
+            }
+
+            fremove(args[1]);
+            return 1;
+        }
         if(!strcmp(funcgroup[1], "open_for_append"))
         {
             if(dpp_fhandleused == 1)

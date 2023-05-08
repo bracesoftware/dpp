@@ -171,3 +171,11 @@ using::files.write,"wrote this into file_name.txt";
 ```pawn
 using::files.close;
 ```
+
+### Form: `delete`
+
+- Deletes a certain file.
+
+```pawn
+using::files.delete,"newfile.omg";
+```
