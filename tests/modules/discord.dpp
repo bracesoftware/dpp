@@ -2,6 +2,8 @@ using::console.println,"Discord was included";
 
 import::api.discord;
 
+native&form.discord_bot_send_message;
+
 auto&form.discord_init;
 do;
 	using::console.println,"discord_init called";
@@ -15,7 +17,9 @@ var::define.str,test,"test succedeed";
 const::define.int,test2,1;
 var::define.str,test3,"hmmm {test}"
 
-using::console.println,"{test2}st format test: {test} \, {test3}";
+pragma::option.ctrlchar,*;
+
+using::console.println,"{test2}st format test: {test} *, {test3}";
 
 public&form.dppprint?message;
 do;

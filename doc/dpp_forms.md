@@ -16,6 +16,15 @@ using::console.println,"Hello World";
 
 So you are using the `using` procedure on a `console` component to use the `println` form - brilliant!
 
+
+### Registering native forms from certain APIs
+
+- To use a certain native form which is built into an API component, you'd need to register it; so for example if you wanted to use the `discord_bot_send_message` which is built into the `discord` API system, you need to register it like this:
+
+```pawn
+native&form.discord_bot_send_message;
+```
+
 ---------------------------------------------------------------------------------------------------------
 
 ## User forms
