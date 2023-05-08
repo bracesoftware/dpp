@@ -10,32 +10,7 @@
 *
 */
 
-enum __dpp_var_val
-{
-    var_valid,
-    var_name[64],
-    var_type,
-    integervalue,
-    /*bool:*/boolvalue,
-    Float:floatvalue,
-    stringvalue[256]
-}
 
-//var::define.int,"VAR1",1;
-//var::define.bool,"VAR1",true;
-//var::define.str,"VAR1","OKAY";
-
-//var::undef.int,"VAR1";
-//var::undef.bool,"VAR1";
-//var::undef.str,"VAR1";
-
-//var::set.int,VAR1,1;
-//var::set.int,VAR1,true;
-//var::set.int,VAR1,"str";
-
-new dpp_vardata[dpp_maxvar][__dpp_var_val];
-
-/////////////////////////////////////////////////////
 stock dpp_argvarcheck(arg[])
 {
     new newvalue[dpp_argcharsize];

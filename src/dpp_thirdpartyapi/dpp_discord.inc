@@ -64,6 +64,11 @@ public dpp_processdiscord(funcgroup[][],args[][])
             dpp_error("API \"discord\" is not imported.",);
             return 1;
         }
+        if(dpp_isnativereg(funcgroup[1]) == 0)
+        {
+            dpp_error("Native API form \"%s\" not registered.",funcgroup[1]);
+            return 1;
+        }
         if(!strcmp(funcgroup[1], "discord_bot_send_message"))
         {
             if(!dpp_isnumeric(args[1]))

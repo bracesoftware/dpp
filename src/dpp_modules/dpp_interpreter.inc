@@ -188,6 +188,11 @@ stock dpp_process(const line[])
         dpp_createfunc(arguments[0],arguments[1],0,1);
         return 1;
     }
+    if(!strcmp(funcgroup[0], "native&form"))
+    {
+        dpp_regnativeform(funcgroup[1]);
+        return 1;
+    }
 
     #if DPP_BRACES == 1
     new line_wo_brace[1024];

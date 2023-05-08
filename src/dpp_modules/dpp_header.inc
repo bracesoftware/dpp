@@ -183,6 +183,54 @@ stock dpp_extract(const src[], dest[], startchar, endchar)
     return 1;
 }
 
+stock dpp_regnativeform(const funcname[])
+{
+    new alreadyexists;
+    for(new i; i < dpp_maxnatives; i++)
+    {
+        if(!strcmp(dpp_nativeformname[i], funcname))
+        {
+            if(dpp_validnativef[i] == 1)
+            {
+                alreadyexists = 1;
+                break;
+            }
+        }
+    }
+
+    if(alreadyexists == 1)
+    {
+        dpp_error("Native API form \"%s\" already registered.",funcname);
+        return 1;
+    }
+
+    for(new i; i < dpp_maxnatives; i++)
+    {
+        if(dpp_validnativef[i] == 0)
+        {
+            strmid(dpp_nativeformname[i], funcname, 0, 64,64);
+            dpp_validnativef[i] = 1;
+            return 1;
+        }
+    }
+    return 1;
+}
+
+stock dpp_isnativereg(const funcname[])
+{
+    for(new i; i < dpp_maxnatives; i++)
+    {
+        if(!strcmp(dpp_nativeformname[i], funcname))
+        {
+            if(dpp_validnativef[i] == 1)
+            {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
 stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0)
 {
     new alreadyexists;

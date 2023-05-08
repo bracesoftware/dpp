@@ -10,29 +10,6 @@
 *
 */
 
-enum __dpp_const_val
-{
-    const_valid,
-    const_name[64],
-    const_type,
-    integervalue,
-    /*bool:*/boolvalue,
-    Float:floatvalue,
-    stringvalue[256]
-}
-
-//const::define.int,"VAR1",1;
-//const::define.bool,"VAR1",true;
-//const::define.str,"VAR1","OKAY";
-
-//const::undef.int,"VAR1";
-//const::undef.bool,"VAR1";
-//const::undef.str,"VAR1";
-
-new dpp_constdata[dpp_maxconst][__dpp_const_val];
-
-
-/////////////////////////////////////////////////////
 stock dpp_argarraycheck(arg[])
 {
     new newvalue[dpp_argcharsize];

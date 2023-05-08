@@ -48,6 +48,8 @@
 #define dpp_rtn_type_bool 2
 #define dpp_rtn_type_str 3
 
+#define dpp_maxnatives 100
+
 new subcontent[16000];
 new content[16000];
 
@@ -75,6 +77,34 @@ enum dpp_enumset2
 
 new dpp_apis[dpp_enumset2];
 
+//const
+enum __dpp_const_val
+{
+    const_valid,
+    const_name[64],
+    const_type,
+    integervalue,
+    /*bool:*/boolvalue,
+    Float:floatvalue,
+    stringvalue[256]
+}
+new dpp_constdata[dpp_maxconst][__dpp_const_val];
+
+//vars
+enum __dpp_var_val
+{
+    var_valid,
+    var_name[64],
+    var_type,
+    integervalue,
+    /*bool:*/boolvalue,
+    Float:floatvalue,
+    stringvalue[256]
+}
+
+new dpp_vardata[dpp_maxvar][__dpp_var_val];
+
+//bunch of crap
 new dpp_currentfuncid = 0;
 new dpp_validfunc[dpp_maxfuncs];
 new dpp_funcname[dpp_maxfuncs][64];
@@ -88,8 +118,8 @@ enum __dpp_argcache
 }
 new dpp_args[dpp_maxfuncs][dpp_maxformargs][__dpp_argcache];
 
-//format(stackfile,sizeof stackfile,"ID : %i | VALID : %i | NAME: \"%s\"",i,dpp_validfunc[i],dpp_funcname[i]);
-//dpp_savelog("stackoutput.dpplog");
+new dpp_validnativef[dpp_maxnatives];
+new dpp_nativeformname[dpp_maxnatives][64];
 
 new dpp_validclass[dpp_maxclass];
 new dpp_classname[dpp_maxclass];
