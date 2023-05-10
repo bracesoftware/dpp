@@ -12,6 +12,7 @@ using::files.read,myvar_to_test_files;
 using::console.println,"{myvar_to_test_files}";
 using::files.close;
 
+using::files.delete,"newfile.omg";
 using::files.open_for_append,"newfile.omg";
 using::files.write,"first line";
 using::files.write,"second line";
@@ -21,3 +22,10 @@ using::files.close;
 var::define.int,testintagainomg__aa,364;
 
 using::console.println,"{testintagainomg__aa}";
+
+public&form.FILES_TEST_FORM?text;
+do;
+	using::console.println,   text@FILES_TEST_FORM;
+end;
+
+using::user.FILES_TEST_FORM,   "Funny thing"  ;

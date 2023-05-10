@@ -206,6 +206,7 @@ main()
     {
         CallLocalFunction("dpp_dostackoutput", "");
     }
+    CallRemoteFunction("DPP_ProcessCode", "s", "using::console.println,\"This damn call remote thing works.\"");
     return 1;
 }
 
