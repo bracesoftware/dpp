@@ -183,6 +183,34 @@ stock dpp_extract(const src[], dest[], startchar, endchar)
     return 1;
 }
 
+stock dpp_deletespaces(line[])
+{
+    for(new i; i < strlen(line); i++)
+    {
+        if(line[i-2] != dpp_option_escapechar && line[i-1] == ',' && line[i] == ' ')
+        {
+            strdel(line, i, i+1);
+        } 
+        if(line[i-2] != dpp_option_escapechar && line[i-1] == ',' && line[i] == '\t')
+        {
+            strdel(line, i, i+1);
+        } 
+    }
+    return 1;
+}
+
+stock dpp_delexcspaces(arg[])
+{
+    for(new i; i < strlen(arg)+1; i++)
+    {
+        if(arg[strlen(arg)] == ' ')
+        {
+            strdel(arg, i, i+1);
+        }
+    }
+    return 1;
+}
+
 stock dpp_regnativeform(const funcname[])
 {
     new alreadyexists;

@@ -13,8 +13,10 @@
 new process_backtrace[2048];
 new process_bcktrc[1024];
 
-stock dpp_process(const line[])
+stock dpp_process(line[])
 {
+    for(new i; i < 100; i++)
+        dpp_deletespaces(line);
     new
         iscomment = 0;
 
@@ -227,6 +229,7 @@ stock dpp_process(const line[])
 
     for(new i; i < 10; i++)
     {
+        dpp_delexcspaces(args[i]);
         if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
             !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
             !strcmp(funcgroup[0], "var::set") ||
@@ -299,6 +302,7 @@ stock dpp_process(const line[])
         
         for(new i; i < 10; i++)
         {
+            dpp_delexcspaces(args[i]);
             if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
                 !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
                 !strcmp(funcgroup[0], "var::set") || 
@@ -1144,8 +1148,11 @@ stock dpp_process(const line[])
     return 1;
 }
 
-stock dpp_subprocess(const line[])
+stock dpp_subprocess(line[])
 {
+    for(new i; i < 100; i++)
+        dpp_deletespaces(line);
+    
     dpp_process(line);
     return 1;
 }
