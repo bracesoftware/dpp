@@ -409,30 +409,33 @@ stock dpp_executefile(const script[])
     return 1;
 }
 
-stock dpp_subexecute(const code[], funcid)
+stock dpp_subexecute(const code[], funcid = -1)
 {
     #pragma unused funcid
-    //if(dpp_returned[funcid] == 0) return 1;
-    new codelines[1024][1024];
+    new __codelines[1024][1024];
 
-    dpp_parsecode(code, codelines);
+    dpp_parsecode(code, __codelines);
     //dpp_debug("Executing:\n\n%s", code);
     for(new i; i < 1024; i++)
     {
-        dpp_subprocess(codelines[i]);
+        if(funcid != -1)
+        {
+            if(dpp_returned[funcid] == 1) return 1;
+        }
+        dpp_subprocess(__codelines[i]);
     }
     return 1;
 }
 
 stock dpp_subexecute2(const code[])
 {
-    new codelines[1024][1024];
+    new __codelines[1024][1024];
 
-    dpp_parsecode(code, codelines);
+    dpp_parsecode(code, __codelines);
     //dpp_debug("Executing:\n\n%s", code);
     for(new i; i < 1024; i++)
     {
-        dpp_subprocess(codelines[i]);
+        dpp_subprocess(__codelines[i]);
     }
     return 1;
 }

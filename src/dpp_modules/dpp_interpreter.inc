@@ -940,7 +940,6 @@ stock dpp_process(line[])
                                             dpp_argcharsize,
                                             dpp_argcharsize);
                                     }
-                                    dpp_returned[hookfuncid] = 0;
                                     dpp_processfunc = hookfuncid;
                                     dpp_subexecute(dpp_funccodeblock[hookfuncid], hookfuncid);
                                     dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[hookfuncid]);
