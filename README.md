@@ -28,6 +28,7 @@
 - [Instructions](doc/dpp_instruct.md)
 - [Classes](doc/dpp_class.md)
 - [Passing arguments to user forms](doc/dpp_userargs.md)
+- [`return` and `yield&return`](doc/dpp_return.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info
