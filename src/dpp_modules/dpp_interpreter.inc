@@ -1058,6 +1058,98 @@ stock dpp_process(line[])
     ///////////////////////////////////////////////////////
     ////
     ////
+    ////            YIELD RETURN SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(!strcmp(funcgroup[0], "yield&return"))
+    {
+        if(dpp_processfunc == 0)
+        {
+            dpp_error("Expression \"yield&return\" can be only used inside a form code block.",);
+            return 1;
+        }
+        if(!strcmp(funcgroup[1], "int"))
+        {
+            if(!dpp_isnumeric(args[1]))
+            {
+                dpp_error("Return value must be an integer.",);
+                return 1;
+            }
+
+            new int_return = strval(args[1]);
+
+            //dpp_returned[dpp_processfunc] = 1;
+            dpp_returntype[dpp_processfunc] = dpp_rtn_type_int;
+            dpp_funcreturn_int[dpp_processfunc] = int_return;
+
+            return 1;
+        }
+        if(!strcmp(funcgroup[1], "bool"))
+        {
+            if(!strcmp(args[1], "true"))
+            {
+                //dpp_returned[dpp_processfunc] = 1;
+                dpp_returntype[dpp_processfunc] = dpp_rtn_type_bool;
+                dpp_funcreturn_bool[dpp_processfunc] = 1;
+
+                return 1;
+            }
+            if(!strcmp(args[1], "false"))
+            {
+                //dpp_returned[dpp_processfunc] = 1;
+                dpp_returntype[dpp_processfunc] = dpp_rtn_type_bool;
+                dpp_funcreturn_bool[dpp_processfunc] = 0;
+
+                return 1;
+            }
+            else
+            {
+                dpp_error("Return value must be either \"true\" or \"false\".",);
+            }
+
+            return 1;
+        }
+        if(!strcmp(funcgroup[1], "str"))
+        {
+            new mul, str[dpp_argcharsize];
+            strmid(str, args[1], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[1]); i++)
+            {
+                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+            }
+            if(mul == 0)
+            {
+                dpp_error("You need to use '\"' to start a string.",);
+                return 0;
+            }
+            if(mul != 2)
+            {
+                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+                return 0;
+            }
+
+            //dpp_returned[dpp_processfunc] = 1;
+            dpp_returntype[dpp_processfunc] = dpp_rtn_type_str;
+            strmid(dpp_funcreturn_str[dpp_processfunc],args[1],0,
+                dpp_argcharsize,dpp_argcharsize);
+
+            dpp_debug("dpp_funcreturn_str[dpp_processfunc] : \"%s\"\nargs[1] : \"%s\"",dpp_funcreturn_str[dpp_processfunc],args[1]);
+
+            return 1;
+        }
+
+        else
+        {
+            dpp_error("Unknown return type \"%s\".", funcgroup[1]);
+        }
+        return 1;
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
     ////            CONSOLE comp FUNC SYS
     ////
     ////
