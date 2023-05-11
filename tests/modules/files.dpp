@@ -29,3 +29,26 @@ do;
 end;
 
 using::user.FILES_TEST_FORM,   "Funny thing"  ;
+
+public&form.returntest;
+do;
+	using::console.println, "Hello Worlddddddddddd";
+	if.equ, 23, 13 -> return.int,1;
+	return.int,2134;
+	using::console.println, "Return failed lmao";
+end;
+
+using::console.cout, returntest;
+
+
+public&form.yieldreturntest;
+do;
+	using::console.println, "Hello Worlddddddd";
+	yield&return.str,"mega sexy return";
+	if.notequ,1,1->yield&return.str,"HOOOOOOOOOOOOOO";
+	using::console.println, "Yield Return WORKS!";
+end;
+
+using::console.println, yieldreturntest;
+
+if.equ, 5 ,   5 -> using::console.println,  "Syntax works!";
