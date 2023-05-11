@@ -52,3 +52,16 @@ end;
 using::console.println, yieldreturntest;
 
 if.equ, 5 ,   5 -> using::console.println,  "Syntax works!";
+
+if . equ , 1, 1-> using :: console . println , "OmG" ;
+
+using::system.rem,"Example code";
+var::define.int,syntax_test,1;
+public&form.whilelooptest;
+do;
+	var::set.int,syntax_test,add?syntax_test:1;
+	using::console.println,"{syntax_test} eeeeeeeeeeeeeeeeee";
+end;
+if.equ,1,1->while.notequ,syntax_test,11->using::user.whilelooptest;
+
+using::console.println,"This is still runnin right? {syntax_test}";

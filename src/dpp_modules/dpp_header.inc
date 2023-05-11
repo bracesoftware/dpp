@@ -185,6 +185,22 @@ stock dpp_extract(const src[], dest[], startchar, endchar)
 
 stock dpp_deletespaces(line[])
 {
+    new firstcommapos;
+    for(new i; i < strlen(line); i++)
+    {
+        if(line[i] == ',')
+        {
+            firstcommapos = i;
+            break;
+        }
+    }
+    for(new i; i < firstcommapos+1; i++)
+    {
+        if(line[i] == ' ')
+        {
+            strdel(line, i, i+1);
+        }
+    }
     for(new i; i < strlen(line); i++)
     {
         if(line[i-2] != dpp_option_escapechar && line[i-1] == ',' && line[i] == ' ')

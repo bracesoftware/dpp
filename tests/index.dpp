@@ -1,5 +1,7 @@
 import::component.console;
 
+pragma::option.allspc,true;
+
 pragma::option.warnings,default;
 
 const::define.bool,DEBUG_OPTION,false;

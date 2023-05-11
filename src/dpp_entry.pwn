@@ -159,6 +159,7 @@ new dpp_option_debug = 0;
 new dpp_option_warnings = 1;
 new dpp_option_hooking = 1;
 new dpp_option_escapechar = '\\';
+new dpp_option_allspc = 0;
 
 // data
 new dpp_compiled = 0;
@@ -192,7 +193,10 @@ main()
     dpp_nullcomment();
     dpp_nullcomment();
     dpp_compile("index.dpp");
-    if(dpp_compiled == 1) dpp_execute("index.dppc");
+    if(dpp_compiled == 1)
+    {
+        dpp_execute("index.dppc");
+    }
     dpp_nullcomment();
     dpp_nullcomment();
     dpp_comment();

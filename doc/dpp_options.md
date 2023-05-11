@@ -39,3 +39,28 @@ Change the parsing escape character.
 ```pawn
 pragma::option.ctrlchar,*;
 ```
+
+## `allspc`
+- Default value: `false`
+
+By default, you aren't supposed to put spaces and extra characters in argument values, so your D++ code should look this in order to work properly:
+
+```pawn
+using::system.rem,"Example code";
+if.equ,1,1->while.equ,testvar,11->var::set.int,testvar,add?testvar:1&using::console.println,"This should be printed again!";
+```
+
+Enabling `allspc` option with:
+
+```pawn
+pragma::option.allspc,true;
+```
+
+Enables crazy syntax like this:
+
+```pawn
+using ::  system . rem,    "Example code"   ;
+if. equ, 1 , 1-> while.equ, testvar, 11 -> var::set . int , testvar,add?testvar:1 & using :: console. println, "This should   be printed again!"   ;
+```
+
+Which can be really buggy and can bring negative side-effects with it, such as for example wrong value reading. But the most important thing to note is that your code will slow down a lot. There are also high chances of such code getting somewhy ignored by the interpreter.

@@ -15,8 +15,10 @@ new process_bcktrc[1024];
 
 stock dpp_process(line[])
 {
-    for(new i; i < 100; i++)
+    if(dpp_option_allspc == 1) for(new i; i < 100; i++)
+    {
         dpp_deletespaces(line);
+    }
     new
         iscomment = 0;
 
@@ -229,7 +231,7 @@ stock dpp_process(line[])
 
     for(new i; i < 10; i++)
     {
-        dpp_delexcspaces(args[i]);
+        if(dpp_option_allspc == 1) dpp_delexcspaces(args[i]);
         if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
             !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
             !strcmp(funcgroup[0], "var::set") ||
@@ -292,6 +294,16 @@ stock dpp_process(line[])
     if(dpp_isconditional == 1)
     {
         dpp_isconditional = 0;
+
+        if(dpp_option_allspc == 1) for(new i; i < 100; i++)
+        {
+            dpp_deletespaces(line2);
+        }
+        if(dpp_option_allspc == 1) for(new i; i < 100; i++)
+        {
+            dpp_deletespaces(extracode);
+        }
+
         dpp_parseline(line2, args, ',');
         dpp_parseline(args[0], funcgroup, '.');
 
@@ -300,9 +312,9 @@ stock dpp_process(line[])
             strmid(args_const[i], args[i],0,dpp_argcharsize,dpp_argcharsize);
         }
         
-        for(new i; i < 10; i++)
+        for(new i; i < 15; i++)
         {
-            dpp_delexcspaces(args[i]);
+            if(dpp_option_allspc == 1) dpp_delexcspaces(args[i]);
             if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
                 !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
                 !strcmp(funcgroup[0], "var::set") || 
@@ -695,6 +707,11 @@ stock dpp_process(line[])
 
     if(!strcmp(funcgroup[0], "pragma::option"))
     {
+        ////////////////////////////////////////////////
+        //
+        //                  DEBUG OPTION
+        //
+        ////////////////////////////////////////////////
         if(!strcmp(funcgroup[1], "debug"))
         {
             dpp_argarraycheck(args[1]);
@@ -723,6 +740,11 @@ stock dpp_process(line[])
             }
             return 1;
         }
+        ////////////////////////////////////////////////
+        //
+        //                  warnings OPTION
+        //
+        ////////////////////////////////////////////////
         if(!strcmp(funcgroup[1], "warnings"))
         {
             dpp_argarraycheck(args[1]);
@@ -751,7 +773,11 @@ stock dpp_process(line[])
             }
             return 1;
         }
-        
+        ////////////////////////////////////////////////
+        //
+        //                  HOOKING OPTION
+        //
+        ////////////////////////////////////////////////
         if(!strcmp(funcgroup[1], "hooking"))
         {
             dpp_argarraycheck(args[1]);
@@ -780,6 +806,11 @@ stock dpp_process(line[])
             }
             return 1;
         }
+        ////////////////////////////////////////////////
+        //
+        //                  ctrl char OPTION
+        //
+        ////////////////////////////////////////////////
         //dpp_option_escapechar
         if(!strcmp(funcgroup[1], "ctrlchar"))
         {
@@ -791,6 +822,41 @@ stock dpp_process(line[])
                 return 1;
             }
             dpp_option_escapechar = args[1][0];
+            return 1;
+        }
+
+
+        ////////////////////////////////////////////////
+        //
+        //                  allspc OPTION
+        //
+        ////////////////////////////////////////////////
+        if(!strcmp(funcgroup[1], "allspc"))
+        {
+            dpp_argarraycheck(args[1]);
+            if(!strcmp(args[1], "false"))
+            {
+                dpp_option_allspc = 0;
+                dpp_print("Excessive space-tolerance disabled.");
+                return 1;
+            }
+            if(!strcmp(args[1], "true"))
+            {
+                dpp_option_allspc = 1;
+                dpp_print("Excessive space-tolerance enabled.");
+                return 1;
+            }
+
+            if(!strcmp(args[1], "default"))
+            {
+                dpp_option_allspc = 0;
+                dpp_print("Excessive space-tolerance disabled.");
+                return 1;
+            }
+            else
+            {
+                dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
+            }
             return 1;
         }
 
