@@ -9,6 +9,7 @@ There are standard classes and hook classes.
 
 ```pawn
 public&class.customer;
+class.do;
 class.end;
 ```
 
@@ -16,6 +17,7 @@ Within the class code block, we can create a variable.
 
 ```pawn
 public&class.customer;
+class.do;
 	var::define.str,name,"Alex";
 class.end;
 ```
@@ -33,6 +35,7 @@ using::console.println,customer:name;
 
 ```pawn
 public&class.customer;
+class.do;
 	var::define.str,name,"Alex";
 class.end;
 
@@ -44,12 +47,14 @@ We can hook the `customer` class:
 
 ```pawn
 public&class.customer;
+class.do;
 	var::define.str,name,"Alex";
 class.end;
 
 using::console.println,customer:name;
 
 hook&class.customer;
+class.do;
 	var::define.int,age,12;
 class.end
 

@@ -163,6 +163,7 @@ new dpp_option_allspc = 0;
 
 // data
 new dpp_compiled = 0;
+new dpp_lastclass;
 
 //includes
 #include "dpp_modules/dpp_header.inc"

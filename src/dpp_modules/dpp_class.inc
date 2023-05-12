@@ -100,7 +100,7 @@ stock dpp_createclass(const name[])
 
             dpp_validclass[i] = 1;
             strmid(dpp_classname[i], name, 0, 64,64);
-            dpp_workingclassid = i;
+            dpp_lastclass = i;
             return 1;
         }
     }
@@ -113,7 +113,7 @@ stock dpp_hookclass(const name[])
     {
         if(!strcmp(dpp_classname[i],name) && dpp_validclass[i] == 1)
         {
-            dpp_workingclassid = i;
+            dpp_lastclass = i;
             return 1;
         }
     }

@@ -280,6 +280,10 @@ stock dpp_process(line[])
         {
             dpp_workingclassid = dpp_invalidclass;
         }
+        if(!strcmp(funcgroup[1],"do"))
+        {
+            dpp_workingclassid = dpp_lastclass;
+        }
         return 1;
     }
 
