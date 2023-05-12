@@ -1,5 +1,5 @@
 public&class.dogInfo;
-
+class.do;
 	var::define.str,name,"Alexander";
 
 	const::define.int,age,15;
@@ -9,7 +9,6 @@ public&class.dogInfo;
 		using::console.println,"This is a bulldog.";
 		return.int,1;
 	end;
-
 class.end;
 
 using::console.println,dogInfo:name;
@@ -17,10 +16,14 @@ using::user.dogInfo:dogRace;
 
 using::console.cout,dogInfo:age;
 
+public&class.manInfo;
+class.do;
+	var::define.str,name,"Alex";
+class.end;
+
 hook&class.dogInfo;
-
+class.do;
 	var::define.str,owner,"Tommy";
-
 class.end;
 
 using::console.println,dogInfo:owner;
@@ -29,17 +32,9 @@ using::console.println,dogInfo:owner;
 
 	using::console.println,dogInfo:owner;
 
-
-public&class.manInfo;
-
-	var::define.str,name,"Alex";
-
-class.end;
-
 hook&class.manInfo;
-
+class.do;
 	var::define.int,age,86;
-
 class.end;
 
 using::console.println,manInfo:name;

@@ -122,7 +122,7 @@ new dpp_validnativef[dpp_maxnatives];
 new dpp_nativeformname[dpp_maxnatives][64];
 
 new dpp_validclass[dpp_maxclass];
-new dpp_classname[dpp_maxclass];
+new dpp_classname[dpp_maxclass][64];
 new dpp_workingclassid = dpp_invalidclass;
 
 new dpp_funcreturn_int[dpp_maxfuncs];
@@ -276,7 +276,7 @@ public dpp_dostackoutput()
     dpp_savelog("stackoutput.dpplog","===============================================================");
     dpp_savelog("stackoutput.dpplog","CLASSES");
     dpp_savelog("stackoutput.dpplog","===============================================================");
-    for(new i; i < dpp_maxvar; i++)
+    for(new i; i < dpp_maxclass; i++)
     {
         format(stackfile,sizeof stackfile,"ID : %i | VALID : %i | NAME: \"%s\"",
             i,
