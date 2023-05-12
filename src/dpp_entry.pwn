@@ -16,7 +16,7 @@
 #pragma option -;+
 
 #define dpp_invalidclass 100
-#define DPP_VERSION_MAJOR 4
+#define DPP_VERSION_MAJOR 5
 #define DPP_VERSION_MINOR 0
 #define DPP_VERSION_PATCH 0
 #define DPP_VERSION_RELEASE 1
@@ -162,6 +162,7 @@ new dpp_option_escapechar = '\\';
 new dpp_option_allspc = 0;
 
 // data
+new dpp_compiling_pass = 1;
 new dpp_compiled = 0;
 new dpp_lastclass;
 
@@ -194,6 +195,12 @@ main()
     dpp_nullcomment();
     dpp_nullcomment();
     dpp_compile("index.dpp");
+    main_again();
+    return 1;   
+}
+
+stock main_again()
+{
     if(dpp_compiled == 1)
     {
         dpp_execute("index.dppc");

@@ -39,6 +39,7 @@ stock dpp_compile(const script[])
     dpp_print("Compiling \"%s\"...",script);
     print("                                        ");
     print("                                        ");
+    dpp_compilerprint("Going through the 1st compiler pass.");
     new File:file = fopen(script, io_read), rlen;
     //new codelines[dpp_maxcodelines][1024];
     if(file)
@@ -54,7 +55,8 @@ stock dpp_compile(const script[])
             dpp_debug("content: '%s'", content);
             //dpp_parsecode(content, codelines);
             //dpp_debug("Executing:\n\n%s", content);
-            dpp_writecompileddata("index.dppc", content);
+            //dpp_writecompileddata("index.dppc", content);
+            dpp_process(content);
         }
     }
 
@@ -63,15 +65,46 @@ stock dpp_compile(const script[])
         dpp_error("Invalid file.",);
         return 1;
     }
+    
+
+
+    dpp_compiled = 1;
+    dpp_compiling_pass = 2;
+
+
+    dpp_compilerprint("Going through the 2nd compiler pass.");
+    file = fopen(script, io_read);
+    new rlen2;
+    new codelines[dpp_maxcodelines][1024];
+    if(file)
+    {
+        while(rlen2 = fread(file, content))
+        {
+            /*for(new i; i < strlen(content); i++)
+            {
+                if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
+                if(content[i] == '\t') strdel(content, i, i+1);
+                if(content[i] == '\n') strdel(content, i, i+1);
+            }*/
+            dpp_debug("content: '%s'", content);
+            dpp_parsecode(content, codelines);
+            //dpp_debug("Executing:\n\n%s", content);
+            for(new i; i < dpp_maxcodelines; i++)
+            {
+                if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
+                dpp_process(codelines[i]);
+            }
+        }
+    }
+
+    dpp_compiling_pass = 3;
+
     dpp_nullcomment();
     print("                                        ");
     print("                                        ");
-    //dpp_print("Interpreter version %i.%i.%i-R%i - by: DEntisT",DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
-    
-    dpp_print("File \"%s\" compiled successfully.",script);
+    dpp_print("File \"%s\" and imported modules compiled successfully.",script);
     print("                                        ");
     print("                                        ");
-    dpp_compiled = 1;
     return 1;
 }
 

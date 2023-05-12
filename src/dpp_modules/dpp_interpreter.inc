@@ -15,7 +15,7 @@ new process_bcktrc[1024];
 
 stock dpp_process(line[])
 {
-    if(dpp_option_allspc == 1) for(new i; i < 100; i++)
+    if(dpp_option_allspc == 1 && dpp_compiling_pass == 3) for(new i; i < 100; i++)
     {
         dpp_deletespaces(line);
     }
@@ -61,6 +61,71 @@ stock dpp_process(line[])
     for(new i; i < 15; i++)
     {
         strmid(args_const[i], args[i],0,dpp_argcharsize,dpp_argcharsize);
+    }
+
+    if(dpp_compiling_pass == 1)
+    {
+        dpp_compilerprint("Compiling the MAIN#%c-%ith sequence...", line[0], strlen(line));
+        dpp_writecompileddata("index.dppc", line);
+        return 1;
+    }
+    if(dpp_compiling_pass == 2)
+    {
+        if(!strcmp(funcgroup[0], "import::module"))
+        {
+            for(new i; i < strlen(args[1]); i++)
+            {
+                if(args[1][i] == '\"') strdel(args[1], i, i+1);
+            }
+            new filename[64];
+            /*for(new args1idx; args1idx < strlen(args[1]); args1idx ++)
+            {
+                if(args[1][args1idx] == ';') strdel(args[1], args1idx, args1idx+1);
+                if(args[1][args1idx] == '\n') strdel(args[1], args1idx, args1idx+1);
+            }*/
+            format(filename, sizeof filename, "modules/%s.dpp", args[1]);
+            if(fexist(filename))// return dpp_executefile(filename);
+            {
+                new File:file = fopen(filename, io_read), rlen;
+                new codelines[dpp_maxcodelines][1024];
+                if(file)
+                {
+                    while(rlen = fread(file, subcontent))
+                    {
+                        for(new i; i < strlen(subcontent); i++)
+                        {
+                            if(subcontent[i] == ';' && subcontent[i+1] == ' ') strdel(subcontent, i+1, i+2);
+                            if(subcontent[i] == '\t') strdel(subcontent, i, i+1);
+                            if(subcontent[i] == '\n') subcontent[i] = ';';
+                        }
+                        dpp_compilerprint("Compiling the MDL#%c-%ith sequence...", subcontent[0], strlen(subcontent));
+                        dpp_writecompileddata("index.dppc", subcontent);
+                        /*dpp_parsecode(subcontent, codelines);
+                        for(new i; i < dpp_maxcodelines; i++)
+                        {
+                            if(strlen(codelines[i]) < 4) continue;
+                            //dpp_process(codelines[i]);
+                            strcat(codelines[i], "\n");
+                            for(new x; x < strlen(codelines[i]); x++)
+                            {
+                                if(codelines[i][x] == '\t') strdel(codelines[i], x, x+1);
+                                if(codelines[i][x] == '\n') codelines[i][x] = ';';
+                            }
+                            dpp_compilerprint("Compiling the MDL#%c-%ith sequence...", codelines[i][0], strlen(codelines[i]));
+                            dpp_writecompileddata("index.dppc", codelines[i]);
+                        }*/
+                    }
+                }
+            }
+            else
+            {
+                dpp_error("Cannot read from module: \"%s\"", filename);
+                return 1;
+            }
+            return 1;
+        }
+        //dpp_writecompileddata("index.dppc", line);
+        return 1;
     }
 
     //using::console.cout,"Hello World";
@@ -946,7 +1011,7 @@ stock dpp_process(line[])
 
     if(!strcmp(funcgroup[0], "import::module"))
     {
-        for(new i; i < strlen(args[1]); i++)
+        /*for(new i; i < strlen(args[1]); i++)
         {
             if(args[1][i] == '\"') strdel(args[1], i, i+1);
         }
@@ -957,7 +1022,9 @@ stock dpp_process(line[])
         {
             dpp_error("Cannot read from module: \"%s\"", filename);
             return 0;
-        }
+        }*/
+
+        return 1;
     }
 
     ///////////////////////////////////////////////////////

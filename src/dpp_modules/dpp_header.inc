@@ -18,6 +18,7 @@
 #define dpp_comment%0(%1) print("|==============================================|")
 #define dpp_nullcomment%1(%1) print("                                               ")
 #define dpp_print%0(%1) printf(">> D++ | INFO: "%1)
+#define dpp_compilerprint%0(%1) printf(">> D++ | COMPILER: "%1)
 #if DPP_DEBUG == 1
 #define dpp_debug%0(%1) if(dpp_option_debug==1)printf(">> D++ | DEBUG: "%1)
 #elseif DPP_DEBUG == 0
