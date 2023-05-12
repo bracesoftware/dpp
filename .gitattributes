@@ -1,4 +1,1 @@
 *.pwn linguist-language=Pawn
-*.inc linguist-language=Pawn
-*.dpp linguist-language=D++
-*.dppproj linguist-language=D++ProjectFile
