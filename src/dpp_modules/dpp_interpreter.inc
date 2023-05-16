@@ -182,6 +182,8 @@ stock dpp_process(line[])
     if(!strcmp(funcgroup[0], "end"))
     {
         dpp_sysreturned = 0;
+        dpp_currentfuncid = DPP_INVALID_FORM_ID;
+        dpp_processfunc = DPP_INVALID_FORM_ID;
         dpp_interpreter = 1;
         return 1;
     }
@@ -189,6 +191,19 @@ stock dpp_process(line[])
     if(!strcmp(funcgroup[0], "do"))
     {
         dpp_interpreter = 0;
+        return 1;
+    }
+
+    if(!strcmp(funcgroup[0], "inline::end"))
+    {
+        dpp_currentinlineid = DPP_INVALID_FORM_ID;
+        dpp_inlineinterpreter = 1;
+        return 1;
+    }
+
+    if(!strcmp(funcgroup[0], "inline::do"))
+    {
+        dpp_inlineinterpreter = 0;
         return 1;
     }
 
@@ -215,6 +230,11 @@ stock dpp_process(line[])
 
     if(!strcmp(funcgroup[0], "public&form"))
     {
+        if(dpp_processfunc != DPP_INVALID_FORM_ID)
+        {
+            dpp_error("You can't create a form inside a form.",);
+            return 1;
+        }
         new isautoform = 0;
         new arguments[2][1024];
         dpp_parseline(funcgroup[1],arguments,'?');
@@ -245,6 +265,11 @@ stock dpp_process(line[])
     }
     if(!strcmp(funcgroup[0], "auto&form"))
     {
+        if(dpp_processfunc != DPP_INVALID_FORM_ID)
+        {
+            dpp_error("You can't create a form inside a form.",);
+            return 1;
+        }
         new arguments[2][1024];
         dpp_parseline(funcgroup[1],arguments,'?');
         dpp_createfunc(arguments[0],arguments[1],1);
@@ -252,6 +277,11 @@ stock dpp_process(line[])
     }
     if(!strcmp(funcgroup[0], "hook&form"))
     {
+        if(dpp_processfunc != DPP_INVALID_FORM_ID)
+        {
+            dpp_error("You can't create a form inside a form.",);
+            return 1;
+        }
         new arguments[2][1024];
         dpp_parseline(funcgroup[1],arguments,'?');
         dpp_createfunc(arguments[0],arguments[1],0,1);
@@ -259,7 +289,22 @@ stock dpp_process(line[])
     }
     if(!strcmp(funcgroup[0], "native&form"))
     {
+        if(dpp_processfunc != DPP_INVALID_FORM_ID)
+        {
+            dpp_error("You can't create a form inside a form.",);
+            return 1;
+        }
         dpp_regnativeform(funcgroup[1]);
+        return 1;
+    }
+    if(!strcmp(funcgroup[0], "inline&form"))
+    {
+        if(dpp_processfunc == DPP_INVALID_FORM_ID)
+        {
+            dpp_error("Inline forms are meant to be inside other forms.",);
+            return 1;
+        }
+        dpp_createinline(funcgroup[1],dpp_processfunc);
         return 1;
     }
 
@@ -291,6 +336,18 @@ stock dpp_process(line[])
         dpp_debug("codeblockline:%s",codeblockline);
         dpp_debug("dpp_currentfuncid:%i",dpp_currentfuncid);
         strcat(dpp_funccodeblock[dpp_currentfuncid], codeblockline);
+        return 1;
+    }
+
+    if(dpp_inlineinterpreter == 0)
+    {
+        format(codeblockline, sizeof codeblockline, "%s;", line);
+        #if DPP_BRACES == 1
+        format(codeblockline, sizeof codeblockline, "%s;", line_wo_brace);
+        #endif
+        dpp_debug("codeblockline:%s",codeblockline);
+        dpp_debug("dpp_currentfuncid:%i",dpp_currentfuncid);
+        strcat(dpp_inlinecodeblock[dpp_currentinlineid], codeblockline);
         return 1;
     }
 
@@ -1092,6 +1149,28 @@ stock dpp_process(line[])
         return 1;
     }
 
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            USER INLINE FUNC SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(!strcmp(funcgroup[0], "using&inline::user"))
+    {
+        for(new i; i < dpp_maxinline; i++)
+        {
+            if(!strcmp(dpp_inlinename[i], funcgroup[1]))
+            {
+                if(dpp_validinline[i] != 1) continue;
+                dpp_subexecute(dpp_inlinecodeblock[i]);
+                return 1;
+            }
+        }
+    }
+
     ///////////////////////////////////////////////////////
     ////
     ////
@@ -1102,7 +1181,7 @@ stock dpp_process(line[])
 
     if(!strcmp(funcgroup[0], "return"))
     {
-        if(dpp_processfunc == 0)
+        if(dpp_processfunc == DPP_INVALID_FORM_ID)
         {
             dpp_error("Expression \"return\" can be only used inside a form code block.",);
             return 1;
@@ -1121,7 +1200,7 @@ stock dpp_process(line[])
             dpp_returntype[dpp_processfunc] = dpp_rtn_type_int;
             dpp_funcreturn_int[dpp_processfunc] = int_return;
 
-            dpp_processfunc = 0;
+            dpp_processfunc = DPP_INVALID_FORM_ID;
             dpp_sysreturned = 1;
             return 1;
         }
@@ -1133,7 +1212,7 @@ stock dpp_process(line[])
                 dpp_returntype[dpp_processfunc] = dpp_rtn_type_bool;
                 dpp_funcreturn_bool[dpp_processfunc] = 1;
 
-                dpp_processfunc = 0;
+                dpp_processfunc = DPP_INVALID_FORM_ID;
                 dpp_sysreturned = 1;
                 return 1;
             }
@@ -1143,7 +1222,7 @@ stock dpp_process(line[])
                 dpp_returntype[dpp_processfunc] = dpp_rtn_type_bool;
                 dpp_funcreturn_bool[dpp_processfunc] = 0;
 
-                dpp_processfunc = 0;
+                dpp_processfunc = DPP_INVALID_FORM_ID;
                 dpp_sysreturned = 1;
                 return 1;
             }
@@ -1180,7 +1259,7 @@ stock dpp_process(line[])
 
             dpp_debug("dpp_funcreturn_str[dpp_processfunc] : \"%s\"\nargs[1] : \"%s\"",dpp_funcreturn_str[dpp_processfunc],args[1]);
 
-            dpp_processfunc = 0;
+            dpp_processfunc = DPP_INVALID_FORM_ID;
             dpp_sysreturned = 1;
             return 1;
         }
@@ -1202,7 +1281,7 @@ stock dpp_process(line[])
 
     if(!strcmp(funcgroup[0], "yield&return"))
     {
-        if(dpp_processfunc == 0)
+        if(dpp_processfunc == DPP_INVALID_FORM_ID)
         {
             dpp_error("Expression \"yield&return\" can be only used inside a form code block.",);
             return 1;

@@ -20,6 +20,8 @@
 #define DPP_VERSION_MINOR 0
 #define DPP_VERSION_PATCH 0
 #define DPP_VERSION_RELEASE 1
+#define DPP_INVALID_INLINE_ID 0
+#define DPP_INVALID_FORM_ID 0
 
 #define DPP_DEBUG 1
 #define DPP_BRACES 0
@@ -29,8 +31,9 @@
 
 #define dpp_maxformargs 10
 
-#define dpp_maxfuncs 100
 #define dpp_maxconst 100
+#define dpp_maxfuncs 100
+#define dpp_maxinline 100
 #define dpp_maxvar 100
 #define dpp_maxclass 100
 
@@ -104,8 +107,17 @@ enum __dpp_var_val
 
 new dpp_vardata[dpp_maxvar][__dpp_var_val];
 
+//inline
+new dpp_inlineinterpreter = 1;
+new dpp_currentinlineid = DPP_INVALID_INLINE_ID;
+new dpp_validinline[dpp_maxinline];
+new dpp_inlinebaseform[dpp_maxinline];
+new dpp_inlinename[dpp_maxinline][64];
+new dpp_inlinecodeblock[dpp_maxinline][1024];
+
+
 //bunch of crap
-new dpp_currentfuncid = 0;
+new dpp_currentfuncid = DPP_INVALID_FORM_ID;
 new dpp_validfunc[dpp_maxfuncs];
 new dpp_funcname[dpp_maxfuncs][64];
 new dpp_funccodeblock[dpp_maxfuncs][1024];
@@ -132,7 +144,7 @@ new dpp_funcreturn_str[dpp_maxfuncs][1024];
 new dpp_returned[dpp_maxfuncs];
 new dpp_returntype[dpp_maxfuncs];
 
-new dpp_processfunc = 0;
+new dpp_processfunc = DPP_INVALID_FORM_ID;
 new dpp_isconditional = 0;
 
 new dpp_interpreter = 1;
@@ -174,6 +186,7 @@ new dpp_lastclass;
 #include "dpp_modules/dpp_vars.inc"
 #include "dpp_modules/dpp_mathimpl.inc"
 #include "dpp_modules/dpp_class.inc"
+#include "dpp_modules/dpp_inline.inc"
 #include "dpp_modules/dpp_interpreter.inc"
 
 //compiler sys
