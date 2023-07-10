@@ -458,6 +458,17 @@ stock dpp_subexecute2(const code[])
 }
 
 
+////////////////////////////////////////////////
+stock dpp_argsystemval(arg[])
+{
+    new newvalue[dpp_argcharsize];
+    if(!strcmp(arg, "__proccessed_form_id"))
+    {
+        format(newvalue, sizeof newvalue, "%i", dpp_processfunc);
+        strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
+    }
+    return 1;
+}
 ///////////////FUNC CALLING/////////////////////
 stock dpp_argfunccheck(arg[])
 {

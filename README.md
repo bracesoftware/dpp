@@ -30,6 +30,7 @@
 - [Passing arguments to user forms](doc/dpp_userargs.md)
 - [`return` and `yield&return`](doc/dpp_return.md)
 - [Miscellaneous](doc/dpp_misc.md)
+- [System values](doc/dpp_sysval.md)
 
 ### Other info
 
