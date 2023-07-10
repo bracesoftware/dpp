@@ -15,6 +15,11 @@ new process_bcktrc[1024];
 
 stock dpp_process(line[])
 {
+    if(dpp_processfunc != dpp_lastvalueprcfunc)
+    {
+        dpp_print("dpp_processfunc was changed to %i",dpp_processfunc);
+    }
+    dpp_lastvalueprcfunc = dpp_processfunc;
     if(dpp_option_allspc == 1 && dpp_compiling_pass == 3) for(new i; i < 100; i++)
     {
         dpp_deletespaces(line);
@@ -183,7 +188,7 @@ stock dpp_process(line[])
     {
         dpp_sysreturned = 0;
         dpp_currentfuncid = DPP_INVALID_FORM_ID;
-        dpp_processfunc = DPP_INVALID_FORM_ID;
+        //dpp_processfunc = DPP_INVALID_FORM_ID;
         dpp_interpreter = 1;
         return 1;
     }
@@ -191,6 +196,7 @@ stock dpp_process(line[])
     if(!strcmp(funcgroup[0], "do"))
     {
         dpp_interpreter = 0;
+        //dpp_processfunc = dpp_currentfuncid;
         return 1;
     }
 
@@ -299,12 +305,12 @@ stock dpp_process(line[])
     }
     if(!strcmp(funcgroup[0], "inline&form"))
     {
-        if(dpp_processfunc != DPP_INVALID_FORM_ID)
+        if(dpp_processfunc == DPP_INVALID_FORM_ID)
         {
-            dpp_createinline(funcgroup[1],dpp_processfunc);
+            dpp_error("Inline forms are meant to be inside other forms.",);
             return 1;
         }
-        dpp_error("Inline forms are meant to be inside other forms.",);
+        dpp_createinline(funcgroup[1],dpp_processfunc);
         return 1;
     }
 
@@ -1141,6 +1147,7 @@ stock dpp_process(line[])
                             }
                         }
                     }
+                    dpp_clearformstack(dpp_processfunc);
                     dpp_processfunc = DPP_INVALID_FORM_ID;
                     return 1;
                 }

@@ -16,10 +16,12 @@
 #pragma option -;+
 
 #define dpp_invalidclass 100
+
 #define DPP_VERSION_MAJOR 5
 #define DPP_VERSION_MINOR 0
 #define DPP_VERSION_PATCH 0
-#define DPP_VERSION_RELEASE 1
+#define DPP_VERSION_RELEASE 2
+
 #define DPP_INVALID_INLINE_ID 0
 #define DPP_INVALID_FORM_ID 0
 
@@ -61,6 +63,8 @@ new content[16000];
 
 //THIRD PARTY API
 #include "dpp_natives/dpp_dcc.inc"
+
+new dpp_lastvalueprcfunc;
 
 enum dpp_enumset
 {
