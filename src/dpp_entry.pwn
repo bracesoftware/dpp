@@ -58,6 +58,10 @@
 new subcontent[16000];
 new content[16000];
 
+// PREDEFINES
+
+#define DPP_LOGPROCESSES 0
+
 // REQUIRED.
 #include <open.mp>
 

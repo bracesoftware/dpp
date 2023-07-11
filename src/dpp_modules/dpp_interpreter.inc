@@ -15,10 +15,12 @@ new process_bcktrc[1024];
 
 stock dpp_process(line[])
 {
+    #if DPP_LOGPROCESSES == 1
     if(dpp_processfunc != dpp_lastvalueprcfunc)
     {
         dpp_print("dpp_processfunc was changed to %i",dpp_processfunc);
     }
+    #endif
     dpp_lastvalueprcfunc = dpp_processfunc;
     if(dpp_option_allspc == 1 && dpp_compiling_pass == 3) for(new i; i < 100; i++)
     {
