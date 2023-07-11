@@ -201,6 +201,19 @@ stock dpp_process(line[])
         //dpp_processfunc = dpp_currentfuncid;
         return 1;
     }
+    if(!strcmp(funcgroup[0], "task::end"))
+    {
+        dpp_currenttaskid = DPP_INVALID_TASK_ID;
+        dpp_taskinterpreter = 1;
+        return 1;
+    }
+
+    if(!strcmp(funcgroup[0], "task::do"))
+    {
+        dpp_taskinterpreter = 0;
+        //dpp_processfunc = dpp_currentfuncid;
+        return 1;
+    }
 
     if(!strcmp(funcgroup[0], "inline::end"))
     {
@@ -316,6 +329,31 @@ stock dpp_process(line[])
         return 1;
     }
 
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            TASK SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+
+
+    if(!strcmp(funcgroup[0], "public&task"))
+    {
+        if(dpp_processfunc != DPP_INVALID_FORM_ID)
+        {
+            dpp_error("You can't create a task [\"%s\"] inside a form.",funcgroup[1]);
+            return 1;
+        }
+
+        new arguments[2][1024];
+        dpp_parseline(funcgroup[1],arguments,'#');
+        dpp_createtask(arguments[0],strval(arguments[1]));
+        return 1;
+    }
+
+
     #if DPP_BRACES == 1
     new line_wo_brace[1024];
     new char_idx = strlen(funcgroup[0]) - 1;
@@ -344,6 +382,18 @@ stock dpp_process(line[])
         dpp_debug("codeblockline:%s",codeblockline);
         dpp_debug("dpp_currentfuncid:%i",dpp_currentfuncid);
         strcat(dpp_funccodeblock[dpp_currentfuncid], codeblockline);
+        return 1;
+    }
+
+    if(dpp_taskinterpreter == 0)
+    {
+        format(codeblockline, sizeof codeblockline, "%s;", line);
+        #if DPP_BRACES == 1
+        format(codeblockline, sizeof codeblockline, "%s;", line_wo_brace);
+        #endif
+        dpp_debug("codeblockline:%s",codeblockline);
+        dpp_debug("dpp_currenttaskid:%i",dpp_currenttaskid);
+        strcat(dpp_taskcodeblock[dpp_currenttaskid], codeblockline);
         return 1;
     }
 

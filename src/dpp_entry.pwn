@@ -19,11 +19,12 @@
 
 #define DPP_VERSION_MAJOR 5
 #define DPP_VERSION_MINOR 0
-#define DPP_VERSION_PATCH 0
-#define DPP_VERSION_RELEASE 2
+#define DPP_VERSION_PATCH 1
+#define DPP_VERSION_RELEASE 1
 
 #define DPP_INVALID_INLINE_ID 0
 #define DPP_INVALID_FORM_ID 0
+#define DPP_INVALID_TASK_ID -1
 
 #define DPP_DEBUG 1
 #define DPP_BRACES 0
@@ -38,6 +39,7 @@
 #define dpp_maxinline 100
 #define dpp_maxvar 100
 #define dpp_maxclass 100
+#define dpp_maxtasks 50
 
 #define dpp_argcharsize 100
 
@@ -123,6 +125,16 @@ new dpp_inlinebaseform[dpp_maxinline];
 new dpp_inlinename[dpp_maxinline][64];
 new dpp_inlinecodeblock[dpp_maxinline][1024];
 
+//tasks
+new dpp_internaltasks[dpp_maxtasks];
+
+new dpp_taskinterpreter = 1;
+new dpp_currenttaskid = DPP_INVALID_TASK_ID;
+new dpp_validtask[dpp_maxtasks];
+new dpp_taskname[dpp_maxtasks][64];
+new dpp_taskcodeblock[dpp_maxtasks][1024];
+new dpp_interval[dpp_maxtasks];
+
 
 //bunch of crap
 new dpp_currentfuncid = DPP_INVALID_FORM_ID;
@@ -195,6 +207,8 @@ new dpp_lastclass;
 #include "dpp_modules/dpp_mathimpl.inc"
 #include "dpp_modules/dpp_class.inc"
 #include "dpp_modules/dpp_inline.inc"
+#include "dpp_modules/dpp_tasks.inc"
+
 #include "dpp_modules/dpp_interpreter.inc"
 
 //compiler sys
@@ -235,6 +249,7 @@ stock main_again()
     dpp_nullcomment();
     CallLocalFunction("DPP_GAMEMODEINIT", "");
     CallLocalFunction("DPP_discord_init", "");
+    CallLocalFunction("dpp_taskinit", "");
     if(dpp_stackoutput == 1)
     {
         CallLocalFunction("dpp_dostackoutput", "");

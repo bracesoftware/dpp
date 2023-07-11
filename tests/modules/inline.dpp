@@ -1,0 +1,20 @@
+
+
+public&form.inlinetest;
+do;
+	var::define.int,formid,__proccessed_form_id;
+	using::console.println,"'inlinetest' is {formid}";
+	
+	inline&form.inlineformtest;
+	inline::do;
+		using::console.println,"Inline works.";
+	inline::end;
+
+	using&inline::user.inlineformtest;
+	using&inline::user.inlineformtest;
+	using&inline::user.inlineformtest;
+	using&inline::user.inlineformtest;
+	yield&return.int,1;
+end;
+
+using::user.inlinetest;

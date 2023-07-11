@@ -1,0 +1,4 @@
+public&task.testtask#1000;
+task::do;
+	using::console.println,"Task works!";
+task::end;

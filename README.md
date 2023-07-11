@@ -31,6 +31,7 @@
 - [`return` and `yield&return`](doc/dpp_return.md)
 - [Miscellaneous](doc/dpp_misc.md)
 - [System values](doc/dpp_sysval.md)
+- [Tasks](doc/dpp_tasks.md)
 
 ### Other info
 

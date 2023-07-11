@@ -94,3 +94,5 @@ import::module,"class";
 import::module,"args";
 import::module,"discord";
 import::module,"files";
+import::module,"inline";
+import::module,"tasks";

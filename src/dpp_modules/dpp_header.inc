@@ -456,7 +456,24 @@ stock dpp_subexecute2(const code[])
     }
     return 1;
 }
+////////////////////////////////////////////////
 
+
+stock dpp_createtask(const name[], interval)
+{
+    for(new i; i < dpp_maxtasks; i++)
+    {
+        if(dpp_validtask[i] != 1)
+        {
+            dpp_currenttaskid = i;
+            dpp_validtask[i] = 1;
+            strmid(dpp_taskname[i], name, 0, 64, 64);
+            dpp_interval[i] = interval;
+            return 1;
+        }
+    }
+    return 0;
+}
 
 ////////////////////////////////////////////////
 stock dpp_argsystemval(arg[])
