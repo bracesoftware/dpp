@@ -92,6 +92,14 @@ import::component.samp;
 using::samp.SetGameModeText,"d++ test";
 ```
 
+### Form: `SendClientMessage`
+
+- Send a message to a player.
+
+```pawn
+using::samp.SendClientMessage,playerid@OnPlayerConnect,0,"Welcome to the D++ server";
+```
+
 ---------------------------------------------------------------------------------------------------------
 
 ### Automated user form: `OnGameModeInit`
@@ -117,6 +125,33 @@ do;
 	using::console.println,"OnGameModeExit works";
 end;
 ```
+
+### Automated user form: `OnPlayerConnect`
+
+- Called when a certain player connects to the server.
+
+```pawn
+auto&form.OnPlayerConnect?playerid;
+do;
+	using::samp.SendClientMessage,playerid@OnPlayerConnect,0,"Welcome to the D++ server";
+end;
+```
+
+### Automated user form: `OnPlayerDisconnect`
+
+- Called when a certain player disconnects from the server.
+
+```pawn
+
+auto&form.OnPlayerDisconnect?playerid&reason;
+do;
+	using::console.println,"Player {playerid@OnPlayerDisconnect} disconnected | Reason: {reason@OnPlayerDisconnect}";
+	return.int,1;
+end;
+```
+
+**WARNING**: For some unknown reason, Windows can crash when the form is called with reason `1`.
+
 
 ---------------------------------------------------------------------------------------------------------
 

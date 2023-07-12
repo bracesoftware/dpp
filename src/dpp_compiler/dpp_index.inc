@@ -122,6 +122,7 @@ stock dpp_formatarg(argument[]) // creds DEntisT
         replacementname[64],
         varvalid = 0,
         constvalid = 0,
+        argvalid = 0,
         replacement[dpp_maxformatlen],
         newvalue[dpp_maxformatlen];
 
@@ -208,12 +209,14 @@ stock dpp_formatarg(argument[]) // creds DEntisT
         }
     }
 
+    argvalid = CallLocalFunction("dpp_formatcheck", "ss", symbolname, replacement);
+
     for(new i; i < strlen(replacement); i++)
     {
         if(replacement[i] == '\"') strdel(replacement, i,i+1);
     }
 
-    if(constvalid == 1 || varvalid == 1)
+    if(constvalid == 1 || varvalid == 1 || argvalid == 1)
     {
         dpp_strreplace(argument,replacementname,replacement,.maxlength=dpp_maxformatlen);
     }
