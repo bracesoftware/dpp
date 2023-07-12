@@ -53,7 +53,8 @@ stock dpp_process(line[])
     new
         args[20][dpp_argcharsize], 
         funcgroup[2][1024],
-        args_const[20][dpp_argcharsize];
+        args_const[20][dpp_argcharsize],
+        structgroup[2][512];
 
     new extracode[3000];
     new line2[3000];
@@ -135,11 +136,27 @@ stock dpp_process(line[])
         return 1;
     }
 
+    for(new i; i < 512; i++)
+    {
+        if(funcgroup[0][i] == '*')
+        {
+            dpp_parseline(funcgroup[0], structgroup, '*');
+            break;
+        }
+    }
+
     //using::console.cout,"Hello World";
 
     //  funcgroup[0]    using::console
     //  funcgroup[1]    cout
     //  args[1]         "Hello World"
+
+    //extern&struct*samp_command.StructName?arg1&arg2;
+
+    //  structgroup[0]  extern&struct
+    //  structgroup[1]  samp_command
+    //  funcgroup[1]    StructName
+    //  arguments       arg1&arg2
 
     //Cleanup:
     format(process_backtrace,sizeof process_backtrace,
@@ -328,6 +345,36 @@ stock dpp_process(line[])
         dpp_createinline(funcgroup[1],dpp_processfunc);
         return 1;
     }
+
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            STRUCT SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+
+    if(!strcmp(structgroup[0], "extern&struct"))
+    {
+        if(!strcmp(structgroup[1], "samp_command"))
+        {
+            if(dpp_processfunc != DPP_INVALID_FORM_ID)
+            {
+                dpp_error("You can't create a structured form [\"%s\"] inside a form.",funcgroup[1]);
+                return 1;
+            }
+            new arguments[2][1024];
+            dpp_parseline(funcgroup[1],arguments,'?');
+            //dpp_error("samp_command struct created: \"%s\"",arguments[0]);
+            dpp_createfunc(arguments[0],arguments[1], .struct = dpp_formstruct_sampcmd);
+            return 1;
+        }
+        dpp_error("Unknown form structure type [\"%s\"].",structgroup[1]);
+        return 1;
+    }
+
 
     ///////////////////////////////////////////////////////
     ////

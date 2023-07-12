@@ -339,3 +339,97 @@ public dpp_processsamp(funcgroup[][],args[][])
     }
     return 0;
 }
+
+//////////////////////////////////
+// samp_commands external forms //
+//////////////////////////////////
+
+public OnPlayerCommandText(playerid, cmdtext[])
+{
+    if(dpp_config[samp_comp] == 0)
+    {
+        return 1;
+    }
+
+
+    dpp_error("cmdtext : '%s'",cmdtext);
+
+    new dpp_cmdargs[2][1024];
+    dpp_parseline(cmdtext, dpp_cmdargs, ' ');
+
+    for(new i; i < strlen(dpp_cmdargs[0]); i++)
+    {
+        if(dpp_cmdargs[0][i] == '/') strdel(dpp_cmdargs[0], i, i+1);
+    }
+
+    dpp_error("Attempting to call '%s' with params : '%s'",dpp_cmdargs[0],dpp_cmdargs[1]);
+
+    new dpp_argval[dpp_argcharsize];
+    for(new i; i < dpp_maxfuncs; i++)
+    {
+        if(!strcmp(dpp_funcname[i], dpp_cmdargs[0]))
+        {
+            if(dpp_structtype[i] == dpp_formstruct_local) return 1;
+            //Argument setup
+            // playerid
+            format(dpp_argval, sizeof dpp_argval, "%i", playerid);
+            strmid(dpp_args[i][0][dpp_argvalue],
+                    dpp_argval,
+                    0,
+                    dpp_argcharsize,
+                    dpp_argcharsize);
+
+            // params
+            strmid(dpp_args[i][1][dpp_argvalue],
+                    dpp_cmdargs[1],
+                    0,
+                    dpp_argcharsize,
+                    dpp_argcharsize);
+
+
+            // Form call
+            dpp_processfunc = i;
+            dpp_subexecute(dpp_funccodeblock[i],i);
+            dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[i]);
+            if(dpp_hookform[i] == 0)
+            {
+                if(dpp_option_hooking == 1)
+                {
+                    for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
+                    {
+                        if(!strcmp(dpp_funcname[hookfuncid], dpp_cmdargs[0]))
+                        {
+                            if(dpp_hookform[hookfuncid] == 1)
+                            {
+                                // Argument setup
+                                //playerid
+                                format(dpp_argval, sizeof dpp_argval, "%i", playerid);
+                                strmid(dpp_args[hookfuncid][0][dpp_argvalue],
+                                        dpp_argval,
+                                        0,
+                                        dpp_argcharsize,
+                                        dpp_argcharsize);
+                                //params
+                                strmid(dpp_args[hookfuncid][1][dpp_argvalue],
+                                        dpp_cmdargs[1],
+                                        0,
+                                        dpp_argcharsize,
+                                        dpp_argcharsize);
+
+
+                                // Func call:
+                                dpp_returned[hookfuncid] = 0;
+                                dpp_processfunc = hookfuncid;
+                                dpp_subexecute(dpp_funccodeblock[hookfuncid],hookfuncid);
+                                dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[hookfuncid]);
+                            }
+                        }
+                    }
+                }
+            }
+            return 1;
+        }
+    }
+
+    return 1;
+}

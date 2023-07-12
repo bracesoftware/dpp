@@ -9,69 +9,72 @@
 * - by: DEntisT, (c) 2022
 *
 */
-
+//-----------------------------------------------------------
 #pragma dynamic 21575000000000
 #pragma warning disable 204
 #pragma warning disable 211
 #pragma option -;+
-
+//-----------------------------------------------------------
 #define dpp_invalidclass 100
-
+//-----------------------------------------------------------
 #define DPP_VERSION_MAJOR 5
 #define DPP_VERSION_MINOR 1
 #define DPP_VERSION_PATCH 4
 #define DPP_VERSION_RELEASE 1
-
+//-----------------------------------------------------------
 #define DPP_INVALID_INLINE_ID 0
 #define DPP_INVALID_FORM_ID 0
 #define DPP_INVALID_TASK_ID -1
-
+//-----------------------------------------------------------
 #define DPP_DEBUG 1
 #define DPP_BRACES 0
-
+//-----------------------------------------------------------
 #define dpp_maxcodelines 2048
 #define dpp_maxformatlen 2048
-
+//-----------------------------------------------------------
 #define dpp_maxformargs 10
-
+//-----------------------------------------------------------
 #define dpp_maxconst 100
-#define dpp_maxfuncs 100
+#define dpp_maxfuncs 200
 #define dpp_maxinline 100
 #define dpp_maxvar 100
 #define dpp_maxclass 100
 #define dpp_maxtasks 50
-
+//-----------------------------------------------------------
+#define dpp_formstruct_local 0
+#define dpp_formstruct_sampcmd 1
+//-----------------------------------------------------------
 #define dpp_argcharsize 100
-
+//-----------------------------------------------------------
 #define dpp_const_type_int 1
 #define dpp_const_type_bool 2
 #define dpp_const_type_str 3
-
+//-----------------------------------------------------------
 #define dpp_var_type_int 1
 #define dpp_var_type_bool 2
 #define dpp_var_type_str 3
-
+//-----------------------------------------------------------
 #define dpp_rtn_type_int 1
 #define dpp_rtn_type_bool 2
 #define dpp_rtn_type_str 3
-
+//-----------------------------------------------------------
 #define dpp_maxnatives 100
-
+//-----------------------------------------------------------
 new subcontent[16000];
 new content[16000];
-
+//-----------------------------------------------------------
 // PREDEFINES
-
+//-----------------------------------------------------------
 #define DPP_LOGPROCESSES 0
-
+//-----------------------------------------------------------
 // REQUIRED.
 #include <open.mp>
-
+//-----------------------------------------------------------
 //THIRD PARTY API
 #include "dpp_natives/dpp_dcc.inc"
-
+//-----------------------------------------------------------
 new dpp_lastvalueprcfunc;
-
+//-----------------------------------------------------------
 enum dpp_enumset
 {
     console_comp,
@@ -82,14 +85,14 @@ enum dpp_enumset
 };
 
 new dpp_config[dpp_enumset];
-
+//-----------------------------------------------------------
 enum dpp_enumset2
 {
     discord
 };
 
 new dpp_apis[dpp_enumset2];
-
+//-----------------------------------------------------------
 //const
 enum __dpp_const_val
 {
@@ -102,7 +105,7 @@ enum __dpp_const_val
     stringvalue[256]
 }
 new dpp_constdata[dpp_maxconst][__dpp_const_val];
-
+//-----------------------------------------------------------
 //vars
 enum __dpp_var_val
 {
@@ -116,7 +119,7 @@ enum __dpp_var_val
 }
 
 new dpp_vardata[dpp_maxvar][__dpp_var_val];
-
+//-----------------------------------------------------------
 //inline
 new dpp_inlineinterpreter = 1;
 new dpp_currentinlineid = DPP_INVALID_INLINE_ID;
@@ -124,7 +127,7 @@ new dpp_validinline[dpp_maxinline];
 new dpp_inlinebaseform[dpp_maxinline];
 new dpp_inlinename[dpp_maxinline][64];
 new dpp_inlinecodeblock[dpp_maxinline][1024];
-
+//-----------------------------------------------------------
 //tasks
 new dpp_internaltasks[dpp_maxtasks];
 
@@ -135,7 +138,7 @@ new dpp_taskname[dpp_maxtasks][64];
 new dpp_taskcodeblock[dpp_maxtasks][1024];
 new dpp_interval[dpp_maxtasks];
 
-
+//-----------------------------------------------------------
 //bunch of crap
 new dpp_currentfuncid = DPP_INVALID_FORM_ID;
 new dpp_validfunc[dpp_maxfuncs];
@@ -143,40 +146,41 @@ new dpp_funcname[dpp_maxfuncs][64];
 new dpp_funccodeblock[dpp_maxfuncs][1024];
 new dpp_autoform[dpp_maxfuncs];
 new dpp_hookform[dpp_maxfuncs];
+new dpp_structtype[dpp_maxfuncs];
 enum __dpp_argcache
 {
     dpp_argname[32],
     dpp_argvalue[1024]
 }
 new dpp_args[dpp_maxfuncs][dpp_maxformargs][__dpp_argcache];
-
+//-----------------------------------------------------------
 new dpp_validnativef[dpp_maxnatives];
 new dpp_nativeformname[dpp_maxnatives][64];
-
+//-----------------------------------------------------------
 new dpp_validclass[dpp_maxclass];
 new dpp_classname[dpp_maxclass][64];
 new dpp_workingclassid = dpp_invalidclass;
-
+//-----------------------------------------------------------
 new dpp_funcreturn_int[dpp_maxfuncs];
 new dpp_funcreturn_bool[dpp_maxfuncs];
 new dpp_funcreturn_str[dpp_maxfuncs][1024];
-
+//-----------------------------------------------------------
 new dpp_returned[dpp_maxfuncs];
 new dpp_returntype[dpp_maxfuncs];
-
+//-----------------------------------------------------------
 new dpp_processfunc = DPP_INVALID_FORM_ID;
 new dpp_isconditional = 0;
-
+//-----------------------------------------------------------
 new dpp_interpreter = 1;
-
+//-----------------------------------------------------------
 new File:dpp_filehandle;
 new dpp_fhandleused = 0;
-
+//-----------------------------------------------------------
 // project config
 
 new dpp_projname[128];
 new dpp_stackoutput = 0;
-
+//-----------------------------------------------------------
 // process cache
 
 new dpp_terminated = 0;
@@ -184,7 +188,7 @@ new dpp_sysreturned = 0;
 
 new dpp_warningcount = 0;
 new dpp_errorcount = 0;
-
+//-----------------------------------------------------------
 //OPTIONS
 
 new dpp_option_debug = 0;
@@ -192,12 +196,12 @@ new dpp_option_warnings = 1;
 new dpp_option_hooking = 1;
 new dpp_option_escapechar = '\\';
 new dpp_option_allspc = 0;
-
+//-----------------------------------------------------------
 // data
 new dpp_compiling_pass = 1;
 new dpp_compiled = 0;
 new dpp_lastclass;
-
+//-----------------------------------------------------------
 //includes
 #include "dpp_modules/dpp_header.inc"
 #include "dpp_modules/dpp_proj.inc"
@@ -210,20 +214,20 @@ new dpp_lastclass;
 #include "dpp_modules/dpp_tasks.inc"
 
 #include "dpp_modules/dpp_interpreter.inc"
-
+//-----------------------------------------------------------
 //compiler sys
 #include "dpp_compiler/dpp_index.inc"
-
+//-----------------------------------------------------------
 // component impl
 #include "dpp_components/dpp_system.inc"
 #include "dpp_components/dpp_console.inc"
 #include "dpp_components/dpp_samp.inc"
 #include "dpp_components/dpp_math.inc"
 #include "dpp_components/dpp_files.inc"
-
+//-----------------------------------------------------------
 //api impl
 #include "dpp_thirdpartyapi/dpp_discord.inc"
-
+//-----------------------------------------------------------
 main()
 {
     strmid(dpp_projname,"Unnamed project",0,128,128);
@@ -249,11 +253,13 @@ stock main_again()
     dpp_nullcomment();
     CallLocalFunction("DPP_GAMEMODEINIT", "");
     CallLocalFunction("DPP_discord_init", "");
-    CallLocalFunction("dpp_taskinit", "");
+    
     if(dpp_stackoutput == 1)
     {
         CallLocalFunction("dpp_dostackoutput", "");
     }
+
+    CallLocalFunction("dpp_taskinit", "");
     return 1;
 }
 

@@ -276,7 +276,7 @@ stock dpp_isnativereg(const funcname[])
     return 0;
 }
 
-stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0)
+stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0, struct = dpp_formstruct_local)
 {
     new alreadyexists;
     for(new i; i < dpp_maxfuncs; i++)
@@ -305,6 +305,7 @@ stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0)
             }
             dpp_currentfuncid = i;
             dpp_validfunc[i] = 1;
+            dpp_structtype[i] = struct;
 
             if(dpp_workingclassid != dpp_invalidclass)
             {
