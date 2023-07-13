@@ -593,6 +593,42 @@ stock dpp_process(line[])
                 }
                 return 1;
             }
+
+            if(!strcmp(funcgroup[1], "gt"))
+            {
+                if(strval(args[1]) > strval(args[2]))
+                {
+                    dpp_subexecute2(extracode);
+                }
+                return 1;
+            }
+
+            if(!strcmp(funcgroup[1], "lt"))
+            {
+                if(strval(args[1]) < strval(args[2]))
+                {
+                    dpp_subexecute2(extracode);
+                }
+                return 1;
+            }
+
+            if(!strcmp(funcgroup[1], "ge"))
+            {
+                if(strval(args[1]) >= strval(args[2]))
+                {
+                    dpp_subexecute2(extracode);
+                }
+                return 1;
+            }
+
+            if(!strcmp(funcgroup[1], "le"))
+            {
+                if(strval(args[1]) <= strval(args[2]))
+                {
+                    dpp_subexecute2(extracode);
+                }
+                return 1;
+            }
             dpp_error("Unknown if-expression method : \"%s\"",funcgroup[1]);
         }
         // WHILE LOOPS
