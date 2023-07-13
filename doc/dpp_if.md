@@ -27,3 +27,30 @@ If-method is a new term used to describe the way how are you comparing the 2 ele
 - `lt` - check if the 1st element less than the 2nd element.
 - `ge` - check if the 1st element greater or equal to the 2nd element.
 - `le` - check if the 1st element less or equal to the 2nd element.
+
+## `else` statements
+
+- A quick example form:
+
+```pawn
+public&form.ElseTest;
+do;
+	if.equ,1,2->using::console.println,"1 and 2 are equal";
+	else->if.equ,2,3->using::console.println,"2 and 3 are equal";
+	else->using::console.println,"Nothing is equal";
+
+	if.equ,1,1->using::console.println,"1 and 1 are indeed equal";
+	else->using::console.println,"This should not be printed";
+	
+	return.int,1;
+end;
+
+using::user.ElseTest;
+```
+
+Output:
+
+```
+Nothing is equal
+1 and 1 are indeed equal
+```

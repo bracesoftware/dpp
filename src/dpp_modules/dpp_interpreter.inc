@@ -576,11 +576,13 @@ stock dpp_process(line[])
         //if.equ,1,1->using::console.cout,"1 is 1";
         if(!strcmp(funcgroup[0], "if"))
         {
+            dpp_skipelse = 0;
             if(!strcmp(funcgroup[1], "equ"))
             {
                 if(!strcmp(args[1], args[2]))
                 {
                     dpp_subexecute2(extracode);
+                    dpp_skipelse = 1;
                 }
                 return 1;
             }
@@ -590,6 +592,7 @@ stock dpp_process(line[])
                 if(strcmp(args[1], args[2]))
                 {
                     dpp_subexecute2(extracode);
+                    dpp_skipelse = 1;
                 }
                 return 1;
             }
@@ -599,6 +602,7 @@ stock dpp_process(line[])
                 if(strval(args[1]) > strval(args[2]))
                 {
                     dpp_subexecute2(extracode);
+                    dpp_skipelse = 1;
                 }
                 return 1;
             }
@@ -608,6 +612,7 @@ stock dpp_process(line[])
                 if(strval(args[1]) < strval(args[2]))
                 {
                     dpp_subexecute2(extracode);
+                    dpp_skipelse = 1;
                 }
                 return 1;
             }
@@ -617,6 +622,7 @@ stock dpp_process(line[])
                 if(strval(args[1]) >= strval(args[2]))
                 {
                     dpp_subexecute2(extracode);
+                    dpp_skipelse = 1;
                 }
                 return 1;
             }
@@ -626,10 +632,22 @@ stock dpp_process(line[])
                 if(strval(args[1]) <= strval(args[2]))
                 {
                     dpp_subexecute2(extracode);
+                    dpp_skipelse = 1;
                 }
                 return 1;
             }
+            dpp_skipelse = 0;
             dpp_error("Unknown if-expression method : \"%s\"",funcgroup[1]);
+        }
+        if(!strcmp(funcgroup[0], "else"))
+        {
+            if(dpp_skipelse == 1)
+            {
+                dpp_skipelse = 0;
+                return 1;
+            }
+            dpp_subexecute2(extracode);
+            return 1;
         }
         // WHILE LOOPS
         //while.notequ,testvar,1->var::set.int,testvar,add?testvar:1&using::console.println,"{testvar}";
