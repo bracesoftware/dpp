@@ -1,0 +1,10 @@
+extern&struct*samp_command.testcmd?playerid&params;
+do;
+	using::samp.SendClientMessage,playerid@testcmd,0,"Your command works!";
+	return.int,1;
+end;
+
+using::console.println,"Struct test included!";
+
+var::define.int,forlooptestvar,0;
+if.equ,1,1->for.int&var,forlooptestvar,10->using::console.println,"For loop id {forlooptestvar}";

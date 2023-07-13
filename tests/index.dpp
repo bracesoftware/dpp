@@ -96,3 +96,4 @@ import::module,"discord";
 import::module,"files";
 import::module,"inline";
 import::module,"tasks";
+import::module,"struct";
