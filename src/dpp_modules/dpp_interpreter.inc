@@ -666,8 +666,52 @@ stock dpp_process(line[])
             }
             dpp_error("Unknown while-loop method : \"%s\"",funcgroup[1]);
         }
+        //for loops
+        if(!strcmp(funcgroup[0], "for"))
+        {
+            if(!strcmp(funcgroup[1], "int&var"))
+            {
+                new dpp_varid;
+                for(new i; i < dpp_maxvar; i++)
+                {
+                    if(!strcmp(args_const[1], dpp_vardata[i][var_name]))
+                    {
+                        if(dpp_vardata[i][var_valid] == 1)
+                        {
+                            dpp_varid = i;
+                            break;
+                        }
+                    }
+                }
+                do
+                {
+                    for(new i; i < 15; i++)
+                    {
+                        strmid(args[i], args_const[i],0,dpp_argcharsize,dpp_argcharsize);
+
+                        dpp_removeslashes(args[i]);
+                        dpp_argclasscheck(args[i]);
+                        dpp_argarraycheck(args[i]);
+                        dpp_argfunccheck(args[i]);
+                        dpp_argvarcheck(args[i]);
+                        dpp_argmathcheck(args[i]);
+                        dpp_argformargcheck(args[i]);
+                        dpp_argsystemval(args[i]);
+
+                        dpp_formatarg(args[i]);
+                    }
+
+                    //dpp_error("Found a variable: '%s', supposed var: '%s'",dpp_vardata[dpp_varid][var_name],args_const[1]);
+                    dpp_vardata[dpp_varid][integervalue]++;
+                    dpp_subexecute2(extracode);
+                }
+                while(dpp_vardata[dpp_varid][integervalue] < strval(args[2]));
+                return 1;
+            }
+            dpp_error("Unknown for-loop subject.",);
+        }
         return 1;
-    }
+    } 
 
     ///////////////////////////////////////////////////////
     ////

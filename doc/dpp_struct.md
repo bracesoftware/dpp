@@ -19,7 +19,9 @@ end;
 
 - External forms are forms that are called when a certain event happens in third-party API; for example, SA-MP commands are external structures or forms that are called when a player uses a command. In short, externally structured forms are and are not forms at the same time. Because external form types are so special, they're only available after including a certain third-party API system or an interpreter component.
 
-### Component `samp`
+-----------------------------------------------------------------
+
+### Component: `samp`
 
 #### External struct name: `samp_command`
 

@@ -54,6 +54,24 @@ stock dpp_argvarcheck(arg[])
     return 1;
 }
 
+////////////////////utils////////////////
+
+stock dpp_findvar(const name[], dest)
+{
+    for(new i; i < dpp_maxvar; i++)
+    {
+        if(!strcmp(name, dpp_vardata[i][var_name]))
+        {
+            if(dpp_vardata[i][var_valid] == 1)
+            {
+                dest = i;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
 ///////////////////////////CREATE/////////////////////////////
 
 stock dpp_createintvar(name[], value)

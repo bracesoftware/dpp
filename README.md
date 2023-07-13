@@ -23,8 +23,8 @@
 - [Constants](doc/dpp_const.md)
 - [Variables](doc/dpp_vars.md)
 - [Forms and types of forms](doc/dpp_forms.md)
-- [If-expressions](doc/dpp_if.md)
-- [While-loops](doc/dpp_while.md)
+- [`if`-expressions](doc/dpp_if.md)
+- [`while`-loops](doc/dpp_while.md)
 - [Instructions](doc/dpp_instruct.md)
 - [Classes](doc/dpp_class.md)
 - [Passing arguments to user forms](doc/dpp_userargs.md)
@@ -33,6 +33,7 @@
 - [System values](doc/dpp_sysval.md)
 - [Tasks](doc/dpp_tasks.md)
 - [Form structure types](doc/dpp_struct.md)
+- [`for`-loops](doc/dpp_for.md)
 
 ### Other info
 
