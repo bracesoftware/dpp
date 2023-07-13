@@ -643,7 +643,6 @@ stock dpp_process(line[])
         {
             if(dpp_skipelse == 1)
             {
-                dpp_skipelse = 0;
                 return 1;
             }
             dpp_subexecute2(extracode);
