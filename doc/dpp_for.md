@@ -23,3 +23,26 @@ For loop id 8
 For loop id 9
 For loop id 10
 ```
+
+## Example *#2*
+
+```pawn
+public&form.ForTest2?num;
+do;
+	using::console.println,"'num' is {num@ForTest2}";
+	return.int,1;
+end;
+
+var::set.int,forlooptestvar,0;
+for.int&var,forlooptestvar,5->using::user.ForTest2,forlooptestvar;
+```
+
+Output:
+
+```
+'num' is 1
+'num' is 2
+'num' is 3
+'num' is 4
+'num' is 5
+```

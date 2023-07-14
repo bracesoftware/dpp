@@ -30,8 +30,34 @@ do;
 
 	if.equ,1,1->using::console.println,"1 and 1 are indeed equal";
 	else->using::console.println,"This should not be printed";
-	
+
 	return.int,1;
 end;
 
 using::user.ElseTest;
+
+
+if.equ,1,2->using::console.println,"1 and 2 are equal";
+else->if.equ,1,1->using::console.println,"1 and 1 are equal";
+else->using::console.println,"Yay!!";
+else->using::console.println,"Yayy twice!";
+
+import::component.misc;
+
+var::define.int,misctest1,23;
+var::define.int,misctest2,32;
+
+using::console.println,"{misctest1} and {misctest2}";
+
+using::misc.swap,misctest1,misctest2;
+
+using::console.println,"{misctest1} and {misctest2}";
+
+public&form.ForTest2?num;
+do;
+	using::console.println,"Damn for loop test {num@ForTest2}";
+	return.int,1;
+end;
+
+var::set.int,forlooptestvar,0;
+for.int&var,forlooptestvar,5->using::user.ForTest2,forlooptestvar;

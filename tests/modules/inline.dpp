@@ -6,9 +6,9 @@ do;
 	using::console.println,"'inlinetest' is {formid}";
 	
 	inline&form.inlineformtest;
-	inline::do;
+	inline.do;
 		using::console.println,"Inline works.";
-	inline::end;
+	inline.end;
 
 	using&inline::user.inlineformtest;
 	using&inline::user.inlineformtest;
