@@ -29,11 +29,11 @@
 - [Classes](doc/dpp_class.md)
 - [Passing arguments to user forms](doc/dpp_userargs.md)
 - [`return` and `yield&return`](doc/dpp_return.md)
-- [Miscellaneous](doc/dpp_misc.md)
 - [System values](doc/dpp_sysval.md)
 - [Tasks](doc/dpp_tasks.md)
 - [Form structure types](doc/dpp_struct.md)
 - [`for`-loops](doc/dpp_for.md)
+- [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info
 

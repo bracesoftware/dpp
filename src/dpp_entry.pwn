@@ -83,7 +83,8 @@ enum dpp_enumset
     system_comp,
     samp_comp,
     math_comp,
-    files_comp
+    files_comp,
+    misc_comp
 };
 
 new dpp_config[dpp_enumset];
@@ -226,6 +227,7 @@ new dpp_lastclass;
 #include "dpp_components/dpp_samp.inc"
 #include "dpp_components/dpp_math.inc"
 #include "dpp_components/dpp_files.inc"
+#include "dpp_components/dpp_misc.inc"
 //-----------------------------------------------------------
 //api impl
 #include "dpp_thirdpartyapi/dpp_discord.inc"

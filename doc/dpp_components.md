@@ -6,6 +6,7 @@
 - [`system`](#component-system)
 - [`samp`](#component-samp)
 - [`files`](#component-files)
+- [`misc`](#component-misc)
 
 ---------------------------------------------------------------------------------------------------------
 
@@ -214,3 +215,23 @@ using::files.close;
 ```pawn
 using::files.delete,"newfile.omg";
 ```
+
+---------------------------------------------------------------------------------------------------------
+
+
+## Component: `misc`
+- Provides miscellaneous forms.
+
+Import the component using:
+```pawn
+import::component.misc;
+```
+
+### Form: `swap`
+- Swaps two's variable values.
+
+```pawn
+using::misc.swap,var1,var2;
+```
+
+**NOTE**: Now variable `var1` will have the value `var2` had, and `var2` will have the value `var1` had.

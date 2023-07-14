@@ -218,30 +218,32 @@ stock dpp_process(line[])
         //dpp_processfunc = dpp_currentfuncid;
         return 1;
     }
-    if(!strcmp(funcgroup[0], "task::end"))
+   
+    if(!strcmp(funcgroup[0], "task"))
     {
-        dpp_currenttaskid = DPP_INVALID_TASK_ID;
-        dpp_taskinterpreter = 1;
+        if(!strcmp(funcgroup[1],"end"))
+        {
+            dpp_currenttaskid = DPP_INVALID_TASK_ID;
+            dpp_taskinterpreter = 1;
+        }
+        if(!strcmp(funcgroup[1],"do"))
+        {
+            dpp_taskinterpreter = 0;
+        }
         return 1;
     }
 
-    if(!strcmp(funcgroup[0], "task::do"))
+    if(!strcmp(funcgroup[0], "inline"))
     {
-        dpp_taskinterpreter = 0;
-        //dpp_processfunc = dpp_currentfuncid;
-        return 1;
-    }
-
-    if(!strcmp(funcgroup[0], "inline::end"))
-    {
-        dpp_currentinlineid = DPP_INVALID_FORM_ID;
-        dpp_inlineinterpreter = 1;
-        return 1;
-    }
-
-    if(!strcmp(funcgroup[0], "inline::do"))
-    {
-        dpp_inlineinterpreter = 0;
+        if(!strcmp(funcgroup[1],"end"))
+        {
+            dpp_currentinlineid = DPP_INVALID_FORM_ID;
+            dpp_inlineinterpreter = 1;
+        }
+        if(!strcmp(funcgroup[1],"do"))
+        {
+            dpp_inlineinterpreter = 0;
+        }
         return 1;
     }
 
@@ -1236,6 +1238,11 @@ stock dpp_process(line[])
             dpp_config[files_comp] = 1;
             return 1;
         }
+        if(!strcmp(funcgroup[1], "misc"))
+        {
+            dpp_config[misc_comp] = 1;
+            return 1;
+        }
         else
         {
             dpp_error("Unknown component \"%s\".", funcgroup[1]);
@@ -1644,6 +1651,19 @@ stock dpp_process(line[])
     if(dpp_funcfound == 0)
     {
         dpp_funcfound = CallLocalFunction("dpp_processfiles", "ss", funcgroup,args);
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            FILES comp FUNC SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(dpp_funcfound == 0)
+    {
+        dpp_funcfound = CallLocalFunction("dpp_processmisc", "sss", funcgroup,args,args_const);
     }
     
 
