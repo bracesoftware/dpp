@@ -726,7 +726,7 @@ stock dpp_process(line[])
         {
             if(!strcmp(funcgroup[1], "int&var"))
             {
-                new dpp_varid;
+                new dpp_varid = -1;
                 for(new i; i < dpp_maxvar; i++)
                 {
                     if(!strcmp(args_const[1], dpp_vardata[i][var_name]))
@@ -737,6 +737,11 @@ stock dpp_process(line[])
                             break;
                         }
                     }
+                }
+                if(dpp_varid == -1)
+                {
+                    dpp_error("Unknown variable; can't loop.",);
+                    return 1;
                 }
                 do
                 {
@@ -764,6 +769,54 @@ stock dpp_process(line[])
                 return 1;
             }
             dpp_error("Unknown for-loop subject.",);
+        }
+        //foreach
+        if(!strcmp(funcgroup[0], "foreach"))
+        {
+            if(!strcmp(funcgroup[1], "int&var"))
+            {
+                new dpp_varid = -1, dpp_iterid = -1;
+                for(new i; i < dpp_maxvar; i++)
+                {
+                    if(!strcmp(args_const[1], dpp_vardata[i][var_name]))
+                    {
+                        if(dpp_vardata[i][var_valid] == 1)
+                        {
+                            dpp_varid = i;
+                            break;
+                        }
+                    }
+                }
+                for(new i; i < dpp_maxiter; i++)
+                {
+                    if(!strcmp(args_const[2], dpp_itername[i]))
+                    {
+                        if(dpp_validiter[i] == 1)
+                        {
+                            dpp_iterid = i;
+                            break;
+                        }
+                    }
+                }
+                if(dpp_iterid == -1 || dpp_varid == -1)
+                {
+                    dpp_error("Unknown variable or iterator; can't loop.",);
+                    return 1;
+                }
+
+                //dpp_error("Found iterator '%s'; found variable '%s'",dpp_itername[dpp_iterid],dpp_vardata[dpp_varid][var_name]);
+                
+                for(new i; i < dpp_itersize[dpp_iterid]; i++)
+                {
+                    if(dpp_itervalues[dpp_iterid][i] != dpp_invaliditerval)
+                    {
+                        dpp_vardata[dpp_varid][integervalue] = dpp_itervalues[dpp_iterid][i];
+                        dpp_subexecute2(extracode);
+                    }
+                }
+                return 1;
+            }
+            dpp_error("Unknown foreach-loop subject.",);
         }
         return 1;
     } 
@@ -867,6 +920,54 @@ stock dpp_process(line[])
             return 0;
         }
     }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            ITERATOR SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(!strcmp(funcgroup[0], "iter::define"))
+    {
+        if(!dpp_isnumeric(args[2]))
+        {
+            dpp_error("Argument error; value must be an integer.",);
+            return 0;
+        }
+        dpp_createiter(args[1],strval(args[2]));
+        return 1;
+    }
+
+    if(!strcmp(funcgroup[0], "iter::add"))
+    {
+        if(!dpp_isnumeric(args[2]))
+        {
+            dpp_error("Argument error; value must be an integer.",);
+            return 0;
+        }
+        dpp_addvalue(args[1],strval(args[2]));
+        return 1;
+    }
+
+    if(!strcmp(funcgroup[0], "iter::remove"))
+    {
+        if(!dpp_isnumeric(args[2]))
+        {
+            dpp_error("Argument error; value must be an integer.",);
+            return 0;
+        }
+        dpp_removevalue(args[1],strval(args[2]));
+        return 1;
+    }
+
+    if(!strcmp(funcgroup[0], "iter::delete"))
+    {
+        dpp_deleteiter(args[1]);
+        return 1;
+    }
+
 
     ///////////////////////////////////////////////////////
     ////

@@ -1,0 +1,15 @@
+
+iter::define,testiter,100;
+var::define.int,foreachtestvar,0;
+
+iter::add,testiter,1;
+iter::add,testiter,10;
+iter::remove,testiter,1;
+
+foreach.int&var,foreachtestvar,testiter->using::console.println,"foreach test {foreachtestvar}";
+
+iter::add,testiter,1;
+
+foreach.int&var,foreachtestvar,testiter->using::console.println,"foreach test #2 {foreachtestvar}";
+
+iter::delete,testiter;

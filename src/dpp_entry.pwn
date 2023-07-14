@@ -18,7 +18,7 @@
 #define dpp_invalidclass 100
 //-----------------------------------------------------------
 #define DPP_VERSION_MAJOR 6
-#define DPP_VERSION_MINOR 1
+#define DPP_VERSION_MINOR 2
 #define DPP_VERSION_PATCH 0
 #define DPP_VERSION_RELEASE 1
 //-----------------------------------------------------------
@@ -40,6 +40,10 @@
 #define dpp_maxvar 100
 #define dpp_maxclass 100
 #define dpp_maxtasks 50
+#define dpp_maxiter 50
+//-----------------------------------------------------------
+#define dpp_maxitersize 1000
+#define dpp_invaliditerval -1
 //-----------------------------------------------------------
 #define dpp_formstruct_local 0
 #define dpp_formstruct_sampcmd 1
@@ -68,6 +72,8 @@ new dpp_skipelse = 0;
 // PREDEFINES
 //-----------------------------------------------------------
 #define DPP_LOGPROCESSES 0
+//-----------------------------------------------------------
+#define dpp_maxsymbolchar 64
 //-----------------------------------------------------------
 // REQUIRED.
 #include <open.mp>
@@ -100,7 +106,7 @@ new dpp_apis[dpp_enumset2];
 enum __dpp_const_val
 {
     const_valid,
-    const_name[64],
+    const_name[dpp_maxsymbolchar],
     const_type,
     integervalue,
     /*bool:*/boolvalue,
@@ -113,7 +119,7 @@ new dpp_constdata[dpp_maxconst][__dpp_const_val];
 enum __dpp_var_val
 {
     var_valid,
-    var_name[64],
+    var_name[dpp_maxsymbolchar],
     var_type,
     integervalue,
     /*bool:*/boolvalue,
@@ -128,7 +134,7 @@ new dpp_inlineinterpreter = 1;
 new dpp_currentinlineid = DPP_INVALID_INLINE_ID;
 new dpp_validinline[dpp_maxinline];
 new dpp_inlinebaseform[dpp_maxinline];
-new dpp_inlinename[dpp_maxinline][64];
+new dpp_inlinename[dpp_maxinline][dpp_maxsymbolchar];
 new dpp_inlinecodeblock[dpp_maxinline][1024];
 //-----------------------------------------------------------
 //tasks
@@ -137,15 +143,20 @@ new dpp_internaltasks[dpp_maxtasks];
 new dpp_taskinterpreter = 1;
 new dpp_currenttaskid = DPP_INVALID_TASK_ID;
 new dpp_validtask[dpp_maxtasks];
-new dpp_taskname[dpp_maxtasks][64];
+new dpp_taskname[dpp_maxtasks][dpp_maxsymbolchar];
 new dpp_taskcodeblock[dpp_maxtasks][1024];
 new dpp_interval[dpp_maxtasks];
-
+//-----------------------------------------------------------
+//iterators
+new dpp_validiter[dpp_maxiter];
+new dpp_itername[dpp_maxiter][dpp_maxsymbolchar];
+new dpp_itersize[dpp_maxiter];
+new dpp_itervalues[dpp_maxiter][dpp_maxitersize];
 //-----------------------------------------------------------
 //bunch of crap
 new dpp_currentfuncid = DPP_INVALID_FORM_ID;
 new dpp_validfunc[dpp_maxfuncs];
-new dpp_funcname[dpp_maxfuncs][64];
+new dpp_funcname[dpp_maxfuncs][dpp_maxsymbolchar];
 new dpp_funccodeblock[dpp_maxfuncs][1024];
 new dpp_autoform[dpp_maxfuncs];
 new dpp_hookform[dpp_maxfuncs];
@@ -158,10 +169,10 @@ enum __dpp_argcache
 new dpp_args[dpp_maxfuncs][dpp_maxformargs][__dpp_argcache];
 //-----------------------------------------------------------
 new dpp_validnativef[dpp_maxnatives];
-new dpp_nativeformname[dpp_maxnatives][64];
+new dpp_nativeformname[dpp_maxnatives][dpp_maxsymbolchar];
 //-----------------------------------------------------------
 new dpp_validclass[dpp_maxclass];
-new dpp_classname[dpp_maxclass][64];
+new dpp_classname[dpp_maxclass][dpp_maxsymbolchar];
 new dpp_workingclassid = dpp_invalidclass;
 //-----------------------------------------------------------
 new dpp_funcreturn_int[dpp_maxfuncs];
@@ -215,6 +226,7 @@ new dpp_lastclass;
 #include "dpp_modules/dpp_class.inc"
 #include "dpp_modules/dpp_inline.inc"
 #include "dpp_modules/dpp_tasks.inc"
+#include "dpp_modules/dpp_iter.inc"
 
 #include "dpp_modules/dpp_interpreter.inc"
 //-----------------------------------------------------------
