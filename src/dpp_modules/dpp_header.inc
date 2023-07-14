@@ -487,6 +487,34 @@ stock dpp_argsystemval(arg[])
     }
     return 1;
 }
+///////////////////
+dpp_argsizeof(arg[]); public dpp_argsizeof(arg[])
+{
+    new 
+        iterid = -1,
+        newvalue[dpp_argcharsize],
+        operands[2][dpp_maxsymbolchar];
+
+    dpp_parseline(arg,operands,'?');
+    if(!strcmp(operands[0], "sizeof"))
+    {
+        for(new i; i < dpp_maxiter; i++)
+        {
+            if(!strcmp(operands[1], dpp_itername[i]))
+            {
+                if(dpp_validiter[i] == 1)
+                {
+                    iterid = i;
+                    break;
+                }
+            }
+        }
+        if(iterid == -1) return 1;
+        format(newvalue, sizeof newvalue, "%i", dpp_itersize[iterid]);
+        strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
+    }
+    return 1;
+}
 ///////////////FUNC CALLING/////////////////////
 stock dpp_argfunccheck(arg[])
 {

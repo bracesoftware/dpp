@@ -28,3 +28,18 @@ foreach test 10
 foreach test #2 1
 foreach test #2 10
 ```
+
+## `sizeof` instruction
+
+- `sizeof` is a keyword you may have seen in a huge variety of programming languages. In D++, `sizeof` is by-default enabled instruction which returns the size of an iterator.
+
+
+```pawn
+using::console.cout,sizeof?testiter;
+```
+
+Output:
+
+```
+100
+```

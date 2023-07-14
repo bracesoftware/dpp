@@ -482,6 +482,7 @@ stock dpp_process(line[])
         dpp_argmathcheck(args[i]);
         dpp_argformargcheck(args[i]);
         dpp_argsystemval(args[i]);
+        CallLocalFunction("dpp_argsizeof", "s", args[i]);
 
         dpp_formatarg(args[i]);
     }
@@ -571,6 +572,7 @@ stock dpp_process(line[])
             dpp_argmathcheck(args[i]);
             dpp_argformargcheck(args[i]);
             dpp_argsystemval(args[i]);
+            CallLocalFunction("dpp_argsizeof", "s", args[i]);
 
             dpp_formatarg(args[i]);
         }
@@ -679,6 +681,7 @@ stock dpp_process(line[])
                         dpp_argmathcheck(args[i]);
                         dpp_argformargcheck(args[i]);
                         dpp_argsystemval(args[i]);
+                        CallLocalFunction("dpp_argsizeof", "s", args[i]);
 
                         dpp_formatarg(args[i]);
                     }
@@ -710,6 +713,7 @@ stock dpp_process(line[])
                         dpp_argmathcheck(args[i]);
                         dpp_argformargcheck(args[i]);
                         dpp_argsystemval(args[i]);
+                        CallLocalFunction("dpp_argsizeof", "s", args[i]);
 
                         dpp_formatarg(args[i]);
                     }
@@ -757,6 +761,7 @@ stock dpp_process(line[])
                         dpp_argmathcheck(args[i]);
                         dpp_argformargcheck(args[i]);
                         dpp_argsystemval(args[i]);
+                        CallLocalFunction("dpp_argsizeof", "s", args[i]);
 
                         dpp_formatarg(args[i]);
                     }
