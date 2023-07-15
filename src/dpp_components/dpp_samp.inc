@@ -55,7 +55,7 @@ public DPP_GAMEMODEINIT()
     return 1;
 }
 
-public OnGameModeExit()
+dpp_sampexitcall(); public dpp_sampexitcall()
 {
     if(dpp_config[samp_comp] == 0)
     {

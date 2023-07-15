@@ -1,4 +1,8 @@
-# `return`
+# Value returning
+
+- A return statement causes execution to leave the current function and resume at the point in the code immediately after where the function was called. Return statements in many languages allow a function to specify a return value to be passed back to the code that called the function.
+
+### `return`
 
 - In D++, to return a value it means to execute the code and give the result output, after returning a value, code block execution will stop.
 
@@ -15,7 +19,7 @@ using::system.rem,"Thing above will print 1";
 ```
 
 
-# `yield&return`
+### `yield&return`
 
 - `yield` return will do the same thing as a normal return, the difference is that the code block won't stop being executed until `end;` or `return..,..;`.
 

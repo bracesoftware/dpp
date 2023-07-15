@@ -17,7 +17,7 @@
 #define dpp_execheader%0(%1) print("|====================| "%1" |====================|")
 #define dpp_comment%0(%1) print("|==============================================|")
 #define dpp_nullcomment%1(%1) print("                                               ")
-#define dpp_print%0(%1) printf(">> D++ | INFO: "%1)
+#define dpp_print%0(%1) printf(">> D++ | SERVER THREAD - Info: "%1)
 #define dpp_compilerprint%0(%1) printf(">> D++ | COMPILER: "%1)
 #if DPP_DEBUG == 1
 #define dpp_debug%0(%1) if(dpp_option_debug==1)printf(">> D++ | DEBUG: "%1)
@@ -391,11 +391,6 @@ stock dpp_execute(const script[])
     {
         dpp_error("Invalid file.",);
     }
-    dpp_nullcomment();
-    dpp_comment();
-    dpp_nullcomment();
-    dpp_print("The interpreter reached the EOS point.");
-    dpp_print("Process finished with %i errors and %i warnings.", dpp_errorcount,dpp_warningcount);
     return 1;
 }
 

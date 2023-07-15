@@ -18,7 +18,7 @@
 #define dpp_invalidclass 100
 //-----------------------------------------------------------
 #define DPP_VERSION_MAJOR 6
-#define DPP_VERSION_MINOR 2
+#define DPP_VERSION_MINOR 3
 #define DPP_VERSION_PATCH 0
 #define DPP_VERSION_RELEASE 1
 //-----------------------------------------------------------
@@ -260,21 +260,9 @@ stock main_again()
     {
         dpp_execute("index.dppc");
     }
-    dpp_nullcomment();
-    dpp_nullcomment();
-    dpp_comment();
-    dpp_print("The SA:MP/open.mp script will continue running in the background.");
-    dpp_comment();
-    dpp_nullcomment();
-    dpp_nullcomment();
+
     CallLocalFunction("DPP_GAMEMODEINIT", "");
     CallLocalFunction("DPP_discord_init", "");
-    
-    if(dpp_stackoutput == 1)
-    {
-        CallLocalFunction("dpp_dostackoutput", "");
-    }
-
     CallLocalFunction("dpp_taskinit", "");
     return 1;
 }
@@ -356,5 +344,31 @@ public dpp_dostackoutput()
 DPP_ProcessCode(line[]); public DPP_ProcessCode(line[])
 {
     dpp_process(line);
+    return 1;
+}
+
+public OnGameModeExit()
+{
+    CallLocalFunction("dpp_sampexitcall", "");
+    dpp_nullcomment();
+    dpp_comment();
+    dpp_nullcomment();
+    dpp_print("The interpreter reached the EOS point.");
+    dpp_print("Process finished with %i errors and %i warnings.", dpp_errorcount,dpp_warningcount);
+    dpp_nullcomment();
+    dpp_nullcomment();
+    dpp_comment();
+    //dpp_print("The SA:MP/open.mp script will continue running in the background.");
+    if(dpp_stackoutput == 1)
+    {
+        CallLocalFunction("dpp_dostackoutput", "");
+    }
+    else
+    {
+        dpp_print("System stack output is disabled.");
+    }
+    dpp_comment();
+    dpp_nullcomment();
+    dpp_nullcomment();
     return 1;
 }
