@@ -18,6 +18,12 @@ stock dpp_createiter(const name[], size)
         {
             dpp_validiter[i] = 1;
             strmid(dpp_itername[i], name, 0, dpp_maxsymbolchar, dpp_maxsymbolchar);
+            if(dpp_workingclassid != dpp_invalidclass)
+            {
+                new newvalue[dpp_argcharsize];
+                format(newvalue,sizeof(newvalue),"DPPCi@%s_%s",dpp_classname[dpp_workingclassid],name);
+                strmid(dpp_itername[i], newvalue, 0, dpp_argcharsize,dpp_argcharsize);
+            }
             dpp_itersize[i] = size;
             for(new itervalid; itervalid < size; itervalid++)
             {

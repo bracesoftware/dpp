@@ -10,7 +10,7 @@
 *
 */
 
-stock dpp_createinline(const name[], baseformid)
+dpp_createinline(name[], baseformid); public dpp_createinline(name[], baseformid)
 {
     for(new i; i < dpp_maxinline; i++)
     {
@@ -20,6 +20,7 @@ stock dpp_createinline(const name[], baseformid)
             strmid(dpp_inlinename[i], name, 0, 64, 64);
             dpp_inlinebaseform[i] = baseformid;
             dpp_currentinlineid = i;
+            dpp_error("Created an inline named '%s' [%i] with base form id '%i'",name,dpp_currentinlineid,baseformid);
             return 1;
         }
     }

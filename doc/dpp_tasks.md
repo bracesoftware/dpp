@@ -5,9 +5,9 @@
 
 ```pawn
 public&task.testtask#1000;
-task.do;
+do;
 	using::console.println,"Task works!";
-task.end;
+end;
 ```
 
 Code above will print `Task works!` every 1 second. It is also really important to note that tasks are VERY different from forms and cannot return any values. 

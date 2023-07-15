@@ -29,6 +29,26 @@ foreach test #2 1
 foreach test #2 10
 ```
 
+## Example `#2`
+
+- Iterators inside classes.
+
+```pawn
+public&class.IterClass;
+do;
+	iter::define,iter,10;
+end;
+
+iter::add,IterClass:iter,364;
+foreach.int&var,foreachtestvar,IterClass:iter->using::console.println,"foreach test #3 {foreachtestvar}";
+```
+
+Output:
+
+```
+foreach test #3 364
+```
+
 ## `sizeof` instruction
 
 - `sizeof` is a keyword you may have seen in a huge variety of programming languages. In D++, `sizeof` is by-default enabled instruction which returns the size of an iterator.

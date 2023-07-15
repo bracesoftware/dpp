@@ -215,6 +215,12 @@ new dpp_option_allspc = 0;
 new dpp_compiling_pass = 1;
 new dpp_compiled = 0;
 new dpp_lastclass;
+// do and end
+new dpp_event = 0;
+#define dpp_event_form 0
+#define dpp_event_task 1
+#define dpp_event_class 2
+#define dpp_event_inline 3
 //-----------------------------------------------------------
 //includes
 #include "dpp_modules/dpp_header.inc"

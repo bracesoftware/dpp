@@ -205,20 +205,74 @@ stock dpp_process(line[])
 
     if(!strcmp(funcgroup[0], "end"))
     {
-        dpp_sysreturned = 0;
-        dpp_currentfuncid = DPP_INVALID_FORM_ID;
-        //dpp_processfunc = DPP_INVALID_FORM_ID;
-        dpp_interpreter = 1;
+        if(dpp_event == dpp_event_form)
+        {
+            dpp_sysreturned = 0;
+            dpp_currentfuncid = DPP_INVALID_FORM_ID;
+            //dpp_processfunc = DPP_INVALID_FORM_ID;
+            dpp_interpreter = 1;
+        }
+        if(dpp_event == dpp_event_task)
+        {
+            dpp_currenttaskid = DPP_INVALID_TASK_ID;
+            dpp_taskinterpreter = 1;
+        }
+        if(dpp_event == dpp_event_class)
+        {
+            dpp_workingclassid = dpp_invalidclass;
+        }
+        if(dpp_event == dpp_event_inline)
+        {
+            dpp_currentinlineid = DPP_INVALID_FORM_ID;
+            dpp_inlineinterpreter = 1;
+            dpp_error("'dpp_inlineinterpreter' is updated to '%i'",dpp_inlineinterpreter);
+            dpp_error("'dpp_currentinlineid' is updated to '%i'",dpp_currentinlineid);
+        }
         return 1;
     }
 
     if(!strcmp(funcgroup[0], "do"))
     {
-        dpp_interpreter = 0;
-        //dpp_processfunc = dpp_currentfuncid;
+        if(dpp_event == dpp_event_form)
+        {
+            dpp_interpreter = 0;
+            //dpp_processfunc = dpp_currentfuncid;
+        }
+        if(dpp_event == dpp_event_task)
+        {
+            dpp_taskinterpreter = 0;
+        }
+        if(dpp_event == dpp_event_class)
+        {
+            dpp_workingclassid = dpp_lastclass;
+        }
+        if(dpp_event == dpp_event_inline)
+        {
+            dpp_inlineinterpreter = 0;
+            dpp_error("'dpp_inlineinterpreter' is updated to '%i'",dpp_inlineinterpreter);
+        }
         return 1;
     }
-   
+
+    /*
+    if(!strcmp(funcgroup[0], "inline"))
+    {
+        if(!strcmp(funcgroup[1],"end"))
+        {
+            dpp_currentinlineid = DPP_INVALID_FORM_ID;
+            dpp_inlineinterpreter = 1;
+            dpp_error("'dpp_inlineinterpreter' is updated to '%i'",dpp_inlineinterpreter);
+            dpp_error("'dpp_currentinlineid' is updated to '%i'",dpp_currentinlineid);
+        }
+        if(!strcmp(funcgroup[1],"do"))
+        {
+            dpp_inlineinterpreter = 0;
+            dpp_error("'dpp_inlineinterpreter' is updated to '%i'",dpp_inlineinterpreter);
+        }
+        return 1;
+    }
+
+    
     if(!strcmp(funcgroup[0], "task"))
     {
         if(!strcmp(funcgroup[1],"end"))
@@ -233,17 +287,45 @@ stock dpp_process(line[])
         return 1;
     }
 
-    if(!strcmp(funcgroup[0], "inline"))
+    if(!strcmp(funcgroup[0], "class"))
     {
         if(!strcmp(funcgroup[1],"end"))
         {
-            dpp_currentinlineid = DPP_INVALID_FORM_ID;
-            dpp_inlineinterpreter = 1;
+            dpp_workingclassid = dpp_invalidclass;
         }
         if(!strcmp(funcgroup[1],"do"))
         {
-            dpp_inlineinterpreter = 0;
+            dpp_workingclassid = dpp_lastclass;
         }
+        return 1;
+    }
+    */
+
+    if(dpp_interpreter == 0)
+    {
+        format(codeblockline, sizeof codeblockline, "%s;", line);
+        dpp_debug("codeblockline:%s",codeblockline);
+        dpp_debug("dpp_currentfuncid:%i",dpp_currentfuncid);
+        strcat(dpp_funccodeblock[dpp_currentfuncid], codeblockline);
+        return 1;
+    }
+
+    if(dpp_taskinterpreter == 0)
+    {
+        format(codeblockline, sizeof codeblockline, "%s;", line);
+        dpp_debug("codeblockline:%s",codeblockline);
+        dpp_debug("dpp_currenttaskid:%i",dpp_currenttaskid);
+        strcat(dpp_taskcodeblock[dpp_currenttaskid], codeblockline);
+        return 1;
+    }
+
+    if(dpp_inlineinterpreter == 0)
+    {
+        format(codeblockline, sizeof codeblockline, "%s;", line);
+        dpp_debug("codeblockline:%s",codeblockline);
+        dpp_debug("dpp_currentinlineid:%i",dpp_currentinlineid);
+        strcat(dpp_inlinecodeblock[dpp_currentinlineid], codeblockline);
+        dpp_error("Added code '%s' to inline form [%i]",dpp_inlinecodeblock[dpp_currentinlineid],dpp_currentinlineid);
         return 1;
     }
 
@@ -301,6 +383,8 @@ stock dpp_process(line[])
         }
 
         dpp_createfunc(arguments[0],arguments[1]);
+
+        dpp_event = dpp_event_form;
         return 1;
     }
     if(!strcmp(funcgroup[0], "auto&form"))
@@ -313,6 +397,8 @@ stock dpp_process(line[])
         new arguments[2][1024];
         dpp_parseline(funcgroup[1],arguments,'?');
         dpp_createfunc(arguments[0],arguments[1],1);
+
+        dpp_event = dpp_event_form;
         return 1;
     }
     if(!strcmp(funcgroup[0], "hook&form"))
@@ -325,6 +411,8 @@ stock dpp_process(line[])
         new arguments[2][1024];
         dpp_parseline(funcgroup[1],arguments,'?');
         dpp_createfunc(arguments[0],arguments[1],0,1);
+
+        dpp_event = dpp_event_form;
         return 1;
     }
     if(!strcmp(funcgroup[0], "native&form"))
@@ -337,14 +425,25 @@ stock dpp_process(line[])
         dpp_regnativeform(funcgroup[1]);
         return 1;
     }
-    if(!strcmp(funcgroup[0], "inline&form"))
+    if(!strcmp(structgroup[1], "inline&form"))
     {
-        if(dpp_processfunc == DPP_INVALID_FORM_ID)
+        new formid = -1;
+        for(new i; i < dpp_maxfuncs; i++)
         {
-            dpp_error("Inline forms are meant to be inside other forms.",);
+            if(!strcmp(structgroup[0], dpp_funcname[i]))
+            {
+                formid = i;
+                break;
+            }
+        }
+        if(formid == -1)
+        {
+            dpp_error("Unknown base form ID; unable to create an inline form.",);
             return 1;
         }
-        dpp_createinline(funcgroup[1],dpp_processfunc);
+        CallLocalFunction("dpp_createinline", "si", funcgroup[1], formid);
+
+        dpp_event = dpp_event_inline;
         return 1;
     }
 
@@ -399,64 +498,20 @@ stock dpp_process(line[])
         new arguments[2][1024];
         dpp_parseline(funcgroup[1],arguments,'#');
         dpp_createtask(arguments[0],strval(arguments[1]));
+
+        dpp_event = dpp_event_task;
         return 1;
     }
 
 
-    #if DPP_BRACES == 1
-    new line_wo_brace[1024];
-    new char_idx = strlen(funcgroup[0]) - 1;
-    if(funcgroup[0][char_idx] == '{')
-    {
-        dpp_interpreter = 0;
-        strmid(line_wo_brace, line, 0, strlen(line));
-        strdel(line_wo_brace, 0, 1);
-        return 1;
-    }
-    if(funcgroup[0][char_idx] == '}')
-    {
-        dpp_interpreter = 1;
-        return 1;
-    }
-    #endif
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            ARG REPLACEMENT SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
 
-
-
-    if(dpp_interpreter == 0)
-    {
-        format(codeblockline, sizeof codeblockline, "%s;", line);
-        #if DPP_BRACES == 1
-        format(codeblockline, sizeof codeblockline, "%s;", line_wo_brace);
-        #endif
-        dpp_debug("codeblockline:%s",codeblockline);
-        dpp_debug("dpp_currentfuncid:%i",dpp_currentfuncid);
-        strcat(dpp_funccodeblock[dpp_currentfuncid], codeblockline);
-        return 1;
-    }
-
-    if(dpp_taskinterpreter == 0)
-    {
-        format(codeblockline, sizeof codeblockline, "%s;", line);
-        #if DPP_BRACES == 1
-        format(codeblockline, sizeof codeblockline, "%s;", line_wo_brace);
-        #endif
-        dpp_debug("codeblockline:%s",codeblockline);
-        dpp_debug("dpp_currenttaskid:%i",dpp_currenttaskid);
-        strcat(dpp_taskcodeblock[dpp_currenttaskid], codeblockline);
-        return 1;
-    }
-
-    if(dpp_inlineinterpreter == 0)
-    {
-        format(codeblockline, sizeof codeblockline, "%s;", line);
-        #if DPP_BRACES == 1
-        format(codeblockline, sizeof codeblockline, "%s;", line_wo_brace);
-        #endif
-        dpp_debug("codeblockline:%s",codeblockline);
-        dpp_debug("dpp_currentfuncid:%i",dpp_currentfuncid);
-        strcat(dpp_inlinecodeblock[dpp_currentinlineid], codeblockline);
-        return 1;
-    }
 
     for(new i; i < 10; i++)
     {
@@ -498,23 +553,15 @@ stock dpp_process(line[])
     if(!strcmp(funcgroup[0], "public&class"))
     {
         dpp_createclass(funcgroup[1]);
+
+        dpp_event = dpp_event_class;
         return 1;
     }
     if(!strcmp(funcgroup[0], "hook&class"))
     {
         dpp_hookclass(funcgroup[1]);
-        return 1;
-    }
-    if(!strcmp(funcgroup[0], "class"))
-    {
-        if(!strcmp(funcgroup[1],"end"))
-        {
-            dpp_workingclassid = dpp_invalidclass;
-        }
-        if(!strcmp(funcgroup[1],"do"))
-        {
-            dpp_workingclassid = dpp_lastclass;
-        }
+
+        dpp_event = dpp_event_class;
         return 1;
     }
 
@@ -781,6 +828,7 @@ stock dpp_process(line[])
             if(!strcmp(funcgroup[1], "int&var"))
             {
                 new dpp_varid = -1, dpp_iterid = -1;
+                dpp_argclasscheck(args_const[1]);
                 for(new i; i < dpp_maxvar; i++)
                 {
                     if(!strcmp(args_const[1], dpp_vardata[i][var_name]))
@@ -792,6 +840,7 @@ stock dpp_process(line[])
                         }
                     }
                 }
+                dpp_argclasscheck(args_const[2]);
                 for(new i; i < dpp_maxiter; i++)
                 {
                     if(!strcmp(args_const[2], dpp_itername[i]))
@@ -1494,6 +1543,7 @@ stock dpp_process(line[])
             {
                 if(dpp_validinline[i] == 1)
                 {
+                    dpp_error("Inline: '%s' | Code: '%s'",funcgroup[1],dpp_inlinecodeblock[i]);
                     dpp_subexecute(dpp_inlinecodeblock[i]);
                     return 1;
                 }
