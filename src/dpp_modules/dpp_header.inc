@@ -483,10 +483,10 @@ stock dpp_argsystemval(arg[])
     return 1;
 }
 ///////////////////
-dpp_argsizeof(arg[]); public dpp_argsizeof(arg[])
+dpp_arginstruct(arg[]); public dpp_arginstruct(arg[])
 {
     new 
-        iterid = -1,
+        symbolid = -1,
         newvalue[dpp_argcharsize],
         operands[2][dpp_maxsymbolchar];
 
@@ -499,13 +499,76 @@ dpp_argsizeof(arg[]); public dpp_argsizeof(arg[])
             {
                 if(dpp_validiter[i] == 1)
                 {
-                    iterid = i;
+                    symbolid = i;
                     break;
                 }
             }
         }
-        if(iterid == -1) return 1;
-        format(newvalue, sizeof newvalue, "%i", dpp_itersize[iterid]);
+        if(symbolid == -1) return 1;
+        format(newvalue, sizeof newvalue, "%i", dpp_itersize[symbolid]);
+        strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
+    }
+
+    if(!strcmp(operands[0], "defined"))
+    {
+        dpp_argclasscheck(operands[1]);
+        
+        for(new i; i < dpp_maxiter; i++)
+        {
+            if(!strcmp(operands[1], dpp_itername[i]))
+            {
+                if(dpp_validiter[i] == 1)
+                {
+                    symbolid = i;
+                    break;
+                }
+            }
+        }
+
+        for(new i; i < dpp_maxfuncs; i++)
+        {
+            if(!strcmp(operands[1], dpp_funcname[i]))
+            {
+                if(dpp_validfunc[i] == 1)
+                {
+                    symbolid = i;
+                    break;
+                }
+            }
+        }
+
+        for(new i; i < dpp_maxvar; i++)
+        {
+            if(!strcmp(operands[1], dpp_vardata[i][var_name]))
+            {
+                if(dpp_vardata[i][var_valid] == 1)
+                {
+                    symbolid = i;
+                    break;
+                }
+            }
+        }
+
+        for(new i; i < dpp_maxconst; i++)
+        {
+            if(!strcmp(operands[1], dpp_constdata[i][const_name]))
+            {
+                if(dpp_constdata[i][const_valid] == 1)
+                {
+                    symbolid = i;
+                    break;
+                }
+            }
+        }
+
+        if(symbolid == -1)
+        {
+            format(newvalue, sizeof newvalue, "0");
+        }
+        else
+        {
+            format(newvalue, sizeof newvalue, "1");
+        }
         strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
     }
     return 1;

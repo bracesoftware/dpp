@@ -35,3 +35,18 @@ Output:
 ```
 Test string
 ```
+
+## `defined` instruction
+
+```pawn
+var::define.int,variable,1;
+
+if.equ,defined?variable,1->console.println,"'variable' is defined!";
+if.equ,defined?dummyvar,1->console.println,"This should not be printed!!";
+```
+
+Output:
+
+```
+'variable' is defined!
+```
