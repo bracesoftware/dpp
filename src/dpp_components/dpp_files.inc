@@ -14,7 +14,7 @@
 forward dpp_processfiles(funcgroup[][],args[][]);
 public dpp_processfiles(funcgroup[][],args[][])
 {
-    if(!strcmp(funcgroup[0], "using::files"))
+    if(!strcmp(funcgroup[0], "files"))
     {
         if(dpp_config[files_comp] == 0)
         {

@@ -57,7 +57,7 @@ public DPP_discord_init()
 forward dpp_processdiscord(funcgroup[][],args[][]);
 public dpp_processdiscord(funcgroup[][],args[][])
 {
-    if(!strcmp(funcgroup[0], "using::discord"))
+    if(!strcmp(funcgroup[0], "discord"))
     {
         if(dpp_apis[discord] == 0)
         {

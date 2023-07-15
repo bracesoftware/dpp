@@ -6,7 +6,7 @@
 ```pawn
 public&task.testtask#1000;
 do;
-	using::console.println,"Task works!";
+	console.println,"Task works!";
 end;
 ```
 

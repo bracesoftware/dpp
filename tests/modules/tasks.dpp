@@ -1,21 +1,21 @@
 public&task.testtask#1000;
-task.do;
-	using::console.println,"Task works!";
-task.end;
+do;
+	console.println,"Task works!";
+end;
 
 public&task.anothersexytask#3000;
-task.do;
-	using::console.println,"Another task also works!";
-	using::samp.SendClientMessage,0,0,"Test client message";
-task.end;
+do;
+	console.println,"Another task also works!";
+	samp.SendClientMessage,0,0,"Test client message";
+end;
 
 auto&form.OnPlayerConnect?playerid;
 do;
-	using::samp.SendClientMessage,playerid@OnPlayerConnect,0,"Welcome to the D++ server";
+	samp.SendClientMessage,playerid@OnPlayerConnect,0,"Welcome to the D++ server";
 end;
 
 auto&form.OnPlayerDisconnect?playerid&reason;
 do;
-	using::console.println,"Player {playerid@OnPlayerDisconnect} disconnected | Reason: {reason@OnPlayerDisconnect}";
+	console.println,"Player {playerid@OnPlayerDisconnect} disconnected | Reason: {reason@OnPlayerDisconnect}";
 	return.int,1;
 end;

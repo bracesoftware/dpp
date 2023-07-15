@@ -1,67 +1,67 @@
-using::console.println,"Files included";
+console.println,"Files included";
 
 import::component.files;
 
-using::files.open_for_write,"testfile.omg";
-using::files.write,"wrote this nigga";
-using::files.close;
+files.open_for_write,"testfile.omg";
+files.write,"wrote this nigga";
+files.close;
 
-using::files.open_for_read,"testfile.omg";
+files.open_for_read,"testfile.omg";
 var::define.str,myvar_to_test_files,"This should not be here";
-using::files.read,myvar_to_test_files;
-using::console.println,"{myvar_to_test_files}";
-using::files.close;
+files.read,myvar_to_test_files;
+console.println,"{myvar_to_test_files}";
+files.close;
 
-using::files.delete,"newfile.omg";
-using::files.open_for_append,"newfile.omg";
-using::files.write,"first line";
-using::files.write,"second line";
-using::files.write,"third line";
-using::files.close;
+files.delete,"newfile.omg";
+files.open_for_append,"newfile.omg";
+files.write,"first line";
+files.write,"second line";
+files.write,"third line";
+files.close;
 
 var::define.int,testintagainomg__aa,364;
 
-using::console.println,"{testintagainomg__aa}";
+console.println,"{testintagainomg__aa}";
 
 public&form.FILES_TEST_FORM?text;
 do;
-	using::console.println,   text@FILES_TEST_FORM;
+	console.println,   text@FILES_TEST_FORM;
 end;
 
-using::user.FILES_TEST_FORM,   "Funny thing"  ;
+user.FILES_TEST_FORM,   "Funny thing"  ;
 
 public&form.returntest;
 do;
-	using::console.println, "Hello Worlddddddddddd";
+	console.println, "Hello Worlddddddddddd";
 	if.equ, 23, 13 -> return.int,1;
 	return.int,2134;
-	using::console.println, "Return failed lmao";
+	console.println, "Return failed lmao";
 end;
 
-using::console.cout, returntest;
+console.cout, returntest;
 
 
 public&form.yieldreturntest;
 do;
-	using::console.println, "Hello Worlddddddd";
+	console.println, "Hello Worlddddddd";
 	yield&return.str,"mega sexy return";
 	if.notequ,1,1->yield&return.str,"HOOOOOOOOOOOOOO";
-	using::console.println, "Yield Return WORKS!";
+	console.println, "Yield Return WORKS!";
 end;
 
-using::console.println, yieldreturntest;
+console.println, yieldreturntest;
 
-if.equ, 5 ,   5 -> using::console.println,  "Syntax works!";
+if.equ, 5 ,   5 -> console.println,  "Syntax works!";
 
-if . equ , 1, 1-> using :: console . println , "OmG" ;
+if . equ , 1, 1-> console . println , "OmG" ;
 
-using::system.rem,"Example code";
+system.rem,"Example code";
 var::define.int,syntax_test,1;
 public&form.whilelooptest;
 do;
 	var::set.int,syntax_test,add?syntax_test:1;
-	using::console.println,"{syntax_test} eeeeeeeeeeeeeeeeee";
+	console.println,"{syntax_test} eeeeeeeeeeeeeeeeee";
 end;
-if.equ,1,1->while.notequ,syntax_test,11->using::user.whilelooptest;
+if.equ,1,1->while.notequ,syntax_test,11->user.whilelooptest;
 
-using::console.println,"This is still runnin right? {syntax_test}";
+console.println,"This is still runnin right? {syntax_test}";

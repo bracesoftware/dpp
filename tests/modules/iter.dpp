@@ -6,10 +6,22 @@ iter::add,testiter,1;
 iter::add,testiter,10;
 iter::remove,testiter,1;
 
-foreach.int&var,foreachtestvar,testiter->using::console.println,"foreach test {foreachtestvar}";
+foreach.int&var,foreachtestvar,testiter->console.println,"foreach test {foreachtestvar}";
 
 iter::add,testiter,1;
 
-foreach.int&var,foreachtestvar,testiter->using::console.println,"foreach test #2 {foreachtestvar}";
+foreach.int&var,foreachtestvar,testiter->console.println,"foreach test #2 {foreachtestvar}";
+
+console.cout,sizeof?testiter;
 
 iter::delete,testiter;
+
+console.cout,1; console.println,"Lmao ok";
+
+public&class.IterClass;
+do;
+	iter::define,iter,10;
+end;
+
+iter::add,IterClass:iter,364;
+foreach.int&var,foreachtestvar,IterClass:iter->console.println,"foreach test #3 {foreachtestvar}";

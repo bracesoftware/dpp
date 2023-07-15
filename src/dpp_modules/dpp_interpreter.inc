@@ -145,9 +145,9 @@ stock dpp_process(line[])
         }
     }
 
-    //using::console.cout,"Hello World";
+    //console.cout,"Hello World";
 
-    //  funcgroup[0]    using::console
+    //  funcgroup[0]    console
     //  funcgroup[1]    cout
     //  args[1]         "Hello World"
 
@@ -519,8 +519,8 @@ stock dpp_process(line[])
         if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
             !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
             !strcmp(funcgroup[0], "var::set") ||
-                (!strcmp(funcgroup[0], "using::system") && !strcmp(funcgroup[1], "arginit")) ||
-                (!strcmp(funcgroup[0], "using::files") && !strcmp(funcgroup[1], "read"))){
+                (!strcmp(funcgroup[0], "system") && !strcmp(funcgroup[1], "arginit")) ||
+                (!strcmp(funcgroup[0], "files") && !strcmp(funcgroup[1], "read"))){
             if(i == 1)
             {
                 dpp_argclasscheck(args[i]);
@@ -600,8 +600,8 @@ stock dpp_process(line[])
             if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
                 !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
                 !strcmp(funcgroup[0], "var::set") || 
-                (!strcmp(funcgroup[0], "using::system") && !strcmp(funcgroup[1], "arginit")) ||
-                (!strcmp(funcgroup[0], "using::files") && !strcmp(funcgroup[1], "read")))
+                (!strcmp(funcgroup[0], "system") && !strcmp(funcgroup[1], "arginit")) ||
+                (!strcmp(funcgroup[0], "files") && !strcmp(funcgroup[1], "read")))
                 {
                     if(i == 1)
                     {
@@ -624,7 +624,7 @@ stock dpp_process(line[])
             dpp_formatarg(args[i]);
         }
         // IF CHECKS
-        //if.equ,1,1->using::console.cout,"1 is 1";
+        //if.equ,1,1->console.cout,"1 is 1";
         if(!strcmp(funcgroup[0], "if"))
         {
             dpp_skipelse = 0;
@@ -700,7 +700,7 @@ stock dpp_process(line[])
             return 1;
         }
         // WHILE LOOPS
-        //while.notequ,testvar,1->var::set.int,testvar,add?testvar:1&using::console.println,"{testvar}";
+        //while.notequ,testvar,1->var::set.int,testvar,add?testvar:1&console.println,"{testvar}";
         if(!strcmp(funcgroup[0], "while"))
         {
             new 
@@ -1462,7 +1462,7 @@ stock dpp_process(line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "using::user"))
+    if(!strcmp(funcgroup[0], "user"))
     {
         for(new i; i < dpp_maxfuncs; i++)
         {

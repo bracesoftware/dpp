@@ -14,7 +14,7 @@
 forward dpp_processsystem(funcgroup[][],args[][]);
 public dpp_processsystem(funcgroup[][],args[][])
 {
-    if(!strcmp(funcgroup[0], "using::system"))
+    if(!strcmp(funcgroup[0], "system"))
     {
         if(dpp_config[system_comp] == 0)
         {

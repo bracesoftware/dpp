@@ -11,7 +11,7 @@
 
 ```pawn
 import::component.console;
-using::console.println,"Hello World";
+console.println,"Hello World";
 ```
 
 So you are using the `using` procedure on a `console` component to use the `println` form - brilliant!
@@ -34,7 +34,7 @@ native&form.discord_bot_send_message;
 ```pawn
 public&form.formname;
 do;
-	using::console.println,"my first user form";
+	console.println,"my first user form";
 end;
 ```
 
@@ -45,7 +45,7 @@ You also may return values.
 ```pawn
 public&form.formname;
 do;
-	using::console.println,"my first user form";
+	console.println,"my first user form";
 	return.str,"this was returned";
 end;
 ```
@@ -55,17 +55,17 @@ Then you can use this user form as an argument in a native form.
 ```pawn
 public&form.formname;
 do;
-	using::console.println,"my first user form";
+	console.println,"my first user form";
 	return.str,"this was returned";
 end;
 
-using::console.println,formname;
+console.println,formname;
 ```
 
 To call an user form, use:
 
 ```pawn
-using::user.formname;
+user.formname;
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ using::user.formname;
 ```pawn
 const::define.str,CONST_NAME,"constant worked";
 
-using::console.println,CONST_NAME;
+console.println,CONST_NAME;
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -88,21 +88,21 @@ using::console.println,CONST_NAME;
 ```pawn
 public&form.functobehooked;
 do;
-	using::console.println,"HOOKED";
+	console.println,"HOOKED";
 	return.int,1;
 end;
 
 hook&form.functobehooked;
 do;
-	using::console.println,"HOOKED 1";
+	console.println,"HOOKED 1";
 	return.int,1;
 end;
 
 hook&form.functobehooked;
 do;
-	using::console.println,"HOOKED 2";
+	console.println,"HOOKED 2";
 	return.int,1;
 end;
 
-using::user.functobehooked;
+user.functobehooked;
 ```

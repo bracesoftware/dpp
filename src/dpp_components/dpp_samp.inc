@@ -251,7 +251,7 @@ stock SetMaxPlayers(maxplayers)
 forward dpp_processsamp(funcgroup[][],args[][]);
 public dpp_processsamp(funcgroup[][],args[][])
 {
-    if(!strcmp(funcgroup[0], "using::samp"))
+    if(!strcmp(funcgroup[0], "samp"))
     {
         if(dpp_config[samp_comp] == 0)
         {

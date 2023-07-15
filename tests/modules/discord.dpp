@@ -1,4 +1,4 @@
-using::console.println,"Discord was included";
+console.println,"Discord was included";
 
 import::api.discord;
 
@@ -6,12 +6,12 @@ native&form.discord_bot_send_message;
 
 auto&form.discord_init;
 do;
-	using::console.println,"discord_init called";
-	using::discord.discord_bot_send_message,1012320061278662696,"THIS WAS SENT FROM D++!!!";
+	console.println,"discord_init called";
+	discord.discord_bot_send_message,1012320061278662696,"THIS WAS SENT FROM D++!!!";
 	return.int,1;
 end;
 
-using::console.println,"Discord was included again?";
+console.println,"Discord was included again?";
 
 var::define.str,test,"test succedeed";
 const::define.int,test2,1;
@@ -19,21 +19,21 @@ var::define.str,test3,"hmmm {test}"
 
 pragma::option.ctrlchar,*;
 
-using::console.println,"{test2}st format test: {test} *, {test3}";
+console.println,"{test2}st format test: {test} *, {test3}";
 
 public&form.dppprint?message;
 do;
-	using::console.println,message@dppprint;
+	console.println,message@dppprint;
 	return.int,1;
 end;
 
-using::user.dppprint,"{test}";
+user.dppprint,"{test}";
 
 
 var::define.int,testvar,0;
-while.notequ,testvar,10->var::set.int,testvar,add?testvar:1&using::console.println,"{testvar}";
+while.notequ,testvar,10->var::set.int,testvar,add?testvar:1&console.println,"{testvar}";
 
-while.equ,testvar,10->var::set.int,testvar,add?testvar:1&using::console.println,"This should be printed only once!";
+while.equ,testvar,10->var::set.int,testvar,add?testvar:1&console.println,"This should be printed only once!";
 
-if.equ,1,1->while.equ,testvar,11->var::set.int,testvar,add?testvar:1&using::console.println,"This should be printed again!";
+if.equ,1,1->while.equ,testvar,11->var::set.int,testvar,add?testvar:1&console.println,"This should be printed again!";
 

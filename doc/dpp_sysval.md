@@ -6,6 +6,6 @@
 
 ```pawn
 var::define.int,formid,__proccessed_form_id;
-using::console.println,"'inlinetest' is {formid}";
+console.println,"'inlinetest' is {formid}";
 
 ```

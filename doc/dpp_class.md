@@ -25,7 +25,7 @@ end;
 To use this variable, we need to include the class name within the variable name; like this:
 
 ```pawn
-using::console.println,customer:name;
+console.println,customer:name;
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ do;
 	var::define.str,name,"Alex";
 end;
 
-using::console.println,customer:name;
+console.println,customer:name;
 
 ```
 
@@ -51,12 +51,12 @@ do;
 	var::define.str,name,"Alex";
 end;
 
-using::console.println,customer:name;
+console.println,customer:name;
 
 hook&class.customer;
 do;
 	var::define.int,age,12;
 end;
 
-using::console.cout,customer:age;
+console.cout,customer:age;
 ```

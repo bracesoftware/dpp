@@ -6,7 +6,7 @@
 
 ```pawn
 var::define.int,forlooptestvar,0;
-if.equ,1,1->for.int&var,forlooptestvar,10->using::console.println,"For loop id {forlooptestvar}";
+if.equ,1,1->for.int&var,forlooptestvar,10->console.println,"For loop id {forlooptestvar}";
 ```
 
 Output:
@@ -29,12 +29,12 @@ For loop id 10
 ```pawn
 public&form.ForTest2?num;
 do;
-	using::console.println,"'num' is {num@ForTest2}";
+	console.println,"'num' is {num@ForTest2}";
 	return.int,1;
 end;
 
 var::set.int,forlooptestvar,0;
-for.int&var,forlooptestvar,5->using::user.ForTest2,forlooptestvar;
+for.int&var,forlooptestvar,5->user.ForTest2,forlooptestvar;
 ```
 
 Output:

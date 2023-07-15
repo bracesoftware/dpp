@@ -14,7 +14,7 @@ import::api.discord;
 ### Form: `discord_bot_send_message`
 - Equivalent to `DCC_SendChannelMessage` in Pawn.
 ```pawn
-using::discord.discord_bot_send_message,01234567890,"Message";
+discord.discord_bot_send_message,01234567890,"Message";
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ using::discord.discord_bot_send_message,01234567890,"Message";
 ```pawn
 auto&form.discord_init;
 do;
-	using::discord.discord_bot_send_message,01234567890,"Message";
+	discord.discord_bot_send_message,01234567890,"Message";
 	return.int,1;
 end;
 ```

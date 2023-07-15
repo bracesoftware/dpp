@@ -1,63 +1,63 @@
 extern&struct*samp_command.testcmd?playerid&params;
 do;
-	using::samp.SendClientMessage,playerid@testcmd,0,"Your command works!";
+	samp.SendClientMessage,playerid@testcmd,0,"Your command works!";
 	return.int,1;
 end;
 
-using::console.println,"Struct test included!";
+console.println,"Struct test included!";
 
 var::define.int,forlooptestvar,0;
-if.equ,1,1->for.int&var,forlooptestvar,10->using::console.println,"For loop id {forlooptestvar}";
+if.equ,1,1->for.int&var,forlooptestvar,10->console.println,"For loop id {forlooptestvar}";
 
-if.gt,forlooptestvar,1->using::console.println,"forlooptestvar ({forlooptestvar}) is greater than 1";
-if.lt,forlooptestvar,20->using::console.println,"forlooptestvar ({forlooptestvar}) is less than 20";
-if.ge,forlooptestvar,10->using::console.println,"forlooptestvar ({forlooptestvar}) is greater or equal to 10";
-if.le,forlooptestvar,10->using::console.println,"forlooptestvar ({forlooptestvar}) is greater or equal to 10";
-if.gt,1,2->using::console.println,"1 is greater than 2";
-if.lt,2,1->using::console.println,"2 is less than 1";
-if.ge,1,2->using::console.println,"1 is greater or equal to 2";
-if.le,2,1->using::console.println,"2 is less or equal to 1";
-else->if.equ,1,1->using::console.println,"Lmao else works!";
+if.gt,forlooptestvar,1->console.println,"forlooptestvar ({forlooptestvar}) is greater than 1";
+if.lt,forlooptestvar,20->console.println,"forlooptestvar ({forlooptestvar}) is less than 20";
+if.ge,forlooptestvar,10->console.println,"forlooptestvar ({forlooptestvar}) is greater or equal to 10";
+if.le,forlooptestvar,10->console.println,"forlooptestvar ({forlooptestvar}) is greater or equal to 10";
+if.gt,1,2->console.println,"1 is greater than 2";
+if.lt,2,1->console.println,"2 is less than 1";
+if.ge,1,2->console.println,"1 is greater or equal to 2";
+if.le,2,1->console.println,"2 is less or equal to 1";
+else->if.equ,1,1->console.println,"Lmao else works!";
 
 
-using::system.rem,"Another else test";
+system.rem,"Another else test";
 
 public&form.ElseTest;
 do;
-	if.equ,1,2->using::console.println,"1 and 2 are equal";
-	else->if.equ,2,3->using::console.println,"2 and 3 are equal";
-	else->using::console.println,"Nothing is equal";
+	if.equ,1,2->console.println,"1 and 2 are equal";
+	else->if.equ,2,3->console.println,"2 and 3 are equal";
+	else->console.println,"Nothing is equal";
 
-	if.equ,1,1->using::console.println,"1 and 1 are indeed equal";
-	else->using::console.println,"This should not be printed";
+	if.equ,1,1->console.println,"1 and 1 are indeed equal";
+	else->console.println,"This should not be printed";
 
 	return.int,1;
 end;
 
-using::user.ElseTest;
+user.ElseTest;
 
 
-if.equ,1,2->using::console.println,"1 and 2 are equal";
-else->if.equ,1,1->using::console.println,"1 and 1 are equal";
-else->using::console.println,"Yay!!";
-else->using::console.println,"Yayy twice!";
+if.equ,1,2->console.println,"1 and 2 are equal";
+else->if.equ,1,1->console.println,"1 and 1 are equal";
+else->console.println,"Yay!!";
+else->console.println,"Yayy twice!";
 
 import::component.misc;
 
 var::define.int,misctest1,23;
 var::define.int,misctest2,32;
 
-using::console.println,"{misctest1} and {misctest2}";
+console.println,"{misctest1} and {misctest2}";
 
-using::misc.swap,misctest1,misctest2;
+misc.swap,misctest1,misctest2;
 
-using::console.println,"{misctest1} and {misctest2}";
+console.println,"{misctest1} and {misctest2}";
 
 public&form.ForTest2?num;
 do;
-	using::console.println,"Damn for loop test {num@ForTest2}";
+	console.println,"Damn for loop test {num@ForTest2}";
 	return.int,1;
 end;
 
 var::set.int,forlooptestvar,0;
-for.int&var,forlooptestvar,5->using::user.ForTest2,forlooptestvar;
+for.int&var,forlooptestvar,5->user.ForTest2,forlooptestvar;

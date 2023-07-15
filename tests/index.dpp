@@ -12,39 +12,39 @@ import::component.system;
 import::component.samp;
 import::module,"test";
 
-using::system.rem,"Basic println example.";
-using::console.println,"Hual is a fucking bitch";
+system.rem,"Basic println example.";
+console.println,"Hual is a fucking bitch";
 
 public&form.testfunc;
 do;
-	using::console.println,"testfunc works.";
-	using::console.println,"testfunc works.";
+	console.println,"testfunc works.";
+	console.println,"testfunc works.";
 end;
 
 public&form.NewTestFunc;
 do;
-	using::console.println,"OH YEAH MAN";
+	console.println,"OH YEAH MAN";
 end;
 
-using::user.testfunc;
-using::user.NewTestFunc;
+user.testfunc;
+user.NewTestFunc;
 
-using::system.rem,"=================== NATIVES ===================";
+system.rem,"=================== NATIVES ===================";
 
-using::system.rem,"a_samp for D++";
+system.rem,"a_samp for D++";
 
 const::define.int,MAX_PLAYERS,1000;
 const::define.int,MAX_ACTORS,1000;
 const::define.int,MAX_VEHICLES,2000;
 
-using::samp.SetGameModeText,"d++ test";
-using::samp.SetMaxPlayers,MAX_PLAYERS;
+samp.SetGameModeText,"d++ test";
+samp.SetMaxPlayers,MAX_PLAYERS;
 
-using::system.rem,"===================FUNCS===================";
+system.rem,"===================FUNCS===================";
 
 public&form.testFunc;
 do;
-	using::console.println,"testFunc was called.";
+	console.println,"testFunc was called.";
 	return.str,"testFunc returned this.";
 end;
 
@@ -52,39 +52,39 @@ const::define.str,LMAO,"Lmao";
 
 public&form.disableDebug;
 do;
-	using::console.println,"Debug disabled";
+	console.println,"Debug disabled";
 	return.str,LMAO;
 end;
 
-using::console.println,testFunc;
-using::console.println,disableDebug;
+console.println,testFunc;
+console.println,disableDebug;
 
-using::system.rem,"===================CALLBACKS===================";
+system.rem,"===================CALLBACKS===================";
 
 
 auto&form.main;
 do;
-	using::console.println,"Hello World from main";
+	console.println,"Hello World from main";
 	return.int,1;
 end;
 
 auto&form.OnGameModeInit;
 do;
-	using::console.println,"OnGameModeInit works";
+	console.println,"OnGameModeInit works";
 	return.int,1;
-	using::console.println,"RETURN FAILED";
-	using::console.println,"OMG LOL HAHAHAH RETURN DOES NOT WORK";
+	console.println,"RETURN FAILED";
+	console.println,"OMG LOL HAHAHAH RETURN DOES NOT WORK";
 end;
 
 hook&form.OnGameModeInit;
 do;
-	using::console.println,"OnGameModeInit works twice!!!";
+	console.println,"OnGameModeInit works twice!!!";
 	return.int,1;
 end;
 
 auto&form.OnGameModeExit;
 do;
-	using::console.println,"OnGameModeExit works";
+	console.println,"OnGameModeExit works";
 	return.bool,true;
 end;
 

@@ -14,7 +14,7 @@ exit;
 ```pawn
 var::define.str,test,"Test string";
 
-using::console.println,"{test}";
+console.println,"{test}";
 ```
 
 Output:
@@ -25,10 +25,10 @@ Test string
 ```pawn
 public&form.testfunction?message;
 do;
-	using::console.println,message@testfunction;
+	console.println,message@testfunction;
 end;
 
-using::user.testfunction,"{test}";
+user.testfunction,"{test}";
 ```
 
 Output:

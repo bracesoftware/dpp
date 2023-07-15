@@ -9,13 +9,13 @@
 ```pawn
 public&form.MyForm;
 do;
-	using::console.println,"Hello World";
+	console.println,"Hello World";
 	return.int,1;
-	using::console.println, "This code won't be executed";
+	console.println, "This code won't be executed";
 end;
 
-using::console.cout,MyForm;
-using::system.rem,"Thing above will print 1";
+console.cout,MyForm;
+system.rem,"Thing above will print 1";
 ```
 
 
@@ -26,11 +26,11 @@ using::system.rem,"Thing above will print 1";
 ```pawn
 public&form.MyForm;
 do;
-	using::console.println,"Hello World";
+	console.println,"Hello World";
 	yield&return.int,1;
-	using::console.println, "This code will be executed too";
+	console.println, "This code will be executed too";
 end;
 
-using::console.cout,MyForm;
-using::system.rem,"Thing above will print 1";
+console.cout,MyForm;
+system.rem,"Thing above will print 1";
 ```

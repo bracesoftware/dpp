@@ -14,7 +14,7 @@
 forward dpp_processmisc(funcgroup[][],args[][],args_const[][]);
 public dpp_processmisc(funcgroup[][],args[][],args_const[][])
 {
-    if(!strcmp(funcgroup[0], "using::misc"))
+    if(!strcmp(funcgroup[0], "misc"))
     {
         if(dpp_config[misc_comp] == 0)
         {

@@ -14,7 +14,7 @@
 forward dpp_processconsole(funcgroup[][],args[][]);
 public dpp_processconsole(funcgroup[][],args[][])
 {
-    if(!strcmp(funcgroup[0], "using::console"))
+    if(!strcmp(funcgroup[0], "console"))
     {
         if(dpp_config[console_comp] == 0)
         {

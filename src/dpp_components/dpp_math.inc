@@ -14,7 +14,7 @@
 forward dpp_processmath(funcgroup[][],args[][]);
 public dpp_processmath(funcgroup[][],args[][])
 {
-    if(!strcmp(funcgroup[0], "using::math"))
+    if(!strcmp(funcgroup[0], "math"))
     {
         if(dpp_config[math_comp] == 0)
         {

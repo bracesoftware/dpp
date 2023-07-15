@@ -11,7 +11,7 @@ Example:
 ```pawn
 auto&form.OnGameModeInit;
 do;
-	using::console.println,"Script loaded";
+	console.println,"Script loaded";
 end;
 ```
 
@@ -30,7 +30,7 @@ Example:
 ```pawn
 extern&struct*samp_command.testcmd?playerid&params;
 do;
-	using::samp.SendClientMessage,playerid@testcmd,0,"Your command works!";
+	samp.SendClientMessage,playerid@testcmd,0,"Your command works!";
 	return.int,1;
 end;
 ```
