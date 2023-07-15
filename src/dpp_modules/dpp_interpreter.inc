@@ -470,6 +470,8 @@ stock dpp_process(line[])
             dpp_parseline(funcgroup[1],arguments,'?');
             //dpp_error("samp_command struct created: \"%s\"",arguments[0]);
             dpp_createfunc(arguments[0],arguments[1], .struct = dpp_formstruct_sampcmd);
+
+            dpp_event = dpp_event_form;
             return 1;
         }
         dpp_error("Unknown form structure type [\"%s\"].",structgroup[1]);
@@ -1464,6 +1466,7 @@ stock dpp_process(line[])
 
     if(!strcmp(funcgroup[0], "user"))
     {
+        dpp_argclasscheck(funcgroup[1]);
         for(new i; i < dpp_maxfuncs; i++)
         {
             if(!strcmp(dpp_funcname[i], funcgroup[1]))
@@ -1511,8 +1514,7 @@ stock dpp_process(line[])
                             }
                         }
                     }
-                    dpp_clearformstack(dpp_processfunc);
-                    dpp_processfunc = DPP_INVALID_FORM_ID;
+                    dpp_clearformstack(dpp_processfunc); dpp_processfunc = DPP_INVALID_FORM_ID;
                     return 1;
                 }
             }

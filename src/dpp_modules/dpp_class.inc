@@ -41,7 +41,6 @@ stock dpp_argclasscheck(arg[])
         if(!strcmp(dpp_funcname[i],newvalue) && dpp_validfunc[i] == 1)
         {
             strmid(arg, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
-            
             break;
         }
     }

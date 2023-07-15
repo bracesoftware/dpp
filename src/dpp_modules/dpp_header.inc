@@ -630,7 +630,7 @@ stock dpp_argfunccheck(arg[])
                 }
 
                 dpp_processfunc = DPP_INVALID_FORM_ID;
-
+                dpp_clearformstack(dpp_processfunc); dpp_processfunc = DPP_INVALID_FORM_ID;
                 /////////////////////////////////////
 
                 if(dpp_returntype[i] == dpp_rtn_type_int)
