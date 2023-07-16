@@ -4,7 +4,7 @@ import::component.samp;
 
 hook&form.OnGameModeInit;
 do;
-	using::console.println,"D++ 'a_samp' module loaded.";
+	console.println,"D++ 'a_samp' module loaded.";
 	return.int,1;
 end;
 
