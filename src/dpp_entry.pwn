@@ -21,6 +21,8 @@
 #define DPP_VERSION_MINOR 3
 #define DPP_VERSION_PATCH 0
 #define DPP_VERSION_RELEASE 1
+
+#define DPP_VERSION_BETA 1
 //-----------------------------------------------------------
 #define DPP_INVALID_INLINE_ID 0
 #define DPP_INVALID_FORM_ID 0

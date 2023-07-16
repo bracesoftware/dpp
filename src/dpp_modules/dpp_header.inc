@@ -480,6 +480,31 @@ stock dpp_argsystemval(arg[])
         format(newvalue, sizeof newvalue, "%i", dpp_processfunc);
         strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
     }
+    if(!strcmp(arg, "__majorver"))
+    {
+        format(newvalue, sizeof newvalue, "%i", DPP_VERSION_MAJOR);
+        strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
+    }
+    if(!strcmp(arg, "__minorver"))
+    {
+        format(newvalue, sizeof newvalue, "%i", DPP_VERSION_MINOR);
+        strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
+    }
+    if(!strcmp(arg, "__patch"))
+    {
+        format(newvalue, sizeof newvalue, "%i", DPP_VERSION_PATCH);
+        strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
+    }
+    if(!strcmp(arg, "__release"))
+    {
+        format(newvalue, sizeof newvalue, "%i", DPP_VERSION_RELEASE);
+        strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
+    }
+    if(!strcmp(arg, "__beta"))
+    {
+        format(newvalue, sizeof newvalue, "%i", DPP_VERSION_BETA);
+        strmid(arg, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
+    }    
     return 1;
 }
 ///////////////////
