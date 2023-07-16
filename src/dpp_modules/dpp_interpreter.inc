@@ -874,8 +874,57 @@ stock dpp_process(line[])
             }
             dpp_error("Unknown foreach-loop subject.",);
         }
+        //case
+        if(!strcmp(funcgroup[0], "case"))
+        {
+            if(dpp_skipcase == 1)
+            {
+                return 1;
+            }
+            if(dpp_vardata[dpp_switchedvar][integervalue] == strval(args[1]))
+            {
+                dpp_skipcase = 1;
+                dpp_subexecute2(extracode);
+            }
+        }
         return 1;
     } 
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            SWITCH SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(!strcmp(funcgroup[0], "switch"))
+    {
+        new dpp_varid = -1;
+        dpp_argclasscheck(args_const[1]);
+
+        for(new i; i < dpp_maxvar; i++)
+        {
+            if(!strcmp(args_const[1], dpp_vardata[i][var_name]))
+            {
+                if(dpp_vardata[i][var_valid] == 1)
+                {
+                    dpp_varid = i;
+                    break;
+                }
+            }
+        }
+
+        if(dpp_varid == -1)
+        {
+            dpp_error("Unknown variable; can't switch.",);
+            return 1;
+        }
+
+        dpp_switchedvar = dpp_varid;
+
+        return 1;
+    }
 
     ///////////////////////////////////////////////////////
     ////

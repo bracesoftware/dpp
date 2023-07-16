@@ -34,6 +34,7 @@
 - [Form structure types](doc/dpp_struct.md)
 - [`for`-loops](doc/dpp_for.md)
 - [`foreach`-loops and iterators](doc/dpp_foreach.md)
+- [`switch` and `case`](doc/dpp_switch.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info
