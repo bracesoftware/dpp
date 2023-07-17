@@ -1,13 +1,27 @@
-using::system.rem,"a_samp for D++";
-
 import::component.samp;
+import::component.console;
 
 hook&form.OnGameModeInit;
-do;
-	console.println,"D++ 'a_samp' module loaded.";
+{;
+	console.println.log,"D++ 'a_samp' module loaded.";
 	return.int,1;
-end;
+};
 
 const::define.int,MAX_PLAYERS,1000;
 const::define.int,MAX_ACTORS,1000;
 const::define.int,MAX_VEHICLES,2000;
+
+public&class.SAMP;
+<;
+	iter::define,Player,MAX_PLAYERS;
+>;
+
+hook&form.OnPlayerConnect?playerid;
+{;
+	iter::add,SAMP:Player,playerid@OnPlayerConnect;
+};
+
+hook&form.OnPlayerDisconnect?playerid;
+{;
+	iter::remove,SAMP:Player,playerid@OnPlayerConnect;
+};
