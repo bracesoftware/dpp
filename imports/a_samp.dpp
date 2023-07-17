@@ -23,5 +23,5 @@ hook&form.OnPlayerConnect?playerid;
 
 hook&form.OnPlayerDisconnect?playerid;
 {;
-	iter::remove,SAMP:Player,playerid@OnPlayerConnect;
+	iter::remove,SAMP:Player,playerid@OnPlayerDisconnect;
 };
