@@ -35,9 +35,9 @@ foreach test #2 10
 
 ```pawn
 public&class.IterClass;
-do;
+{;
 	iter::define,iter,10;
-end;
+};
 
 iter::add,IterClass:iter,364;
 foreach.int&var,foreachtestvar,IterClass:iter->console.println,"foreach test #3 {foreachtestvar}";

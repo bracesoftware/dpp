@@ -16,28 +16,28 @@ if.equ,false,true->console.println,"false is equal to true";
 
 
 public&form.functobehooked?arg1&arg2&arg3;
-do;
+{;
 	console.println,"HOOKED";
 	return.int,1;
-end;
+};
 
 hook&form.functobehooked;
-do;
+{;
 	console.println,"HOOKED 1";
 	return.int,1;
-end;
+};
 
 hook&form.functobehooked;
-do;
+{;
 	console.println,"HOOKED 2";
 	return.int,1;
-end;
+};
 
 user.functobehooked,"oh lol",1,false;
 
 
 public&form.arginit_test?playerid&string;
-do;
-end;
+{;
+};
 
 system.arginit,arginit_test,1,"Hello!";

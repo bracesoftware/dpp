@@ -52,7 +52,7 @@ stock dpp_process(line[])
     new codeblockline[1024];
     new
         args[20][dpp_argcharsize], 
-        funcgroup[2][1024],
+        funcgroup[3][1024],
         args_const[20][dpp_argcharsize],
         structgroup[2][512];
 
@@ -203,7 +203,19 @@ stock dpp_process(line[])
         return 1;
     }
 
-    if(!strcmp(funcgroup[0], "end"))
+    if(dpp_strcmp(funcgroup[0], "<"))
+    {
+        dpp_workingclassid = dpp_lastclass;
+        return 1;
+    }
+
+    if(dpp_strcmp(funcgroup[0], ">"))
+    {
+        dpp_workingclassid = dpp_invalidclass;
+        return 1;
+    }
+
+    if(!strcmp(funcgroup[0], "}"))
     {
         if(dpp_event == dpp_event_form)
         {
@@ -217,10 +229,7 @@ stock dpp_process(line[])
             dpp_currenttaskid = DPP_INVALID_TASK_ID;
             dpp_taskinterpreter = 1;
         }
-        if(dpp_event == dpp_event_class)
-        {
-            dpp_workingclassid = dpp_invalidclass;
-        }
+
         if(dpp_event == dpp_event_inline)
         {
             dpp_currentinlineid = DPP_INVALID_FORM_ID;
@@ -231,7 +240,7 @@ stock dpp_process(line[])
         return 1;
     }
 
-    if(!strcmp(funcgroup[0], "do"))
+    if(!strcmp(funcgroup[0], "{"))
     {
         if(dpp_event == dpp_event_form)
         {
@@ -242,10 +251,7 @@ stock dpp_process(line[])
         {
             dpp_taskinterpreter = 0;
         }
-        if(dpp_event == dpp_event_class)
-        {
-            dpp_workingclassid = dpp_lastclass;
-        }
+
         if(dpp_event == dpp_event_inline)
         {
             dpp_inlineinterpreter = 0;
@@ -461,6 +467,11 @@ stock dpp_process(line[])
     {
         if(!strcmp(structgroup[1], "samp_command"))
         {
+            if(dpp_config[samp_comp] == 0)
+            {
+                dpp_error("Component \"samp\" is not imported.",);
+                return 1;
+            }
             if(dpp_processfunc != DPP_INVALID_FORM_ID)
             {
                 dpp_error("You can't create a structured form [\"%s\"] inside a form.",funcgroup[1]);
@@ -478,6 +489,32 @@ stock dpp_process(line[])
         return 1;
     }
 
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            METHOD SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(!strcmp(funcgroup[0], "form&method"))
+    {
+        if(dpp_processfunc != DPP_INVALID_FORM_ID)
+        {
+            dpp_error("You can't create a structured form [\"%s\"] inside a form.",funcgroup[1]);
+            return 1;
+        }
+        new arguments[2][1024];
+        dpp_parseline(funcgroup[1],arguments,'?');
+        //dpp_error("samp_command struct created: \"%s\"",arguments[0]);
+        dpp_createfunc(arguments[0],arguments[1], .method = 1);
+
+        dpp_event = dpp_event_form;
+        return 1;
+    }
+
+    CallLocalFunction("dpp_callmethod", "ss", funcgroup, args);
 
     ///////////////////////////////////////////////////////
     ////

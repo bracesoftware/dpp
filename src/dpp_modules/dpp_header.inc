@@ -37,17 +37,20 @@ new
 #define dpp_apierror%0(%3,%1,%2) format(dpp_error_str,sizeof dpp_error_str,">> D++ | API ("%3") ERROR (dpp.amx @ %s:%i): "%1,__file,__line,%2)&& \
     print(dpp_error_str)&&dpp_incerrcnt()
  //printf(">> D++ | ERROR (dpp.amx @ %s:%i): %s",__file,__line,%1)
-#define dpp_warning%0(%1) if(dpp_option_warnings==1)dpp_incwarncnt()&&printf(">> D++ | WARNING: "%1)
+
+#define dpp_warning%0(%1,%2) format(dpp_error_str,sizeof dpp_error_str,">> D++ | WARNING (dpp.amx @ %s:%i): "%1,__file,__line,%2)&& \
+    print(dpp_error_str)&&dpp_incwarncnt()
+
 
 stock dpp_incerrcnt()
 {
-    dpp_errorcount = dpp_errorcount+1;
+    dpp_errorcount++;
     return 1;
 }
 
 stock dpp_incwarncnt()
 {
-    dpp_warningcount = dpp_warningcount+1;
+    dpp_warningcount++;
     return 1;
 }
 
@@ -276,25 +279,19 @@ stock dpp_isnativereg(const funcname[])
     return 0;
 }
 
-stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0, struct = dpp_formstruct_local)
+stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0, struct = dpp_formstruct_local, method = 0)
 {
-    new alreadyexists;
-    for(new i; i < dpp_maxfuncs; i++)
+    if(dpp_workingclassid != dpp_invalidclass)
     {
-        if(!strcmp(dpp_funcname[i], funcname))
-        {
-            if(dpp_validfunc[i] == 1) alreadyexists = 1;
-        }
-    }   
+        new newvalue[dpp_argcharsize];
+        format(newvalue,sizeof(newvalue),"DPPCf@%s_%s",dpp_classname[dpp_workingclassid],funcname);
+        strmid(funcname, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
+    }
+    new dpp_formcount;
     for(new i; i < dpp_maxfuncs; i++)
     {
         if(dpp_validfunc[i] == 0)
         {
-            if(alreadyexists == 1 && hookform == 0)
-            {
-                dpp_error("Form \"%s\" already exists.",funcname);
-                return 1;
-            }
             if(hookform == 1)
             {
                 dpp_hookform[i] = 1;
@@ -303,19 +300,31 @@ stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0, struc
             {
                 dpp_autoform[i] = 1;
             }
+
             dpp_currentfuncid = i;
             dpp_validfunc[i] = 1;
             dpp_structtype[i] = struct;
+            dpp_methodform[i] = method;
 
-            if(dpp_workingclassid != dpp_invalidclass)
+            for(new y; y < dpp_maxfuncs; y++)
             {
-                new newvalue[dpp_argcharsize];
-                format(newvalue,sizeof(newvalue),"DPPCf@%s_%s",dpp_classname[dpp_workingclassid],funcname);
-                strmid(funcname, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
+                if(!strcmp(dpp_funcname[y], funcname))
+                {
+                    if(dpp_validfunc[y] == 1 && dpp_hookform[y] == 0)
+                    {
+                        dpp_formcount++;
+                    }
+                }
+            }
+
+            if(dpp_formcount > 1)
+            {
+                dpp_warning("There are multiple forms with name \"%s\" created.",funcname);
             }
 
             new formargs[dpp_maxformargs][100];
             dpp_parseline(args,formargs,'&');
+
             for(new argid; argid < dpp_maxformargs; argid++)
             {
                 strmid(dpp_args[i][argid][dpp_argname],formargs[argid],0,100,100);
@@ -780,6 +789,9 @@ stock dpp_argformargcheck(arg[])
         argid = 0;
 
     dpp_parseline(arg,systemarg,'@');
+
+    dpp_argclasscheck(systemarg[1]);
+
     for(new i; i < dpp_maxfuncs; i++)
     {
         if(!strcmp(dpp_funcname[i],systemarg[1]))
@@ -828,6 +840,9 @@ dpp_formatcheck(arg[],replacement[]); public dpp_formatcheck(arg[],replacement[]
         argid = 0;
 
     dpp_parseline(arg,systemarg,'@');
+    
+    dpp_argclasscheck(systemarg[1]);
+
     for(new i; i < dpp_maxfuncs; i++)
     {
         if(!strcmp(dpp_funcname[i],systemarg[1]))
@@ -863,4 +878,73 @@ dpp_formatcheck(arg[],replacement[]); public dpp_formatcheck(arg[],replacement[]
         return 1;
     }
     return 0;
+}
+
+//methods
+
+dpp_callmethod(funcgroup[][],args[][]); public dpp_callmethod(funcgroup[][],args[][])
+{
+    if(isnull(funcgroup[2]))
+    {
+        return 1;
+    }
+    dpp_argclasscheck(funcgroup[2]);
+    for(new i; i < dpp_maxfuncs; i++)
+    {
+        if(!strcmp(dpp_funcname[i], funcgroup[2]))
+        {
+            if(dpp_methodform[i] == 0)
+            {
+                dpp_error("Unknown form method.",);
+                return 1;
+            } 
+            if(dpp_hookform[i] == 0)
+            {
+                for(new argid; argid < dpp_maxformargs; argid++)
+                {
+                    strmid(dpp_args[i][argid][dpp_argvalue],
+                        args[argid+1],
+                        0,
+                        dpp_argcharsize,
+                        dpp_argcharsize);
+                }
+                dpp_returned[i] = 0;
+                dpp_processfunc = i;
+                dpp_subexecute(dpp_funccodeblock[i], i);
+                dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[i]);
+
+                if(dpp_option_hooking == 1)
+                {
+                    for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
+                    {
+                        if(!strcmp(dpp_funcname[hookfuncid], funcgroup[2]))
+                        {
+                            if(dpp_hookform[hookfuncid] == 1)
+                            {
+                                for(new argid; argid < dpp_maxformargs; argid++)
+                                {
+                                    /*strmid(dpp_args[hookfuncid][argid][dpp_argname],
+                                        dpp_args[i][argid][dpp_argname],
+                                        0,
+                                        dpp_argcharsize,
+                                        dpp_argcharsize);*/
+                                    strmid(dpp_args[hookfuncid][argid][dpp_argvalue],
+                                        args[argid+1],
+                                        0,
+                                        dpp_argcharsize,
+                                        dpp_argcharsize);
+                                }
+                                dpp_processfunc = hookfuncid;
+                                dpp_subexecute(dpp_funccodeblock[hookfuncid], hookfuncid);
+                                dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[hookfuncid]);
+                            }
+                        }
+                    }
+                }
+                dpp_clearformstack(dpp_processfunc); dpp_processfunc = DPP_INVALID_FORM_ID;
+                return 1;
+            }
+        }
+    }
+    return 1;
 }

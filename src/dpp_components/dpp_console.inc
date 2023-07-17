@@ -43,6 +43,11 @@ public dpp_processconsole(funcgroup[][],args[][])
 
             //dpp_debug("Line \"%s\" successfully executed.", line);
             print(args[1]);
+
+            if(!strcmp(funcgroup[2], "log"))
+            {
+                dpp_savelog(DPP_LOG_FILE, args[1]);
+            }
             return 1;
         }
 

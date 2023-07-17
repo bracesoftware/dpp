@@ -33,9 +33,9 @@ native&form.discord_bot_send_message;
 
 ```pawn
 public&form.formname;
-do;
+{;
 	console.println,"my first user form";
-end;
+};
 ```
 
 So now you've made an user form. Code between the `do` and `end` keywords is called a form code block. It may contain a native form call, or another user form declaration.
@@ -44,20 +44,20 @@ You also may return values.
 
 ```pawn
 public&form.formname;
-do;
+{;
 	console.println,"my first user form";
 	return.str,"this was returned";
-end;
+};
 ```
 
 Then you can use this user form as an argument in a native form.
 
 ```pawn
 public&form.formname;
-do;
+{;
 	console.println,"my first user form";
 	return.str,"this was returned";
-end;
+};
 
 console.println,formname;
 ```
@@ -87,22 +87,22 @@ console.println,CONST_NAME;
 
 ```pawn
 public&form.functobehooked;
-do;
+{;
 	console.println,"HOOKED";
 	return.int,1;
-end;
+};
 
 hook&form.functobehooked;
-do;
+{;
 	console.println,"HOOKED 1";
 	return.int,1;
-end;
+};
 
 hook&form.functobehooked;
-do;
+{;
 	console.println,"HOOKED 2";
 	return.int,1;
-end;
+};
 
 user.functobehooked;
 ```

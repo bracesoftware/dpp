@@ -24,30 +24,30 @@ var::define.int,testintagainomg__aa,364;
 console.println,"{testintagainomg__aa}";
 
 public&form.FILES_TEST_FORM?text;
-do;
+{;
 	console.println,   text@FILES_TEST_FORM;
-end;
+};
 
 user.FILES_TEST_FORM,   "Funny thing"  ;
 
 public&form.returntest;
-do;
+{;
 	console.println, "Hello Worlddddddddddd";
 	if.equ, 23, 13 -> return.int,1;
 	return.int,2134;
 	console.println, "Return failed lmao";
-end;
+};
 
 console.cout, returntest;
 
 
 public&form.yieldreturntest;
-do;
+{;
 	console.println, "Hello Worlddddddd";
 	yield&return.str,"mega sexy return";
 	if.notequ,1,1->yield&return.str,"HOOOOOOOOOOOOOO";
 	console.println, "Yield Return WORKS!";
-end;
+};
 
 console.println, yieldreturntest;
 
@@ -58,10 +58,10 @@ if . equ , 1, 1-> console . println , "OmG" ;
 system.rem,"Example code";
 var::define.int,syntax_test,1;
 public&form.whilelooptest;
-do;
+{;
 	var::set.int,syntax_test,add?syntax_test:1;
 	console.println,"{syntax_test} eeeeeeeeeeeeeeeeee";
-end;
+};
 if.equ,1,1->while.notequ,syntax_test,11->user.whilelooptest;
 
 console.println,"This is still runnin right? {syntax_test}";

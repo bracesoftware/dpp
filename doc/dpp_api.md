@@ -25,10 +25,10 @@ discord.discord_bot_send_message,01234567890,"Message";
 
 ```pawn
 auto&form.discord_init;
-do;
+{;
 	discord.discord_bot_send_message,01234567890,"Message";
 	return.int,1;
-end;
+};
 ```
 
 

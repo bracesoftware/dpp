@@ -1,21 +1,21 @@
 public&task.testtask#1000;
-do;
+{;
 	console.println,"Task works!";
-end;
+};
 
 public&task.anothersexytask#3000;
-do;
+{;
 	console.println,"Another task also works!";
 	samp.SendClientMessage,0,0,"Test client message";
-end;
+};
 
 auto&form.OnPlayerConnect?playerid;
-do;
+{;
 	samp.SendClientMessage,playerid@OnPlayerConnect,0,"Welcome to the D++ server";
-end;
+};
 
 auto&form.OnPlayerDisconnect?playerid&reason;
-do;
+{;
 	console.println,"Player {playerid@OnPlayerDisconnect} disconnected | Reason: {reason@OnPlayerDisconnect}";
 	return.int,1;
-end;
+};

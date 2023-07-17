@@ -1,15 +1,15 @@
 public&class.dogInfo;
-do;
+<;
 	var::define.str,name,"Alexander";
 
 	const::define.int,age,15;
 
 	public&form.dogRace;
-	do;
+	{;
 		console.println,"This is a bulldog.";
 		return.int,1;
-	end;
-end;
+	};
+>;
 
 console.println,dogInfo:name;
 user.dogInfo:dogRace;
@@ -17,14 +17,14 @@ user.dogInfo:dogRace;
 console.cout,dogInfo:age;
 
 public&class.manInfo;
-do;
+<;
 	var::define.str,name,"Alex";
-end;
+>;
 
 hook&class.dogInfo;
-do;
+<;
 	var::define.str,owner,"Tommy";
-end;
+>;
 
 console.println,dogInfo:owner;
 
@@ -33,9 +33,9 @@ console.println,dogInfo:owner;
 	console.println,dogInfo:owner;
 
 hook&class.manInfo;
-do;
+<;
 	var::define.int,age,86;
-end;
+>;
 
 console.println,manInfo:name;
 console.cout,manInfo:age;

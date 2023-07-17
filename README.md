@@ -35,6 +35,7 @@
 - [`for`-loops](doc/dpp_for.md)
 - [`foreach`-loops and iterators](doc/dpp_foreach.md)
 - [`switch` and `case`](doc/dpp_switch.md)
+- [Form methods](doc/dpp_methods.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info

@@ -1,8 +1,8 @@
 public&form.form?text;
-do;
+{;
 	console.println,text@form;
 	return.str,text@form;
-end;
+};
 
 user.form,"Argument passed to a function!";
 

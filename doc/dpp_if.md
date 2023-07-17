@@ -34,7 +34,7 @@ If-method is a new term used to describe the way how are you comparing the 2 ele
 
 ```pawn
 public&form.ElseTest;
-do;
+{;
 	if.equ,1,2->console.println,"1 and 2 are equal";
 	else->if.equ,2,3->console.println,"2 and 3 are equal";
 	else->console.println,"Nothing is equal";
@@ -43,7 +43,7 @@ do;
 	else->console.println,"This should not be printed";
 	
 	return.int,1;
-end;
+};
 
 user.ElseTest;
 ```

@@ -5,11 +5,11 @@ import::api.discord;
 native&form.discord_bot_send_message;
 
 auto&form.discord_init;
-do;
+{;
 	console.println,"discord_init called";
 	discord.discord_bot_send_message,1012320061278662696,"THIS WAS SENT FROM D++!!!";
 	return.int,1;
-end;
+};
 
 console.println,"Discord was included again?";
 
@@ -22,10 +22,10 @@ pragma::option.ctrlchar,*;
 console.println,"{test2}st format test: {test} *, {test3}";
 
 public&form.dppprint?message;
-do;
+{;
 	console.println,message@dppprint;
 	return.int,1;
-end;
+};
 
 user.dppprint,"{test}";
 

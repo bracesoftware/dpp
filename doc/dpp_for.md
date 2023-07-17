@@ -28,10 +28,10 @@ For loop id 10
 
 ```pawn
 public&form.ForTest2?num;
-do;
+{;
 	console.println,"'num' is {num@ForTest2}";
 	return.int,1;
-end;
+};
 
 var::set.int,forlooptestvar,0;
 for.int&var,forlooptestvar,5->user.ForTest2,forlooptestvar;

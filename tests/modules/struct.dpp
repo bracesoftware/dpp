@@ -1,8 +1,8 @@
 extern&struct*samp_command.testcmd?playerid&params;
-do;
+{;
 	samp.SendClientMessage,playerid@testcmd,0,"Your command works!";
 	return.int,1;
-end;
+};
 
 console.println,"Struct test included!";
 
@@ -23,7 +23,7 @@ else->if.equ,1,1->console.println,"Lmao else works!";
 system.rem,"Another else test";
 
 public&form.ElseTest;
-do;
+{;
 	if.equ,1,2->console.println,"1 and 2 are equal";
 	else->if.equ,2,3->console.println,"2 and 3 are equal";
 	else->console.println,"Nothing is equal";
@@ -32,7 +32,7 @@ do;
 	else->console.println,"This should not be printed";
 
 	return.int,1;
-end;
+};
 
 user.ElseTest;
 
@@ -54,10 +54,10 @@ misc.swap,misctest1,misctest2;
 console.println,"{misctest1} and {misctest2}";
 
 public&form.ForTest2?num;
-do;
+{;
 	console.println,"Damn for loop test {num@ForTest2}";
 	return.int,1;
-end;
+};
 
 var::set.int,forlooptestvar,0;
 for.int&var,forlooptestvar,5->user.ForTest2,forlooptestvar;

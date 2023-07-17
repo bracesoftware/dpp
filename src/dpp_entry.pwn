@@ -18,11 +18,13 @@
 #define dpp_invalidclass 100
 //-----------------------------------------------------------
 #define DPP_VERSION_MAJOR 6
-#define DPP_VERSION_MINOR 3
+#define DPP_VERSION_MINOR 8
 #define DPP_VERSION_PATCH 0
 #define DPP_VERSION_RELEASE 1
 
 #define DPP_VERSION_BETA 1
+
+#define DPP_LOG_FILE "dpp.log"
 //-----------------------------------------------------------
 #define DPP_INVALID_INLINE_ID 0
 #define DPP_INVALID_FORM_ID 0
@@ -166,6 +168,7 @@ new dpp_funccodeblock[dpp_maxfuncs][1024];
 new dpp_autoform[dpp_maxfuncs];
 new dpp_hookform[dpp_maxfuncs];
 new dpp_structtype[dpp_maxfuncs];
+new dpp_methodform[dpp_maxfuncs];
 enum __dpp_argcache
 {
     dpp_argname[32],

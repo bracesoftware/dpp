@@ -1,20 +1,20 @@
 
 
 public&form.InlineTestFunc;
-do;
+{;
 	var::define.int,formid,__proccessed_form_id;
 	console.println,"'InlineTestFunc' is {formid}";
 	
 	InlineTestFunc*inline&form.inlineformtest;
-	do; 
+	{; 
 		console.println,"Inline works.";
-	end;
+	};
 
 	using&inline::user.inlineformtest;
 	using&inline::user.inlineformtest;
 	using&inline::user.inlineformtest;
 	using&inline::user.inlineformtest;
 	yield&return.int,1;
-end;
+};
 
 user.InlineTestFunc;

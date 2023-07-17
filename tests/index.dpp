@@ -16,15 +16,15 @@ system.rem,"Basic println example.";
 console.println,"Hual is a fucking bitch";
 
 public&form.testfunc;
-do;
+{;
 	console.println,"testfunc works.";
 	console.println,"testfunc works.";
-end;
+};
 
 public&form.NewTestFunc;
-do;
+{;
 	console.println,"OH YEAH MAN";
-end;
+};
 
 user.testfunc;
 user.NewTestFunc;
@@ -43,18 +43,18 @@ samp.SetMaxPlayers,MAX_PLAYERS;
 system.rem,"===================FUNCS===================";
 
 public&form.testFunc;
-do;
+{;
 	console.println,"testFunc was called.";
 	return.str,"testFunc returned this.";
-end;
+};
 
 const::define.str,LMAO,"Lmao";
 
 public&form.disableDebug;
-do;
+{;
 	console.println,"Debug disabled";
 	return.str,LMAO;
-end;
+};
 
 console.println,testFunc;
 console.println,disableDebug;
@@ -63,30 +63,30 @@ system.rem,"===================CALLBACKS===================";
 
 
 auto&form.main;
-do;
+{;
 	console.println,"Hello World from main";
 	return.int,1;
-end;
+};
 
 auto&form.OnGameModeInit;
-do;
+{;
 	console.println,"OnGameModeInit works";
 	return.int,1;
 	console.println,"RETURN FAILED";
-	console.println,"OMG LOL HAHAHAH RETURN DOES NOT WORK";
-end;
+	console.println,"OMG LOL HAHAHAH RETURN {ES NOT WORK";
+};
 
 hook&form.OnGameModeInit;
-do;
+{;
 	console.println,"OnGameModeInit works twice!!!";
 	return.int,1;
-end;
+};
 
 auto&form.OnGameModeExit;
-do;
+{;
 	console.println,"OnGameModeExit works";
 	return.bool,true;
-end;
+};
 
 import::module,"vars";
 import::module,"math";

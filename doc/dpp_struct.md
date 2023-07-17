@@ -10,9 +10,9 @@ Example:
 
 ```pawn
 auto&form.OnGameModeInit;
-do;
+{;
 	console.println,"Script loaded";
-end;
+};
 ```
 
 ## External forms
@@ -29,8 +29,8 @@ Example:
 
 ```pawn
 extern&struct*samp_command.testcmd?playerid&params;
-do;
+{;
 	samp.SendClientMessage,playerid@testcmd,0,"Your command works!";
 	return.int,1;
-end;
+};
 ```

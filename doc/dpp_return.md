@@ -8,11 +8,11 @@
 
 ```pawn
 public&form.MyForm;
-do;
+{;
 	console.println,"Hello World";
 	return.int,1;
 	console.println, "This code won't be executed";
-end;
+};
 
 console.cout,MyForm;
 system.rem,"Thing above will print 1";
@@ -21,15 +21,15 @@ system.rem,"Thing above will print 1";
 
 ### `yield&return`
 
-- `yield` return will do the same thing as a normal return, the difference is that the code block won't stop being executed until `end;` or `return..,..;`.
+- `yield` return will do the same thing as a normal return, the difference is that the code block won't stop being executed until `};` or `return..,..;`.
 
 ```pawn
 public&form.MyForm;
-do;
+{;
 	console.println,"Hello World";
 	yield&return.int,1;
 	console.println, "This code will be executed too";
-end;
+};
 
 console.cout,MyForm;
 system.rem,"Thing above will print 1";

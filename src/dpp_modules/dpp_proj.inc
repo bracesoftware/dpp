@@ -42,7 +42,7 @@ stock dpp_prepareproject(const script[])
 
     else if(!file)
     {
-        dpp_warning("Project file not found.");
+        dpp_warning("Project file not found.",);
     }
     return 1;
 }
