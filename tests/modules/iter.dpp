@@ -62,3 +62,25 @@ public&class.MethodClass;
 >;
 
 console.println.MethodClass:TestMethod,"Method test #2";
+
+
+public&class.SAMP;
+<;
+	iter::define,Player,MAX_PLAYERS;
+>;
+
+hook&form.OnPlayerConnect?playerid;
+{;
+	iter::add,SAMP:Player,playerid@OnPlayerConnect;
+};
+
+hook&form.OnPlayerDisconnect?playerid;
+{;
+	iter::remove,SAMP:Player,playerid@OnPlayerConnect;
+};
+
+public&task.PrintPlayers#1000;
+{;
+	foreach.int&var,foreachtestvar,SAMP:Player->console.println,"foreach test #4 {foreachtestvar}";
+
+};

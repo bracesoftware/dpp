@@ -81,6 +81,7 @@ new dpp_switchedvar;
 #define DPP_LOGPROCESSES 0
 //-----------------------------------------------------------
 #define dpp_maxsymbolchar 64
+#define dpp_maxstrsize 256
 //-----------------------------------------------------------
 // REQUIRED.
 #include <open.mp>
@@ -97,7 +98,8 @@ enum dpp_enumset
     samp_comp,
     math_comp,
     files_comp,
-    misc_comp
+    misc_comp,
+    data_comp
 };
 
 new dpp_config[dpp_enumset];
@@ -118,7 +120,7 @@ enum __dpp_const_val
     integervalue,
     /*bool:*/boolvalue,
     Float:floatvalue,
-    stringvalue[256]
+    stringvalue[dpp_maxstrsize]
 }
 new dpp_constdata[dpp_maxconst][__dpp_const_val];
 //-----------------------------------------------------------
@@ -131,7 +133,7 @@ enum __dpp_var_val
     integervalue,
     /*bool:*/boolvalue,
     Float:floatvalue,
-    stringvalue[256]
+    stringvalue[dpp_maxstrsize]
 }
 
 new dpp_vardata[dpp_maxvar][__dpp_var_val];
@@ -254,6 +256,7 @@ new dpp_event = 0;
 #include "dpp_components/dpp_math.inc"
 #include "dpp_components/dpp_files.inc"
 #include "dpp_components/dpp_misc.inc"
+#include "dpp_components/dpp_data.inc"
 //-----------------------------------------------------------
 //api impl
 #include "dpp_thirdpartyapi/dpp_discord.inc"
@@ -349,6 +352,22 @@ public dpp_dostackoutput()
             i,
             dpp_validclass[i],
             dpp_classname[i]);
+        dpp_savelog("stackoutput.dpplog",stackfile);
+    }
+
+    dpp_comment();
+    dpp_print("Loading the iterator stack...");
+    dpp_comment();
+    dpp_savelog("stackoutput.dpplog","===============================================================");
+    dpp_savelog("stackoutput.dpplog","ITERATORS");
+    dpp_savelog("stackoutput.dpplog","===============================================================");
+    for(new i; i < dpp_maxiter; i++)
+    {
+        format(stackfile,sizeof stackfile,"ID : %i | VALID : %i | NAME: \"%s\" | SIZE: %i",
+            i,
+            dpp_validiter[i],
+            dpp_itername[i],
+            dpp_itersize[i]);
         dpp_savelog("stackoutput.dpplog",stackfile);
     }
 

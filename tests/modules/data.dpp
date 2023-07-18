@@ -1,0 +1,21 @@
+console.println.log,"data.dpp is imported";
+
+import::component.data;
+
+var::define.str,scanftest1,"ok";
+var::define.str,scanftest2,"ok";
+var::define.str,scanftest3,"ok";
+var::define.str,scanftest4,"ok";
+var::define.int,scanftest5,2453;
+var::define.int,scanftest6,2453;
+
+var::define.str,scanftest,"sscanf-is-so-cool-1-2";
+
+data.sscanf,scanftest,scanftest1,scanftest2,scanftest3,scanftest4,scanftest5,scanftest6;
+
+console.println.log,scanftest1;
+console.println.log,scanftest2;
+console.println.log,scanftest3;
+console.println.log,scanftest4;
+console.cout,scanftest5;
+console.cout,scanftest6;

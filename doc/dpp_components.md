@@ -235,3 +235,52 @@ misc.swap,var1,var2;
 ```
 
 **NOTE**: Now variable `var1` will have the value `var2` had, and `var2` will have the value `var1` had.
+
+
+---------------------------------------------------------------------------------
+
+## Component: `data`
+- Provides forms for data management.
+
+Import the component using:
+```pawn
+import::component.data;
+```
+
+### Form: `sscanf`
+- Parses and splits a string.
+
+```pawn
+import::component.data;
+
+system.rem,"Some stupid values";
+
+var::define.str,scanftest1,"ok";
+var::define.str,scanftest2,"ok";
+var::define.str,scanftest3,"ok";
+var::define.str,scanftest4,"ok";
+var::define.int,scanftest5,2453;
+var::define.int,scanftest6,2453;
+
+var::define.str,scanftest,"sscanf-is-so-cool-1-2";
+
+data.sscanf,scanftest,scanftest1,scanftest2,scanftest3,scanftest4,scanftest5,scanftest6;
+
+console.println.log,scanftest1;
+console.println.log,scanftest2;
+console.println.log,scanftest3;
+console.println.log,scanftest4;
+console.cout,scanftest5;
+console.cout,scanftest6;
+```
+
+Output:
+
+```
+sscanf
+is
+so
+cool
+1
+2
+```

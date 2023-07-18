@@ -1486,6 +1486,11 @@ stock dpp_process(line[])
             dpp_config[misc_comp] = 1;
             return 1;
         }
+        if(!strcmp(funcgroup[1], "data"))
+        {
+            dpp_config[data_comp] = 1;
+            return 1;
+        }
         else
         {
             dpp_error("Unknown component \"%s\".", funcgroup[1]);
@@ -1900,7 +1905,7 @@ stock dpp_process(line[])
     ///////////////////////////////////////////////////////
     ////
     ////
-    ////            FILES comp FUNC SYS
+    ////            MISC comp FUNC SYS
     ////
     ////
     ///////////////////////////////////////////////////////
@@ -1908,6 +1913,19 @@ stock dpp_process(line[])
     if(dpp_funcfound == 0)
     {
         dpp_funcfound = CallLocalFunction("dpp_processmisc", "sss", funcgroup,args,args_const);
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            DATA comp FUNC SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(dpp_funcfound == 0)
+    {
+        dpp_funcfound = CallLocalFunction("dpp_processdata", "sss", funcgroup,args,args_const);
     }
     
 
