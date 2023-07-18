@@ -215,6 +215,22 @@ stock dpp_process(line[])
         return 1;
     }
 
+    if(dpp_strcmp(funcgroup[0], "("))
+    {
+        dpp_inlineinterpreter = 0;
+        dpp_error("'dpp_inlineinterpreter' is updated to '%i'",dpp_inlineinterpreter);
+        return 1;
+    }
+
+    if(dpp_strcmp(funcgroup[0], ")"))
+    {
+        dpp_currentinlineid = DPP_INVALID_FORM_ID;
+        dpp_inlineinterpreter = 1;
+        dpp_error("'dpp_inlineinterpreter' is updated to '%i'",dpp_inlineinterpreter);
+        dpp_error("'dpp_currentinlineid' is updated to '%i'",dpp_currentinlineid);
+        return 1;
+    }
+
     if(!strcmp(funcgroup[0], "}"))
     {
         if(dpp_event == dpp_event_form)
@@ -229,14 +245,6 @@ stock dpp_process(line[])
             dpp_currenttaskid = DPP_INVALID_TASK_ID;
             dpp_taskinterpreter = 1;
         }
-
-        if(dpp_event == dpp_event_inline)
-        {
-            dpp_currentinlineid = DPP_INVALID_FORM_ID;
-            dpp_inlineinterpreter = 1;
-            dpp_error("'dpp_inlineinterpreter' is updated to '%i'",dpp_inlineinterpreter);
-            dpp_error("'dpp_currentinlineid' is updated to '%i'",dpp_currentinlineid);
-        }
         return 1;
     }
 
@@ -250,12 +258,6 @@ stock dpp_process(line[])
         if(dpp_event == dpp_event_task)
         {
             dpp_taskinterpreter = 0;
-        }
-
-        if(dpp_event == dpp_event_inline)
-        {
-            dpp_inlineinterpreter = 0;
-            dpp_error("'dpp_inlineinterpreter' is updated to '%i'",dpp_inlineinterpreter);
         }
         return 1;
     }
