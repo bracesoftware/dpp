@@ -7,6 +7,7 @@
 </h3>
 
 
+--------------------------------------------------------------
 
 ## Introduction
 :zap: ¤ D++ is a simple scripting language written in Pawn. It is made purely for fun and with an intention to learn more about Pawn itself, thus D++ should not be taken as a serious language. However, the language itself is still impressive considering it is written in Pawn.
