@@ -1,8 +1,8 @@
-<p align="center">
-  <img width="200" align="center" src="dpp_logo.png">
+<p align="left">
+  <img width="200" align="left" src="dpp_logo.png">
 </p>
-<h1 align = "center">Welcome to the <b>D++</b> Wiki</h1>
-<h3 align = "center">
+<h1 align = "left">Welcome to the <b>D++</b> Wiki</h1>
+<h3 align = "left">
   The Simplest Multi-purpose Programming Language
 </h3>
 
