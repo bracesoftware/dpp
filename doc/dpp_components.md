@@ -7,6 +7,7 @@
 - [`samp`](#component-samp)
 - [`files`](#component-files)
 - [`misc`](#component-misc)
+- [`data`](#component-data)
 
 ---------------------------------------------------------------------------------------------------------
 
