@@ -1,5 +1,5 @@
 <p align="left">
-  <img width="200" align="left" src="dpp_logo.png">
+  <img width="200" align="left" src="https://cdn.discordapp.com/attachments/1130879376423145522/1130879404705337484/dpp_logo.png">
 </p>
 <h1 align = "left">Welcome to the <b>D++</b> Wiki</h1>
 <h3 align = "left">
