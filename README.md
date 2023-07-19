@@ -17,6 +17,7 @@
 
 - [Project management](doc/dpp_proj.md)
 - [Calling D++ from your gamemode](doc/dpp_callingfromscript.md)
+- [How does D++ work?](doc/dpp_how.md)
 
 ### The language
 
