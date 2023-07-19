@@ -74,7 +74,7 @@ stock dpp_findvar(const name[], dest)
 
 ///////////////////////////CREATE/////////////////////////////
 
-stock dpp_createintvar(name[], value)
+stock dpp_createintvar(name[], value, obj = -1)
 {
     for(new i; i < dpp_maxvar; i++)
     {
@@ -107,13 +107,20 @@ stock dpp_createintvar(name[], value)
             dpp_vardata[i][integervalue] = value;
             dpp_vardata[i][var_type] = dpp_var_type_int;
             dpp_vardata[i][var_valid] = 1;
+            dpp_vardata[i][var_object] = obj;
+            if(dpp_objectid != -1)
+            {
+                dpp_vardata[i][var_object] = dpp_objectid;
+                dpp_objectid = -1;
+                //dpp_warning("Assigned object '%i' to a variable '%s'[%i]",dpp_vardata[i][var_object], dpp_vardata[i][var_name],i);
+            }
             return 1;
         }
     }
     return 1;
 }
 
-stock dpp_createboolvar(name[], value)
+stock dpp_createboolvar(name[], value, obj = -1)
 {
     for(new i; i < dpp_maxvar; i++)
     {
@@ -146,13 +153,19 @@ stock dpp_createboolvar(name[], value)
             dpp_vardata[i][boolvalue] = value;
             dpp_vardata[i][var_type] = dpp_var_type_bool;
             dpp_vardata[i][var_valid] = 1;
+            dpp_vardata[i][var_object] = obj;
+            if(dpp_objectid != -1)
+            {
+                dpp_vardata[i][var_object] = dpp_objectid;
+                dpp_objectid = -1;
+            }
             return 1;
         }
     }
     return 1;
 }
 
-stock dpp_createstrvar(name[], const value[])
+stock dpp_createstrvar(name[], const value[], obj = -1)
 {
     for(new i; i < dpp_maxvar; i++)
     {
@@ -185,6 +198,12 @@ stock dpp_createstrvar(name[], const value[])
             strmid(dpp_vardata[i][stringvalue], value, 0, 256);
             dpp_vardata[i][var_type] = dpp_var_type_str;
             dpp_vardata[i][var_valid] = 1;
+            dpp_vardata[i][var_object] = obj;
+            if(dpp_objectid != -1)
+            {
+                dpp_vardata[i][var_object] = dpp_objectid;
+                dpp_objectid = -1;
+            }
             return 1;
         }
     }

@@ -8,10 +8,10 @@
 <br></br>
 
 ## Introduction
-:zap: ¤ D++ is a small interpreted language written in Pawn. It is designed with the role of enabling modification of the gamemode code on the server during run-time. It contains various features and things that aren't even introduced into Pawn itself. D++ has a very complex syntax which makes it very hard to learn but also fragile to small mistakes.
+:computer: ¤ D++ is a small interpreted language written in Pawn. It is designed with the role of enabling modification of the gamemode code on the server during run-time. It contains various features and things that aren't even introduced into Pawn itself. D++ has a very complex syntax which makes it very hard to learn but also fragile to small mistakes.
 
 
-> It is made purely for fun and with an intention to learn more about Pawn itself, thus D++ should not be taken as a serious language. However, the language itself is still impressive considering it is written in Pawn.
+> :paperclip: It is made purely for fun and with an intention to learn more about Pawn itself, thus D++ should not be taken as a serious language. However, the language itself is still impressive considering it is written in Pawn.
 
 ## Documentation
 
@@ -40,6 +40,7 @@
 - [`foreach`-loops and iterators](doc/dpp_foreach.md)
 - [`switch` and `case`](doc/dpp_switch.md)
 - [Form methods](doc/dpp_methods.md)
+- [Objects](doc/dpp_obj.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info

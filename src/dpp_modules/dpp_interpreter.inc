@@ -62,6 +62,7 @@ stock dpp_process(line[])
     
     strmid(line2, line, 0, strlen(line), strlen(line));
     dpp_checkforconditionals(line, line2, extracode, "->");
+    dpp_checkforobjinit(line, line2, extracode, "<-");
 
     dpp_parseline(line, args, ',');
     dpp_parseline(args[0], funcgroup, '.');
@@ -962,6 +963,98 @@ stock dpp_process(line[])
 
         dpp_switchedvar = dpp_varid;
 
+        return 1;
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            OBJECT SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(!strcmp(funcgroup[0], "object"))
+    {
+        dpp_createobj(args[1]);
+        return 1;
+    }
+
+    if(dpp_isobjinit == 1)
+    {
+        dpp_isobjinit = 0;
+
+        if(dpp_option_allspc == 1) for(new i; i < 100; i++)
+        {
+            dpp_deletespaces(line2);
+        }
+        if(dpp_option_allspc == 1) for(new i; i < 100; i++)
+        {
+            dpp_deletespaces(extracode);
+        }
+
+        dpp_parseline(line2, args, ',');
+        dpp_parseline(args[0], funcgroup, '.');
+
+        for(new i; i < 15; i++)
+        {
+            strmid(args_const[i], args[i],0,dpp_argcharsize,dpp_argcharsize);
+        }
+        
+        for(new i; i < 15; i++)
+        {
+            if(dpp_option_allspc == 1) dpp_delexcspaces(args[i]);
+            if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
+                !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
+                !strcmp(funcgroup[0], "var::set") || 
+                (!strcmp(funcgroup[0], "system") && !strcmp(funcgroup[1], "arginit")) ||
+                (!strcmp(funcgroup[0], "files") && !strcmp(funcgroup[1], "read")))
+                {
+                    if(i == 1)
+                    {
+                        dpp_argclasscheck(args[i]);
+                        dpp_argformargcheck(args[i]);
+                        i = 2;
+                    }
+                }
+
+            dpp_removeslashes(args[i]);
+            dpp_argclasscheck(args[i]);
+            dpp_argarraycheck(args[i]);
+            dpp_argfunccheck(args[i]);
+            dpp_argvarcheck(args[i]);
+            dpp_argmathcheck(args[i]);
+            dpp_argformargcheck(args[i]);
+            dpp_argsystemval(args[i]);
+            CallLocalFunction("dpp_arginstruct", "s", args[i]);
+
+            dpp_formatarg(args[i]);
+        }
+
+        // Check for object name
+
+        dpp_argclasscheck(funcgroup[0]);
+
+        dpp_objectid = -1;
+        for(new i; i < dpp_maxobj; i++)
+        {
+            if(!strcmp(funcgroup[0], dpp_objname[i]))
+            {
+                if(dpp_validobj[i] == 1)
+                {
+                    dpp_objectid = i; 
+                    break;
+                }
+            }
+        }
+
+        if(dpp_objectid == -1)
+        {
+            dpp_error("Unknown object: \"%s\"",funcgroup[0]);
+            return 1;
+        }
+
+        dpp_subexecute2(extracode);
         return 1;
     }
 

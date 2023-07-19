@@ -45,6 +45,7 @@
 #define dpp_maxclass 100
 #define dpp_maxtasks 50
 #define dpp_maxiter 50
+#define dpp_maxobj 100
 //-----------------------------------------------------------
 #define dpp_maxitersize 1000
 #define dpp_invaliditerval -1
@@ -130,6 +131,7 @@ enum __dpp_var_val
     var_valid,
     var_name[dpp_maxsymbolchar],
     var_type,
+    var_object,
     integervalue,
     /*bool:*/boolvalue,
     Float:floatvalue,
@@ -189,6 +191,11 @@ new dpp_funcreturn_int[dpp_maxfuncs];
 new dpp_funcreturn_bool[dpp_maxfuncs];
 new dpp_funcreturn_str[dpp_maxfuncs][1024];
 //-----------------------------------------------------------
+new dpp_objectid = -1;
+new dpp_isobjinit;
+new dpp_validobj[dpp_maxobj];
+new dpp_objname[dpp_maxobj][dpp_maxsymbolchar];
+//-----------------------------------------------------------
 new dpp_returned[dpp_maxfuncs];
 new dpp_returntype[dpp_maxfuncs];
 //-----------------------------------------------------------
@@ -243,6 +250,7 @@ new dpp_event = 0;
 #include "dpp_modules/dpp_inline.inc"
 #include "dpp_modules/dpp_tasks.inc"
 #include "dpp_modules/dpp_iter.inc"
+#include "dpp_modules/dpp_objects.inc"
 
 #include "dpp_modules/dpp_interpreter.inc"
 //-----------------------------------------------------------

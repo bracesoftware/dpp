@@ -154,6 +154,31 @@ stock dpp_checkforconditionals(const code[], dest1[], dest2[], const delimiter[]
     return 1;
 }
 
+stock dpp_checkforobjinit(const code[], dest1[], dest2[], const delimiter[])
+{
+    new
+        delimiter_start,
+        delimiter_end;
+    
+    for(new i; i < strlen(code); i++)
+    {
+        if(code[i] == delimiter[0] && code[i+1] == delimiter[1])
+        {
+            dpp_isobjinit = 1;
+            delimiter_start = i;
+            delimiter_end = i+1;
+            strmid(dest1, code, 0, delimiter_start, 3000);
+            strmid(dest2, code, delimiter_end+1, strlen(code), 3000);
+
+            // strmid(dest[], const source[], start, end, maxlength=sizeof dest)
+
+            dpp_debug("Code : \"%s\" was split into destln1 : \"%s\" and destln2 : \"%s\"",code,dest1,dest2);
+            return 1;
+        }
+    }
+    return 1;
+}
+
 stock dpp_cwlu(const constargs[], modargs[])
 {
     strmid(modargs, constargs, 0, dpp_argcharsize, dpp_argcharsize);
