@@ -16,7 +16,7 @@
 
 Import the component using:
 ```pawn
-import::component.console;
+using.console;
 ```
 
 ### Form: `cout`
@@ -40,7 +40,7 @@ console.cout,"Hello World!";
 
 Import the component using:
 ```pawn
-import::component.system;
+using.system;
 ```
 
 ### Form: `rem`
@@ -83,7 +83,7 @@ auto&form.main;
 
 Import the component using:
 ```pawn
-import::component.samp;
+using.samp;
 ```
 
 ### Form: `SetGameModeText`
@@ -163,7 +163,7 @@ auto&form.OnPlayerDisconnect?playerid&reason;
 
 Import the component using:
 ```pawn
-import::component.files;
+using.files;
 ```
 
 ### Form: `open_for_write`
@@ -225,7 +225,7 @@ files.delete,"newfile.omg";
 
 Import the component using:
 ```pawn
-import::component.misc;
+using.misc;
 ```
 
 ### Form: `swap`
@@ -245,14 +245,14 @@ misc.swap,var1,var2;
 
 Import the component using:
 ```pawn
-import::component.data;
+using.data;
 ```
 
 ### Form: `sscanf`
 - Parses and splits a string.
 
 ```pawn
-import::component.data;
+using.data;
 
 new.str,scanftest1="ok";
 new.str,scanftest2="ok";

@@ -14,7 +14,7 @@
 
 `index.dpp`:
 ```pawn
-import::component.console;
+using.console;
 ```
 
 - This line will enable the use of an integrated component called "console". Console component provides forms and functions you can use for character output. If we did not enable the component, we'd run into an error.
@@ -23,7 +23,7 @@ import::component.console;
 
 `index.dpp`:
 ```pawn
-import::component.console;
+using.console;
 
 console.println,"Hello World!";
 ```
@@ -62,7 +62,7 @@ Hello World!
 
 `index.dpp`:
 ```pawn
-import::component.console;
+using.console;
 
 console.println,"Hello World!";
 ```
@@ -70,13 +70,13 @@ console.println,"Hello World!";
 - Interpreter is firstly going to read the first line. Afterwards, the semicolon will be removed and the internal process-function will be called:
 
 ```pawn
-main() dpp_process("import::component.console");
+main() dpp_process("using.console");
 ```
 
 - Of course this is a simplified depiction. The thing that `dpp_process` does is that it calls `dpp_parseline` which breaks down the line into so-called groups, so internally it will look like this after the break-down.
 
 ```
-funcgroup[0] = "import::component"
+funcgroup[0] = "using"
 funcgroup[1] = "console"
 ```
 
@@ -89,7 +89,7 @@ dpp_process(line)
 {
 	dpp_parseline(line,funcgroup,'.');
 
-	if(funcgroup[0] == "import::component")
+	if(funcgroup[0] == "using")
 	{
 		if(funcgroup[1] == "console")
 		{

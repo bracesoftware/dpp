@@ -1,4 +1,4 @@
-import::component.math;
+using.math;
 
 console.cout,add?1:1;
 console.cout,div?111:111;

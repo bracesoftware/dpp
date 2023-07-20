@@ -1,6 +1,6 @@
 console.println,"Files included";
 
-import::component.files;
+using.files;
 
 files.open_for_write,"testfile.omg";
 files.write,"wrote this nigga";

@@ -1,6 +1,6 @@
 console.println.log,"data.dpp is imported";
 
-import::component.data;
+using.data;
 
 new.str,scanftest1="ok";
 new.str,scanftest2="ok";

@@ -40,9 +40,6 @@ case,2->console.println,"switchtest is 2";
 console.println.log,"This should be in dpp.log in scriptfiles/";
 
 
-
-
-
 form&method.TestMethod?text;
 {;
 	console.println,"Printed: {text@TestMethod}";

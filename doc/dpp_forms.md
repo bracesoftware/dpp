@@ -7,10 +7,11 @@
 
 ## Native forms
 
-- Native forms are those whose are defined in an interpreter component and are useable only if the component is imported. You may call native forms using the `using` keyword.
+- Native forms are those whose are defined in an interpreter component and are useable only if the component is imported. You may call native forms by specifying the component name.
 
 ```pawn
-import::component.console;
+using.console;
+
 console.println,"Hello World";
 ```
 

@@ -1578,7 +1578,7 @@ stock dpp_process(line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "import::component"))
+    if(!strcmp(funcgroup[0], "using"))
     {
         if(!strcmp(funcgroup[1], "console"))
         {
@@ -1630,18 +1630,21 @@ stock dpp_process(line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "import::api"))
+    if(!strcmp(structgroup[0], "using"))
     {
-        if(!strcmp(funcgroup[1], "discord"))
+        if(!strcmp(structgroup[1], "api"))
         {
-            dpp_apis[discord] = 1;
-            return 1;
-        }
-        
-        else
-        {
-            dpp_error("Unknown API \"%s\".", funcgroup[1]);
-            return 0;
+            if(!strcmp(funcgroup[1], "discord"))
+            {
+                dpp_apis[discord] = 1;
+                return 1;
+            }
+            
+            else
+            {
+                dpp_error("Unknown API \"%s\".", funcgroup[1]);
+                return 0;
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 console.println,"Discord was included";
 
-import::api.discord;
+using*api.discord;
 
 native&form.discord_bot_send_message;
 
