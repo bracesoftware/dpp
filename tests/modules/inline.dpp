@@ -5,10 +5,9 @@ public&form.InlineTestFunc;
 	new.int,formid=__proccessed_form_id;
 	console.println,"'InlineTestFunc' is {formid}";
 	
-	InlineTestFunc*inline&form.inlineformtest;
-	(; 
-		console.println,"Inline works.";
-	);
+	inline&form.inlineformtest; 
+		do->console.println,"Inline works.";
+		do->console.println.log,"The inline finally works!";
 
 	using&inline::user.inlineformtest;
 	using&inline::user.inlineformtest;
@@ -17,4 +16,5 @@ public&form.InlineTestFunc;
 	yield&return.int,1;
 };
 
+user.InlineTestFunc;
 user.InlineTestFunc;

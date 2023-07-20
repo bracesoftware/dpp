@@ -42,6 +42,7 @@
 - [`switch` and `case`](doc/dpp_switch.md)
 - [Form methods](doc/dpp_methods.md)
 - [Objects](doc/dpp_obj.md)
+- [Inline forms](doc/dpp_inline.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info

@@ -20,7 +20,7 @@ dpp_createinline(name[], baseformid); public dpp_createinline(name[], baseformid
             strmid(dpp_inlinename[i], name, 0, 64, 64);
             dpp_inlinebaseform[i] = baseformid;
             dpp_currentinlineid = i;
-            dpp_error("Created an inline named '%s' [%i] with base form id '%i'",name,dpp_currentinlineid,baseformid);
+            //dpp_error("Created an inline named '%s' [%i] with base form id '%i'",name,dpp_currentinlineid,baseformid);
             return 1;
         }
     }
@@ -34,6 +34,7 @@ stock dpp_clearformstack(formid)
         if(dpp_inlinebaseform[i] == formid)
         {
             dpp_validinline[i] = 0;
+            strmid(dpp_inlinecodeblock[i],";",0,10,10);
             return 1;
         }
     }

@@ -154,4 +154,62 @@
  20:7:2023 | 16:45:21 @ >> D++ | LOG: is
  20:7:2023 | 16:45:21 @ >> D++ | LOG: so
  20:7:2023 | 16:45:21 @ >> D++ | LOG: cool
+ 20:7:2023 | 17:49:33 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 20:7:2023 | 17:49:33 @ >> D++ | LOG: sscanf
+ 20:7:2023 | 17:49:33 @ >> D++ | LOG: is
+ 20:7:2023 | 17:49:33 @ >> D++ | LOG: so
+ 20:7:2023 | 17:49:33 @ >> D++ | LOG: cool
+ 20:7:2023 | 18:4:32 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 20:7:2023 | 18:4:32 @ >> D++ | LOG: sscanf
+ 20:7:2023 | 18:4:32 @ >> D++ | LOG: is
+ 20:7:2023 | 18:4:32 @ >> D++ | LOG: so
+ 20:7:2023 | 18:4:32 @ >> D++ | LOG: cool
+ 20:7:2023 | 21:24:35 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 20:7:2023 | 21:24:35 @ >> D++ | LOG: sscanf
+ 20:7:2023 | 21:24:35 @ >> D++ | LOG: is
+ 20:7:2023 | 21:24:35 @ >> D++ | LOG: so
+ 20:7:2023 | 21:24:35 @ >> D++ | LOG: cool
+ 20:7:2023 | 21:27:0 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:0 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:0 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:0 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:1 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:1 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:1 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:1 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:1 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:1 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:1 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:1 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:27:4 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 20:7:2023 | 21:27:5 @ >> D++ | LOG: sscanf
+ 20:7:2023 | 21:27:5 @ >> D++ | LOG: is
+ 20:7:2023 | 21:27:5 @ >> D++ | LOG: so
+ 20:7:2023 | 21:27:5 @ >> D++ | LOG: cool
+ 20:7:2023 | 21:32:48 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:32:48 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:32:48 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:32:49 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:32:49 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:32:49 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:32:49 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:32:49 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:32:52 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 20:7:2023 | 21:32:53 @ >> D++ | LOG: sscanf
+ 20:7:2023 | 21:32:53 @ >> D++ | LOG: is
+ 20:7:2023 | 21:32:53 @ >> D++ | LOG: so
+ 20:7:2023 | 21:32:53 @ >> D++ | LOG: cool
+ 20:7:2023 | 21:34:26 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:34:26 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:34:27 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:34:27 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:34:27 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:34:27 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:34:27 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:34:27 @ >> D++ | LOG: The inline finally works!
+ 20:7:2023 | 21:34:36 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 20:7:2023 | 21:34:37 @ >> D++ | LOG: sscanf
+ 20:7:2023 | 21:34:37 @ >> D++ | LOG: is
+ 20:7:2023 | 21:34:37 @ >> D++ | LOG: so
+ 20:7:2023 | 21:34:37 @ >> D++ | LOG: cool
  

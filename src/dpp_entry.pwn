@@ -141,7 +141,7 @@ enum __dpp_var_val
 new dpp_vardata[dpp_maxvar][__dpp_var_val];
 //-----------------------------------------------------------
 //inline
-new dpp_inlineinterpreter = 1;
+//new dpp_inlineinterpreter = 1;
 new dpp_currentinlineid = DPP_INVALID_INLINE_ID;
 new dpp_validinline[dpp_maxinline];
 new dpp_inlinebaseform[dpp_maxinline];
