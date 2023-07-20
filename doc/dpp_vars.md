@@ -4,17 +4,11 @@
 - Like constants, variables may be integers, booleans and strings.
 
 ```pawn
-var::define.str,myvar,"myvar worked.";
+new.str,myvar="myvar worked.";
 ```
 
 To change its value, use:
 
 ```pawn
-var::set.str,myvar,"myvar worked again.";
-```
-
-To undefine it, use:
-
-```pawn
-var::undef.str,myvar;
+set.str,myvar="myvar worked again.";
 ```

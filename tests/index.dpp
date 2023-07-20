@@ -1,10 +1,11 @@
+
 import::component.console;
 
 pragma::option.allspc,true;
 
 pragma::option.warnings,default;
 
-const::define.bool,DEBUG_OPTION,false;
+const*new.bool,DEBUG_OPTION=false;
 
 pragma::option.debug,DEBUG_OPTION;
 
@@ -33,9 +34,9 @@ system.rem,"=================== NATIVES ===================";
 
 system.rem,"a_samp for D++";
 
-const::define.int,MAX_PLAYERS,1000;
-const::define.int,MAX_ACTORS,1000;
-const::define.int,MAX_VEHICLES,2000;
+const*new.int,MAX_PLAYERS=1000;
+const*new.int,MAX_ACTORS=1000;
+const*new.int,MAX_VEHICLES=2000;
 
 samp.SetGameModeText,"d++ test";
 samp.SetMaxPlayers,MAX_PLAYERS;
@@ -48,7 +49,7 @@ public&form.testFunc;
 	return.str,"testFunc returned this.";
 };
 
-const::define.str,LMAO,"Lmao";
+const*new.str,LMAO="Lmao";
 
 public&form.disableDebug;
 {;

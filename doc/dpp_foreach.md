@@ -6,7 +6,7 @@
 
 ```pawn
 iter::define,testiter,100;
-var::define.int,foreachtestvar,0;
+new.int,foreachtestvar=0;
 
 iter::add,testiter,1;
 iter::add,testiter,10;

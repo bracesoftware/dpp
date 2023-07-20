@@ -1,8 +1,8 @@
 public&class.dogInfo;
 <;
-	var::define.str,name,"Alexander";
+	new.str,name="Alexander";
 
-	const::define.int,age,15;
+	const*new.int,age=15;
 
 	public&form.dogRace;
 	{;
@@ -18,23 +18,23 @@ console.cout,dogInfo:age;
 
 public&class.manInfo;
 <;
-	var::define.str,name,"Alex";
+	new.str,name="Alex";
 >;
 
 hook&class.dogInfo;
 <;
-	var::define.str,owner,"Tommy";
+	new.str,owner="Tommy";
 >;
 
 console.println,dogInfo:owner;
 
-	if.equ,1,1->	var::set.str,dogInfo:owner,"Y_Less";
+	if.equ,1,1->	set.str,dogInfo:owner="Y_Less";
 
 	console.println,dogInfo:owner;
 
 hook&class.manInfo;
 <;
-	var::define.int,age,86;
+	new.int,age=86;
 >;
 
 console.println,manInfo:name;

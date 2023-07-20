@@ -6,7 +6,7 @@ extern&struct*samp_command.testcmd?playerid&params;
 
 console.println,"Struct test included!";
 
-var::define.int,forlooptestvar,0;
+new.int,forlooptestvar=0;
 if.equ,1,1->for.int&var,forlooptestvar,10->console.println,"For loop id {forlooptestvar}";
 
 if.gt,forlooptestvar,1->console.println,"forlooptestvar ({forlooptestvar}) is greater than 1";
@@ -44,8 +44,8 @@ else->console.println,"Yayy twice!";
 
 import::component.misc;
 
-var::define.int,misctest1,23;
-var::define.int,misctest2,32;
+new.int,misctest1=23;
+new.int,misctest2=32;
 
 console.println,"{misctest1} and {misctest2}";
 
@@ -59,5 +59,5 @@ public&form.ForTest2?num;
 	return.int,1;
 };
 
-var::set.int,forlooptestvar,0;
+set.int,forlooptestvar=0;
 for.int&var,forlooptestvar,5->user.ForTest2,forlooptestvar;

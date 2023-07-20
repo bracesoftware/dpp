@@ -12,7 +12,7 @@ exit;
 - You can format any string argument in any form.
 
 ```pawn
-var::define.str,test,"Test string";
+new.str,test="Test string";
 
 console.println,"{test}";
 ```
@@ -24,9 +24,9 @@ Test string
 
 ```pawn
 public&form.testfunction?message;
-do;
+{;
 	console.println,message@testfunction;
-end;
+};
 
 user.testfunction,"{test}";
 ```
@@ -39,7 +39,7 @@ Test string
 ## `defined` instruction
 
 ```pawn
-var::define.int,variable,1;
+new.int,variable=1;
 
 if.equ,defined?variable,1->console.println,"'variable' is defined!";
 if.equ,defined?dummyvar,1->console.println,"This should not be printed!!";

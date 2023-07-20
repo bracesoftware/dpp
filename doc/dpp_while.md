@@ -4,8 +4,8 @@
 - While loops are also possible in D++:
 
 ```pawn
-var::define.int,testvar,0;
-while.notequ,testvar,10->var::set.int,testvar,add?testvar:1&console.println,"{testvar}";
+new.int,testvar=0;
+while.notequ,testvar,10->set.int,testvar=add?testvar:1&console.println,"{testvar}";
 ```
 
 Code above is going to count from 1 to 10.

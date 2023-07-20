@@ -2,14 +2,14 @@ console.println.log,"data.dpp is imported";
 
 import::component.data;
 
-var::define.str,scanftest1,"ok";
-var::define.str,scanftest2,"ok";
-var::define.str,scanftest3,"ok";
-var::define.str,scanftest4,"ok";
-var::define.int,scanftest5,2453;
-var::define.int,scanftest6,2453;
+new.str,scanftest1="ok";
+new.str,scanftest2="ok";
+new.str,scanftest3="ok";
+new.str,scanftest4="ok";
+new.int,scanftest5=2453;
+new.int,scanftest6=2453;
 
-var::define.str,scanftest,"sscanf-is-so-cool-1-2";
+new.str,scanftest="sscanf-is-so-cool-1-2";
 
 data.sscanf,scanftest,scanftest1,scanftest2,scanftest3,scanftest4,scanftest5,scanftest6;
 
@@ -19,3 +19,13 @@ console.println.log,scanftest3;
 console.println.log,scanftest4;
 console.cout,scanftest5;
 console.cout,scanftest6;
+
+object,TestObj;
+TestObj<-new.int,testvar=10;
+
+public&class.ObjectTest;
+<;
+	object,TestObj;
+>;
+
+ObjectTest:TestObj<-new.int,testvar=1;

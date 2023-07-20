@@ -5,7 +5,7 @@
 ## Example
 
 ```pawn
-var::define.int,forlooptestvar,0;
+new.int,forlooptestvar=0;
 if.equ,1,1->for.int&var,forlooptestvar,10->console.println,"For loop id {forlooptestvar}";
 ```
 
@@ -33,7 +33,7 @@ public&form.ForTest2?num;
 	return.int,1;
 };
 
-var::set.int,forlooptestvar,0;
+set.int,forlooptestvar=0;
 for.int&var,forlooptestvar,5->user.ForTest2,forlooptestvar;
 ```
 

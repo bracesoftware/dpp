@@ -18,7 +18,7 @@ Within the class code block, we can create a variable.
 ```pawn
 public&class.customer;
 <;
-	var::define.str,name,"Alex";
+	new.str,name="Alex";
 >;
 ```
 
@@ -36,7 +36,7 @@ console.println,customer:name;
 ```pawn
 public&class.customer;
 <;
-	var::define.str,name,"Alex";
+	new.str,name="Alex";
 >;
 
 console.println,customer:name;
@@ -48,14 +48,14 @@ We can hook the `customer` class:
 ```pawn
 public&class.customer;
 <;
-	var::define.str,name,"Alex";
+	new.str,name="Alex";
 >;
 
 console.println,customer:name;
 
 hook&class.customer;
 <;
-	var::define.int,age,12;
+	new.int,age=12;
 >;
 
 console.cout,customer:age;

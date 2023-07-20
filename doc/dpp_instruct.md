@@ -50,9 +50,9 @@ if.equ,div?5:5,add?1:0->console.println,"Math test passed!";
 You may also use constants, variables and user forms as an instruction arguments:
 
 ```pawn
-var::define.int,MATHVAR,add?1:1;
+new.int,MATHVAR=add?1:1;
 console.cout,MATHVAR;
 
-var::define.int,MATHVAR22,add?6:MATHVAR;
+new.int,MATHVAR22=add?6:MATHVAR;
 console.cout,MATHVAR22;
 ```

@@ -17,12 +17,12 @@
 //-----------------------------------------------------------
 #define dpp_invalidclass 100
 //-----------------------------------------------------------
-#define DPP_VERSION_MAJOR 6
-#define DPP_VERSION_MINOR 8
-#define DPP_VERSION_PATCH 0
+#define DPP_VERSION_MAJOR 0
+#define DPP_VERSION_MINOR 0
+#define DPP_VERSION_PATCH 1
 #define DPP_VERSION_RELEASE 1
 
-#define DPP_VERSION_BETA 1
+#define DPP_VERSION_BETA 0
 
 #define DPP_LOG_FILE "dpp.log"
 //-----------------------------------------------------------

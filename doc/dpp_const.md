@@ -4,21 +4,14 @@
 - You also may make constants in D++:
 
 ```pawn
-const::define.int,MY_FIRST_CONST,1;
+const*new.int,MY_FIRST_CONST=1;
 ```
 
-This is an integer constant, to undefine it:
-
-```pawn
-const::undef.int,MY_FIRST_CONST;
-```
 
 You also may create boolean and string constants:
 
 ```pawn
-const::define.bool,MY_FIRST_CONST,true;
-const::define.str,MY_FIRST_CONST,"string";
+const*new.bool,MY_FIRST_CONST=true;
 
-const::undef.bool,MY_FIRST_CONST,1;
-const::undef.str,MY_FIRST_CONST,1;
+const*new.str,MY_FIRST_CONST="string";
 ```

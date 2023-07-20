@@ -75,7 +75,7 @@ user.formname;
 - You may also use variables and constants as arguments in native functions.
 
 ```pawn
-const::define.str,CONST_NAME,"constant worked";
+const*new.str,CONST_NAME="constant worked";
 
 console.println,CONST_NAME;
 ```

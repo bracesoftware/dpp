@@ -13,9 +13,9 @@ auto&form.discord_init;
 
 console.println,"Discord was included again?";
 
-var::define.str,test,"test succedeed";
-const::define.int,test2,1;
-var::define.str,test3,"hmmm {test}"
+new.str,test="test succedeed";
+const*new.int,test2=1;
+new.str,test3="hmmm {test}"
 
 pragma::option.ctrlchar,*;
 
@@ -30,10 +30,10 @@ public&form.dppprint?message;
 user.dppprint,"{test}";
 
 
-var::define.int,testvar,0;
-while.notequ,testvar,10->var::set.int,testvar,add?testvar:1&console.println,"{testvar}";
+new.int,testvar=0;
+while.notequ,testvar,10->set.int,testvar=add?testvar:1&console.println,"{testvar}";
 
-while.equ,testvar,10->var::set.int,testvar,add?testvar:1&console.println,"This should be printed only once!";
+while.equ,testvar,10->set.int,testvar=add?testvar:1&console.println,"This should be printed only once!";
 
-if.equ,1,1->while.equ,testvar,11->var::set.int,testvar,add?testvar:1&console.println,"This should be printed again!";
+if.equ,1,1->while.equ,testvar,11->set.int,testvar=add?testvar:1&console.println,"This should be printed again!";
 

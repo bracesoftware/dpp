@@ -1,6 +1,6 @@
 
 iter::define,testiter,100;
-var::define.int,foreachtestvar,0;
+new.int,foreachtestvar=0;
 
 iter::add,testiter,1;
 iter::add,testiter,10;
@@ -31,7 +31,7 @@ if.equ,defined?IterClass:iter,0->console.println,"IterClass:iter is NOT defined!
 if.equ,defined?foreachtestvar,1->console.println,"foreachtestvar is defined!";
 if.equ,defined?dummyvar,1->console.println,"This should not be printed!!";
 
-var::define.int,switchtest,23;
+new.int,switchtest=23;
 switch,switchtest;
 case,1->console.println,"switchtest is 1";
 case,23->console.println,"switchtest is 23";

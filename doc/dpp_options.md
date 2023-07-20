@@ -46,7 +46,7 @@ pragma::option.ctrlchar,*;
 By default, you aren't supposed to put spaces and extra characters in argument values, so your D++ code should look this in order to work properly:
 
 ```pawn
-using::system.rem,"Example code";
+system.rem,"Example code";
 if.equ,1,1->while.equ,testvar,11->var::set.int,testvar,add?testvar:1&using::console.println,"This should be printed again!";
 ```
 
@@ -59,7 +59,7 @@ pragma::option.allspc,true;
 Enables crazy syntax like this:
 
 ```pawn
-using ::  system . rem,    "Example code"   ;
+system . rem,    "Example code"   ;
 if. equ, 1 , 1-> while.equ, testvar, 11 -> var::set . int , testvar,add?testvar:1 & using :: console. println, "This should   be printed again!"   ;
 ```
 

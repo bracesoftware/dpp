@@ -2,9 +2,9 @@ console.println,"Test is imported.";
 
 console.println,"interesting...";
 
-const::define.str,TEST_STRING,"TEST_STRING value works!";
+const*new.str,TEST_STRING="TEST_STRING value works!";
 
 console.println,TEST_STRING;
 
-const::define.str,OMG,"OMG actually works";
+const*new.str,OMG="OMG actually works";
 console.println,OMG;

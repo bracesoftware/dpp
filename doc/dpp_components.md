@@ -54,9 +54,9 @@ system.rem,"SOME TEXT";
 
 ```pawn
 public&form.arginit_test?playerid&string;
-do;
+{;
 	return.int,1;
-end;
+};
 
 system.arginit,arginit_test,1,"Hello!";
 ```
@@ -69,10 +69,10 @@ system.arginit,arginit_test,1,"Hello!";
 
 ```pawn
 auto&form.main;
-do;
+{;
 	console.println,"Hello World from main";
 	return.int,1;
-end;
+};
 ```
 
 
@@ -112,9 +112,9 @@ samp.SendClientMessage,playerid@OnPlayerConnect,0,"Welcome to the D++ server";
 system.rem,"OnGameModeInit should be called by itself.";
 
 auto&form.OnGameModeInit;
-do;
+{;
 	console.println,"OnGameModeInit works";
-end;
+};
 ```
 
 ### Automated user form: `OnGameModeExit`
@@ -123,9 +123,9 @@ end;
 
 ```pawn
 auto&form.OnGameModeExit;
-do;
+{;
 	console.println,"OnGameModeExit works";
-end;
+};
 ```
 
 ### Automated user form: `OnPlayerConnect`
@@ -134,9 +134,9 @@ end;
 
 ```pawn
 auto&form.OnPlayerConnect?playerid;
-do;
+{;
 	samp.SendClientMessage,playerid@OnPlayerConnect,0,"Welcome to the D++ server";
-end;
+};
 ```
 
 ### Automated user form: `OnPlayerDisconnect`
@@ -146,10 +146,10 @@ end;
 ```pawn
 
 auto&form.OnPlayerDisconnect?playerid&reason;
-do;
+{;
 	console.println,"Player {playerid@OnPlayerDisconnect} disconnected | Reason: {reason@OnPlayerDisconnect}";
 	return.int,1;
-end;
+};
 ```
 
 **WARNING**: For some unknown reason, Windows can crash when the form is called with reason `1`.
@@ -191,7 +191,7 @@ files.open_for_append,"file_name.txt";
 - Reads data from the opened file and stores it into a variable.
 
 ```pawn
-var::define.str,dest_string,"something that should change";
+new.str,dest_string="something that should change";
 files.read,dest_string;
 ```
 
@@ -254,16 +254,14 @@ import::component.data;
 ```pawn
 import::component.data;
 
-system.rem,"Some stupid values";
+new.str,scanftest1="ok";
+new.str,scanftest2="ok";
+new.str,scanftest3="ok";
+new.str,scanftest4="ok";
+new.int,scanftest5=2453;
+new.int,scanftest6=2453;
 
-var::define.str,scanftest1,"ok";
-var::define.str,scanftest2,"ok";
-var::define.str,scanftest3,"ok";
-var::define.str,scanftest4,"ok";
-var::define.int,scanftest5,2453;
-var::define.int,scanftest6,2453;
-
-var::define.str,scanftest,"sscanf-is-so-cool-1-2";
+new.str,scanftest="sscanf-is-so-cool-1-2";
 
 data.sscanf,scanftest,scanftest1,scanftest2,scanftest3,scanftest4,scanftest5,scanftest6;
 

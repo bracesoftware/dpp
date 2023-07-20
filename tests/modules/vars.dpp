@@ -1,8 +1,8 @@
-var::define.str,myvar,"myvar::worked.";
+new.str,myvar="myvar::worked.";
 
 console.println,myvar;
 
-var::set.str,myvar,"myvar::worked again.";
+set.str,myvar="myvar::worked again.";
 
 console.println,myvar;
 

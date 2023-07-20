@@ -53,6 +53,7 @@ stock dpp_process(line[])
     new
         args[20][dpp_argcharsize], 
         funcgroup[3][1024],
+        vargroup[2][256],
         args_const[20][dpp_argcharsize],
         structgroup[2][512];
 
@@ -66,6 +67,7 @@ stock dpp_process(line[])
 
     dpp_parseline(line, args, ',');
     dpp_parseline(args[0], funcgroup, '.');
+    dpp_parseline(args[1], vargroup, '=');
 
     for(new i; i < 15; i++)
     {
@@ -584,6 +586,28 @@ stock dpp_process(line[])
         dpp_formatarg(args[i]);
     }
 
+    for(new i; i < 2; i++)
+    {
+        if(i == 0)
+        {
+            dpp_argclasscheck(vargroup[i]);
+            dpp_argformargcheck(vargroup[i]);
+            i = 1;
+        }
+
+        dpp_removeslashes(vargroup[i]);
+        dpp_argclasscheck(vargroup[i]);
+        dpp_argarraycheck(vargroup[i]);
+        dpp_argfunccheck(vargroup[i]);
+        dpp_argvarcheck(vargroup[i]);
+        dpp_argmathcheck(vargroup[i]);
+        dpp_argformargcheck(vargroup[i]);
+        dpp_argsystemval(vargroup[i]);
+        CallLocalFunction("dpp_arginstruct", "s", vargroup[i]);
+
+        dpp_formatarg(vargroup[i]);
+    }
+
     ///////////////////////////////////////////////////////
     ////
     ////
@@ -1066,70 +1090,73 @@ stock dpp_process(line[])
     ////
     ///////////////////////////////////////////////////////
 
-
-    if(!strcmp(funcgroup[0], "const::define"))
+    //const*new.int,myconst=1;
+    if(!strcmp(structgroup[0], "const"))
     {
-        if(!strcmp(funcgroup[1], "int"))
+        if(!strcmp(structgroup[1], "new"))
         {
-            if(!dpp_isnumeric(args[2]))
+            if(!strcmp(funcgroup[1], "int"))
             {
-                dpp_error("Argument error; value must be an integer.",);
+                if(!dpp_isnumeric(vargroup[1]))
+                {
+                    dpp_error("Argument error; value must be an integer.",);
+                    return 0;
+                }
+
+                dpp_createintconst(vargroup[0],strval(vargroup[1]));
+                return 1;
+            }
+            if(!strcmp(funcgroup[1], "bool"))
+            {
+                if(strcmp(vargroup[1],"true") && strcmp(vargroup[1],"false"))
+                {
+                    dpp_error("Argument error; value must be either 'true' or 'false'.",);
+                    return 0;
+                }
+
+                new dpp_boolval;
+
+
+                if(!strcmp(vargroup[1], "false"))
+                {
+                    dpp_boolval = 0;
+                }
+                if(!strcmp(vargroup[1], "true"))
+                {
+                    dpp_boolval = 1;
+                }
+
+                dpp_createboolconst(vargroup[0],dpp_boolval);
+                return 1;
+            }
+            if(!strcmp(funcgroup[1], "str"))
+            {
+                new mul2, str2[dpp_argcharsize];
+                strmid(str2, vargroup[1], 0, dpp_argcharsize);
+                for(new i; i < strlen(vargroup[1]); i++)
+                {
+                    if(vargroup[1][i] == '\"') mul2++, strdel(vargroup[1], i, i+1);
+                }
+                if(mul2 == 0)
+                {
+                    dpp_error("You need to use '\"' to start a string.",);
+                    return 0;
+                }
+                if(mul2 != 2)
+                {
+                    dpp_error("Argument error; [%i] \"%s\"", mul2, vargroup[1]);
+                    return 0;
+                }
+
+                dpp_createstrconst(vargroup[0],vargroup[1]);
+                return 1;
+            }
+            
+            else
+            {
+                dpp_error("Unknown symbol type \"%s\".", funcgroup[1]);
                 return 0;
             }
-
-            dpp_createintconst(args[1],strval(args[2]));
-            return 1;
-        }
-        if(!strcmp(funcgroup[1], "bool"))
-        {
-            if(strcmp(args[2],"true") && strcmp(args[2],"false"))
-            {
-                dpp_error("Argument error; value must be either 'true' or 'false'.",);
-                return 0;
-            }
-
-            new dpp_boolval;
-
-
-            if(!strcmp(args[2], "false"))
-            {
-                dpp_boolval = 0;
-            }
-            if(!strcmp(args[2], "true"))
-            {
-                dpp_boolval = 1;
-            }
-
-            dpp_createboolconst(args[1],dpp_boolval);
-            return 1;
-        }
-        if(!strcmp(funcgroup[1], "str"))
-        {
-            new mul2, str2[dpp_argcharsize];
-            strmid(str2, args[2], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[2]); i++)
-            {
-                if(args[2][i] == '\"') mul2++, strdel(args[2], i, i+1);
-            }
-            if(mul2 == 0)
-            {
-                dpp_error("You need to use '\"' to start a string.",);
-                return 0;
-            }
-            if(mul2 != 2)
-            {
-                dpp_error("Argument error; [%i] \"%s\"", mul2, args[2]);
-                return 0;
-            }
-
-            dpp_createstrconst(args[1],args[2]);
-            return 1;
-        }
-        
-        else
-        {
-            dpp_error("Unknown symbol type \"%s\".", funcgroup[1]);
-            return 0;
         }
     }
 
@@ -1214,22 +1241,23 @@ stock dpp_process(line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "var::define"))
+    //new.int,var=1;
+    if(!strcmp(funcgroup[0], "new"))
     {
         if(!strcmp(funcgroup[1], "int"))
         {
-            if(!dpp_isnumeric(args[2]))
+            if(!dpp_isnumeric(vargroup[1]))
             {
                 dpp_error("Argument error; value must be an integer.",);
                 return 0;
             }
 
-            dpp_createintvar(args[1],strval(args[2]));
+            dpp_createintvar(vargroup[0],strval(vargroup[1]));
             return 1;
         }
         if(!strcmp(funcgroup[1], "bool"))
         {
-            if(strcmp(args[2],"true") && strcmp(args[2],"false"))
+            if(strcmp(vargroup[1],"true") && strcmp(vargroup[1],"false"))
             {
                 dpp_error("Argument error; value must be either 'true' or 'false'.",);
                 return 0;
@@ -1238,25 +1266,26 @@ stock dpp_process(line[])
             new dpp_boolval;
 
 
-            if(!strcmp(args[2], "false"))
+
+            if(!strcmp(vargroup[1], "false"))
             {
                 dpp_boolval = 0;
             }
-            if(!strcmp(args[2], "true"))
+            if(!strcmp(vargroup[1], "true"))
             {
                 dpp_boolval = 1;
             }
 
-            dpp_createboolvar(args[1],dpp_boolval);
+            dpp_createboolvar(vargroup[0],dpp_boolval);
             return 1;
         }
         if(!strcmp(funcgroup[1], "str"))
         {
             new mul2, str2[dpp_argcharsize];
-            strmid(str2, args[2], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[2]); i++)
+            strmid(str2, vargroup[1], 0, dpp_argcharsize);
+            for(new i; i < strlen(vargroup[1]); i++)
             {
-                if(args[2][i] == '\"') mul2++, strdel(args[2], i, i+1);
+                if(vargroup[1][i] == '\"') mul2++, strdel(vargroup[1], i, i+1);
             }
             if(mul2 == 0)
             {
@@ -1265,11 +1294,11 @@ stock dpp_process(line[])
             }
             if(mul2 != 2)
             {
-                dpp_error("Argument error; [%i] \"%s\"", mul2, args[2]);
+                dpp_error("Argument error; [%i] \"%s\"", mul2, vargroup[1]);
                 return 0;
             }
 
-            dpp_createstrvar(args[1],args[2]);
+            dpp_createstrvar(vargroup[0],vargroup[1]);
             return 1;
         }
         
@@ -1280,7 +1309,7 @@ stock dpp_process(line[])
         }
     }
 
-    if(!strcmp(funcgroup[0], "var::undef"))
+    if(!strcmp(funcgroup[0], "undef"))
     {
         if(!strcmp(funcgroup[1], "int"))
         {
@@ -1304,23 +1333,23 @@ stock dpp_process(line[])
             return 0;
         }
     }
-
-    if(!strcmp(funcgroup[0], "var::set"))
+    //set.int,var=1;
+    if(!strcmp(funcgroup[0], "set"))
     {
         if(!strcmp(funcgroup[1], "int"))
         {
-            if(!dpp_isnumeric(args[2]))
+            if(!dpp_isnumeric(vargroup[1]))
             {
                 dpp_error("Argument error; value must be an integer.",);
                 return 0;
             }
 
-            dpp_setintvar(args[1],strval(args[2]));
+            dpp_setintvar(vargroup[0],strval(vargroup[1]));
             return 1;
         }
         if(!strcmp(funcgroup[1], "bool"))
         {
-            if(strcmp(args[2],"true") && strcmp(args[2],"false"))
+            if(strcmp(vargroup[1],"true") && strcmp(vargroup[1],"false"))
             {
                 dpp_error("Argument error; value must be either 'true' or 'false'.",);
                 return 0;
@@ -1329,25 +1358,25 @@ stock dpp_process(line[])
             new dpp_boolval;
 
 
-            if(!strcmp(args[2], "false"))
+            if(!strcmp(vargroup[1], "false"))
             {
                 dpp_boolval = 0;
             }
-            if(!strcmp(args[2], "true"))
+            if(!strcmp(vargroup[1], "true"))
             {
                 dpp_boolval = 1;
             }
 
-            dpp_setboolvar(args[1],dpp_boolval);
+            dpp_setboolvar(vargroup[0],dpp_boolval);
             return 1;
         }
         if(!strcmp(funcgroup[1], "str"))
         {
             new mul2, str2[dpp_argcharsize];
-            strmid(str2, args[2], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[2]); i++)
+            strmid(str2, vargroup[1], 0, dpp_argcharsize);
+            for(new i; i < strlen(vargroup[1]); i++)
             {
-                if(args[2][i] == '\"') mul2++, strdel(args[2], i, i+1);
+                if(vargroup[1][i] == '\"') mul2++, strdel(vargroup[1], i, i+1);
             }
             if(mul2 == 0)
             {
@@ -1356,11 +1385,11 @@ stock dpp_process(line[])
             }
             if(mul2 != 2)
             {
-                dpp_error("Argument error; [%i] \"%s\"", mul2, args[2]);
+                dpp_error("Argument error; [%i] \"%s\"", mul2, vargroup[1]);
                 return 0;
             }
 
-            dpp_setstrvar(args[1],args[2]);
+            dpp_setstrvar(vargroup[0],vargroup[1]);
             return 1;
         }
         

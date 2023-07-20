@@ -9,7 +9,7 @@ Return type: `int`
 - Returns a processed form id.
 
 ```pawn
-var::define.int,formid,__proccessed_form_id;
+new.int,formid=__proccessed_form_id;
 console.println,"'inlinetest' is {formid}";
 ```
 

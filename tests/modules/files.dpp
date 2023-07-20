@@ -7,7 +7,7 @@ files.write,"wrote this nigga";
 files.close;
 
 files.open_for_read,"testfile.omg";
-var::define.str,myvar_to_test_files,"This should not be here";
+new.str,myvar_to_test_files="This should not be here";
 files.read,myvar_to_test_files;
 console.println,"{myvar_to_test_files}";
 files.close;
@@ -19,7 +19,7 @@ files.write,"second line";
 files.write,"third line";
 files.close;
 
-var::define.int,testintagainomg__aa,364;
+new.int,testintagainomg__aa=364;
 
 console.println,"{testintagainomg__aa}";
 
@@ -56,12 +56,14 @@ if.equ, 5 ,   5 -> console.println,  "Syntax works!";
 if . equ , 1, 1-> console . println , "OmG" ;
 
 system.rem,"Example code";
-var::define.int,syntax_test,1;
+new.int,syntax_test=1;
+
 public&form.whilelooptest;
 {;
-	var::set.int,syntax_test,add?syntax_test:1;
+	set.int,syntax_test=add?syntax_test:1;
 	console.println,"{syntax_test} eeeeeeeeeeeeeeeeee";
 };
+
 if.equ,1,1->while.notequ,syntax_test,11->user.whilelooptest;
 
 console.println,"This is still runnin right? {syntax_test}";
