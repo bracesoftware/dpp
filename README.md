@@ -31,6 +31,7 @@
 - [`if`-expressions](doc/dpp_if.md)
 - [`while`-loops](doc/dpp_while.md)
 - [Instructions](doc/dpp_instruct.md)
+- [Operators](doc/dpp_oper.md)
 - [Classes](doc/dpp_class.md)
 - [Passing arguments to user forms](doc/dpp_userargs.md)
 - [`return` and `yield&return`](doc/dpp_return.md)
