@@ -1,3 +1,4 @@
+
 using.system;
 using.samp;
 using.console;
@@ -13,39 +14,39 @@ pragma::option.debug,DEBUG_OPTION;
 
 import::module,"test";
 
-system.rem,"Basic println example.";
-console.println,"Hual is a fucking bitch";
+system.rem("Basic println example.");
+console.println("Hual is a fucking bitch");
 
 public&form.testfunc;
 {;
-	console.println,"testfunc works.";
-	console.println,"testfunc works.";
+	console.println("testfunc works.");
+	console.println("testfunc works.");
 };
 
 public&form.NewTestFunc;
 {;
-	console.println,"OH YEAH MAN";
+	console.println("OH YEAH MAN");
 };
 
 user.testfunc;
 user.NewTestFunc;
 
-system.rem,"=================== NATIVES ===================";
+system.rem("=================== NATIVES ===================");
 
-system.rem,"a_samp for D++";
+system.rem("a_samp for D++");
 
 const*new.int,MAX_PLAYERS=1000;
 const*new.int,MAX_ACTORS=1000;
 const*new.int,MAX_VEHICLES=2000;
 
-samp.SetGameModeText,"d++ test";
-samp.SetMaxPlayers,MAX_PLAYERS;
+samp.SetGameModeText("d++ test");
+samp.SetMaxPlayers(MAX_PLAYERS);
 
-system.rem,"===================FUNCS===================";
+system.rem("===================FUNCS===================");
 
 public&form.testFunc;
 {;
-	console.println,"testFunc was called.";
+	console.println("testFunc was called.");
 	return.str,"testFunc returned this.";
 };
 
@@ -53,39 +54,39 @@ const*new.str,LMAO="Lmao";
 
 public&form.disableDebug;
 {;
-	console.println,"Debug disabled";
+	console.println("Debug disabled");
 	return.str,LMAO;
 };
 
-console.println,testFunc;
-console.println,disableDebug;
+console.println(testFunc);
+console.println(disableDebug);
 
-system.rem,"===================CALLBACKS===================";
+system.rem("===================CALLBACKS===================");
 
 
 auto&form.main;
 {;
-	console.println,"Hello World from main";
+	console.println("Hello World from main");
 	return.int,1;
 };
 
 auto&form.OnGameModeInit;
 {;
-	console.println,"OnGameModeInit works";
+	console.println("OnGameModeInit works");
 	return.int,1;
-	console.println,"RETURN FAILED";
-	console.println,"OMG LOL HAHAHAH RETURN {ES NOT WORK";
+	console.println("RETURN FAILED");
+	console.println("OMG LOL HAHAHAH RETURN DOES NOT WORK");
 };
 
 hook&form.OnGameModeInit;
 {;
-	console.println,"OnGameModeInit works twice!!!";
+	console.println("OnGameModeInit works twice!!!");
 	return.int,1;
 };
 
 auto&form.OnGameModeExit;
 {;
-	console.println,"OnGameModeExit works";
+	console.println("OnGameModeExit works");
 	return.bool,true;
 };
 

@@ -14,7 +14,7 @@ exit;
 ```pawn
 new.str,test="Test string";
 
-console.println,"{test}";
+console.println("{test}");
 ```
 
 Output:
@@ -25,10 +25,10 @@ Test string
 ```pawn
 public&form.testfunction?message;
 {;
-	console.println,message@testfunction;
+	console.println(message@testfunction);
 };
 
-user.testfunction,"{test}";
+user.testfunction("{test}");
 ```
 
 Output:
@@ -41,8 +41,8 @@ Test string
 ```pawn
 new.int,variable=1;
 
-if.equ,defined?variable,1->console.println,"'variable' is defined!";
-if.equ,defined?dummyvar,1->console.println,"This should not be printed!!";
+if.equ,defined?variable,1->console.println("'variable' is defined!");
+if.equ,defined?dummyvar,1->console.println("This should not be printed!!");
 ```
 
 Output:

@@ -32,7 +32,7 @@ public dpp_processmisc(funcgroup[][],args[][],args_const[][])
 
             for(new i; i < dpp_maxvar; i++)
             {
-                if(!strcmp(args_const[1], dpp_vardata[i][var_name]))
+                if(!strcmp(args_const[0], dpp_vardata[i][var_name]))
                 {
                     if(dpp_vardata[i][var_valid] == 1)
                     {
@@ -44,7 +44,7 @@ public dpp_processmisc(funcgroup[][],args[][],args_const[][])
 
             for(new i; i < dpp_maxvar; i++)
             {
-                if(!strcmp(args_const[2], dpp_vardata[i][var_name]))
+                if(!strcmp(args_const[1], dpp_vardata[i][var_name]))
                 {
                     if(dpp_vardata[i][var_valid] == 1)
                     {

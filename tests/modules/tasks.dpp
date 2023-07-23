@@ -1,21 +1,22 @@
 public&task.testtask#1000;
 {;
-	console.println,"Task works!";
+	console.println("Task works!");
+	console.cout.log(1+1+2);
 };
 
 public&task.anothersexytask#3000;
 {;
-	console.println,"Another task also works!";
-	samp.SendClientMessage,0,0,"Test client message";
+	console.println("Another task also works!");
+	samp.SendClientMessage(0,0,"Test client message");
 };
 
 auto&form.OnPlayerConnect?playerid;
 {;
-	samp.SendClientMessage,playerid@OnPlayerConnect,0,"Welcome to the D++ server";
+	samp.SendClientMessage(playerid@OnPlayerConnect,0,"Welcome to the D++ server");
 };
 
 auto&form.OnPlayerDisconnect?playerid&reason;
 {;
-	console.println,"Player {playerid@OnPlayerDisconnect} disconnected | Reason: {reason@OnPlayerDisconnect}";
+	console.println("Player {playerid@OnPlayerDisconnect} disconnected | Reason: {reason@OnPlayerDisconnect}");
 	return.int,1;
 };

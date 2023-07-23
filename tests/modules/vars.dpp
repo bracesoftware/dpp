@@ -1,43 +1,43 @@
 new.str,myvar="myvar::worked.";
 
-console.println,myvar;
+console.println(myvar);
 
 set.str,myvar="myvar::worked again.";
 
-console.println,myvar;
+console.println(myvar);
 
-if.equ,1,1->console.println,"1 is 1";
-if.notequ,2,1->console.println,"2 is not 1";
-if.notequ,1,1->console.println,"1 is not 1";
-if.equ,1,100->console.println,"1 is 100";
+if.equ,1,1->console.println("1 is 1");
+if.notequ,2,1->console.println("2 is not 1");
+if.notequ,1,1->console.println("1 is not 1");
+if.equ,1,100->console.println("1 is 100");
 
-if.equ,myvar,"myvar::worked."->console.println,myvar;
-if.equ,false,true->console.println,"false is equal to true";
+if.equ,myvar,"myvar::worked."->console.println(myvar);
+if.equ,false,true->console.println("false is equal to true");
 
 
 public&form.functobehooked?arg1&arg2&arg3;
 {;
-	console.println,"HOOKED";
+	console.println("HOOKED");
 	return.int,1;
 };
 
 hook&form.functobehooked;
 {;
-	console.println,"HOOKED 1";
+	console.println("HOOKED 1");
 	return.int,1;
 };
 
 hook&form.functobehooked;
 {;
-	console.println,"HOOKED 2";
+	console.println("HOOKED 2");
 	return.int,1;
 };
 
-user.functobehooked,"oh lol",1,false;
+user.functobehooked("oh lol",1,false);
 
 
 public&form.arginit_test?playerid&string;
 {;
 };
 
-system.arginit,arginit_test,1,"Hello!";
+system.arginit(arginit_test,1,"Hello!");

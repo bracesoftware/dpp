@@ -4,7 +4,7 @@
 - If-expressions are also possible in D++:
 
 ```pawn
-if.equ,1,1->console.println,"1 is 1";
+if.equ,1,1->console.println("1 is 1");
 ```
 
 You also may compare variables, consants and vice-versa.
@@ -12,7 +12,7 @@ You also may compare variables, consants and vice-versa.
 ```pawn
 new.str,myvar="myvar worked.";
 
-if.equ,myvar,"myvar worked."->console.println,myvar;
+if.equ,myvar,"myvar worked."->console.println(myvar);
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -35,13 +35,13 @@ If-method is a new term used to describe the way how are you comparing the 2 ele
 ```pawn
 public&form.ElseTest;
 {;
-	if.equ,1,2->console.println,"1 and 2 are equal";
-	else->if.equ,2,3->console.println,"2 and 3 are equal";
-	else->console.println,"Nothing is equal";
+	if.equ,1,2->console.println("1 and 2 are equal");
+	else->if.equ,2,3->console.println("2 and 3 are equal");
+	else->console.println("Nothing is equal");
 
-	if.equ,1,1->console.println,"1 and 1 are indeed equal";
-	else->console.println,"This should not be printed";
-	
+	if.equ,1,1->console.println("1 and 1 are indeed equal");
+	else->console.println("This should not be printed");
+
 	return.int,1;
 };
 

@@ -5,7 +5,7 @@
 ### Operator: `+`
 - Addition.
 ```pawn
-console.cout,1+1;
+console.cout(1+1);
 ```
 
 Output:
@@ -17,7 +17,7 @@ Output:
 ### Operator: `-`
 - Subtraction.
 ```pawn
-console.cout,1-1;
+console.cout(1-1);
 ```
 
 Output:
@@ -29,7 +29,7 @@ Output:
 ### Operator: `*`
 - Multiplication.
 ```pawn
-console.cout,1*1;
+console.cout(1*1);
 ```
 
 Output:
@@ -41,7 +41,7 @@ Output:
 ### Operator: `/`
 - Division.
 ```pawn
-console.cout,4/2;
+console.cout(4/2);
 ```
 
 Output:
@@ -53,7 +53,7 @@ Output:
 ### Operator: `^`
 - Exponentiation.
 ```pawn
-console.cout,3^2;
+console.cout(3^2);
 ```
 
 Output:
@@ -74,10 +74,10 @@ You may also use constants, variables and user forms as an Operator arguments:
 
 ```pawn
 new.int,MATHVAR=1+1;
-console.cout,MATHVAR;
+console.cout(MATHVAR);
 
 new.int,MATHVAR22=6+MATHVAR;
-console.cout,MATHVAR22;
+console.cout(MATHVAR22);
 ```
 
 Output:

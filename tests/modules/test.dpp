@@ -1,10 +1,10 @@
-console.println,"Test is imported.";
+console.println("Test is imported.");
 
-console.println,"interesting...";
+console.println("interesting...");
 
 const*new.str,TEST_STRING="TEST_STRING value works!";
 
-console.println,TEST_STRING;
+console.println(TEST_STRING);
 
 const*new.str,OMG="OMG actually works";
-console.println,OMG;
+console.println.log(OMG);

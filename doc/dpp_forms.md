@@ -12,7 +12,7 @@
 ```pawn
 using.console;
 
-console.println,"Hello World";
+console.println("Hello World");
 ```
 
 So you are using the `using` procedure on a `console` component to use the `println` form - brilliant!
@@ -35,7 +35,7 @@ native&form.discord_bot_send_message;
 ```pawn
 public&form.formname;
 {;
-	console.println,"my first user form";
+	console.println("my first user form");
 };
 ```
 
@@ -46,7 +46,7 @@ You also may return values.
 ```pawn
 public&form.formname;
 {;
-	console.println,"my first user form";
+	console.println("my first user form");
 	return.str,"this was returned";
 };
 ```
@@ -56,11 +56,11 @@ Then you can use this user form as an argument in a native form.
 ```pawn
 public&form.formname;
 {;
-	console.println,"my first user form";
+	console.println("my first user form");
 	return.str,"this was returned";
 };
 
-console.println,formname;
+console.println(formname);
 ```
 
 To call an user form, use:
@@ -78,7 +78,7 @@ user.formname;
 ```pawn
 const*new.str,CONST_NAME="constant worked";
 
-console.println,CONST_NAME;
+console.println(CONST_NAME);
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -89,19 +89,19 @@ console.println,CONST_NAME;
 ```pawn
 public&form.functobehooked;
 {;
-	console.println,"HOOKED";
+	console.println("HOOKED");
 	return.int,1;
 };
 
 hook&form.functobehooked;
 {;
-	console.println,"HOOKED 1";
+	console.println("HOOKED 1");
 	return.int,1;
 };
 
 hook&form.functobehooked;
 {;
-	console.println,"HOOKED 2";
+	console.println("HOOKED 2");
 	return.int,1;
 };
 

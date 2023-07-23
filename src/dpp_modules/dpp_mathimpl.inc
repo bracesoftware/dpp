@@ -146,7 +146,7 @@ stock dpp_div(arg[])
     }
 
     format(newvalue, sizeof newvalue, "%i", 
-        strval(operands[0])/strval(operands[1]));
+        floatround(strval(operands[0])/strval(operands[1])));
 
     return format(arg, strlen(arg), newvalue);
 }
@@ -176,8 +176,8 @@ stock dpp_exp(arg[])
         }
     }
 
-    format(newvalue, sizeof newvalue, "%f", 
-        floatpower(Float:(strval(operands[0])),Float:(strval(operands[1]))));
+    format(newvalue, sizeof newvalue, "%i", 
+        floatround(floatpower(Float:(strval(operands[0])),Float:(strval(operands[1])))));
 
     return format(arg, strlen(arg), newvalue);
 }

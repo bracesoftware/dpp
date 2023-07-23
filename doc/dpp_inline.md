@@ -8,16 +8,16 @@
 public&form.InlineTestFunc;
 {;
 	new.int,formid=__proccessed_form_id;
-	console.println,"'InlineTestFunc' is {formid}";
+	console.println("'InlineTestFunc' is {formid}");
 	
 	inline&form.inlineformtest; 
-		do->console.println,"Inline works.";
-		do->console.println.log,"The inline finally works!";
+		do->console.println("Inline works.");
+		do->console.println.log("The inline finally works!");
 
-	using&inline::user.inlineformtest;
-	using&inline::user.inlineformtest;
-	using&inline::user.inlineformtest;
-	using&inline::user.inlineformtest;
+	user.inlineformtest;
+	user.inlineformtest;
+	user.inlineformtest;
+	user.inlineformtest;
 	yield&return.int,1;
 };
 

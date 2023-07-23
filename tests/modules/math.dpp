@@ -1,15 +1,15 @@
 using.math;
 
-console.cout,add?1:1;
-console.cout,div?111:111;
-console.cout,mul?2:2;
-console.cout,exp?2:2;
-console.cout,sub?2:2;
+console.cout(1+1);
+console.cout(111/111);
+console.cout(2*2);
+console.cout(2^2);
+console.cout(2-2);
 
-if.equ,div?5:5,add?1:0->console.println,"Math test passed!";
+if.equ,5/5,1+0->console.println("Math test passed!");
 
-new.int,MATHVAR=add?1:1;
-console.cout,MATHVAR;
+new.int,MATHVAR=1+1;
+console.cout(MATHVAR);
 
-new.int,MATHVAR22=add?6:MATHVAR;
-console.cout,MATHVAR22;
+new.int,MATHVAR22=6+MATHVAR;
+console.cout(MATHVAR22);

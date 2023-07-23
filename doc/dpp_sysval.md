@@ -10,7 +10,7 @@ Return type: `int`
 
 ```pawn
 new.int,formid=__proccessed_form_id;
-console.println,"'inlinetest' is {formid}";
+console.println("'inlinetest' is {formid}");
 ```
 
 ## `__majorver`

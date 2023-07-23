@@ -6,15 +6,15 @@ public&class.dogInfo;
 
 	public&form.dogRace;
 	{;
-		console.println,"This is a bulldog.";
+		console.println("This is a bulldog.");
 		return.int,1;
 	};
 >;
 
-console.println,dogInfo:name;
+console.println(dogInfo:name);
 user.dogInfo:dogRace;
 
-console.cout,dogInfo:age;
+console.cout(dogInfo:age);
 
 public&class.manInfo;
 <;
@@ -26,16 +26,16 @@ hook&class.dogInfo;
 	new.str,owner="Tommy";
 >;
 
-console.println,dogInfo:owner;
+console.println(dogInfo:owner);
 
 	if.equ,1,1->	set.str,dogInfo:owner="Y_Less";
 
-	console.println,dogInfo:owner;
+	console.println(dogInfo:owner);
 
 hook&class.manInfo;
 <;
 	new.int,age=86;
 >;
 
-console.println,manInfo:name;
-console.cout,manInfo:age;
+console.println(manInfo:name);
+console.cout(manInfo:age);

@@ -262,10 +262,10 @@ public dpp_processsamp(funcgroup[][],args[][])
         if(!strcmp(funcgroup[1], "SetGameModeText"))
         {
             new mul, str[dpp_argcharsize];
-            strmid(str, args[1], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[1]); i++)
+            strmid(str, args[0], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[0]); i++)
             {
-                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+                if(args[0][i] == '\"') mul++, strdel(args[0], i, i+1);
             }
             if(mul == 0)
             {
@@ -274,46 +274,46 @@ public dpp_processsamp(funcgroup[][],args[][])
             }
             if(mul != 2)
             {
-                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+                dpp_error("Argument error; [%i] \"%s\"", mul, args[0]);
                 return 1;
             }
 
-            SetGameModeText(args[1]);
+            SetGameModeText(args[0]);
             return 1;
         }
         // Does not exist SetMaxPlayers
         if(!strcmp(funcgroup[1], "SetMaxPlayers"))
         {
-            if(!dpp_isnumeric(args[1]))
+            if(!dpp_isnumeric(args[0]))
             {
                 dpp_error("Argument error; value must be an integer.",);
                 return 1;
             }
 
-            SetMaxPlayers(strval(args[1]));
+            SetMaxPlayers(strval(args[0]));
             return 1;
         }
 
         //SendClientMessage
         if(!strcmp(funcgroup[1], "SendClientMessage"))
         {
+            if(!dpp_isnumeric(args[0]))
+            {
+                dpp_error("Argument error; value must be an integer.",);
+                return 1;
+            }
+
             if(!dpp_isnumeric(args[1]))
             {
                 dpp_error("Argument error; value must be an integer.",);
                 return 1;
             }
 
-            if(!dpp_isnumeric(args[2]))
-            {
-                dpp_error("Argument error; value must be an integer.",);
-                return 1;
-            }
-
             new mul, str[dpp_argcharsize];
-            strmid(str, args[3], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[3]); i++)
+            strmid(str, args[2], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[2]); i++)
             {
-                if(args[3][i] == '\"') mul++, strdel(args[3], i, i+1);
+                if(args[2][i] == '\"') mul++, strdel(args[2], i, i+1);
             }
             if(mul == 0)
             {
@@ -322,11 +322,11 @@ public dpp_processsamp(funcgroup[][],args[][])
             }
             if(mul != 2)
             {
-                dpp_error("Argument error; [%i] \"%s\"", mul, args[3]);
+                dpp_error("Argument error; [%i] \"%s\"", mul, args[2]);
                 return 1;
             }
 
-            SendClientMessage(strval(args[1]),strval(args[2]),args[3]);
+            SendClientMessage(strval(args[0]),strval(args[1]),args[2]);
             return 1;
         }
 

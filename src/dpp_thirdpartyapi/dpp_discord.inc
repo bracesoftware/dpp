@@ -71,17 +71,17 @@ public dpp_processdiscord(funcgroup[][],args[][])
         }
         if(!strcmp(funcgroup[1], "discord_bot_send_message"))
         {
-            if(!dpp_isnumeric(args[1]))
+            if(!dpp_isnumeric(args[0]))
             {
-                dpp_error("Argument error; [argid - 1] \"%s\"", args[1]);
+                dpp_error("Argument error; [argid - 0] \"%s\"", args[0]);
                 return 1;
             }
 
             new mul, str[dpp_argcharsize];
-            strmid(str, args[2], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[2]); i++)
+            strmid(str, args[1], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[1]); i++)
             {
-                if(args[2][i] == '\"') mul++, strdel(args[2], i, i+1);
+                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
             }
             if(mul == 0)
             {
@@ -90,11 +90,11 @@ public dpp_processdiscord(funcgroup[][],args[][])
             }
             if(mul != 2)
             {
-                dpp_error("Argument error; [%i] \"%s\"", mul, args[2]);
+                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
                 return 1;
             }
 
-            new DCC_Channel:channel = DCC_FindChannelById(args[1]);
+            new DCC_Channel:channel = DCC_FindChannelById(args[0]);
 
             if(channel == DCC_INVALID_CHANNEL)
             {
@@ -103,7 +103,7 @@ public dpp_processdiscord(funcgroup[][],args[][])
             }
 
             //native DCC_SendChannelMessage(DCC_Channel:channel, const message[], const callback[] = "", const format[] = "", {Float, _}:...);
-            DCC_SendChannelMessage(channel,args[2]);
+            DCC_SendChannelMessage(channel,args[1]);
             return 1;
         }
 

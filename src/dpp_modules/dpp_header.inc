@@ -907,7 +907,8 @@ dpp_formatcheck(arg[],replacement[]); public dpp_formatcheck(arg[],replacement[]
 
 //methods
 
-dpp_callmethod(funcgroup[][],args[][]); public dpp_callmethod(funcgroup[][],args[][])
+dpp_callmethod(funcgroup[][],args[][],args_const[][]); 
+public dpp_callmethod(funcgroup[][],args[][],args_const[][])
 {
     if(isnull(funcgroup[2]))
     {
@@ -928,7 +929,7 @@ dpp_callmethod(funcgroup[][],args[][]); public dpp_callmethod(funcgroup[][],args
                 for(new argid; argid < dpp_maxformargs; argid++)
                 {
                     strmid(dpp_args[i][argid][dpp_argvalue],
-                        args[argid+1],
+                        args[argid],
                         0,
                         dpp_argcharsize,
                         dpp_argcharsize);
@@ -954,7 +955,7 @@ dpp_callmethod(funcgroup[][],args[][]); public dpp_callmethod(funcgroup[][],args
                                         dpp_argcharsize,
                                         dpp_argcharsize);*/
                                     strmid(dpp_args[hookfuncid][argid][dpp_argvalue],
-                                        args[argid+1],
+                                        args[argid],
                                         0,
                                         dpp_argcharsize,
                                         dpp_argcharsize);

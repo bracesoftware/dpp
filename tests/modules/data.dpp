@@ -1,4 +1,4 @@
-console.println.log,"data.dpp is imported";
+console.println.log("data.dpp is imported");
 
 using.data;
 
@@ -11,14 +11,14 @@ new.int,scanftest6=2453;
 
 new.str,scanftest="sscanf-is-so-cool-1-2";
 
-data.sscanf,scanftest,scanftest1,scanftest2,scanftest3,scanftest4,scanftest5,scanftest6;
+data.sscanf(scanftest,scanftest1,scanftest2,scanftest3,scanftest4,scanftest5,scanftest6);
 
-console.println.log,scanftest1;
-console.println.log,scanftest2;
-console.println.log,scanftest3;
-console.println.log,scanftest4;
-console.cout,scanftest5;
-console.cout,scanftest6;
+console.println.log(scanftest1);
+console.println.log(scanftest2);
+console.println.log(scanftest3);
+console.println.log(scanftest4);
+console.cout(scanftest5);
+console.cout(scanftest6);
 
 object,TestObj;
 TestObj<-new.int,testvar=10;

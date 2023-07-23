@@ -25,7 +25,7 @@ public&class.customer;
 To use this variable, we need to include the class name within the variable name; like this:
 
 ```pawn
-console.println,customer:name;
+console.println(customer:name);
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ public&class.customer;
 	new.str,name="Alex";
 >;
 
-console.println,customer:name;
+console.println(customer:name);
 
 ```
 
@@ -51,12 +51,12 @@ public&class.customer;
 	new.str,name="Alex";
 >;
 
-console.println,customer:name;
+console.println(customer:name);
 
 hook&class.customer;
 <;
 	new.int,age=12;
 >;
 
-console.cout,customer:age;
+console.cout(customer:age);
 ```

@@ -6,17 +6,17 @@ iter::add,testiter,1;
 iter::add,testiter,10;
 iter::remove,testiter,1;
 
-foreach.int&var,foreachtestvar,testiter->console.println,"foreach test {foreachtestvar}";
+foreach.int&var,foreachtestvar,testiter->console.println("foreach test {foreachtestvar}");
 
 iter::add,testiter,1;
 
-foreach.int&var,foreachtestvar,testiter->console.println,"foreach test #2 {foreachtestvar}";
+foreach.int&var,foreachtestvar,testiter->console.println("foreach test #2 {foreachtestvar}");
 
-console.cout,sizeof?testiter;
+console.cout.log(sizeof?testiter);
 
 iter::delete,testiter;
 
-console.cout,1; console.println,"Lmao ok";
+console.cout(1); console.println("Lmao ok");
 
 public&class.IterClass;
 <;
@@ -24,41 +24,41 @@ public&class.IterClass;
 >;
 
 iter::add,IterClass:iter,364;
-foreach.int&var,foreachtestvar,IterClass:iter->console.println,"foreach test #3 {foreachtestvar}";
+foreach.int&var,foreachtestvar,IterClass:iter->console.println("foreach test #3 {foreachtestvar}");
 
-if.equ,defined?IterClass:iter,1->console.println,"IterClass:iter is defined!";
-if.equ,defined?IterClass:iter,0->console.println,"IterClass:iter is NOT defined!";
-if.equ,defined?foreachtestvar,1->console.println,"foreachtestvar is defined!";
-if.equ,defined?dummyvar,1->console.println,"This should not be printed!!";
+if.equ,defined?IterClass:iter,1->console.println("IterClass:iter is defined!");
+if.equ,defined?IterClass:iter,0->console.println("IterClass:iter is NOT defined!");
+if.equ,defined?foreachtestvar,1->console.println("foreachtestvar is defined!");
+if.equ,defined?dummyvar,1->console.println.log("This should not be printed!!");
 
 new.int,switchtest=23;
 switch,switchtest;
-case,1->console.println,"switchtest is 1";
-case,23->console.println,"switchtest is 23";
-case,2->console.println,"switchtest is 2";
+case,1->console.println("switchtest is 1");
+case,23->console.println("switchtest is 23");
+case,2->console.println.log("switchtest is 2");
 
-console.println.log,"This should be in dpp.log in scriptfiles/";
+console.println.log("This should be in dpp.log in scriptfiles/");
 
 
 form&method.TestMethod?text;
 {;
-	console.println,"Printed: {text@TestMethod}";
+	console.println("Printed: {text@TestMethod}");
 	return.int,1;
 };
 
-console.println.TestMethod,"Method test #1";
+console.println.TestMethod("Method test #1");
 
 
 public&class.MethodClass;
 <;
 	form&method.TestMethod?text;
 	{;
-		console.println,"Printed: {text@MethodClass:TestMethod}";
+		console.println.log("Printed: {text@MethodClass:TestMethod}");
 		return.int,1;
 	};
 >;
 
-console.println.MethodClass:TestMethod,"Method test #2";
+console.println.MethodClass:TestMethod("Method test #2");
 
 
 public&class.SAMP;
@@ -78,6 +78,6 @@ hook&form.OnPlayerDisconnect?playerid;
 
 public&task.PrintPlayers#1000;
 {;
-	foreach.int&var,foreachtestvar,SAMP:Player->console.println,"foreach test #4 {foreachtestvar}";
+	foreach.int&var,foreachtestvar,SAMP:Player->console.println("foreach test #4 {foreachtestvar}");
 
 };

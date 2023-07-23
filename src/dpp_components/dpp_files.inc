@@ -11,8 +11,8 @@
 */
 
 
-forward dpp_processfiles(funcgroup[][],args[][]);
-public dpp_processfiles(funcgroup[][],args[][])
+forward dpp_processfiles(funcgroup[][],args[][],args_const[][]);
+public dpp_processfiles(funcgroup[][],args[][],args_const[][])
 {
     if(!strcmp(funcgroup[0], "files"))
     {
@@ -24,10 +24,10 @@ public dpp_processfiles(funcgroup[][],args[][])
         if(!strcmp(funcgroup[1], "delete"))
         {
             new mul, str[dpp_argcharsize];
-            strmid(str, args[1], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[1]); i++)
+            strmid(str, args[0], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[0]); i++)
             {
-                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+                if(args[0][i] == '\"') mul++, strdel(args[0], i, i+1);
             }
             if(mul == 0)
             {
@@ -36,11 +36,11 @@ public dpp_processfiles(funcgroup[][],args[][])
             }
             if(mul != 2)
             {
-                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+                dpp_error("Argument error; [%i] \"%s\"", mul, args[0]);
                 return 1;
             }
 
-            fremove(args[1]);
+            fremove(args[0]);
             return 1;
         }
         if(!strcmp(funcgroup[1], "open_for_append"))
@@ -51,10 +51,10 @@ public dpp_processfiles(funcgroup[][],args[][])
                 return 1;
             }
             new mul, str[dpp_argcharsize];
-            strmid(str, args[1], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[1]); i++)
+            strmid(str, args[0], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[0]); i++)
             {
-                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+                if(args[0][i] == '\"') mul++, strdel(args[0], i, i+1);
             }
             if(mul == 0)
             {
@@ -63,11 +63,11 @@ public dpp_processfiles(funcgroup[][],args[][])
             }
             if(mul != 2)
             {
-                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+                dpp_error("Argument error; [%i] \"%s\"", mul, args[0]);
                 return 1;
             }
 
-            dpp_filehandle = fopen(args[1], io_append);
+            dpp_filehandle = fopen(args[0], io_append);
             dpp_fhandleused = 1;
             return 1;
         }
@@ -79,10 +79,10 @@ public dpp_processfiles(funcgroup[][],args[][])
                 return 1;
             }
             new mul, str[dpp_argcharsize];
-            strmid(str, args[1], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[1]); i++)
+            strmid(str, args[0], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[0]); i++)
             {
-                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+                if(args[0][i] == '\"') mul++, strdel(args[0], i, i+1);
             }
             if(mul == 0)
             {
@@ -91,11 +91,11 @@ public dpp_processfiles(funcgroup[][],args[][])
             }
             if(mul != 2)
             {
-                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+                dpp_error("Argument error; [%i] \"%s\"", mul, args[0]);
                 return 1;
             }
 
-            dpp_filehandle = fopen(args[1], io_read);
+            dpp_filehandle = fopen(args[0], io_read);
             dpp_fhandleused = 1;
             return 1;
         }
@@ -107,10 +107,10 @@ public dpp_processfiles(funcgroup[][],args[][])
                 return 1;
             }
             new mul, str[dpp_argcharsize];
-            strmid(str, args[1], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[1]); i++)
+            strmid(str, args[0], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[0]); i++)
             {
-                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+                if(args[0][i] == '\"') mul++, strdel(args[0], i, i+1);
             }
             if(mul == 0)
             {
@@ -119,11 +119,11 @@ public dpp_processfiles(funcgroup[][],args[][])
             }
             if(mul != 2)
             {
-                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+                dpp_error("Argument error; [%i] \"%s\"", mul, args[0]);
                 return 1;
             }
 
-            dpp_filehandle = fopen(args[1], io_write);
+            dpp_filehandle = fopen(args[0], io_write);
             dpp_fhandleused = 1;
             return 1;
         }
@@ -141,10 +141,10 @@ public dpp_processfiles(funcgroup[][],args[][])
         if(!strcmp(funcgroup[1], "write"))
         {
             new mul, str[dpp_argcharsize];
-            strmid(str, args[1], 0, dpp_argcharsize);
-            for(new i; i < strlen(args[1]); i++)
+            strmid(str, args[0], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[0]); i++)
             {
-                if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+                if(args[0][i] == '\"') mul++, strdel(args[0], i, i+1);
             }
             if(mul == 0)
             {
@@ -153,11 +153,11 @@ public dpp_processfiles(funcgroup[][],args[][])
             }
             if(mul != 2)
             {
-                dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+                dpp_error("Argument error; [%i] \"%s\"", mul, args[0]);
                 return 1;
             }
 
-            fwrite(dpp_filehandle, args[1]);
+            fwrite(dpp_filehandle, args[0]);
             return 1;
         }
         if(!strcmp(funcgroup[1], "read"))
@@ -166,7 +166,7 @@ public dpp_processfiles(funcgroup[][],args[][])
 
             for(new i; i < dpp_maxvar; i++)
             {
-                if(!strcmp(dpp_vardata[i][var_name], args[1]))
+                if(!strcmp(dpp_vardata[i][var_name], args_const[0]))
                 {
                     if(dpp_vardata[i][var_type] == dpp_var_type_str)
                     {
@@ -180,7 +180,7 @@ public dpp_processfiles(funcgroup[][],args[][])
             }
             if(foundvar == -1)
             {
-                dpp_error("Cannot find a destination string variable : \"%s\"",args[1]);
+                dpp_error("Cannot find a destination string variable : \"%s\"",args_const[0]);
                 return 1;
             }
 

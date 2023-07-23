@@ -23,14 +23,14 @@ using.console;
 - Character output.
 
 ```pawn
-console.cout,1;
+console.cout(1);
 ```
 
 ### Form: `println`
 - Text line output.
 
 ```pawn
-console.cout,"Hello World!";
+console.println("Hello World!");
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ using.system;
 ### Form: `rem`
 - Comments.
 ```pawn
-system.rem,"SOME TEXT";
+system.rem("SOME TEXT");
 ```
 
 ### Form: `arginit`
@@ -58,7 +58,7 @@ public&form.arginit_test?playerid&string;
 	return.int,1;
 };
 
-system.arginit,arginit_test,1,"Hello!";
+system.arginit(arginit_test,1,"Hello!");
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ system.arginit,arginit_test,1,"Hello!";
 ```pawn
 auto&form.main;
 {;
-	console.println,"Hello World from main";
+	console.println("Hello World from main");
 	return.int,1;
 };
 ```
@@ -91,7 +91,7 @@ using.samp;
 - Set the gamemode text.
 
 ```pawn
-samp.SetGameModeText,"d++ test";
+samp.SetGameModeText("d++ test");
 ```
 
 ### Form: `SendClientMessage`
@@ -99,7 +99,7 @@ samp.SetGameModeText,"d++ test";
 - Send a message to a player.
 
 ```pawn
-samp.SendClientMessage,playerid@OnPlayerConnect,0,"Welcome to the D++ server";
+samp.SendClientMessage(playerid@OnPlayerConnect,0,"Welcome to the D++ server");
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -109,11 +109,11 @@ samp.SendClientMessage,playerid@OnPlayerConnect,0,"Welcome to the D++ server";
 - In SA:MP and open.mp these are also known as **callbacks**. In D++ they're automated user forms, and are called by the D++ interpreter when a certain event happens in SA:MP. So for example, when the gamemode starts loading, automated form will get called.
 
 ```pawn
-system.rem,"OnGameModeInit should be called by itself.";
+system.rem("OnGameModeInit should be called by itself.");
 
 auto&form.OnGameModeInit;
 {;
-	console.println,"OnGameModeInit works";
+	console.println("OnGameModeInit works");
 };
 ```
 
@@ -124,7 +124,7 @@ auto&form.OnGameModeInit;
 ```pawn
 auto&form.OnGameModeExit;
 {;
-	console.println,"OnGameModeExit works";
+	console.println("OnGameModeExit works");
 };
 ```
 
@@ -135,7 +135,7 @@ auto&form.OnGameModeExit;
 ```pawn
 auto&form.OnPlayerConnect?playerid;
 {;
-	samp.SendClientMessage,playerid@OnPlayerConnect,0,"Welcome to the D++ server";
+	samp.SendClientMessage(playerid@OnPlayerConnect,0,"Welcome to the D++ server");
 };
 ```
 
@@ -147,7 +147,7 @@ auto&form.OnPlayerConnect?playerid;
 
 auto&form.OnPlayerDisconnect?playerid&reason;
 {;
-	console.println,"Player {playerid@OnPlayerDisconnect} disconnected | Reason: {reason@OnPlayerDisconnect}";
+	console.println("Player {playerid@OnPlayerDisconnect} disconnected | Reason: {reason@OnPlayerDisconnect}");
 	return.int,1;
 };
 ```
@@ -170,21 +170,21 @@ using.files;
 - Opens a file with an intention to write data into it. File is created if it does not exist.
 
 ```pawn
-files.open_for_write,"file_name.txt";
+files.open_for_write("file_name.txt");
 ```
 
 ### Form: `open_for_read`
 - Opens a file with an intention to read data from it. File is created if it does not exist.
 
 ```pawn
-files.open_for_read,"file_name.txt";
+files.open_for_read("file_name.txt");
 ```
 
 ### Form: `open_for_append`
 - Opens a file with an intention to append data into it. File is created if it does not exist.
 
 ```pawn
-files.open_for_append,"file_name.txt";
+files.open_for_append("file_name.txt");
 ```
 
 ### Form: `read`
@@ -192,14 +192,14 @@ files.open_for_append,"file_name.txt";
 
 ```pawn
 new.str,dest_string="something that should change";
-files.read,dest_string;
+files.read(dest_string);
 ```
 
 ### Form: `write`
 - Writes data into the opened file.
 
 ```pawn
-files.write,"wrote this into file_name.txt";
+files.write("wrote this into file_name.txt");
 ```
 
 ### Form: `close`
@@ -214,7 +214,7 @@ files.close;
 - Deletes a certain file.
 
 ```pawn
-files.delete,"newfile.omg";
+files.delete("newfile.omg");
 ```
 
 ---------------------------------------------------------------------------------------------------------
@@ -232,7 +232,7 @@ using.misc;
 - Swaps two's variable values.
 
 ```pawn
-misc.swap,var1,var2;
+misc.swap(var1,var2);
 ```
 
 **NOTE**: Now variable `var1` will have the value `var2` had, and `var2` will have the value `var1` had.
@@ -263,14 +263,14 @@ new.int,scanftest6=2453;
 
 new.str,scanftest="sscanf-is-so-cool-1-2";
 
-data.sscanf,scanftest,scanftest1,scanftest2,scanftest3,scanftest4,scanftest5,scanftest6;
+data.sscanf(scanftest,scanftest1,scanftest2,scanftest3,scanftest4,scanftest5,scanftest6);
 
-console.println.log,scanftest1;
-console.println.log,scanftest2;
-console.println.log,scanftest3;
-console.println.log,scanftest4;
-console.cout,scanftest5;
-console.cout,scanftest6;
+console.println.log(scanftest1);
+console.println.log(scanftest2);
+console.println.log(scanftest3);
+console.println.log(scanftest4);
+console.cout(scanftest5);
+console.cout(scanftest6);
 ```
 
 Output:
@@ -283,3 +283,5 @@ cool
 1
 2
 ```
+
+**WARNING**: Current `sscanf` delimiter is `-` because of some limitations we're facing, it may be changed in the future.

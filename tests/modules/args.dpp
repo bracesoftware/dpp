@@ -1,12 +1,12 @@
 public&form.form?text;
 {;
-	console.println,text@form;
+	console.println(text@form);
 	return.str,text@form;
 };
 
-user.form,"Argument passed to a function!";
+user.form("Argument passed to a function!");
 
-system.arginit,form,"Argument passed to a function again!";
-console.println,form;
+system.arginit(form,"Argument passed to a function again!");
+console.println(form);
 
-if.equ,add?1:1,2->if.notequ,1,2->console.println,"Biggest if test passed";
+if.equ,1+1,2->if.notequ,1,2->console.println("Biggest if test passed");

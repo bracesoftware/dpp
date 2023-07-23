@@ -10,7 +10,7 @@
 
 ```pawn
 object,TestObj;
-TestObj<-var::define.int,testvar,10;
+TestObj<-new.int,testvar=10;
 ```
 
 ## Example `#2`
@@ -23,5 +23,5 @@ public&class.ObjectTest;
 	object,TestObj;
 >;
 
-ObjectTest:TestObj<-var::define.int,testvar,1;
+ObjectTest:TestObj<-new.int,testvar=1;
 ```

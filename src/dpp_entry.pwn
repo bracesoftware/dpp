@@ -83,6 +83,7 @@ new dpp_switchedvar;
 //-----------------------------------------------------------
 #define dpp_maxsymbolchar 64
 #define dpp_maxstrsize 256
+#define dpp_maxargsc 20
 //-----------------------------------------------------------
 // REQUIRED.
 #include <open.mp>

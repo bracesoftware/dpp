@@ -7,23 +7,23 @@
 ```pawn
 form&method.TestMethod?text;
 {;
-	console.println,"Printed: {text@TestMethod}";
+	console.println("Printed: {text@TestMethod}");
 	return.int,1;
 };
 
-console.println.TestMethod,"Method test #1";
+console.println.TestMethod("Method test #1");
 
 
 public&class.MethodClass;
 <;
 	form&method.TestMethod?text;
 	{;
-		console.println,"Printed: {text@MethodClass:TestMethod}";
+		console.println.log("Printed: {text@MethodClass:TestMethod}");
 		return.int,1;
 	};
 >;
 
-console.println.MethodClass:TestMethod,"Method test #2";
+console.println.MethodClass:TestMethod("Method test #2");
 ```
 
 Output:
@@ -46,6 +46,16 @@ Method test #2
 - Printed text will also be logged into `scriptfiles/dpp.log`.
 
 ```pawn
-console.println.log,"Test";
+console.println.log("Test");
+```
+
+### Form: `console.cout`
+
+#### Method: `log`
+
+- Printed text will also be logged into `scriptfiles/dpp.log`.
+
+```pawn
+console.cout.log(char);
 ```
 

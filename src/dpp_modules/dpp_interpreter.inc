@@ -51,11 +51,18 @@ stock dpp_process(line[])
     }
     new codeblockline[1024];
     new
-        args[20][dpp_argcharsize], 
+        args[dpp_maxargsc][dpp_argcharsize], 
         funcgroup[3][1024],
         vargroup[2][256],
-        args_const[20][dpp_argcharsize],
+        args_const[dpp_maxargsc][dpp_argcharsize],
         structgroup[2][512];
+
+    new 
+        nativegroup[2][1024],
+        arggroup[2][1024],
+        funcgroup_form[3][1024],
+        args_form[dpp_maxargsc][dpp_argcharsize],
+        args_fconst[dpp_maxargsc][dpp_argcharsize];
 
     new extracode[3000];
     new line2[3000];
@@ -65,14 +72,47 @@ stock dpp_process(line[])
     dpp_checkforconditionals(line, line2, extracode, "->");
     dpp_checkforobjinit(line, line2, extracode, "<-");
 
+    //console.println.log("Hello World")testvar;
+    //  nativegroup[0]  console.println.log
+    //  nativegroup[1]  "Hello World")testvar
+
+    dpp_parseline(line,nativegroup, '(');
+
     dpp_parseline(line, args, ',');
     dpp_parseline(args[0], funcgroup, '.');
     dpp_parseline(args[1], vargroup, '=');
 
-    for(new i; i < 15; i++)
+    dpp_parseline(nativegroup[0], funcgroup_form, '.');
+    dpp_parseline(nativegroup[1], arggroup, ')');
+    dpp_parseline(arggroup[0], args_form, ',');
+
+    /*printf("NATIVEGROUP 0: '%s'", nativegroup[0]);
+    printf("NATIVEGROUP 1: '%s'", nativegroup[1]);
+    printf("ARGGROUP 0: '%s'", arggroup[0]);
+    printf("ARGGROUP 1: '%s'", arggroup[1]);
+    printf("funcgroup_form 0: '%s'", funcgroup_form[0]);
+    printf("funcgroup_form 1: '%s'", funcgroup_form[1]);
+    printf("funcgroup_form 2: '%s'", funcgroup_form[2]);
+    printf("args_form 0: '%s'", args_form[0]);
+    printf("args_form 1: '%s'", args_form[1]);
+    printf("args_form 2: '%s'", args_form[2]);*/
+
+    //console.println(func);
+
+    for(new i; i < dpp_maxargsc; i++)
     {
         strmid(args_const[i], args[i],0,dpp_argcharsize,dpp_argcharsize);
     }
+
+    /*for(new i = dpp_maxargsc-1; i != 0; i--)
+    {
+        strmid(args_form[i], args_form[i-1],0,dpp_argcharsize,dpp_argcharsize);
+    }*/
+
+    for(new i; i < dpp_maxargsc; i++)
+    {
+        strmid(args_fconst[i], args_form[i],0,dpp_argcharsize,dpp_argcharsize);
+    }    
 
     if(dpp_compiling_pass == 1)
     {
@@ -547,22 +587,8 @@ stock dpp_process(line[])
     ///////////////////////////////////////////////////////
 
 
-    for(new i; i < 10; i++)
+    for(new i; i < dpp_maxargsc; i++)
     {
-        if(dpp_option_allspc == 1) dpp_delexcspaces(args[i]);
-        if(!strcmp(funcgroup[0], "const::define") || !strcmp(funcgroup[0], "const::undef") ||
-            !strcmp(funcgroup[0], "var::define") || !strcmp(funcgroup[0], "var::undef") ||
-            !strcmp(funcgroup[0], "var::set") ||
-                (!strcmp(funcgroup[0], "system") && !strcmp(funcgroup[1], "arginit")) ||
-                (!strcmp(funcgroup[0], "files") && !strcmp(funcgroup[1], "read"))){
-            if(i == 1)
-            {
-                dpp_argclasscheck(args[i]);
-                dpp_argformargcheck(args[i]);
-                i = 2;
-            }
-        }
-
         dpp_removeslashes(args[i]);
         dpp_argclasscheck(args[i]);
         dpp_argarraycheck(args[i]);
@@ -575,6 +601,36 @@ stock dpp_process(line[])
 
         dpp_formatarg(args[i]);
     }
+
+    for(new i; i < dpp_maxargsc; i++)
+    {
+        dpp_argclasscheck(args_const[i]);
+        dpp_argformargcheck(args_const[i]);
+    }
+
+    //////////////////////////////////////////
+    for(new i; i < dpp_maxargsc; i++)
+    {
+        dpp_removeslashes(args_form[i]);
+        dpp_argclasscheck(args_form[i]);
+        dpp_argarraycheck(args_form[i]);
+        dpp_argfunccheck(args_form[i]);
+        dpp_argvarcheck(args_form[i]);
+        dpp_argmathcheck(args_form[i]);
+        dpp_argformargcheck(args_form[i]);
+        dpp_argsystemval(args_form[i]);
+        CallLocalFunction("dpp_arginstruct", "s", args_form[i]);
+
+        dpp_formatarg(args_form[i]);
+    }
+
+    for(new i; i < dpp_maxargsc; i++)
+    {
+        dpp_argclasscheck(args_fconst[i]);
+        dpp_argformargcheck(args_fconst[i]);
+    }
+
+    //////////////////////////////////////////
 
     for(new i; i < 2; i++)
     {
@@ -1675,100 +1731,17 @@ stock dpp_process(line[])
     ///////////////////////////////////////////////////////
     ////
     ////
-    ////            USER FUNC SYS
+    ////            USER/INLINE FUNC SYS
     ////
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "user"))
+    if(dpp_funcfound == 0)
     {
-        dpp_argclasscheck(funcgroup[1]);
-        for(new i; i < dpp_maxfuncs; i++)
-        {
-            if(!strcmp(dpp_funcname[i], funcgroup[1]))
-            {
-                if(dpp_hookform[i] == 0)
-                {
-                    for(new argid; argid < dpp_maxformargs; argid++)
-                    {
-                        strmid(dpp_args[i][argid][dpp_argvalue],
-                            args[argid+1],
-                            0,
-                            dpp_argcharsize,
-                            dpp_argcharsize);
-                    }
-                    dpp_returned[i] = 0;
-                    dpp_processfunc = i;
-                    dpp_subexecute(dpp_funccodeblock[i], i);
-                    dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[i]);
-
-                    if(dpp_option_hooking == 1)
-                    {
-                        for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
-                        {
-                            if(!strcmp(dpp_funcname[hookfuncid], funcgroup[1]))
-                            {
-                                if(dpp_hookform[hookfuncid] == 1)
-                                {
-                                    for(new argid; argid < dpp_maxformargs; argid++)
-                                    {
-                                        /*strmid(dpp_args[hookfuncid][argid][dpp_argname],
-                                            dpp_args[i][argid][dpp_argname],
-                                            0,
-                                            dpp_argcharsize,
-                                            dpp_argcharsize);*/
-                                        strmid(dpp_args[hookfuncid][argid][dpp_argvalue],
-                                            args[argid+1],
-                                            0,
-                                            dpp_argcharsize,
-                                            dpp_argcharsize);
-                                    }
-                                    dpp_processfunc = hookfuncid;
-                                    dpp_subexecute(dpp_funccodeblock[hookfuncid], hookfuncid);
-                                    dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[hookfuncid]);
-                                }
-                            }
-                        }
-                    }
-                    dpp_clearformstack(dpp_processfunc); dpp_processfunc = DPP_INVALID_FORM_ID;
-                    return 1;
-                }
-            }
-        }
-        dpp_error("Form \"%s\" isn't registered.", funcgroup[1]);
-        return 1;
+        dpp_funcfound = CallLocalFunction("dpp_processuser", "sss", funcgroup_form,args_form,args_fconst);
     }
 
-
-    ///////////////////////////////////////////////////////
-    ////
-    ////
-    ////            USER INLINE FUNC SYS
-    ////
-    ////
-    ///////////////////////////////////////////////////////
-
-    if(!strcmp(funcgroup[0], "using&inline::user"))
-    {
-        if(dpp_processfunc == DPP_INVALID_FORM_ID)
-        {
-            dpp_error("Inline forms are meant to be used inside forms.",);
-            return 1;
-        }
-        for(new i; i < dpp_maxinline; i++)
-        {
-            if(!strcmp(dpp_inlinename[i], funcgroup[1]))
-            {
-                if(dpp_validinline[i] == 1)
-                {
-                    //dpp_error("Inline: '%s' | Code: '%s'",funcgroup[1],dpp_inlinecodeblock[i]);
-                    dpp_subexecute(dpp_inlinecodeblock[i]);
-                    return 1;
-                }
-            }
-        }
-        return 1;
-    }
+    CallLocalFunction("dpp_callmethod", "sss", funcgroup_form, args_form, args_fconst);
 
     ///////////////////////////////////////////////////////
     ////
@@ -1972,7 +1945,7 @@ stock dpp_process(line[])
 
     if(dpp_funcfound == 0)
     {
-        dpp_funcfound = CallLocalFunction("dpp_processconsole", "ss", funcgroup,args);
+        dpp_funcfound = CallLocalFunction("dpp_processconsole", "ss", funcgroup_form,args_form);
     }
 
     ///////////////////////////////////////////////////////
@@ -1985,7 +1958,7 @@ stock dpp_process(line[])
 
     if(dpp_funcfound == 0)
     {
-        dpp_funcfound = CallLocalFunction("dpp_processsystem", "ss", funcgroup,args);
+        dpp_funcfound = CallLocalFunction("dpp_processsystem", "sss", funcgroup_form,args_form,args_fconst);
     }
 
     ///////////////////////////////////////////////////////
@@ -1998,7 +1971,7 @@ stock dpp_process(line[])
 
     if(dpp_funcfound == 0)
     {
-        dpp_funcfound = CallLocalFunction("dpp_processsamp", "ss", funcgroup,args);
+        dpp_funcfound = CallLocalFunction("dpp_processsamp", "ss", funcgroup_form,args_form);
     }
 
     ///////////////////////////////////////////////////////
@@ -2011,7 +1984,7 @@ stock dpp_process(line[])
 
     if(dpp_funcfound == 0)
     {
-        dpp_funcfound = CallLocalFunction("dpp_processmath", "ss", funcgroup,args);
+        dpp_funcfound = CallLocalFunction("dpp_processmath", "ss", funcgroup_form,args_form);
     }
 
     ///////////////////////////////////////////////////////
@@ -2024,7 +1997,7 @@ stock dpp_process(line[])
 
     if(dpp_funcfound == 0)
     {
-        dpp_funcfound = CallLocalFunction("dpp_processfiles", "ss", funcgroup,args);
+        dpp_funcfound = CallLocalFunction("dpp_processfiles", "sss", funcgroup_form,args_form,args_fconst);
     }
 
     ///////////////////////////////////////////////////////
@@ -2037,7 +2010,7 @@ stock dpp_process(line[])
 
     if(dpp_funcfound == 0)
     {
-        dpp_funcfound = CallLocalFunction("dpp_processmisc", "sss", funcgroup,args,args_const);
+        dpp_funcfound = CallLocalFunction("dpp_processmisc", "sss", funcgroup_form,args_form,args_fconst);
     }
 
     ///////////////////////////////////////////////////////
@@ -2050,7 +2023,7 @@ stock dpp_process(line[])
 
     if(dpp_funcfound == 0)
     {
-        dpp_funcfound = CallLocalFunction("dpp_processdata", "sss", funcgroup,args,args_const);
+        dpp_funcfound = CallLocalFunction("dpp_processdata", "sss", funcgroup_form,args_form,args_fconst);
     }
     
 
@@ -2066,7 +2039,7 @@ stock dpp_process(line[])
 
     if(dpp_funcfound == 0)
     {
-        dpp_funcfound = CallLocalFunction("dpp_processdiscord", "ss", funcgroup,args);
+        dpp_funcfound = CallLocalFunction("dpp_processdiscord", "ss", funcgroup_form,args_form);
     }
 
     ////////////////////
@@ -2087,4 +2060,85 @@ stock dpp_subprocess(line[])
     
     dpp_process(line);
     return 1;
+}
+
+dpp_processuser(funcgroup[][],args[][],args_const[][]);
+public dpp_processuser(funcgroup[][],args[][],args_const[][])
+{
+    if(!strcmp(funcgroup[0], "user"))
+    {
+        dpp_argclasscheck(funcgroup[1]);
+        for(new i; i < dpp_maxfuncs; i++)
+        {
+            if(!strcmp(dpp_funcname[i], funcgroup[1]))
+            {
+                if(dpp_hookform[i] == 0)
+                {
+                    for(new argid; argid < dpp_maxformargs; argid++)
+                    {
+                        strmid(dpp_args[i][argid][dpp_argvalue],
+                            args[argid],
+                            0,
+                            dpp_argcharsize,
+                            dpp_argcharsize);
+                    }
+                    dpp_returned[i] = 0;
+                    dpp_processfunc = i;
+                    dpp_subexecute(dpp_funccodeblock[i], i);
+                    dpp_debug("dpp_funccodeblock[i]:%s",dpp_funccodeblock[i]);
+
+                    if(dpp_option_hooking == 1)
+                    {
+                        for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
+                        {
+                            if(!strcmp(dpp_funcname[hookfuncid], funcgroup[1]))
+                            {
+                                if(dpp_hookform[hookfuncid] == 1)
+                                {
+                                    for(new argid; argid < dpp_maxformargs; argid++)
+                                    {
+                                        /*strmid(dpp_args[hookfuncid][argid][dpp_argname],
+                                            dpp_args[i][argid][dpp_argname],
+                                            0,
+                                            dpp_argcharsize,
+                                            dpp_argcharsize);*/
+                                        strmid(dpp_args[hookfuncid][argid][dpp_argvalue],
+                                            args[argid],
+                                            0,
+                                            dpp_argcharsize,
+                                            dpp_argcharsize);
+                                    }
+                                    dpp_processfunc = hookfuncid;
+                                    dpp_subexecute(dpp_funccodeblock[hookfuncid], hookfuncid);
+                                    dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[hookfuncid]);
+                                }
+                            }
+                        }
+                    }
+                    dpp_clearformstack(dpp_processfunc); dpp_processfunc = DPP_INVALID_FORM_ID;
+                    return 1;
+                }
+            }
+        }
+        if(dpp_processfunc == DPP_INVALID_FORM_ID)
+        {
+            dpp_error("Inline forms are meant to be used inside forms.",);
+            return 1;
+        }
+        for(new i; i < dpp_maxinline; i++)
+        {
+            if(!strcmp(dpp_inlinename[i], funcgroup[1]))
+            {
+                if(dpp_validinline[i] == 1)
+                {
+                    //dpp_error("Inline: '%s' | Code: '%s'",funcgroup[1],dpp_inlinecodeblock[i]);
+                    dpp_subexecute(dpp_inlinecodeblock[i]);
+                    return 1;
+                }
+            }
+        }
+        dpp_error("Form \"%s\" isn't registered.", funcgroup[1]);
+        return 0;
+    }
+    return 0;
 }
