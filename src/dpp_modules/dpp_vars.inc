@@ -272,7 +272,7 @@ stock dpp_deleteintvar(const name[])
             {
                 if(dpp_vardata[i][var_type] != dpp_var_type_int)
                 {
-                    dpp_error("variable \"%s\" is not an integer.", name);
+                    //dpp_error("variable \"%s\" is not an integer.", name);
                     return 1;
                 }
 
@@ -282,7 +282,7 @@ stock dpp_deleteintvar(const name[])
                 return 1;
             }
         }
-        dpp_error("variable \"%s\" not found.", name);
+        //dpp_error("variable \"%s\" not found.", name);
     }
     return 1;
 }
@@ -297,7 +297,7 @@ stock dpp_deleteboolvar(const name[])
             {
                 if(dpp_vardata[i][var_type] != dpp_var_type_bool)
                 {
-                    dpp_error("variable \"%s\" is not a boolean.", name);
+                    //dpp_error("variable \"%s\" is not a boolean.", name);
                     return 1;
                 }
 
@@ -307,7 +307,7 @@ stock dpp_deleteboolvar(const name[])
                 return 1;
             }
         }
-        dpp_error("variable \"%s\" not found.", name);
+        //dpp_error("variable \"%s\" not found.", name);
     }
     return 1;
 }
@@ -322,7 +322,7 @@ stock dpp_deletestrvar(const name[])
             {
                 if(dpp_vardata[i][var_type] != dpp_var_type_str)
                 {
-                    dpp_error("variable \"%s\" is not a string.", name);
+                    //dpp_error("variable \"%s\" is not a string.", name);
                     return 1;
                 }
 
@@ -332,7 +332,7 @@ stock dpp_deletestrvar(const name[])
                 return 1;
             }
         }
-        dpp_error("variable \"%s\" not found.", name);
+        //dpp_error("variable \"%s\" not found.", name);
     }
     return 1;
 }

@@ -21,6 +21,7 @@
 
 ### The language
 
+- [Directives](doc/dpp_directives.md)
 - [Interpreter options](doc/dpp_options.md)
 - [Interpreter components](doc/dpp_components.md)
 - [Third-party API](doc/dpp_api.md)

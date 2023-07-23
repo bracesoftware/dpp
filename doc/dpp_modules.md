@@ -3,7 +3,7 @@
 
 Afterwards you may import your module:
 ```pawn
-import::module,"module_name";
+#include:module_name;
 ```
 
 Make sure not to add the `*.dpp` extension to the `module_name`.

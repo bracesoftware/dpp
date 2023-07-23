@@ -18,7 +18,7 @@ iter::add,testiter,1;
 
 foreach.int&var,foreachtestvar,testiter->console.println("foreach test #2 {foreachtestvar}");
 
-iter::delete,testiter;
+#undef:testiter;
 ```
 
 Output:

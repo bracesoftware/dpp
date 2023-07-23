@@ -11,8 +11,7 @@ const*new.bool,DEBUG_OPTION=false;
 
 pragma::option.debug,DEBUG_OPTION;
 
-
-import::module,"test";
+#include:test;
 
 system.rem("Basic println example.");
 console.println("Hual is a fucking bitch");
@@ -90,14 +89,14 @@ auto&form.OnGameModeExit;
 	return.bool,true;
 };
 
-import::module,"vars";
-import::module,"math";
-import::module,"class";
-import::module,"args";
-import::module,"discord";
-import::module,"files";
-import::module,"inline";
-import::module,"tasks";
-import::module,"struct";
-import::module,"iter";
-import::module,"data";
+#include:vars;
+#include:math;
+#include:class;
+#include:args;
+#include:discord;
+#include:files;
+#include:inline;
+#include:tasks;
+#include:struct;
+#include:iter;
+#include:data;

@@ -1,0 +1,19 @@
+# Directives
+
+- The preprocessors are the directives, which give instructions to the compiler to preprocess the information before actual compilation starts. But, since D++ is an interpreted language and does not have an ACTUAL compiler, directives here are just special operations that use different syntax to differ from other features.
+
+## `#include`
+
+- Used to include a file:
+
+```pawn
+#include:file;
+```
+
+## `#undef`
+
+- Used to undefine a symbol; that can be an iterator, variable, constant or whatever.
+
+```pawn
+#undef:var;
+```

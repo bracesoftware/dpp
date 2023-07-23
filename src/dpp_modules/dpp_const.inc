@@ -185,7 +185,7 @@ stock dpp_deleteintconst(const name[])
             {
                 if(dpp_constdata[i][const_type] != dpp_const_type_int)
                 {
-                    dpp_error("Constant \"%s\" is not an integer.", name);
+                    //dpp_error("Constant \"%s\" is not an integer.", name);
                     return 1;
                 }
 
@@ -195,7 +195,7 @@ stock dpp_deleteintconst(const name[])
                 return 1;
             }
         }
-        dpp_error("Constant \"%s\" not found.", name);
+        //dpp_error("Constant \"%s\" not found.", name);
     }
     return 1;
 }
@@ -210,7 +210,7 @@ stock dpp_deleteboolconst(const name[])
             {
                 if(dpp_constdata[i][const_type] != dpp_const_type_bool)
                 {
-                    dpp_error("Constant \"%s\" is not a boolean.", name);
+                    //dpp_error("Constant \"%s\" is not a boolean.", name);
                     return 1;
                 }
 
@@ -220,7 +220,7 @@ stock dpp_deleteboolconst(const name[])
                 return 1;
             }
         }
-        dpp_error("Constant \"%s\" not found.", name);
+        //dpp_error("Constant \"%s\" not found.", name);
     }
     return 1;
 }
@@ -235,7 +235,7 @@ stock dpp_deletestrconst(const name[])
             {
                 if(dpp_constdata[i][const_type] != dpp_const_type_str)
                 {
-                    dpp_error("Constant \"%s\" is not a string.", name);
+                    //dpp_error("Constant \"%s\" is not a string.", name);
                     return 1;
                 }
 
@@ -245,7 +245,7 @@ stock dpp_deletestrconst(const name[])
                 return 1;
             }
         }
-        dpp_error("Constant \"%s\" not found.", name);
+        //dpp_error("Constant \"%s\" not found.", name);
     }
     return 1;
 }

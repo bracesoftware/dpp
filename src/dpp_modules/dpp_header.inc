@@ -304,6 +304,21 @@ stock dpp_isnativereg(const funcname[])
     return 0;
 }
 
+stock dpp_deletefunc(const name[])
+{
+    for(new i; i < dpp_maxfuncs; i++)
+    {
+        if(strcmp(dpp_funcname[i], name))
+        {
+            if(dpp_hookform[i] != 1 && dpp_validfunc[i] == 1)
+            {
+                dpp_validfunc[i] = 0;
+            }
+        }
+    }
+    return 1;
+}
+
 stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0, struct = dpp_formstruct_local, method = 0)
 {
     if(dpp_workingclassid != dpp_invalidclass)

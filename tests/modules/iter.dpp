@@ -14,7 +14,7 @@ foreach.int&var,foreachtestvar,testiter->console.println("foreach test #2 {forea
 
 console.cout.log(sizeof?testiter);
 
-iter::delete,testiter;
+#undef:testiter;
 
 console.cout(1); console.println("Lmao ok");
 

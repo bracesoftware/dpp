@@ -55,7 +55,8 @@ stock dpp_process(line[])
         funcgroup[3][1024],
         vargroup[2][256],
         args_const[dpp_maxargsc][dpp_argcharsize],
-        structgroup[2][512];
+        structgroup[2][512],
+        dirgroup[2][256];
 
     new 
         nativegroup[2][1024],
@@ -76,6 +77,7 @@ stock dpp_process(line[])
     //  nativegroup[0]  console.println.log
     //  nativegroup[1]  "Hello World")testvar
 
+    dpp_parseline(line,dirgroup,':');
     dpp_parseline(line,nativegroup, '(');
 
     dpp_parseline(line, args, ',');
@@ -116,25 +118,25 @@ stock dpp_process(line[])
 
     if(dpp_compiling_pass == 1)
     {
-        dpp_compilerprint("Compiling the MAIN#%c-%ith sequence...", line[0], strlen(line));
+        //dpp_compilerprint("Compiling the MAIN#%c-%ith sequence...", line[0], strlen(line));
         dpp_writecompileddata("index.dppc", line);
         return 1;
     }
     if(dpp_compiling_pass == 2)
     {
-        if(!strcmp(funcgroup[0], "import::module"))
+        if(!strcmp(dirgroup[0], "#include"))
         {
-            for(new i; i < strlen(args[1]); i++)
+            /*for(new i; i < strlen(args[1]); i++)
             {
                 if(args[1][i] == '\"') strdel(args[1], i, i+1);
-            }
+            }*/
             new filename[64];
             /*for(new args1idx; args1idx < strlen(args[1]); args1idx ++)
             {
                 if(args[1][args1idx] == ';') strdel(args[1], args1idx, args1idx+1);
                 if(args[1][args1idx] == '\n') strdel(args[1], args1idx, args1idx+1);
             }*/
-            format(filename, sizeof filename, "modules/%s.dpp", args[1]);
+            format(filename, sizeof filename, "modules/%s.dpp", dirgroup[1]);
             if(fexist(filename))// return dpp_executefile(filename);
             {
                 new File:file = fopen(filename, io_read), rlen;
@@ -149,7 +151,7 @@ stock dpp_process(line[])
                             if(subcontent[i] == '\t') strdel(subcontent, i, i+1);
                             if(subcontent[i] == '\n') subcontent[i] = ';';
                         }
-                        dpp_compilerprint("Compiling the MDL#%c-%ith sequence...", subcontent[0], strlen(subcontent));
+                        //dpp_compilerprint("Compiling the MDL#%c-%ith sequence...", subcontent[0], strlen(subcontent));
                         dpp_writecompileddata("index.dppc", subcontent);
                         /*dpp_parsecode(subcontent, codelines);
                         for(new i; i < dpp_maxcodelines; i++)
@@ -587,6 +589,9 @@ stock dpp_process(line[])
     ///////////////////////////////////////////////////////
 
 
+    dpp_argclasscheck(dirgroup[1]);
+    dpp_argformargcheck(dirgroup[1]);
+
     for(new i; i < dpp_maxargsc; i++)
     {
         dpp_removeslashes(args[i]);
@@ -652,6 +657,27 @@ stock dpp_process(line[])
         CallLocalFunction("dpp_arginstruct", "s", vargroup[i]);
 
         dpp_formatarg(vargroup[i]);
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            RUNTIME DIRECTIVES
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(!strcmp(dirgroup[0], "#undef"))
+    {
+        dpp_deleteintconst(dirgroup[1]);
+        dpp_deleteboolconst(dirgroup[1]);
+        dpp_deletestrconst(dirgroup[1]);
+        dpp_deleteiter(dirgroup[1]);
+        dpp_deleteintvar(dirgroup[1]);
+        dpp_deleteboolvar(dirgroup[1]);
+        dpp_deletestrvar(dirgroup[1]);
+        dpp_deletefunc(dirgroup[1]);
+        return 1;
     }
 
     ///////////////////////////////////////////////////////
@@ -1213,7 +1239,7 @@ stock dpp_process(line[])
             }
         }
     }
-
+    /*
     if(!strcmp(funcgroup[0], "const::undef"))
     {
         if(!strcmp(funcgroup[1], "int"))
@@ -1237,7 +1263,7 @@ stock dpp_process(line[])
             dpp_error("Unknown symbol type \"%s\".", funcgroup[1]);
             return 0;
         }
-    }
+    }*/
 
     ///////////////////////////////////////////////////////
     ////
@@ -1280,11 +1306,11 @@ stock dpp_process(line[])
         return 1;
     }
 
-    if(!strcmp(funcgroup[0], "iter::delete"))
+    /*if(!strcmp(funcgroup[0], "iter::delete"))
     {
         dpp_deleteiter(args[1]);
         return 1;
-    }
+    }*/
 
 
     ///////////////////////////////////////////////////////
@@ -1363,7 +1389,7 @@ stock dpp_process(line[])
         }
     }
 
-    if(!strcmp(funcgroup[0], "undef"))
+    /*if(!strcmp(funcgroup[0], "undef"))
     {
         if(!strcmp(funcgroup[1], "int"))
         {
@@ -1386,7 +1412,7 @@ stock dpp_process(line[])
             dpp_error("Unknown symbol type \"%s\".", funcgroup[1]);
             return 0;
         }
-    }
+    }*/
     //set.int,var=1;
     if(!strcmp(funcgroup[0], "set"))
     {
@@ -1710,7 +1736,7 @@ stock dpp_process(line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "import::module"))
+    if(!strcmp(dirgroup[0], "#include"))
     {
         /*for(new i; i < strlen(args[1]); i++)
         {

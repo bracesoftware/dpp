@@ -112,6 +112,6 @@ stock dpp_deleteiter(const name[])
             }
         }
     }
-    dpp_error("Iterator '%s' could not be found.",name);
+    //dpp_error("Iterator '%s' could not be found.",name);
     return 0;
 }
