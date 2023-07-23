@@ -17,9 +17,9 @@
 //-----------------------------------------------------------
 #define dpp_invalidclass 100
 //-----------------------------------------------------------
-#define DPP_VERSION_MAJOR 0
+#define DPP_VERSION_MAJOR 1
 #define DPP_VERSION_MINOR 0
-#define DPP_VERSION_PATCH 1
+#define DPP_VERSION_PATCH 0
 #define DPP_VERSION_RELEASE 1
 
 #define DPP_VERSION_BETA 0

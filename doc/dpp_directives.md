@@ -17,3 +17,21 @@
 ```pawn
 #undef:var;
 ```
+
+Example:
+
+```pawn
+new.int,undeftest=1;
+
+if.equ,defined?undeftest,1->console.println.log("undeftest is defined");
+
+#undef:undeftest;
+
+if.equ,defined?undeftest,1->console.println.log("undeftest is defined *(again!*)");
+```
+
+Output:
+
+```
+undeftest is defined
+```
