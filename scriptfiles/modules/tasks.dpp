@@ -1,3 +1,5 @@
+console.println("========================== tasks.dpp ==========================");
+
 public&task.testtask#1000;
 {;
 	console.println("Task works!");

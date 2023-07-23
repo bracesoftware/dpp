@@ -1,3 +1,4 @@
+console.println("========================== discord.dpp ==========================");
 console.println("Discord was included");
 
 using*api.discord;

@@ -1,3 +1,6 @@
+console.println("========================== test.dpp ==========================");
+
+
 console.println("Test is imported.");
 
 console.println("interesting...");
@@ -8,3 +11,5 @@ console.println(TEST_STRING);
 
 const*new.str,OMG="OMG actually works";
 console.println.log(OMG);
+
+console.println.log("==========================================");

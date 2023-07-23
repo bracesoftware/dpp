@@ -1,4 +1,4 @@
-
+console.println("========================== inline.dpp ==========================");
 
 public&form.InlineTestFunc;
 {;

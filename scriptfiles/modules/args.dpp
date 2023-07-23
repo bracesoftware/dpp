@@ -1,3 +1,5 @@
+console.println("========================== args.dpp ==========================");
+
 public&form.form?text;
 {;
 	console.println(text@form);

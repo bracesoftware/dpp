@@ -1,15 +1,15 @@
-import::component.samp;
-import::component.console;
+using.samp;
+using.console;
 
 hook&form.OnGameModeInit;
 {;
-	console.println.log,"D++ 'a_samp' module loaded.";
+	console.println.log("D++ 'a_samp' module loaded.");
 	return.int,1;
 };
 
-const::define.int,MAX_PLAYERS,1000;
-const::define.int,MAX_ACTORS,1000;
-const::define.int,MAX_VEHICLES,2000;
+const*new.int,MAX_PLAYERS=1000;
+const*new.int,MAX_ACTORS=1000;
+const*new.int,MAX_VEHICLES=2000;
 
 public&class.SAMP;
 <;

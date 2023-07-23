@@ -1,4 +1,4 @@
-
+console.println("========================== iter.dpp ==========================");
 iter::define,testiter,100;
 new.int,foreachtestvar=0;
 
@@ -58,8 +58,15 @@ public&class.MethodClass;
 	};
 >;
 
+
 console.println.MethodClass:TestMethod("Method test #2");
 
+public&form.MegaFormBoo?text;
+{;
+	console.println("{text@MegaFormBoo}");
+	return.int,1;
+};
+user.MegaFormBoo("MegaFormBoo was sucessfully called");
 
 public&class.SAMP;
 <;
