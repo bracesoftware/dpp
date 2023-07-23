@@ -108,6 +108,38 @@ stock dpp_compile(const script[])
     return 1;
 }
 
+stock dpp_compilemodule(const script[], const dest[])
+{
+    //dpp_print("Compiling module: \"%s\"",script);
+    if(fexist(script)) fremove(script);
+    new File:file = fopen(script, io_read), rlen;
+    //new codelines[dpp_maxcodelines][1024];
+    if(file)
+    {
+        while(rlen = fread(file, content))
+        {
+            for(new i; i < strlen(content); i++)
+            {
+                //if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
+                if(content[i] == '\t') strdel(content, i, i+1);
+                if(content[i] == '\n') content[i] = ';'; //strdel(content, i, i+1);
+            }
+            dpp_debug("content: '%s'", content);
+            //dpp_parsecode(content, codelines);
+            //dpp_debug("Executing:\n\n%s", content);
+            //dpp_writecompileddata("index.dppc", content);
+            dpp_writecompileddata(dest, content);
+        }
+    }
+
+    else if(!file)
+    {
+        dpp_error("Invalid file.",);
+        return 1;
+    }
+    return 1;
+}
+
 stock dpp_formatarg(argument[]) // creds DEntisT
 {
     if(!dpp_isargstr(argument))

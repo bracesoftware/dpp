@@ -308,7 +308,7 @@ stock dpp_deletefunc(const name[])
 {
     for(new i; i < dpp_maxfuncs; i++)
     {
-        if(strcmp(dpp_funcname[i], name))
+        if(!strcmp(dpp_funcname[i], name))
         {
             if(dpp_hookform[i] != 1 && dpp_validfunc[i] == 1)
             {
@@ -396,13 +396,8 @@ stock dpp_execute(const script[])
     dpp_print("Debug component loaded...");
     #endif
     dpp_nullcomment();
-    dpp_comment();
-    dpp_nullcomment();
     dpp_prepareproject("config.dppproj");
     dpp_print("Project file for '%s' project loaded.",dpp_projname);
-    dpp_nullcomment();
-    dpp_comment();
-    dpp_nullcomment();
     dpp_print("Executing the entry script...");
     dpp_nullcomment();
     dpp_execheader("index.dppc");

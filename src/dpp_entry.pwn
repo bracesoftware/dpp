@@ -27,7 +27,7 @@
 #define DPP_LOG_FILE "dpp.log"
 //-----------------------------------------------------------
 #define DPP_INVALID_INLINE_ID 0
-#define DPP_INVALID_FORM_ID 0
+#define DPP_INVALID_FORM_ID -1
 #define DPP_INVALID_TASK_ID -1
 //-----------------------------------------------------------
 #define DPP_DEBUG 1
@@ -270,17 +270,19 @@ new dpp_event = 0;
 //api impl
 #include "dpp_thirdpartyapi/dpp_discord.inc"
 //-----------------------------------------------------------
-main()
+
+dpp_main(); public dpp_main()
 {
     strmid(dpp_projname,"Unnamed project",0,128,128);
     dpp_nullcomment();
     dpp_nullcomment();
     dpp_compile("index.dpp");
-    main_again();
+    SetTimer("main_again", 3000, false);
     return 1;   
 }
 
-stock main_again()
+main_again();
+public main_again()
 {
     if(dpp_compiled == 1)
     {
@@ -413,4 +415,11 @@ public OnGameModeExit()
     dpp_nullcomment();
     dpp_nullcomment();
     return 1;
+}
+
+//-----------------------------------------------------------
+
+main()
+{
+    CallLocalFunction("dpp_main", "");
 }

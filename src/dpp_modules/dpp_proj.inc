@@ -15,9 +15,7 @@ new dpp_proj_file_content[8000];
 
 stock dpp_prepareproject(const script[])
 {
-    dpp_nullcomment();
     dpp_print("Reading the project file.");
-    dpp_nullcomment();
 
     new File:file = fopen(script, io_read), rlen;
     if(file)

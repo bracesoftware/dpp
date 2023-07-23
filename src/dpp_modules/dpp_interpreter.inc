@@ -118,24 +118,47 @@ stock dpp_process(line[])
 
     if(dpp_compiling_pass == 1)
     {
-        //dpp_compilerprint("Compiling the MAIN#%c-%ith sequence...", line[0], strlen(line));
+        if(!strcmp(dirgroup[0], "#include"))
+        {
+            new filename[64], garbage[2][64];
+            dpp_parseline(dirgroup[1],garbage,';');
+
+            format(filename, sizeof filename, "modules/%s.dpp", garbage[0]);
+
+            if(fexist(filename))// return dpp_executefile(filename);
+            {
+                new File:file = fopen(filename, io_read), rlen;
+                new codelines[dpp_maxcodelines][1024];
+                if(file)
+                {
+                    while(rlen = fread(file, subcontent))
+                    {
+                        for(new i; i < strlen(subcontent); i++)
+                        {
+                            if(subcontent[i] == ';' && subcontent[i+1] == ' ') strdel(subcontent, i+1, i+2);
+                            if(subcontent[i] == '\t') strdel(subcontent, i, i+1);
+                            if(subcontent[i] == '\n') subcontent[i] = ';';
+                        }
+                        dpp_writecompileddata("index.dppc", subcontent);
+                    }
+                }
+            }
+            else
+            {
+                dpp_error("Cannot read from module: \"%s\"", filename);
+                return 1;
+            }
+            return 1;
+        }
         dpp_writecompileddata("index.dppc", line);
         return 1;
     }
     if(dpp_compiling_pass == 2)
     {
-        if(!strcmp(dirgroup[0], "#include"))
+        /*if(!strcmp(dirgroup[0], "#include"))
         {
-            /*for(new i; i < strlen(args[1]); i++)
-            {
-                if(args[1][i] == '\"') strdel(args[1], i, i+1);
-            }*/
             new filename[64];
-            /*for(new args1idx; args1idx < strlen(args[1]); args1idx ++)
-            {
-                if(args[1][args1idx] == ';') strdel(args[1], args1idx, args1idx+1);
-                if(args[1][args1idx] == '\n') strdel(args[1], args1idx, args1idx+1);
-            }*/
+         
             format(filename, sizeof filename, "modules/%s.dpp", dirgroup[1]);
             if(fexist(filename))// return dpp_executefile(filename);
             {
@@ -151,22 +174,7 @@ stock dpp_process(line[])
                             if(subcontent[i] == '\t') strdel(subcontent, i, i+1);
                             if(subcontent[i] == '\n') subcontent[i] = ';';
                         }
-                        //dpp_compilerprint("Compiling the MDL#%c-%ith sequence...", subcontent[0], strlen(subcontent));
                         dpp_writecompileddata("index.dppc", subcontent);
-                        /*dpp_parsecode(subcontent, codelines);
-                        for(new i; i < dpp_maxcodelines; i++)
-                        {
-                            if(strlen(codelines[i]) < 4) continue;
-                            //dpp_process(codelines[i]);
-                            strcat(codelines[i], "\n");
-                            for(new x; x < strlen(codelines[i]); x++)
-                            {
-                                if(codelines[i][x] == '\t') strdel(codelines[i], x, x+1);
-                                if(codelines[i][x] == '\n') codelines[i][x] = ';';
-                            }
-                            dpp_compilerprint("Compiling the MDL#%c-%ith sequence...", codelines[i][0], strlen(codelines[i]));
-                            dpp_writecompileddata("index.dppc", codelines[i]);
-                        }*/
                     }
                 }
             }
@@ -176,8 +184,7 @@ stock dpp_process(line[])
                 return 1;
             }
             return 1;
-        }
-        //dpp_writecompileddata("index.dppc", line);
+        }*/
         return 1;
     }
 
@@ -550,8 +557,6 @@ stock dpp_process(line[])
         dpp_event = dpp_event_form;
         return 1;
     }
-
-    CallLocalFunction("dpp_callmethod", "ss", funcgroup, args);
 
     ///////////////////////////////////////////////////////
     ////
@@ -1738,19 +1743,14 @@ stock dpp_process(line[])
 
     if(!strcmp(dirgroup[0], "#include"))
     {
-        /*for(new i; i < strlen(args[1]); i++)
-        {
-            if(args[1][i] == '\"') strdel(args[1], i, i+1);
-        }
-        new filename[64];
-        format(filename, sizeof filename, "modules/%s.dpp", args[1]);
+        /*new filename[64];
+        format(filename, sizeof filename, "modules/%s.dpp", dirgroup[1]);
         if(fexist(filename)) return dpp_executefile(filename);
         else
         {
             dpp_error("Cannot read from module: \"%s\"", filename);
-            return 0;
+            return 1;
         }*/
-
         return 1;
     }
 
@@ -1766,8 +1766,6 @@ stock dpp_process(line[])
     {
         dpp_funcfound = CallLocalFunction("dpp_processuser", "sss", funcgroup_form,args_form,args_fconst);
     }
-
-    CallLocalFunction("dpp_callmethod", "sss", funcgroup_form, args_form, args_fconst);
 
     ///////////////////////////////////////////////////////
     ////
@@ -1868,6 +1866,16 @@ stock dpp_process(line[])
         }
         return 1;
     }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            METHOD CALL SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    CallLocalFunction("dpp_callmethod", "sss", funcgroup_form, args_form, args_fconst);
 
     ///////////////////////////////////////////////////////
     ////
@@ -2093,6 +2101,7 @@ public dpp_processuser(funcgroup[][],args[][],args_const[][])
 {
     if(!strcmp(funcgroup[0], "user"))
     {
+        //printf("funcgroup: '%s' | args: '%s' | aconst: '%s'", funcgroup,args,args_const);
         dpp_argclasscheck(funcgroup[1]);
         for(new i; i < dpp_maxfuncs; i++)
         {
@@ -2141,7 +2150,8 @@ public dpp_processuser(funcgroup[][],args[][],args_const[][])
                             }
                         }
                     }
-                    dpp_clearformstack(dpp_processfunc); dpp_processfunc = DPP_INVALID_FORM_ID;
+                    dpp_clearformstack(dpp_processfunc); 
+                    dpp_processfunc = DPP_INVALID_FORM_ID;
                     return 1;
                 }
             }
