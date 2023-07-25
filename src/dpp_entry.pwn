@@ -20,7 +20,7 @@
 #define DPP_VERSION_MAJOR 1
 #define DPP_VERSION_MINOR 0
 #define DPP_VERSION_PATCH 0
-#define DPP_VERSION_RELEASE 2
+#define DPP_VERSION_RELEASE 3
 
 #define DPP_VERSION_BETA 0
 
@@ -74,8 +74,6 @@
 #define dpp_rtn_type_double 4
 #define dpp_rtn_type_char 5
 //-----------------------------------------------------------
-#define dpp_maxnatives 100
-//-----------------------------------------------------------
 new subcontent[16000];
 new content[16000];
 //-----------------------------------------------------------
@@ -95,9 +93,6 @@ new dpp_switchedvar;
 // REQUIRED.
 #include <open.mp>
 //-----------------------------------------------------------
-//THIRD PARTY API
-#include "dpp_natives/dpp_dcc.inc"
-//-----------------------------------------------------------
 new dpp_lastvalueprcfunc;
 //-----------------------------------------------------------
 enum dpp_enumset
@@ -112,13 +107,6 @@ enum dpp_enumset
 };
 
 new dpp_config[dpp_enumset];
-//-----------------------------------------------------------
-enum dpp_enumset2
-{
-    discord
-};
-
-new dpp_apis[dpp_enumset2];
 //-----------------------------------------------------------
 //const
 enum __dpp_const_val
@@ -189,9 +177,6 @@ enum __dpp_argcache
     dpp_argvalue[1024]
 }
 new dpp_args[dpp_maxfuncs][dpp_maxformargs][__dpp_argcache];
-//-----------------------------------------------------------
-new dpp_validnativef[dpp_maxnatives];
-new dpp_nativeformname[dpp_maxnatives][dpp_maxsymbolchar];
 //-----------------------------------------------------------
 new dpp_validclass[dpp_maxclass];
 new dpp_classname[dpp_maxclass][dpp_maxsymbolchar];
@@ -278,9 +263,6 @@ new dpp_event = 0;
 #include "dpp_components/dpp_misc.inc"
 #include "dpp_components/dpp_data.inc"
 //-----------------------------------------------------------
-//api impl
-#include "dpp_thirdpartyapi/dpp_discord.inc"
-//-----------------------------------------------------------
 
 dpp_main(); public dpp_main()
 {
@@ -301,7 +283,7 @@ public main_again()
     }
 
     CallLocalFunction("DPP_GAMEMODEINIT", "");
-    CallLocalFunction("DPP_discord_init", "");
+    CallRemoteFunction("dppcord_init", "");
     CallLocalFunction("dpp_taskinit", "");
     return 1;
 }

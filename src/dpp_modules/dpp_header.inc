@@ -256,54 +256,6 @@ stock dpp_delexcspaces(arg[])
     return 1;
 }
 
-stock dpp_regnativeform(const funcname[])
-{
-    new alreadyexists;
-    for(new i; i < dpp_maxnatives; i++)
-    {
-        if(!strcmp(dpp_nativeformname[i], funcname))
-        {
-            if(dpp_validnativef[i] == 1)
-            {
-                alreadyexists = 1;
-                break;
-            }
-        }
-    }
-
-    if(alreadyexists == 1)
-    {
-        dpp_error("Native API form \"%s\" already registered.",funcname);
-        return 1;
-    }
-
-    for(new i; i < dpp_maxnatives; i++)
-    {
-        if(dpp_validnativef[i] == 0)
-        {
-            strmid(dpp_nativeformname[i], funcname, 0, 64,64);
-            dpp_validnativef[i] = 1;
-            return 1;
-        }
-    }
-    return 1;
-}
-
-stock dpp_isnativereg(const funcname[])
-{
-    for(new i; i < dpp_maxnatives; i++)
-    {
-        if(!strcmp(dpp_nativeformname[i], funcname))
-        {
-            if(dpp_validnativef[i] == 1)
-            {
-                return 1;
-            }
-        }
-    }
-    return 0;
-}
-
 stock dpp_deletefunc(const name[])
 {
     for(new i; i < dpp_maxfuncs; i++)
@@ -992,6 +944,44 @@ public dpp_callmethod(funcgroup[][],args[][],args_const[][])
                 dpp_clearformstack(dpp_processfunc); dpp_processfunc = DPP_INVALID_FORM_ID;
                 return 1;
             }
+        }
+    }
+    return 1;
+}
+
+// for apis
+
+forward dpp_callform(external_form[]);
+public dpp_callform(external_form[])
+{
+    for(new i; i < dpp_maxfuncs; i++)
+    {
+        if(!strcmp(dpp_funcname[i], external_form))
+        {
+            if(dpp_autoform[i] == 0) return 1;
+            dpp_processfunc = i;
+            dpp_subexecute(dpp_funccodeblock[i],i);
+     
+            if(dpp_hookform[i] == 0)
+            {
+                if(dpp_option_hooking == 1)
+                {
+                    for(new hookfuncid; hookfuncid < dpp_maxfuncs; hookfuncid++)
+                    {
+                        if(!strcmp(dpp_funcname[hookfuncid], external_form))
+                        {
+                            if(dpp_hookform[hookfuncid] == 1)
+                            {
+                                dpp_returned[hookfuncid] = 0;
+                                dpp_processfunc = hookfuncid;
+                                dpp_subexecute(dpp_funccodeblock[hookfuncid],hookfuncid);
+                                dpp_debug("dpp_funccodeblock[hookfuncid]:%s",dpp_funccodeblock[hookfuncid]);
+                            }
+                        }
+                    }
+                }
+            }
+            return 1;
         }
     }
     return 1;

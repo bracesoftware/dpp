@@ -459,16 +459,6 @@ stock dpp_process(line[])
         dpp_event = dpp_event_form;
         return 1;
     }
-    if(!strcmp(funcgroup[0], "native&form"))
-    {
-        if(dpp_processfunc != DPP_INVALID_FORM_ID)
-        {
-            dpp_error("You can't create a form [\"%s\"] inside a form.",funcgroup[1]);
-            return 1;
-        }
-        dpp_regnativeform(funcgroup[1]);
-        return 1;
-    }
 
     ///////////////////////////////////////////////////////
     ////
@@ -1868,37 +1858,6 @@ stock dpp_process(line[])
             dpp_config[data_comp] = 1;
             return 1;
         }
-        else
-        {
-            dpp_error("Unknown component \"%s\".", funcgroup[1]);
-            return 0;
-        }
-    }
-
-    ///////////////////////////////////////////////////////
-    ////
-    ////
-    ////            API SYS
-    ////
-    ////
-    ///////////////////////////////////////////////////////
-
-    if(!strcmp(structgroup[0], "using"))
-    {
-        if(!strcmp(structgroup[1], "api"))
-        {
-            if(!strcmp(funcgroup[1], "discord"))
-            {
-                dpp_apis[discord] = 1;
-                return 1;
-            }
-            
-            else
-            {
-                dpp_error("Unknown API \"%s\".", funcgroup[1]);
-                return 0;
-            }
-        }
     }
 
     ///////////////////////////////////////////////////////
@@ -2575,10 +2534,9 @@ stock dpp_process(line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(dpp_funcfound == 0)
-    {
-        dpp_funcfound = CallLocalFunction("dpp_processdiscord", "ss", funcgroup_form,args_form);
-    }
+    
+    CallRemoteFunction("dppcord_codeprocess", "sss", funcgroup,args,args_const);
+    CallRemoteFunction("dppcord_process", "sss", funcgroup_form,args_form,args_fconst);
 
     ////////////////////
     if(dpp_funcfound == 0)
