@@ -49,3 +49,11 @@ const*new.str,string="test";
 ```cpp
 const*new.double,decimal_point=3.14;
 ```
+
+### `char`
+
+- Single characters.
+
+```cpp
+const*new.char,character='6';
+```

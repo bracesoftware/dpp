@@ -47,3 +47,11 @@ new.str,string="test";
 ```cpp
 new.double,decimal_point=3.14;
 ```
+
+### `char`
+
+- Single characters.
+
+```cpp
+new.char,character='b';
+```
