@@ -4,8 +4,8 @@
 
 ## Example
 
-```pawn
-public&form.InlineTestFunc;
+```cpp
+int*form.InlineTestFunc;
 {;
 	new.int,formid=__proccessed_form_id;
 	console.println("'InlineTestFunc' is {formid}");
@@ -18,7 +18,7 @@ public&form.InlineTestFunc;
 	user.inlineformtest;
 	user.inlineformtest;
 	user.inlineformtest;
-	yield&return.int,1;
+	yield&return,1;
 };
 
 user.InlineTestFunc;

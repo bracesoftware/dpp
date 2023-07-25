@@ -32,32 +32,32 @@ native&form.discord_bot_send_message;
 
 - User forms are forms whose are defined by the person who wrote the code. You may declare an user form using:
 
-```pawn
-public&form.formname;
+```cpp
+void*form.formname;
 {;
 	console.println("my first user form");
 };
 ```
 
-So now you've made an user form. Code between the `do` and `end` keywords is called a form code block. It may contain a native form call, or another user form declaration.
+So now you've made an user form. Code between the curly braces is called a form code block. It may contain a native form call or a variable, constant or iterator declaration, and even an inline form initialization.
 
 You also may return values.
 
-```pawn
-public&form.formname;
+```cpp
+str*form.formname;
 {;
 	console.println("my first user form");
-	return.str,"this was returned";
+	return,"this was returned";
 };
 ```
 
 Then you can use this user form as an argument in a native form.
 
-```pawn
-public&form.formname;
+```cpp
+str*form.formname;
 {;
 	console.println("my first user form");
-	return.str,"this was returned";
+	return,"this was returned";
 };
 
 console.println(formname);
@@ -65,7 +65,7 @@ console.println(formname);
 
 To call an user form, use:
 
-```pawn
+```cpp
 user.formname;
 ```
 
@@ -75,7 +75,7 @@ user.formname;
 
 - You may also use variables and constants as arguments in native functions.
 
-```pawn
+```cpp
 const*new.str,CONST_NAME="constant worked";
 
 console.println(CONST_NAME);
@@ -86,11 +86,11 @@ console.println(CONST_NAME);
 ## Hook forms
 - You can hook already existing forms using **hook forms**.
 
-```pawn
-public&form.functobehooked;
+```cpp
+int*form.functobehooked;
 {;
 	console.println("HOOKED");
-	return.int,1;
+	return,1;
 };
 
 hook&form.functobehooked;

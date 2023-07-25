@@ -6,11 +6,11 @@
 
 - In D++, to return a value it means to execute the code and give the result output, after returning a value, code block execution will stop.
 
-```pawn
-public&form.MyForm;
+```cpp
+int*form.MyForm;
 {;
 	console.println("Hello World");
-	return.int,1;
+	return,1;
 	console.println("This code won't be executed");
 };
 
@@ -23,14 +23,36 @@ system.rem("Thing above will print 1");
 
 - `yield` return will do the same thing as a normal return, the difference is that the code block won't stop being executed until `};` or `return..,..;`.
 
-```pawn
-public&form.MyForm;
+```cpp
+int*form.MyForm;
 {;
 	console.println("Hello World");
-	yield&return.int,1;
+	yield&return,1;
 	console.println("This code will be executed too");
 };
 
 console.cout(MyForm);
 system.rem("Thing above will print 1");
 ```
+
+
+## Return types
+
+- Each function can have one of 5 return types - integer, boolean, string, double or a character. Return type is assigned when a function is declared, and can be changed with the `return` keyword.
+
+Little example:
+
+```cpp
+int*form.TestFunction;
+{;
+	return.bool,false;
+};
+```
+
+- Return type assigned to a form `TestFunction` is integer, but we returned a boolean. If we do not want to return any value, we just assign the `void` return type:
+
+```cpp
+void*form.TestFunction;
+{;
+	system.rem("Now we can't use a return keyword in this form block.");
+};

@@ -32,8 +32,8 @@ If-method is a new term used to describe the way how are you comparing the 2 ele
 
 - A quick example form:
 
-```pawn
-public&form.ElseTest;
+```cpp
+int*form.ElseTest;
 {;
 	if.equ,1,2->console.println("1 and 2 are equal");
 	else->if.equ,2,3->console.println("2 and 3 are equal");
@@ -42,7 +42,7 @@ public&form.ElseTest;
 	if.equ,1,1->console.println("1 and 1 are indeed equal");
 	else->console.println("This should not be printed");
 
-	return.int,1;
+	return,1;
 };
 
 user.ElseTest;

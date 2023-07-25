@@ -11,7 +11,7 @@ exit;
 ## String formatting
 - You can format any string argument in any form.
 
-```pawn
+```cpp
 new.str,test="Test string";
 
 console.println("{test}");
@@ -22,8 +22,8 @@ Output:
 Test string
 ```
 
-```pawn
-public&form.testfunction?message;
+```cpp
+void*form.testfunction?message;
 {;
 	console.println(message@testfunction);
 };
@@ -38,7 +38,7 @@ Test string
 
 ## `defined` instruction
 
-```pawn
+```cpp
 new.int,variable=1;
 
 if.equ,defined?variable,1->console.println("'variable' is defined!");

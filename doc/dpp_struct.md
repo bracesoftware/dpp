@@ -8,8 +8,8 @@
 
 Example:
 
-```pawn
-auto&form.OnGameModeInit;
+```cpp
+void*form.Announce;
 {;
 	console.println("Script is loading");
 };
@@ -27,7 +27,7 @@ auto&form.OnGameModeInit;
 
 Example:
 
-```pawn
+```cpp
 extern&struct*samp_command.testcmd?playerid&params;
 {;
 	samp.SendClientMessage(playerid@testcmd,0,"Your command works!");

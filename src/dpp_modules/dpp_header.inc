@@ -319,7 +319,7 @@ stock dpp_deletefunc(const name[])
     return 1;
 }
 
-stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0, struct = dpp_formstruct_local, method = 0)
+stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0, struct = dpp_formstruct_local, method = 0, ret = dpp_rtn_type_void)
 {
     if(dpp_workingclassid != dpp_invalidclass)
     {
@@ -345,6 +345,8 @@ stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0, struc
             dpp_validfunc[i] = 1;
             dpp_structtype[i] = struct;
             dpp_methodform[i] = method;
+
+            dpp_returntype[i] = ret;
 
             for(new y; y < dpp_maxfuncs; y++)
             {

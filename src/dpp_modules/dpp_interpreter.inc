@@ -383,45 +383,54 @@ stock dpp_process(line[])
     ////
     ///////////////////////////////////////////////////////
 
+    //int*form.TestFunc;
+    //bool/char/double/str
 
-
-    if(!strcmp(funcgroup[0], "public&form"))
+    if(!strcmp(structgroup[1], "form"))
     {
         if(dpp_processfunc != DPP_INVALID_FORM_ID)
         {
             dpp_error("You can't create a form [\"%s\"] inside a form.",funcgroup[1]);
             return 1;
         }
-        new isautoform = 0;
+
         new arguments[2][1024];
         dpp_parseline(funcgroup[1],arguments,'?');
-        //system autoforms
-        if(dpp_config[system_comp] == 1)
-        {
-            if(!strcmp(funcgroup[1], "main")) isautoform = 1;
-        }
-        //samp autoforms
-        if(dpp_config[samp_comp] == 1)
-        {
-            if(!strcmp(funcgroup[1], "OnGameModeInit")) isautoform = 1;
-            if(!strcmp(funcgroup[1], "OnGameModeExit")) isautoform = 1;
-        }
-        //discord api autoforms
-        if(dpp_apis[discord] == 1)
-        {
-            if(!strcmp(funcgroup[1], "discord_init")) isautoform = 1;
-        }
 
-        if(isautoform == 1)
+        if(!strcmp(structgroup[0], "void"))
         {
-            dpp_warning("'%s' is a name of an existing auto form.", funcgroup[1]);
+            dpp_createfunc(arguments[0],arguments[1],.ret = dpp_rtn_type_void);
+            dpp_event = dpp_event_form;
         }
-
-        dpp_createfunc(arguments[0],arguments[1]);
-
-        dpp_event = dpp_event_form;
+        if(!strcmp(structgroup[0], "int"))
+        {
+            dpp_createfunc(arguments[0],arguments[1],.ret = dpp_rtn_type_int);
+            dpp_event = dpp_event_form;
+        }
+        if(!strcmp(structgroup[0], "bool"))
+        {
+            dpp_createfunc(arguments[0],arguments[1],.ret = dpp_rtn_type_bool);
+            dpp_event = dpp_event_form;
+        }
+        if(!strcmp(structgroup[0], "str"))
+        {
+            dpp_createfunc(arguments[0],arguments[1],.ret = dpp_rtn_type_str);
+            dpp_event = dpp_event_form;
+        }
+        if(!strcmp(structgroup[0], "double"))
+        {
+            dpp_createfunc(arguments[0],arguments[1],.ret = dpp_rtn_type_double);
+            dpp_event = dpp_event_form;
+        }
+        if(!strcmp(structgroup[0], "char"))
+        {
+            dpp_createfunc(arguments[0],arguments[1],.ret = dpp_rtn_type_char);
+            dpp_event = dpp_event_form;
+        }
         return 1;
     }
+
+
     if(!strcmp(funcgroup[0], "auto&form"))
     {
         if(dpp_processfunc != DPP_INVALID_FORM_ID)
@@ -2044,6 +2053,135 @@ stock dpp_process(line[])
             dpp_sysreturned = 1;
             return 1;
         }
+        //return,1;
+        if(isnull(funcgroup[1]))
+        {
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_void)
+            {
+                dpp_error("Form is a void form; can't return a value.",);
+                return 1;
+            }
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_int)
+            {
+                if(!dpp_isnumeric(args[1]))
+                {
+                    dpp_error("Return value must be an integer.",);
+                    return 1;
+                }
+
+                new int_return = strval(args[1]);
+
+                dpp_returned[dpp_processfunc] = 1;
+                dpp_returntype[dpp_processfunc] = dpp_rtn_type_int;
+                dpp_funcreturn_int[dpp_processfunc] = int_return;
+
+                dpp_processfunc = DPP_INVALID_FORM_ID;
+                dpp_sysreturned = 1;
+                return 1;
+            }
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_bool)
+            {
+                if(!strcmp(args[1], "true"))
+                {
+                    dpp_returned[dpp_processfunc] = 1;
+                    dpp_returntype[dpp_processfunc] = dpp_rtn_type_bool;
+                    dpp_funcreturn_bool[dpp_processfunc] = 1;
+
+                    dpp_processfunc = DPP_INVALID_FORM_ID;
+                    dpp_sysreturned = 1;
+                    return 1;
+                }
+                if(!strcmp(args[1], "false"))
+                {
+                    dpp_returned[dpp_processfunc] = 1;
+                    dpp_returntype[dpp_processfunc] = dpp_rtn_type_bool;
+                    dpp_funcreturn_bool[dpp_processfunc] = 0;
+
+                    dpp_processfunc = DPP_INVALID_FORM_ID;
+                    dpp_sysreturned = 1;
+                    return 1;
+                }
+                else
+                {
+                    dpp_error("Return value must be either \"true\" or \"false\".",);
+                }
+
+                return 1;
+            }
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_str)
+            {
+                new mul, str[dpp_argcharsize];
+                strmid(str, args[1], 0, dpp_argcharsize);
+                for(new i; i < strlen(args[1]); i++)
+                {
+                    if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+                }
+                if(mul == 0)
+                {
+                    dpp_error("You need to use '\"' to start a string.",);
+                    return 0;
+                }
+                if(mul != 2)
+                {
+                    dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+                    return 0;
+                }
+
+                dpp_returned[dpp_processfunc] = 1;
+                dpp_returntype[dpp_processfunc] = dpp_rtn_type_str;
+                strmid(dpp_funcreturn_str[dpp_processfunc],args[1],0,
+                    dpp_argcharsize,dpp_argcharsize);
+
+                dpp_debug("dpp_funcreturn_str[dpp_processfunc] : \"%s\"\nargs[1] : \"%s\"",dpp_funcreturn_str[dpp_processfunc],args[1]);
+
+                dpp_processfunc = DPP_INVALID_FORM_ID;
+                dpp_sysreturned = 1;
+                return 1;
+            }
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_double)
+            {
+                new Float:double_return = floatstr(args[1]);
+
+                dpp_returned[dpp_processfunc] = 1;
+                dpp_returntype[dpp_processfunc] = dpp_rtn_type_double;
+                dpp_funcreturn_double[dpp_processfunc] = double_return;
+
+                dpp_processfunc = DPP_INVALID_FORM_ID;
+                dpp_sysreturned = 1;
+                return 1;
+            }
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_char)
+            {
+                new mul2, str2[dpp_argcharsize];
+                strmid(str2, args[1], 0, dpp_argcharsize);
+                for(new i; i < strlen(args[1]); i++)
+                {
+                    if(args[1][i] == '\'') mul2++, strdel(args[1], i, i+1);
+                }
+                if(mul2 == 0)
+                {
+                    dpp_error("You need to use \"'\" to start a char.",);
+                    return 0;
+                }
+                if(mul2 != 2)
+                {
+                    dpp_error("Argument error; [%i] \"%s\"", mul2, args[1]);
+                    return 0;
+                }
+
+                new double_return = args[1][0];
+
+                dpp_returned[dpp_processfunc] = 1;
+                dpp_returntype[dpp_processfunc] = dpp_rtn_type_char;
+                dpp_funcreturn_char[dpp_processfunc] = double_return;
+
+                dpp_processfunc = DPP_INVALID_FORM_ID;
+                dpp_sysreturned = 1;
+                return 1;
+            }
+
+            return 1;
+        }
 
         else
         {
@@ -2184,6 +2322,133 @@ stock dpp_process(line[])
             //dpp_processfunc = DPP_INVALID_FORM_ID;
             //dpp_sysreturned = 1;
             return 1;
+        }
+        //return,1;
+        if(isnull(funcgroup[1]))
+        {
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_void)
+            {
+                dpp_error("Form is a void form; can't return a value.",);
+                return 1;
+            }
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_int)
+            {
+                if(!dpp_isnumeric(args[1]))
+                {
+                    dpp_error("Return value must be an integer.",);
+                    return 1;
+                }
+
+                new int_return = strval(args[1]);
+
+                //dpp_returned[dpp_processfunc] = 1;
+                dpp_returntype[dpp_processfunc] = dpp_rtn_type_int;
+                dpp_funcreturn_int[dpp_processfunc] = int_return;
+
+                //dpp_processfunc = DPP_INVALID_FORM_ID;
+                //dpp_sysreturned = 1;
+                return 1;
+            }
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_bool)
+            {
+                if(!strcmp(args[1], "true"))
+                {
+                    //dpp_returned[dpp_processfunc] = 1;
+                    dpp_returntype[dpp_processfunc] = dpp_rtn_type_bool;
+                    dpp_funcreturn_bool[dpp_processfunc] = 1;
+
+                    // dpp_processfunc = DPP_INVALID_FORM_ID;
+                    //dpp_sysreturned = 1;
+                    return 1;
+                }
+                if(!strcmp(args[1], "false"))
+                {
+                    //dpp_returned[dpp_processfunc] = 1;
+                    dpp_returntype[dpp_processfunc] = dpp_rtn_type_bool;
+                    dpp_funcreturn_bool[dpp_processfunc] = 0;
+
+                    //dpp_processfunc = DPP_INVALID_FORM_ID;
+                    //dpp_sysreturned = 1;
+                    return 1;
+                }
+                else
+                {
+                    dpp_error("Return value must be either \"true\" or \"false\".",);
+                }
+
+                return 1;
+            }
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_str)
+            {
+                new mul, str[dpp_argcharsize];
+                strmid(str, args[1], 0, dpp_argcharsize);
+                for(new i; i < strlen(args[1]); i++)
+                {
+                    if(args[1][i] == '\"') mul++, strdel(args[1], i, i+1);
+                }
+                if(mul == 0)
+                {
+                    dpp_error("You need to use '\"' to start a string.",);
+                    return 0;
+                }
+                if(mul != 2)
+                {
+                    dpp_error("Argument error; [%i] \"%s\"", mul, args[1]);
+                    return 0;
+                }
+
+                //dpp_returned[dpp_processfunc] = 1;
+                dpp_returntype[dpp_processfunc] = dpp_rtn_type_str;
+                strmid(dpp_funcreturn_str[dpp_processfunc],args[1],0,
+                    dpp_argcharsize,dpp_argcharsize);
+
+                dpp_debug("dpp_funcreturn_str[dpp_processfunc] : \"%s\"\nargs[1] : \"%s\"",dpp_funcreturn_str[dpp_processfunc],args[1]);
+
+                //dpp_processfunc = DPP_INVALID_FORM_ID;
+                //dpp_sysreturned = 1;
+                return 1;
+            }
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_double)
+            {
+                new Float:double_return = floatstr(args[1]);
+
+                //dpp_returned[dpp_processfunc] = 1;
+                dpp_returntype[dpp_processfunc] = dpp_rtn_type_double;
+                dpp_funcreturn_double[dpp_processfunc] = double_return;
+
+                //dpp_processfunc = DPP_INVALID_FORM_ID;
+                //dpp_sysreturned = 1;
+                return 1;
+            }
+            if(dpp_returntype[dpp_processfunc] == dpp_rtn_type_char)
+            {
+                new mul2, str2[dpp_argcharsize];
+                strmid(str2, args[1], 0, dpp_argcharsize);
+                for(new i; i < strlen(args[1]); i++)
+                {
+                    if(args[1][i] == '\'') mul2++, strdel(args[1], i, i+1);
+                }
+                if(mul2 == 0)
+                {
+                    dpp_error("You need to use \"'\" to start a char.",);
+                    return 0;
+                }
+                if(mul2 != 2)
+                {
+                    dpp_error("Argument error; [%i] \"%s\"", mul2, args[1]);
+                    return 0;
+                }
+
+                new double_return = args[1][0];
+
+                //dpp_returned[dpp_processfunc] = 1;
+                dpp_returntype[dpp_processfunc] = dpp_rtn_type_char;
+                dpp_funcreturn_char[dpp_processfunc] = double_return;
+
+                //dpp_processfunc = DPP_INVALID_FORM_ID;
+                //dpp_sysreturned = 1;
+                return 1;
+            }
         }
 
         else

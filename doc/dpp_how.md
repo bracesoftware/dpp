@@ -13,7 +13,7 @@
 - Writing a small "hello world" program is the initial step of anyone trying to learn a new language, so that's how we'll start this one as well. Open your `index.dpp` and write in the following code.
 
 `index.dpp`:
-```pawn
+```cpp
 using.console;
 ```
 
@@ -22,10 +22,10 @@ using.console;
 - Now, to print our destined message, we'll use the `println` form (function).
 
 `index.dpp`:
-```pawn
+```cpp
 using.console;
 
-console.println,"Hello World!";
+console.println("Hello World!");
 ```
 
 - What we did here is basically call the `console` component and provided a function name next to the component call. That function is `println` which literally stands for "print line". Group of words separated by a semicolon (`;`) is called a **statement**. Adding a comma, we started an **argument part** of the statement. Argument part of a statement consists of some kind of resources we have use of when it comes to executing code.
@@ -61,15 +61,15 @@ Hello World!
 - Let this be our code:
 
 `index.dpp`:
-```pawn
+```cpp
 using.console;
 
-console.println,"Hello World!";
+console.println("Hello World!");
 ```
 
 - Interpreter is firstly going to read the first line. Afterwards, the semicolon will be removed and the internal process-function will be called:
 
-```pawn
+```cpp
 main() dpp_process("using.console");
 ```
 
@@ -84,7 +84,7 @@ funcgroup[1] = "console"
 
 - So this is how it looks simplified:
 
-```pawn
+```cpp
 dpp_process(line)
 {
 	dpp_parseline(line,funcgroup,'.');
@@ -102,7 +102,7 @@ dpp_process(line)
 
 - But when it comes to function calls, then it is way more complicated, there are now also arg-groups.
 
-```pawn
+```cpp
 dpp_process(line)
 {
 	dpp_parseline(line,funcgroup,'.');

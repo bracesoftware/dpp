@@ -26,11 +26,11 @@ For loop id 10
 
 ## Example *#2*
 
-```pawn
-public&form.ForTest2?num;
+```cpp
+int*form.ForTest2?num;
 {;
 	console.println("'num' is {num@ForTest2}");
-	return.int,1;
+	return,1;
 };
 
 set.int,forlooptestvar=0;

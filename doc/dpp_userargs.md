@@ -1,7 +1,7 @@
 # Passing arguments to user forms
 
-```pawn
-public&form.form?text&num;
+```cpp
+void*form.form?text&num;
 {;
 	console.println(text@form);
 	console.cout(num@form);
