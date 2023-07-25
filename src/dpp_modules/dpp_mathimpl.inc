@@ -168,13 +168,7 @@ stock dpp_div(arg[])
             dpp_argvarcheck(operands[i]);
         }
     }
-
-    if(strval(operands[1]) == 0)
-    {
-        format(arg, strlen(arg), "?");
-        return 1;
-    }
-
+    
     if( dpp_isnumeric(operands[0]) && dpp_isnumeric(operands[1]) )
     {
         format(newvalue, sizeof newvalue, "%i", 

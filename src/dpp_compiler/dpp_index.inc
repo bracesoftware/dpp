@@ -194,6 +194,17 @@ stock dpp_formatarg(argument[]) // creds DEntisT
                     format(newvalue, dpp_argcharsize, "\"%s\"", 
                         dpp_vardata[i][stringvalue]);
                 }
+                if(dpp_vardata[i][var_type] == dpp_var_type_double)
+                {
+                    format(newvalue, dpp_argcharsize, "%f", 
+                        dpp_vardata[i][floatvalue]);
+                }
+                if(dpp_vardata[i][var_type] == dpp_var_type_char)
+                {
+                    format(newvalue, dpp_argcharsize, "'%c'", 
+                        dpp_vardata[i][charvalue]);
+                }
+
                 if(dpp_vardata[i][var_type] != dpp_var_type_bool)
                 {
                     strmid(replacement, newvalue, 0, dpp_argcharsize, dpp_argcharsize);
@@ -231,6 +242,19 @@ stock dpp_formatarg(argument[]) // creds DEntisT
                     format(newvalue, dpp_argcharsize, "\"%s\"", 
                         dpp_constdata[i][stringvalue]);
                 }
+
+                if(dpp_constdata[i][const_type] == dpp_const_type_double)
+                {
+                    format(newvalue, dpp_argcharsize, "%f", 
+                        dpp_constdata[i][floatvalue]);
+                }
+
+                if(dpp_constdata[i][const_type] == dpp_const_type_char)
+                {
+                    format(newvalue, dpp_argcharsize, "'%c'", 
+                        dpp_constdata[i][charvalue]);
+                }
+
                 if(dpp_constdata[i][const_type] != dpp_const_type_bool)
                 {
                     strmid(replacement, newvalue, 0, dpp_argcharsize, dpp_argcharsize);

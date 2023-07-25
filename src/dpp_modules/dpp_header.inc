@@ -723,6 +723,16 @@ stock dpp_argfunccheck(arg[])
                     format(newvalue, dpp_argcharsize, "\"%s\"", 
                         dpp_funcreturn_str[i]);
                 }
+                if(dpp_returntype[i] == dpp_rtn_type_double)
+                {
+                    format(newvalue, dpp_argcharsize, "%f", 
+                        dpp_funcreturn_double[i]);
+                }
+                if(dpp_returntype[i] == dpp_rtn_type_char)
+                {
+                    format(newvalue, dpp_argcharsize, "'%c'", 
+                        dpp_funcreturn_char[i]);
+                }
                 
                 if(dpp_returntype[i] != dpp_rtn_type_bool)
                 {

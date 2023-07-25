@@ -678,11 +678,13 @@ stock dpp_process(line[])
         dpp_deleteboolconst(dirgroup[1]);
         dpp_deletestrconst(dirgroup[1]);
         dpp_deletedoubleconst(dirgroup[1]);
+        dpp_deletecharconst(dirgroup[1]);
         dpp_deleteiter(dirgroup[1]);
         dpp_deleteintvar(dirgroup[1]);
         dpp_deleteboolvar(dirgroup[1]);
         dpp_deletestrvar(dirgroup[1]);
-        dpp_deletedoubleconst(dirgroup[1]);
+        dpp_deletedoublevar(dirgroup[1]);
+        dpp_deletecharvar(dirgroup[1]);
         dpp_deletefunc(dirgroup[1]);
         return 1;
     }
@@ -1324,6 +1326,28 @@ stock dpp_process(line[])
                 dpp_createdoubleconst(vargroup[0],floatstr(vargroup[1]));
                 return 1;
             }
+            if(!strcmp(funcgroup[1], "char"))
+            {
+                new mul2, str2[dpp_argcharsize];
+                strmid(str2, vargroup[1], 0, dpp_argcharsize);
+                for(new i; i < strlen(vargroup[1]); i++)
+                {
+                    if(vargroup[1][i] == '\'') mul2++, strdel(vargroup[1], i, i+1);
+                }
+                if(mul2 == 0)
+                {
+                    dpp_error("You need to use \"'\" to start a char.",);
+                    return 0;
+                }
+                if(mul2 != 2)
+                {
+                    dpp_error("Argument error; [%i] \"%s\"", mul2, vargroup[1]);
+                    return 0;
+                }
+
+                dpp_createcharconst(vargroup[0],vargroup[1][0]);
+                return 1;
+            }
             
             else
             {
@@ -1477,6 +1501,28 @@ stock dpp_process(line[])
         if(!strcmp(funcgroup[1], "double"))
         {
             dpp_createdoublevar(vargroup[0],floatstr(vargroup[1]));
+            return 1;
+        }
+        if(!strcmp(funcgroup[1], "char"))
+        {
+            new mul2, str2[dpp_argcharsize];
+            strmid(str2, vargroup[1], 0, dpp_argcharsize);
+            for(new i; i < strlen(vargroup[1]); i++)
+            {
+                if(vargroup[1][i] == '\'') mul2++, strdel(vargroup[1], i, i+1);
+            }
+            if(mul2 == 0)
+            {
+                dpp_error("You need to use \"'\" to start a char.",);
+                return 0;
+            }
+            if(mul2 != 2)
+            {
+                dpp_error("Argument error; [%i] \"%s\"", mul2, vargroup[1]);
+                return 0;
+            }
+
+            dpp_createcharvar(vargroup[0],vargroup[1][0]);
             return 1;
         }
         
@@ -1969,6 +2015,35 @@ stock dpp_process(line[])
             dpp_sysreturned = 1;
             return 1;
         }
+        if(!strcmp(funcgroup[1], "char"))
+        {
+            new mul2, str2[dpp_argcharsize];
+            strmid(str2, args[1], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[1]); i++)
+            {
+                if(args[1][i] == '\'') mul2++, strdel(args[1], i, i+1);
+            }
+            if(mul2 == 0)
+            {
+                dpp_error("You need to use \"'\" to start a char.",);
+                return 0;
+            }
+            if(mul2 != 2)
+            {
+                dpp_error("Argument error; [%i] \"%s\"", mul2, args[1]);
+                return 0;
+            }
+
+            new double_return = args[1][0];
+
+            dpp_returned[dpp_processfunc] = 1;
+            dpp_returntype[dpp_processfunc] = dpp_rtn_type_char;
+            dpp_funcreturn_char[dpp_processfunc] = double_return;
+
+            dpp_processfunc = DPP_INVALID_FORM_ID;
+            dpp_sysreturned = 1;
+            return 1;
+        }
 
         else
         {
@@ -2079,6 +2154,35 @@ stock dpp_process(line[])
             dpp_returntype[dpp_processfunc] = dpp_rtn_type_double;
             dpp_funcreturn_double[dpp_processfunc] = int_return;
 
+            return 1;
+        }
+        if(!strcmp(funcgroup[1], "char"))
+        {
+            new mul2, str2[dpp_argcharsize];
+            strmid(str2, args[1], 0, dpp_argcharsize);
+            for(new i; i < strlen(args[1]); i++)
+            {
+                if(args[1][i] == '\'') mul2++, strdel(args[1], i, i+1);
+            }
+            if(mul2 == 0)
+            {
+                dpp_error("You need to use \"'\" to start a char.",);
+                return 0;
+            }
+            if(mul2 != 2)
+            {
+                dpp_error("Argument error; [%i] \"%s\"", mul2, args[1]);
+                return 0;
+            }
+
+            new double_return = args[1][0];
+
+            //dpp_returned[dpp_processfunc] = 1;
+            dpp_returntype[dpp_processfunc] = dpp_rtn_type_char;
+            dpp_funcreturn_char[dpp_processfunc] = double_return;
+
+            //dpp_processfunc = DPP_INVALID_FORM_ID;
+            //dpp_sysreturned = 1;
             return 1;
         }
 

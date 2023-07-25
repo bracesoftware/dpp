@@ -46,6 +46,12 @@ stock dpp_argvarcheck(arg[])
                     format(newvalue, dpp_argcharsize, "%f", 
                         dpp_vardata[i][floatvalue]);
                 }
+                if(dpp_vardata[i][var_type] == dpp_var_type_char)
+                {
+                    format(newvalue, dpp_argcharsize, "'%c'", 
+                        dpp_vardata[i][charvalue]);
+                }
+
                 dpp_debug("argarraycheck debug\n\tarr : '%s'\n\targ : '%s'\n\tnewvalue : '%s'", dpp_vardata[i][var_name], arg, newvalue);
                 if(dpp_vardata[i][var_type] != dpp_var_type_bool)
                 {
@@ -260,6 +266,52 @@ stock dpp_createdoublevar(name[], Float:value, obj = -1)
     return 1;
 }
 
+stock dpp_createcharvar(name[], value, obj = -1)
+{
+    for(new i; i < dpp_maxvar; i++)
+    {
+        if(dpp_vardata[i][var_valid] == 0)
+        {
+            new name_error;
+
+            for(new x; x < strlen(name); x++)
+            {
+                if(name[x] == '\"') name_error = 1;
+                if(name[x] == ' ') name_error = 1;
+                if(name[x] == '\t') name_error = 1;
+            }
+            if(dpp_isnumeric(name)) name_error = 1;
+            if(name_error == 1)
+            {
+                dpp_error("Invalid symbol name.",);
+                return 1;
+            }
+
+            if(dpp_workingclassid != dpp_invalidclass)
+            {
+                new newvalue[dpp_argcharsize];
+                format(newvalue,sizeof(newvalue),"DPPCv@%s_%s",dpp_classname[dpp_workingclassid],name);
+                strmid(name, newvalue, 0, dpp_argcharsize,dpp_argcharsize);
+            }
+
+            dpp_debug("variable \"%s\" assigned a value : %c",name,value);
+            strmid(dpp_vardata[i][var_name], name, 0, 64);
+            dpp_vardata[i][charvalue] = value;
+            dpp_vardata[i][var_type] = dpp_var_type_char;
+            dpp_vardata[i][var_valid] = 1;
+            dpp_vardata[i][var_object] = obj;
+            if(dpp_objectid != -1)
+            {
+                dpp_vardata[i][var_object] = dpp_objectid;
+                dpp_objectid = -1;
+            }
+            return 1;
+        }
+    }
+    return 1;
+}
+
+
 ///////////////////////////SET///////////////////////////////
 
 stock dpp_setintvar(const name[], value)
@@ -319,6 +371,21 @@ stock dpp_setdoublevar(const name[], Float:value)
         }
     }
     dpp_error("DOUBLE : Unable to find a variable: '%s'",name);
+    return 1;
+}
+
+stock dpp_setcharvar(const name[], value)
+{
+    for(new i; i < dpp_maxvar; i++)
+    {
+        if(!strcmp(dpp_vardata[i][var_name], name) && dpp_vardata[i][var_valid] == 1)
+        {
+            dpp_debug("\"%s\" value changed to \"%c\"", name, value);
+            dpp_vardata[i][charvalue] = value;
+            return 1;
+        }
+    }
+    dpp_error("CHAR : Unable to find a variable: '%s'",name);
     return 1;
 }
 
@@ -417,6 +484,32 @@ stock dpp_deletedoublevar(const name[])
                 strmid(dpp_vardata[i][var_name], "unknown", 0, 64);
                 dpp_vardata[i][var_valid] = 0;
                 dpp_vardata[i][floatvalue] = 0.0;
+                return 1;
+            }
+        }
+        //dpp_error("variable \"%s\" not found.", name);
+    }
+    return 1;
+}
+
+
+stock dpp_deletecharvar(const name[])
+{
+    for(new i; i < dpp_maxvar; i++)
+    {
+        if(!strcmp(dpp_vardata[i][var_name], name))
+        {
+            if(dpp_vardata[i][var_valid] == 1)
+            {
+                if(dpp_vardata[i][var_type] != dpp_var_type_char)
+                {
+                    //dpp_error("variable \"%s\" is not a string.", name);
+                    return 1;
+                }
+
+                strmid(dpp_vardata[i][var_name], "unknown", 0, 64);
+                dpp_vardata[i][var_valid] = 0;
+                dpp_vardata[i][charvalue] = '0';
                 return 1;
             }
         }
