@@ -52,10 +52,10 @@ system.rem("SOME TEXT");
 ### Form: `arginit`
 - Used to initialize the arguments.
 
-```pawn
-public&form.arginit_test?playerid&string;
+```cpp
+int*form.arginit_test?playerid&string;
 {;
-	return.int,1;
+	return,1;
 };
 
 system.arginit(arginit_test,1,"Hello!");
@@ -67,8 +67,8 @@ system.arginit(arginit_test,1,"Hello!");
 
 - Called when the code gets executed.
 
-```pawn
-auto&form.main;
+```cpp
+extern&struct*public.main;
 {;
 	console.println("Hello World from main");
 	return.int,1;
@@ -108,10 +108,10 @@ samp.SendClientMessage(playerid@OnPlayerConnect,0,"Welcome to the D++ server");
 
 - In SA:MP and open.mp these are also known as **callbacks**. In D++ they're automated user forms, and are called by the D++ interpreter when a certain event happens in SA:MP. So for example, when the gamemode starts loading, automated form will get called.
 
-```pawn
+```cpp
 system.rem("OnGameModeInit should be called by itself.");
 
-auto&form.OnGameModeInit;
+extern&struct*public.OnGameModeInit;
 {;
 	console.println("OnGameModeInit works");
 };
@@ -121,8 +121,8 @@ auto&form.OnGameModeInit;
 
 - Called when the gamemode unloads.
 
-```pawn
-auto&form.OnGameModeExit;
+```cpp
+extern&struct*public.OnGameModeExit;
 {;
 	console.println("OnGameModeExit works");
 };
@@ -132,8 +132,8 @@ auto&form.OnGameModeExit;
 
 - Called when a certain player connects to the server.
 
-```pawn
-auto&form.OnPlayerConnect?playerid;
+```cpp
+extern&struct*public.OnPlayerConnect?playerid;
 {;
 	samp.SendClientMessage(playerid@OnPlayerConnect,0,"Welcome to the D++ server");
 };
@@ -143,9 +143,9 @@ auto&form.OnPlayerConnect?playerid;
 
 - Called when a certain player disconnects from the server.
 
-```pawn
+```cpp
 
-auto&form.OnPlayerDisconnect?playerid&reason;
+extern&struct*public.OnPlayerDisconnect?playerid&reason;
 {;
 	console.println("Player {playerid@OnPlayerDisconnect} disconnected | Reason: {reason@OnPlayerDisconnect}");
 	return.int,1;

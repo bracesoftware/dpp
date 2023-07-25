@@ -5,7 +5,7 @@ using*api.discord;
 
 native&form.discord_bot_send_message;
 
-auto&form.discord_init;
+extern&struct*public.discord_init;
 {;
 	console.println("discord_init called");
 	discord.discord_bot_send_message(1012320061278662696,"THIS WAS SENT FROM D++!!!");
@@ -22,7 +22,7 @@ pragma::option.ctrlchar,*;
 
 console.println("{test2}st format test: {test} *, {test3}");
 
-public&form.dppprint?message;
+int*form.dppprint?message;
 {;
 	console.println(message@dppprint);
 	return.int,1;

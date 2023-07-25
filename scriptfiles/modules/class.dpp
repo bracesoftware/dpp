@@ -6,10 +6,10 @@ public&class.dogInfo;
 
 	const*new.int,age=15;
 
-	public&form.dogRace;
+	int*form.dogRace;
 	{;
 		console.println("This is a bulldog.");
-		return.int,1;
+		return,1;
 	};
 >;
 

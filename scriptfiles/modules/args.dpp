@@ -1,9 +1,9 @@
 console.println("========================== args.dpp ==========================");
 
-public&form.form?text;
+str*form.form?text;
 {;
 	console.println(text@form);
-	return.str,text@form;
+	return,text@form;
 };
 
 user.form("Argument passed to a function!");

@@ -16,13 +16,13 @@ pragma::option.debug,DEBUG_OPTION;
 system.rem("Basic println example.");
 console.println("Hual is a fucking bitch");
 
-public&form.testfunc;
+void*form.testfunc;
 {;
 	console.println("testfunc works.");
 	console.println("testfunc works.");
 };
 
-public&form.NewTestFunc;
+void*form.NewTestFunc;
 {;
 	console.println("OH YEAH MAN");
 };
@@ -43,18 +43,18 @@ samp.SetMaxPlayers(MAX_PLAYERS);
 
 system.rem("===================FUNCS===================");
 
-public&form.testFunc;
+str*form.testFunc;
 {;
 	console.println("testFunc was called.");
-	return.str,"testFunc returned this.";
+	return,"testFunc returned this.";
 };
 
 const*new.str,LMAO="Lmao";
 
-public&form.disableDebug;
+str*form.disableDebug;
 {;
 	console.println("Debug disabled");
-	return.str,LMAO;
+	return,LMAO;
 };
 
 console.println(testFunc);
@@ -63,13 +63,13 @@ console.println(disableDebug);
 system.rem("===================CALLBACKS===================");
 
 
-auto&form.main;
+extern&struct*public.main;
 {;
 	console.println("Hello World from main");
 	return.int,1;
 };
 
-auto&form.OnGameModeInit;
+extern&struct*public.OnGameModeInit;
 {;
 	console.println("OnGameModeInit works");
 	return.int,1;
@@ -83,7 +83,7 @@ hook&form.OnGameModeInit;
 	return.int,1;
 };
 
-auto&form.OnGameModeExit;
+extern&struct*public.OnGameModeExit;
 {;
 	console.println("OnGameModeExit works");
 	return.bool,true;

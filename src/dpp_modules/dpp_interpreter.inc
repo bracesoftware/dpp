@@ -431,7 +431,7 @@ stock dpp_process(line[])
     }
 
 
-    if(!strcmp(funcgroup[0], "auto&form"))
+    /*if(!strcmp(funcgroup[0], "auto&form"))
     {
         if(dpp_processfunc != DPP_INVALID_FORM_ID)
         {
@@ -444,7 +444,7 @@ stock dpp_process(line[])
 
         dpp_event = dpp_event_form;
         return 1;
-    }
+    }*/
     if(!strcmp(funcgroup[0], "hook&form"))
     {
         if(dpp_processfunc != DPP_INVALID_FORM_ID)
@@ -518,6 +518,21 @@ stock dpp_process(line[])
 
     if(!strcmp(structgroup[0], "extern&struct"))
     {
+        if(!strcmp(structgroup[1], "public"))
+        {
+            if(dpp_processfunc != DPP_INVALID_FORM_ID)
+            {
+                dpp_error("You can't create a form [\"%s\"] inside a form.",funcgroup[1]);
+                return 1;
+            }
+            new arguments[2][1024];
+            dpp_parseline(funcgroup[1],arguments,'?');
+            dpp_createfunc(arguments[0],arguments[1],1);
+
+            dpp_event = dpp_event_form;
+            return 1;
+        }
+        // Other shit
         if(!strcmp(structgroup[1], "samp_command"))
         {
             if(dpp_config[samp_comp] == 0)

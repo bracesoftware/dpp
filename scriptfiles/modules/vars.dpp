@@ -16,10 +16,10 @@ if.equ,myvar,"myvar::worked."->console.println(myvar);
 if.equ,false,true->console.println("false is equal to true");
 
 
-public&form.functobehooked?arg1&arg2&arg3;
+int*form.functobehooked?arg1&arg2&arg3;
 {;
 	console.println("HOOKED");
-	return.int,1;
+	return,1;
 };
 
 hook&form.functobehooked;
@@ -37,7 +37,7 @@ hook&form.functobehooked;
 user.functobehooked("oh lol",1,false);
 
 
-public&form.arginit_test?playerid&string;
+void*form.arginit_test?playerid&string;
 {;
 };
 

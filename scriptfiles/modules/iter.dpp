@@ -61,11 +61,12 @@ public&class.MethodClass;
 
 console.println.MethodClass:TestMethod("Method test #2");
 
-public&form.MegaFormBoo?text;
+int*form.MegaFormBoo?text;
 {;
 	console.println("{text@MegaFormBoo}");
 	return.int,1;
 };
+
 user.MegaFormBoo("MegaFormBoo was sucessfully called");
 
 public&class.SAMP;

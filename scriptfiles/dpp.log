@@ -1495,4 +1495,976 @@
  23:7:2023 | 22:38:32 @ >> D++ | LOG: 2
  23:7:2023 | 22:38:33 @ >> D++ | LOG: 2
  23:7:2023 | 22:38:34 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:14:20 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 11:14:22 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 11:14:32 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:14:32 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:14:32 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:14:33 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:14:33 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:14:33 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:14:34 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:14:34 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:14:34 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:14:34 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:14:35 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 11:14:35 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:14:35 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:14:35 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:14:35 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:14:36 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:14:36 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:14:36 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:14:36 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:14:40 @ >> D++ | LOG: 100
+ 25:7:2023 | 11:14:41 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 11:14:41 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 11:14:42 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 11:14:42 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 11:14:42 @ >> D++ | LOG: is
+ 25:7:2023 | 11:14:42 @ >> D++ | LOG: so
+ 25:7:2023 | 11:14:42 @ >> D++ | LOG: cool
+ 25:7:2023 | 11:14:42 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 11:14:42 @ >> D++ | LOG: 1
+ 25:7:2023 | 11:14:42 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 11:14:44 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:14:45 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:14:46 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:14:47 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:14:48 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:14:49 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:14:50 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:15:26 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 11:15:26 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 11:15:33 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:15:33 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:15:34 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:15:34 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:15:34 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:15:35 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:15:35 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:15:35 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:15:35 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:15:36 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:15:36 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 11:15:36 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:15:36 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:15:37 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:15:37 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:15:37 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:15:37 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:15:37 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:15:37 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:15:42 @ >> D++ | LOG: 100
+ 25:7:2023 | 11:15:42 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 11:15:42 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 11:15:43 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 11:15:43 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 11:15:43 @ >> D++ | LOG: is
+ 25:7:2023 | 11:15:43 @ >> D++ | LOG: so
+ 25:7:2023 | 11:15:43 @ >> D++ | LOG: cool
+ 25:7:2023 | 11:15:44 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 11:15:44 @ >> D++ | LOG: 1
+ 25:7:2023 | 11:15:44 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 11:15:45 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:15:46 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:15:47 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:21:4 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 11:21:4 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 11:21:11 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:21:12 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:21:12 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:21:12 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:21:12 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:21:13 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:21:13 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:21:13 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:21:13 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:21:14 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:21:14 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 11:21:14 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:21:14 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:21:15 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:21:15 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:21:15 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:21:15 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:21:15 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:21:15 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:21:20 @ >> D++ | LOG: 100
+ 25:7:2023 | 11:21:20 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 11:21:20 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 11:21:21 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 11:21:21 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 11:21:21 @ >> D++ | LOG: is
+ 25:7:2023 | 11:21:21 @ >> D++ | LOG: so
+ 25:7:2023 | 11:21:21 @ >> D++ | LOG: cool
+ 25:7:2023 | 11:21:22 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 11:21:22 @ >> D++ | LOG: 1
+ 25:7:2023 | 11:21:22 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 11:21:22 @ >> D++ | LOG: 12
+ 25:7:2023 | 11:21:23 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:21:24 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:21:25 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:21:26 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:21:27 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:21:28 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:21:29 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:22:15 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 11:22:15 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 11:22:22 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:22:22 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:22:22 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:22:23 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:22:23 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:22:23 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:22:23 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:22:24 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:22:24 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:22:24 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:22:25 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 11:22:25 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:22:25 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:22:25 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:22:25 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:22:26 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:22:26 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:22:26 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:22:26 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:22:30 @ >> D++ | LOG: 100
+ 25:7:2023 | 11:22:31 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 11:22:31 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 11:22:31 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 11:22:32 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 11:22:32 @ >> D++ | LOG: is
+ 25:7:2023 | 11:22:32 @ >> D++ | LOG: so
+ 25:7:2023 | 11:22:32 @ >> D++ | LOG: cool
+ 25:7:2023 | 11:22:32 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 11:22:32 @ >> D++ | LOG: 1
+ 25:7:2023 | 11:22:32 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 11:22:33 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 11:22:34 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:22:35 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:22:36 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:22:37 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:23:34 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 11:23:34 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 11:23:41 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:23:42 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:23:42 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:23:42 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:23:42 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:23:43 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:23:43 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:23:43 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:23:44 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:23:44 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 11:23:44 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 11:23:44 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:23:45 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:23:45 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:23:45 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:23:45 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:23:45 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:23:45 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:23:46 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 11:23:50 @ >> D++ | LOG: 100
+ 25:7:2023 | 11:23:50 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 11:23:51 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 11:23:51 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 11:23:51 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 11:23:51 @ >> D++ | LOG: is
+ 25:7:2023 | 11:23:51 @ >> D++ | LOG: so
+ 25:7:2023 | 11:23:51 @ >> D++ | LOG: cool
+ 25:7:2023 | 11:23:52 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 11:23:52 @ >> D++ | LOG: 1
+ 25:7:2023 | 11:23:52 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 11:23:52 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 11:23:53 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:23:54 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:23:55 @ >> D++ | LOG: 2
+ 25:7:2023 | 11:23:56 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:19:10 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 12:19:10 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 12:19:17 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:19:18 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:19:18 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:19:18 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:19:19 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:19:19 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:19:19 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:19:19 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:19:20 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:19:20 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:19:20 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 12:19:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:19:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:19:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:19:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:19:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:19:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:19:22 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:19:22 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:29:38 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 12:29:41 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 12:29:48 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:29:48 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:29:48 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:29:49 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:29:49 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:29:49 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:29:49 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:29:50 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:29:50 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:29:50 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:29:51 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 12:29:51 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:29:51 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:29:51 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:29:51 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:29:52 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:29:52 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:29:52 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:29:52 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:29:56 @ >> D++ | LOG: 100
+ 25:7:2023 | 12:29:57 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 12:29:57 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 12:29:57 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 12:29:57 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 12:29:58 @ >> D++ | LOG: is
+ 25:7:2023 | 12:29:58 @ >> D++ | LOG: so
+ 25:7:2023 | 12:29:58 @ >> D++ | LOG: cool
+ 25:7:2023 | 12:29:58 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 12:29:58 @ >> D++ | LOG: 1
+ 25:7:2023 | 12:29:58 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 12:29:58 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 12:29:59 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 12:30:0 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:30:1 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:30:2 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:30:3 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:30:4 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:30:5 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:30:6 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:30:7 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:30:8 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:30:9 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:30:10 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:31:54 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 12:31:54 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 12:32:2 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:32:3 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:32:3 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:32:3 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:32:4 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:32:4 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:32:4 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:32:4 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:32:5 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:32:5 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:32:5 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 12:32:6 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:32:6 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:32:6 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:32:6 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:32:7 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:32:7 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:32:7 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:32:7 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:32:12 @ >> D++ | LOG: 100
+ 25:7:2023 | 12:32:13 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 12:32:13 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 12:32:13 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 12:32:13 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 12:32:13 @ >> D++ | LOG: is
+ 25:7:2023 | 12:32:13 @ >> D++ | LOG: so
+ 25:7:2023 | 12:32:13 @ >> D++ | LOG: cool
+ 25:7:2023 | 12:32:14 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 12:32:14 @ >> D++ | LOG: 1
+ 25:7:2023 | 12:32:14 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 12:32:14 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 12:32:14 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 12:32:14 @ >> D++ | LOG: 230.271911
+ 25:7:2023 | 12:32:16 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:32:17 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:32:18 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:32:19 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:32:20 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:34:11 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 12:34:11 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 12:34:18 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:34:18 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:34:18 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:34:19 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:34:19 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:34:19 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:34:19 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:34:20 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:34:20 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:34:20 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:34:21 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 12:34:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:34:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:34:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:34:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:34:22 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:34:22 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:34:22 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:34:22 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:34:26 @ >> D++ | LOG: 100
+ 25:7:2023 | 12:34:27 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 12:34:27 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 12:34:27 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 12:34:28 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 12:34:28 @ >> D++ | LOG: is
+ 25:7:2023 | 12:34:28 @ >> D++ | LOG: so
+ 25:7:2023 | 12:34:28 @ >> D++ | LOG: cool
+ 25:7:2023 | 12:34:28 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 12:34:28 @ >> D++ | LOG: 1
+ 25:7:2023 | 12:34:28 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 12:34:29 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 12:34:29 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 12:34:29 @ >> D++ | LOG: 230.271911
+ 25:7:2023 | 12:34:30 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:34:31 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:34:32 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:34:33 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:34:34 @ >> D++ | LOG: 2
+ 25:7:2023 | 12:56:48 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 12:56:48 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 12:56:55 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:56:55 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:56:55 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:56:56 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:56:56 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:56:56 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:56:56 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:56:57 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:56:57 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:56:57 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:56:58 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 12:56:58 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:56:58 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:56:58 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:56:58 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:56:59 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:56:59 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:56:59 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:56:59 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:57:3 @ >> D++ | LOG: 100
+ 25:7:2023 | 12:57:4 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 12:57:4 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 12:57:4 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 12:57:5 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 12:57:5 @ >> D++ | LOG: is
+ 25:7:2023 | 12:57:5 @ >> D++ | LOG: so
+ 25:7:2023 | 12:57:5 @ >> D++ | LOG: cool
+ 25:7:2023 | 12:57:5 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 12:57:5 @ >> D++ | LOG: 1
+ 25:7:2023 | 12:57:5 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 12:57:6 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 12:57:6 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 12:57:6 @ >> D++ | LOG: 230.271911
+ 25:7:2023 | 12:57:6 @ >> D++ | LOG: 3.4+3.2 and 6.6 are equal
+ 25:7:2023 | 12:57:6 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:6 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:6 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:6 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:9 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:9 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:9 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:9 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:9 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:9 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:10 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:10 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:10 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:10 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:10 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:10 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:11 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:11 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:11 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:11 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:11 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:11 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:12 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:12 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:12 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:12 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:12 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:12 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:13 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:13 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:13 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:13 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:13 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:13 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:14 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:14 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:14 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:14 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:14 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:14 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:15 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:15 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:15 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:15 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:15 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:15 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:57:43 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 12:57:44 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 12:57:50 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:57:51 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:57:51 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:57:51 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:57:51 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:57:52 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:57:52 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:57:52 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:57:53 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:57:53 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 12:57:53 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 12:57:54 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:57:54 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:57:54 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:57:54 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:57:54 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:57:54 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:57:54 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:57:55 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 12:57:59 @ >> D++ | LOG: 100
+ 25:7:2023 | 12:57:59 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 12:58:0 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 12:58:0 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 12:58:0 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 12:58:0 @ >> D++ | LOG: is
+ 25:7:2023 | 12:58:0 @ >> D++ | LOG: so
+ 25:7:2023 | 12:58:0 @ >> D++ | LOG: cool
+ 25:7:2023 | 12:58:1 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 12:58:1 @ >> D++ | LOG: 1
+ 25:7:2023 | 12:58:1 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 12:58:1 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 12:58:1 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 12:58:1 @ >> D++ | LOG: 230.271911
+ 25:7:2023 | 12:58:1 @ >> D++ | LOG: 3.4+3.2 and 6.6 are equal
+ 25:7:2023 | 12:58:1 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:2 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:2 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:2 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:2 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:2 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:2 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:3 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:3 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:3 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:3 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:3 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:3 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:4 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:4 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:4 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:4 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:4 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:4 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:5 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:5 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:5 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:5 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:5 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:5 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:6 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:6 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:6 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:6 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:6 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:6 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:7 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:8 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:9 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 12:58:9 @ >> D++ | LOG: 1 and 1 are equal
+ 25:7:2023 | 14:57:40 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 14:57:40 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 14:57:47 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 14:57:47 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 14:57:48 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 14:57:48 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 14:57:48 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 14:57:48 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 14:57:49 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 14:57:49 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 14:57:49 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 14:57:50 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 14:57:50 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 14:57:50 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 14:57:50 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 14:57:50 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 14:57:51 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 14:57:51 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 14:57:51 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 14:57:51 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 14:57:51 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 14:57:55 @ >> D++ | LOG: 100
+ 25:7:2023 | 14:57:56 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 14:57:56 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 14:57:57 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 14:57:57 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 14:57:57 @ >> D++ | LOG: is
+ 25:7:2023 | 14:57:57 @ >> D++ | LOG: so
+ 25:7:2023 | 14:57:57 @ >> D++ | LOG: cool
+ 25:7:2023 | 14:57:57 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 14:57:58 @ >> D++ | LOG: 1
+ 25:7:2023 | 14:57:58 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 14:57:58 @ >> D++ | LOG: '
+ 25:7:2023 | 14:57:58 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 14:57:58 @ >> D++ | LOG: ?
+ 25:7:2023 | 14:57:58 @ >> D++ | LOG: 3.4+3.2 and 6.6 are equal
+ 25:7:2023 | 14:57:58 @ >> D++ | LOG:    
+ 25:7:2023 | 14:57:59 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:0 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:1 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:2 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:3 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:4 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:5 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:6 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:12 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:13 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:13 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:13 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:14 @ >> D++ | LOG: 2
+ 25:7:2023 | 14:58:14 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:0:27 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 15:0:27 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 15:0:34 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:0:34 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:0:35 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:0:35 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:0:35 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:0:36 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:0:36 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:0:36 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:0:36 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:0:37 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:0:37 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 15:0:37 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:0:37 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:0:38 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:0:38 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:0:38 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:0:38 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:0:38 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:0:38 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:0:42 @ >> D++ | LOG: 100
+ 25:7:2023 | 15:0:43 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 15:0:43 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 15:0:44 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 15:0:44 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 15:0:44 @ >> D++ | LOG: is
+ 25:7:2023 | 15:0:44 @ >> D++ | LOG: so
+ 25:7:2023 | 15:0:44 @ >> D++ | LOG: cool
+ 25:7:2023 | 15:0:45 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 15:0:45 @ >> D++ | LOG: 1
+ 25:7:2023 | 15:0:45 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 15:0:45 @ >> D++ | LOG: '
+ 25:7:2023 | 15:0:45 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 15:0:45 @ >> D++ | LOG: 
+ 25:7:2023 | 15:0:45 @ >> D++ | LOG: 3.4+3.2 and 6.6 are equal
+ 25:7:2023 | 15:0:45 @ >> D++ | LOG:    
+ 25:7:2023 | 15:0:47 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:0:48 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:0:49 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:0:50 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:0:51 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:0:52 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:0:53 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:0:54 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:5:50 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 15:5:50 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 15:5:57 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:5:57 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:5:57 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:5:57 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:5:58 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:5:58 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:5:58 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:5:59 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:5:59 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:5:59 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:5:59 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 15:6:0 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:6:0 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:6:0 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:6:0 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:6:0 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:6:1 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:6:1 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:6:1 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:6:5 @ >> D++ | LOG: 100
+ 25:7:2023 | 15:6:6 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 15:6:6 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 15:6:6 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 15:6:7 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 15:6:7 @ >> D++ | LOG: is
+ 25:7:2023 | 15:6:7 @ >> D++ | LOG: so
+ 25:7:2023 | 15:6:7 @ >> D++ | LOG: cool
+ 25:7:2023 | 15:6:7 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 15:6:7 @ >> D++ | LOG: 1
+ 25:7:2023 | 15:6:7 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 15:6:7 @ >> D++ | LOG: '
+ 25:7:2023 | 15:6:8 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 15:6:8 @ >> D++ | LOG: 
+ 25:7:2023 | 15:6:8 @ >> D++ | LOG: 3.4+3.2 and 6.6 are equal
+ 25:7:2023 | 15:6:8 @ >> D++ | LOG:    
+ 25:7:2023 | 15:6:9 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:6:10 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:6:11 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:6:12 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:15:10 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 15:15:10 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 15:15:17 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:15:17 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:15:17 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:15:18 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:15:18 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:15:18 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:15:18 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:15:19 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:15:19 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:15:19 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:15:20 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 15:15:20 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:15:20 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:15:20 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:15:20 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:15:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:15:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:15:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:15:21 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:15:25 @ >> D++ | LOG: 100
+ 25:7:2023 | 15:15:26 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 15:15:26 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 15:15:27 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 15:15:27 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 15:15:27 @ >> D++ | LOG: is
+ 25:7:2023 | 15:15:27 @ >> D++ | LOG: so
+ 25:7:2023 | 15:15:27 @ >> D++ | LOG: cool
+ 25:7:2023 | 15:15:27 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 15:15:27 @ >> D++ | LOG: 1
+ 25:7:2023 | 15:15:28 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 15:15:28 @ >> D++ | LOG: '
+ 25:7:2023 | 15:15:28 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 15:15:28 @ >> D++ | LOG: 
+ 25:7:2023 | 15:15:28 @ >> D++ | LOG: 3.4+3.2 and 6.6 are equal
+ 25:7:2023 | 15:15:28 @ >> D++ | LOG: ' ' 'a' 'B'
+ 25:7:2023 | 15:15:29 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:15:30 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:15:31 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:15:32 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:15:33 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:15:34 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:18:21 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 15:18:21 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 15:18:27 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:18:28 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:18:28 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:18:28 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:18:29 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:18:29 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:18:29 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:18:29 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:18:30 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:18:30 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:18:30 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 15:18:31 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:18:31 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:18:31 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:18:31 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:18:31 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:18:31 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:18:31 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:18:32 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:18:36 @ >> D++ | LOG: 100
+ 25:7:2023 | 15:18:36 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 15:18:37 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 15:18:37 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 15:18:37 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 15:18:37 @ >> D++ | LOG: is
+ 25:7:2023 | 15:18:37 @ >> D++ | LOG: so
+ 25:7:2023 | 15:18:37 @ >> D++ | LOG: cool
+ 25:7:2023 | 15:18:38 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 15:18:38 @ >> D++ | LOG: 1
+ 25:7:2023 | 15:18:38 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 15:18:38 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 15:18:38 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 15:18:38 @ >> D++ | LOG: 230.271911
+ 25:7:2023 | 15:18:38 @ >> D++ | LOG: 3.4+3.2 and 6.6 are equal
+ 25:7:2023 | 15:18:39 @ >> D++ | LOG: 3.141590 723.419982 'a' 'B'
+ 25:7:2023 | 15:18:40 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:18:41 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:18:42 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:18:43 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:18:44 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:18:45 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:18:46 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:20:18 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 15:20:18 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 15:20:25 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:20:25 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:20:25 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:20:26 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:20:26 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:20:26 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:20:27 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:20:27 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:20:27 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:20:27 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:20:28 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 15:20:28 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:20:28 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:20:28 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:20:28 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:20:29 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:20:29 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:20:29 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:20:29 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:20:33 @ >> D++ | LOG: 100
+ 25:7:2023 | 15:20:34 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 15:20:34 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 15:20:34 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 15:20:35 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 15:20:35 @ >> D++ | LOG: is
+ 25:7:2023 | 15:20:35 @ >> D++ | LOG: so
+ 25:7:2023 | 15:20:35 @ >> D++ | LOG: cool
+ 25:7:2023 | 15:20:35 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 15:20:35 @ >> D++ | LOG: 1
+ 25:7:2023 | 15:20:35 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 15:20:36 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 15:20:36 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 15:20:36 @ >> D++ | LOG: 230.271911
+ 25:7:2023 | 15:20:36 @ >> D++ | LOG: 3.4+3.2 and 6.6 are equal
+ 25:7:2023 | 15:20:36 @ >> D++ | LOG: 3.141590 723.419982 'a' 'B' Oh my god
+ 25:7:2023 | 15:20:37 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:20:38 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:20:39 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:20:40 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:20:41 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:20:42 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:25:59 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 15:25:59 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 15:26:6 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:26:7 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:26:7 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:26:7 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:26:7 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:26:8 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:26:8 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:26:8 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:26:8 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:26:9 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 15:26:9 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 15:26:9 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:26:9 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:26:10 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:26:10 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:26:10 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:26:10 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:26:10 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:26:10 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 15:26:15 @ >> D++ | LOG: 100
+ 25:7:2023 | 15:26:15 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 15:26:16 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 15:26:16 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 15:26:16 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 15:26:16 @ >> D++ | LOG: is
+ 25:7:2023 | 15:26:16 @ >> D++ | LOG: so
+ 25:7:2023 | 15:26:16 @ >> D++ | LOG: cool
+ 25:7:2023 | 15:26:17 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 15:26:17 @ >> D++ | LOG: 1
+ 25:7:2023 | 15:26:17 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 15:26:17 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 15:26:17 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 15:26:17 @ >> D++ | LOG: 230.271911
+ 25:7:2023 | 15:26:17 @ >> D++ | LOG: 3.4+3.2 and 6.6 are equal
+ 25:7:2023 | 15:26:17 @ >> D++ | LOG: 3.141590 723.419982 'a' 'B' Oh my god
+ 25:7:2023 | 15:26:17 @ >> D++ | LOG: 9.869999
+ 25:7:2023 | 15:26:18 @ >> D++ | LOG: 'g'
+ 25:7:2023 | 15:26:19 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:26:20 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:26:21 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:26:22 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:26:23 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:26:24 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:26:25 @ >> D++ | LOG: 2
+ 25:7:2023 | 15:26:26 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:17:52 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 16:17:52 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 16:17:59 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:17:59 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:17:59 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:17:59 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:18:0 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:18:0 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:18:0 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:18:1 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:18:1 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:18:1 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:18:1 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 16:18:2 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:18:2 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:18:2 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:18:2 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:18:2 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:18:3 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:18:3 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:18:3 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:18:7 @ >> D++ | LOG: 100
+ 25:7:2023 | 16:18:8 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 16:18:8 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 16:18:8 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 16:18:8 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 16:18:8 @ >> D++ | LOG: is
+ 25:7:2023 | 16:18:8 @ >> D++ | LOG: so
+ 25:7:2023 | 16:18:9 @ >> D++ | LOG: cool
+ 25:7:2023 | 16:18:9 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 16:18:9 @ >> D++ | LOG: 1
+ 25:7:2023 | 16:18:9 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 16:18:9 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 16:18:9 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 16:18:9 @ >> D++ | LOG: 230.271911
+ 25:7:2023 | 16:18:10 @ >> D++ | LOG: 3.4+3.2 and 6.6 are equal
+ 25:7:2023 | 16:18:10 @ >> D++ | LOG: 3.141590 723.419982 'a' 'B' Oh my god
+ 25:7:2023 | 16:18:10 @ >> D++ | LOG: 9.869999
+ 25:7:2023 | 16:18:10 @ >> D++ | LOG: 'g'
+ 25:7:2023 | 16:18:11 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:18:12 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:18:13 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:18:14 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:18:15 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:18:16 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:18:17 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:40:13 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 16:40:13 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 16:41:8 @ >> D++ | LOG: OMG actually works
+ 25:7:2023 | 16:41:8 @ >> D++ | LOG: ==========================================
+ 25:7:2023 | 16:41:15 @ >> D++ | LOG: 2 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:41:15 @ >> D++ | LOG: 3 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:41:16 @ >> D++ | LOG: 4 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:41:16 @ >> D++ | LOG: 5 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:41:16 @ >> D++ | LOG: 6 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:41:17 @ >> D++ | LOG: 7 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:41:17 @ >> D++ | LOG: 8 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:41:17 @ >> D++ | LOG: 9 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:41:17 @ >> D++ | LOG: 10 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:41:18 @ >> D++ | LOG: 11 eeeeeeeeeeeeeeeeee
+ 25:7:2023 | 16:41:18 @ >> D++ | LOG: This is still runnin right? 11
+ 25:7:2023 | 16:41:18 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:41:18 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:41:19 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:41:19 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:41:19 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:41:19 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:41:19 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:41:19 @ >> D++ | LOG: The inline finally works!
+ 25:7:2023 | 16:41:23 @ >> D++ | LOG: 100
+ 25:7:2023 | 16:41:24 @ >> D++ | LOG: This should be in dpp.log in scriptfiles/
+ 25:7:2023 | 16:41:24 @ >> D++ | LOG: Printed: Method test #2
+ 25:7:2023 | 16:41:25 @ >> D++ | LOG: data.dpp is imported
+ 25:7:2023 | 16:41:25 @ >> D++ | LOG: sscanf
+ 25:7:2023 | 16:41:25 @ >> D++ | LOG: is
+ 25:7:2023 | 16:41:25 @ >> D++ | LOG: so
+ 25:7:2023 | 16:41:25 @ >> D++ | LOG: cool
+ 25:7:2023 | 16:41:25 @ >> D++ | LOG: undeftest is defined
+ 25:7:2023 | 16:41:26 @ >> D++ | LOG: 1
+ 25:7:2023 | 16:41:26 @ >> D++ | LOG: Did this work?
+ 25:7:2023 | 16:41:26 @ >> D++ | LOG: 723.419982
+ 25:7:2023 | 16:41:26 @ >> D++ | LOG: 4.50
+ 25:7:2023 | 16:41:26 @ >> D++ | LOG: 230.271911
+ 25:7:2023 | 16:41:26 @ >> D++ | LOG: 3.4+3.2 and 6.6 are equal
+ 25:7:2023 | 16:41:26 @ >> D++ | LOG: 3.141590 723.419982 'a' 'B' Oh my god
+ 25:7:2023 | 16:41:26 @ >> D++ | LOG: 9.869999
+ 25:7:2023 | 16:41:26 @ >> D++ | LOG: 'g'
+ 25:7:2023 | 16:41:28 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:29 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:30 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:31 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:32 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:33 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:34 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:35 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:36 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:37 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:38 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:39 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:40 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:41 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:42 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:43 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:44 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:45 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:46 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:47 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:48 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:49 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:50 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:51 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:52 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:53 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:54 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:55 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:56 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:57 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:58 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:41:59 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:0 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:1 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:2 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:3 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:4 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:5 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:6 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:7 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:8 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:9 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:10 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:11 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:12 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:13 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:14 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:15 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:16 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:17 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:18 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:19 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:20 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:21 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:22 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:23 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:24 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:25 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:26 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:27 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:28 @ >> D++ | LOG: 2
+ 25:7:2023 | 16:42:29 @ >> D++ | LOG: 2
  
