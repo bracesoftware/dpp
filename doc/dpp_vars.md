@@ -12,3 +12,38 @@ To change its value, use:
 ```pawn
 set.str,myvar="myvar worked again.";
 ```
+
+
+## Data types
+
+### `int`
+
+- Integers are whole numbers.
+
+```cpp
+new.int,integer=1;
+```
+
+### `bool`
+
+- Booleans are variables that can either be true or false.
+
+```cpp
+new.bool,boolean=true;
+```
+
+### `str`
+
+- Strings are words or sequences of characters.
+
+```cpp
+new.str,string="test";
+```
+
+### `double`
+
+- Doubles are numbers with decimal points.
+
+```cpp
+new.double,decimal_point=3.14;
+```
