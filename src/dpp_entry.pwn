@@ -58,14 +58,17 @@
 #define dpp_const_type_int 1
 #define dpp_const_type_bool 2
 #define dpp_const_type_str 3
+#define dpp_const_type_double 4
 //-----------------------------------------------------------
 #define dpp_var_type_int 1
 #define dpp_var_type_bool 2
 #define dpp_var_type_str 3
+#define dpp_var_type_double 4
 //-----------------------------------------------------------
 #define dpp_rtn_type_int 1
 #define dpp_rtn_type_bool 2
 #define dpp_rtn_type_str 3
+#define dpp_rtn_type_double 3
 //-----------------------------------------------------------
 #define dpp_maxnatives 100
 //-----------------------------------------------------------
@@ -191,6 +194,7 @@ new dpp_workingclassid = dpp_invalidclass;
 new dpp_funcreturn_int[dpp_maxfuncs];
 new dpp_funcreturn_bool[dpp_maxfuncs];
 new dpp_funcreturn_str[dpp_maxfuncs][1024];
+new Float:dpp_funcreturn_double[dpp_maxfuncs];
 //-----------------------------------------------------------
 new dpp_objectid = -1;
 new dpp_isobjinit;

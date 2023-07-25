@@ -677,10 +677,12 @@ stock dpp_process(line[])
         dpp_deleteintconst(dirgroup[1]);
         dpp_deleteboolconst(dirgroup[1]);
         dpp_deletestrconst(dirgroup[1]);
+        dpp_deletedoubleconst(dirgroup[1]);
         dpp_deleteiter(dirgroup[1]);
         dpp_deleteintvar(dirgroup[1]);
         dpp_deleteboolvar(dirgroup[1]);
         dpp_deletestrvar(dirgroup[1]);
+        dpp_deletedoubleconst(dirgroup[1]);
         dpp_deletefunc(dirgroup[1]);
         return 1;
     }
@@ -778,6 +780,14 @@ stock dpp_process(line[])
                     dpp_subexecute2(extracode);
                     dpp_skipelse = 1;
                 }
+                else if( dpp_isfloat(args[1]) && dpp_isfloat(args[2]) )
+                {
+                    if( floatstr(args[1]) == floatstr(args[2]) )
+                    {
+                        dpp_subexecute2(extracode);
+                        dpp_skipelse = 1;
+                    }
+                }
                 return 1;
             }
 
@@ -787,6 +797,14 @@ stock dpp_process(line[])
                 {
                     dpp_subexecute2(extracode);
                     dpp_skipelse = 1;
+                }
+                else if( dpp_isfloat(args[1]) && dpp_isfloat(args[2]) )
+                {
+                    if( floatstr(args[1]) != floatstr(args[2]) )
+                    {
+                        dpp_subexecute2(extracode);
+                        dpp_skipelse = 1;
+                    }
                 }
                 return 1;
             }
@@ -852,6 +870,39 @@ stock dpp_process(line[])
             dpp_parseline(extracode,whileloopcode,'&');
             if(!strcmp(funcgroup[1], "equ"))
             {
+                if( dpp_isfloat(args[1]) && dpp_isfloat(args[2]) )
+                {
+                    //if( floatstr(args[1]) == floatstr(args[2]) )
+                    do
+                    {
+                        for(new whilecodeid; whilecodeid < 2; whilecodeid++)
+                        {
+                            dpp_subexecute2(whileloopcode[whilecodeid]);
+                        }
+
+                        for(new i; i < dpp_maxargsc; i++)
+                        {
+                            strmid(args[i], args_const[i],0,dpp_argcharsize,dpp_argcharsize);
+
+                            dpp_removeslashes(args[i]);
+                            dpp_argclasscheck(args[i]);
+                            dpp_argarraycheck(args[i]);
+                            dpp_argfunccheck(args[i]);
+                            dpp_argvarcheck(args[i]);
+                            dpp_argmathcheck(args[i]);
+                            dpp_argformargcheck(args[i]);
+                            dpp_argsystemval(args[i]);
+                            CallLocalFunction("dpp_arginstruct", "s", args[i]);
+
+                            dpp_formatarg(args[i]);
+                        }
+
+                        //dpp_print("While loop backtrace\nconst arg 1 : %s\t\t| const arg 2 : %s\narg 1 : %s\t\t| arg 2 : %s",args_const[1],args_const[2],args[1],args[2]);
+                    }
+                    while(floatstr(args[1]) == floatstr(args[2]));
+                    return 1;
+                }
+
                 do
                 {
                     for(new whilecodeid; whilecodeid < 2; whilecodeid++)
@@ -859,7 +910,7 @@ stock dpp_process(line[])
                         dpp_subexecute2(whileloopcode[whilecodeid]);
                     }
 
-                    for(new i; i < 15; i++)
+                    for(new i; i < dpp_maxargsc; i++)
                     {
                         strmid(args[i], args_const[i],0,dpp_argcharsize,dpp_argcharsize);
 
@@ -884,6 +935,38 @@ stock dpp_process(line[])
 
             if(!strcmp(funcgroup[1], "notequ"))
             {
+                if( dpp_isfloat(args[1]) && dpp_isfloat(args[2]) )
+                {
+                    //if( floatstr(args[1]) == floatstr(args[2]) )
+                    do
+                    {
+                        for(new whilecodeid; whilecodeid < 2; whilecodeid++)
+                        {
+                            dpp_subexecute2(whileloopcode[whilecodeid]);
+                        }
+
+                        for(new i; i < dpp_maxargsc; i++)
+                        {
+                            strmid(args[i], args_const[i],0,dpp_argcharsize,dpp_argcharsize);
+
+                            dpp_removeslashes(args[i]);
+                            dpp_argclasscheck(args[i]);
+                            dpp_argarraycheck(args[i]);
+                            dpp_argfunccheck(args[i]);
+                            dpp_argvarcheck(args[i]);
+                            dpp_argmathcheck(args[i]);
+                            dpp_argformargcheck(args[i]);
+                            dpp_argsystemval(args[i]);
+                            CallLocalFunction("dpp_arginstruct", "s", args[i]);
+
+                            dpp_formatarg(args[i]);
+                        }
+
+                        //dpp_print("While loop backtrace\nconst arg 1 : %s\t\t| const arg 2 : %s\narg 1 : %s\t\t| arg 2 : %s",args_const[1],args_const[2],args[1],args[2]);
+                    }
+                    while(floatstr(args[1]) != floatstr(args[2]));
+                    return 1;
+                }
                 do
                 {
                     for(new whilecodeid; whilecodeid < 2; whilecodeid++)
@@ -891,7 +974,7 @@ stock dpp_process(line[])
                         dpp_subexecute2(whileloopcode[whilecodeid]);
                     }
 
-                    for(new i; i < 15; i++)
+                    for(new i; i < dpp_maxargsc; i++)
                     {
                         strmid(args[i], args_const[i],0,dpp_argcharsize,dpp_argcharsize);
                         
@@ -1236,6 +1319,11 @@ stock dpp_process(line[])
                 dpp_createstrconst(vargroup[0],vargroup[1]);
                 return 1;
             }
+            if(!strcmp(funcgroup[1], "double"))
+            {
+                dpp_createdoubleconst(vargroup[0],floatstr(vargroup[1]));
+                return 1;
+            }
             
             else
             {
@@ -1386,6 +1474,11 @@ stock dpp_process(line[])
             dpp_createstrvar(vargroup[0],vargroup[1]);
             return 1;
         }
+        if(!strcmp(funcgroup[1], "double"))
+        {
+            dpp_createdoublevar(vargroup[0],floatstr(vargroup[1]));
+            return 1;
+        }
         
         else
         {
@@ -1475,6 +1568,11 @@ stock dpp_process(line[])
             }
 
             dpp_setstrvar(vargroup[0],vargroup[1]);
+            return 1;
+        }
+        if(!strcmp(funcgroup[1], "double"))
+        {
+            dpp_setdoublevar(vargroup[0],floatstr(vargroup[1]));
             return 1;
         }
         
@@ -1859,6 +1957,18 @@ stock dpp_process(line[])
             dpp_sysreturned = 1;
             return 1;
         }
+        if(!strcmp(funcgroup[1], "double"))
+        {
+            new Float:double_return = floatstr(args[1]);
+
+            dpp_returned[dpp_processfunc] = 1;
+            dpp_returntype[dpp_processfunc] = dpp_rtn_type_double;
+            dpp_funcreturn_double[dpp_processfunc] = double_return;
+
+            dpp_processfunc = DPP_INVALID_FORM_ID;
+            dpp_sysreturned = 1;
+            return 1;
+        }
 
         else
         {
@@ -1958,6 +2068,16 @@ stock dpp_process(line[])
                 dpp_argcharsize,dpp_argcharsize);
 
             dpp_debug("dpp_funcreturn_str[dpp_processfunc] : \"%s\"\nargs[1] : \"%s\"",dpp_funcreturn_str[dpp_processfunc],args[1]);
+
+            return 1;
+        }
+        if(!strcmp(funcgroup[1], "double"))
+        {
+            new Float:int_return = floatstr(args[1]);
+
+            //dpp_returned[dpp_processfunc] = 1;
+            dpp_returntype[dpp_processfunc] = dpp_rtn_type_double;
+            dpp_funcreturn_double[dpp_processfunc] = int_return;
 
             return 1;
         }

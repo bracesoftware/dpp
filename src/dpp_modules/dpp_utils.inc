@@ -32,6 +32,17 @@ stock bool:dpp_isnumeric(const str[]) // creds Y_Less
     }
 }
 
+stock bool:dpp_isfloat(const str[])
+{
+    new numerals[2][64];
+    dpp_parseline(str, numerals, '.');
+    if(dpp_isnumeric(numerals[0]) && dpp_isnumeric(numerals[1]))
+    {
+        return true;
+    }
+    return false;
+}
+
 stock dpp_isargstr(const argument[]) // creds DEntisT
 {
     new mul;

@@ -51,12 +51,19 @@ stock dpp_add(arg[])
             dpp_argarraycheck(operands[i]);
             dpp_argfunccheck(operands[i]);
             dpp_argvarcheck(operands[i]);
-            dpp_argmathcheck(operands[i]);
         }
     }
 
-    format(newvalue, sizeof newvalue, "%i", 
-        strval(operands[0])+strval(operands[1]));
+    if( dpp_isnumeric(operands[0]) && dpp_isnumeric(operands[1]) )
+    {
+        format(newvalue, sizeof newvalue, "%i", 
+            strval(operands[0])+strval(operands[1]));
+    }
+    else if( dpp_isfloat(operands[0]) && dpp_isfloat(operands[1]) )
+    {
+        format(newvalue, sizeof newvalue, "%f", 
+            floatstr(operands[0])+floatstr(operands[1]));
+    }
 
     return format(arg, strlen(arg), newvalue);
 }
@@ -85,8 +92,16 @@ stock dpp_sub(arg[])
         }
     }
 
-    format(newvalue, sizeof newvalue, "%i", 
-        strval(operands[0])-strval(operands[1]));
+    if( dpp_isnumeric(operands[0]) && dpp_isnumeric(operands[1]) )
+    {
+        format(newvalue, sizeof newvalue, "%i", 
+            strval(operands[0])-strval(operands[1]));
+    }
+    else if( dpp_isfloat(operands[0]) && dpp_isfloat(operands[1]) )
+    {
+        format(newvalue, sizeof newvalue, "%f", 
+            floatstr(operands[0])-floatstr(operands[1]));
+    }
 
     return format(arg, strlen(arg), newvalue);
 }
@@ -115,8 +130,16 @@ stock dpp_mul(arg[])
         }
     }
 
-    format(newvalue, sizeof newvalue, "%i", 
-        strval(operands[0])*strval(operands[1]));
+    if( dpp_isnumeric(operands[0]) && dpp_isnumeric(operands[1]) )
+    {
+        format(newvalue, sizeof newvalue, "%i", 
+            strval(operands[0])*strval(operands[1]));
+    }
+    else if( dpp_isfloat(operands[0]) && dpp_isfloat(operands[1]) )
+    {
+        format(newvalue, sizeof newvalue, "%f", 
+            floatstr(operands[0])*floatstr(operands[1]));
+    }
 
     return format(arg, strlen(arg), newvalue);
 }
@@ -146,8 +169,22 @@ stock dpp_div(arg[])
         }
     }
 
-    format(newvalue, sizeof newvalue, "%i", 
-        floatround(strval(operands[0])/strval(operands[1])));
+    if(strval(operands[1]) == 0)
+    {
+        format(arg, strlen(arg), "?");
+        return 1;
+    }
+
+    if( dpp_isnumeric(operands[0]) && dpp_isnumeric(operands[1]) )
+    {
+        format(newvalue, sizeof newvalue, "%i", 
+            strval(operands[0])/strval(operands[1]));
+    }
+    else if( dpp_isfloat(operands[0]) && dpp_isfloat(operands[1]) )
+    {
+        format(newvalue, sizeof newvalue, "%f", 
+            floatstr(operands[0])/floatstr(operands[1]));
+    }
 
     return format(arg, strlen(arg), newvalue);
 }
@@ -207,8 +244,16 @@ stock dpp_drm(arg[])
         }
     }
 
-    format(newvalue, sizeof newvalue, "%i", 
-        floatround(strval(operands[0])%strval(operands[1])));
+    if( dpp_isnumeric(operands[0]) && dpp_isnumeric(operands[1]) )
+    {
+        format(newvalue, sizeof newvalue, "%i", 
+            strval(operands[0])%strval(operands[1]));
+    }
+    else if( dpp_isfloat(operands[0]) && dpp_isfloat(operands[1]) )
+    {
+        format(newvalue, sizeof newvalue, "%f", 
+            strval(operands[0])%strval(operands[1]));
+    }
 
     return format(arg, strlen(arg), newvalue);
 }
