@@ -249,7 +249,7 @@ stock dpp_process(line[])
         return 1;
     }
 
-    if(!strcmp(funcgroup[0], "}"))
+    if(dpp_strcmp(funcgroup[0], "}"))
     {
         if(dpp_event == dpp_event_form)
         {
@@ -263,10 +263,15 @@ stock dpp_process(line[])
             dpp_currenttaskid = DPP_INVALID_TASK_ID;
             dpp_taskinterpreter = 1;
         }
+        if(dpp_event == dpp_event_enum)
+        {
+            dpp_currentenumid = DPP_INVALID_ENUM_ID;
+            dpp_enuminterpreter = 1;
+        }
         return 1;
     }
 
-    if(!strcmp(funcgroup[0], "{"))
+    if(dpp_strcmp(funcgroup[0], "{"))
     {
         if(dpp_event == dpp_event_form)
         {
@@ -276,6 +281,10 @@ stock dpp_process(line[])
         if(dpp_event == dpp_event_task)
         {
             dpp_taskinterpreter = 0;
+        }
+        if(dpp_event == dpp_event_enum)
+        {
+            dpp_enuminterpreter = 0;
         }
         return 1;
     }
@@ -342,6 +351,22 @@ stock dpp_process(line[])
         dpp_debug("codeblockline:%s",codeblockline);
         dpp_debug("dpp_currenttaskid:%i",dpp_currenttaskid);
         strcat(dpp_taskcodeblock[dpp_currenttaskid], codeblockline);
+        return 1;
+    }
+
+    if(dpp_enuminterpreter == 0)
+    {
+        new enumdata[2][dpp_maxargsc];
+        dpp_parseline(funcgroup[0],enumdata,'=');
+        if(isnull(enumdata[1]))
+        {
+            dpp_nextenumval = dpp_nextenumval + 1;
+        }
+        else if(!isnull(enumdata[1]))
+        {
+            dpp_nextenumval = strval(enumdata[1]);
+        }
+        dpp_addenumval(dpp_currentenumid,enumdata[0],dpp_nextenumval);
         return 1;
     }
 
@@ -625,6 +650,7 @@ stock dpp_process(line[])
         dpp_argformargcheck(args[i]);
         dpp_argsystemval(args[i]);
         CallLocalFunction("dpp_arginstruct", "s", args[i]);
+        CallLocalFunction("dpp_argenumcheck", "s", args[i]);
 
         dpp_formatarg(args[i]);
     }
@@ -647,6 +673,7 @@ stock dpp_process(line[])
         dpp_argformargcheck(args_form[i]);
         dpp_argsystemval(args_form[i]);
         CallLocalFunction("dpp_arginstruct", "s", args_form[i]);
+        CallLocalFunction("dpp_argenumcheck", "s", args_form[i]);
 
         dpp_formatarg(args_form[i]);
     }
@@ -677,6 +704,7 @@ stock dpp_process(line[])
         dpp_argformargcheck(vargroup[i]);
         dpp_argsystemval(vargroup[i]);
         CallLocalFunction("dpp_arginstruct", "s", vargroup[i]);
+        CallLocalFunction("dpp_argenumcheck", "s", vargroup[i]);
 
         dpp_formatarg(vargroup[i]);
     }
@@ -1180,6 +1208,27 @@ stock dpp_process(line[])
     ///////////////////////////////////////////////////////
     ////
     ////
+    ////            ENUM SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+    if(!strcmp(funcgroup[0], "enum"))
+    {
+        if(isnull(args[1]))
+        {
+            dpp_error("Invalid expression.",);
+            return 1;
+        }
+        dpp_createenum(args[1]);
+
+        dpp_event = dpp_event_enum;
+        return 1;
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
     ////            OBJECT SYS
     ////
     ////
@@ -1187,6 +1236,11 @@ stock dpp_process(line[])
 
     if(!strcmp(funcgroup[0], "object"))
     {
+        if(isnull(args[1]))
+        {
+            dpp_error("Invalid expression.",);
+            return 1;
+        }
         dpp_createobj(args[1]);
         return 1;
     }

@@ -1,14 +1,12 @@
 console.println("========================== discord.dpp ==========================");
 console.println("Discord was included");
 
-using*api.discord;
-
-native&form.discord_bot_send_message;
+using.dppcord;
 
 extern&struct*public.discord_init;
 {;
 	console.println("discord_init called");
-	discord.discord_bot_send_message(1012320061278662696,"THIS WAS SENT FROM D++!!!");
+	dppcord.discord_bot_send_message(1012320061278662696,"THIS WAS SENT FROM D++!!!");
 	return.int,1;
 };
 
@@ -18,7 +16,7 @@ new.str,test="test succedeed";
 const*new.int,test2=1;
 new.str,test3="hmmm {test}"
 
-pragma::option.ctrlchar,*;
+#pragma:ctrlchar,*;
 
 console.println("{test2}st format test: {test} *, {test3}");
 

@@ -88,3 +88,8 @@ char*form.CharTestFunction;
 
 console.cout.log(DoubleTestFunction);
 console.cout.log(CharTestFunction);
+
+typedef,const*new.int,constint;
+
+constint,typedeftest=1234234;
+console.println.log("{typedeftest}");

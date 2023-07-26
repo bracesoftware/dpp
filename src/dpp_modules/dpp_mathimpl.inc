@@ -51,6 +51,7 @@ stock dpp_add(arg[])
             dpp_argarraycheck(operands[i]);
             dpp_argfunccheck(operands[i]);
             dpp_argvarcheck(operands[i]);
+            CallLocalFunction("dpp_argenumcheck", "s", operands[i]);
         }
     }
 
@@ -89,6 +90,7 @@ stock dpp_sub(arg[])
             dpp_argarraycheck(operands[i]);
             dpp_argfunccheck(operands[i]);
             dpp_argvarcheck(operands[i]);
+            CallLocalFunction("dpp_argenumcheck", "s", operands[i]);
         }
     }
 
@@ -127,6 +129,7 @@ stock dpp_mul(arg[])
             dpp_argarraycheck(operands[i]);
             dpp_argfunccheck(operands[i]);
             dpp_argvarcheck(operands[i]);
+            CallLocalFunction("dpp_argenumcheck", "s", operands[i]);
         }
     }
 
@@ -166,6 +169,7 @@ stock dpp_div(arg[])
             dpp_argarraycheck(operands[i]);
             dpp_argfunccheck(operands[i]);
             dpp_argvarcheck(operands[i]);
+            CallLocalFunction("dpp_argenumcheck", "s", operands[i]);
         }
     }
     
@@ -205,6 +209,7 @@ stock dpp_exp(arg[])
             dpp_argarraycheck(operands[i]);
             dpp_argfunccheck(operands[i]);
             dpp_argvarcheck(operands[i]);
+            CallLocalFunction("dpp_argenumcheck", "s", operands[i]);
         }
     }
 
@@ -235,6 +240,7 @@ stock dpp_drm(arg[])
             dpp_argarraycheck(operands[i]);
             dpp_argfunccheck(operands[i]);
             dpp_argvarcheck(operands[i]);
+            CallLocalFunction("dpp_argenumcheck", "s", operands[i]);
         }
     }
 

@@ -29,6 +29,7 @@
 #define DPP_INVALID_INLINE_ID 0
 #define DPP_INVALID_FORM_ID -1
 #define DPP_INVALID_TASK_ID -1
+#define DPP_INVALID_ENUM_ID -1
 //-----------------------------------------------------------
 #define DPP_DEBUG 1
 #define DPP_BRACES 0
@@ -47,6 +48,9 @@
 #define dpp_maxiter 50
 #define dpp_maxobj 100
 #define dpp_maxtypedef 50
+#define dpp_maxenum 20
+//-----------------------------------------------------------
+#define dpp_maxenumvals 100
 //-----------------------------------------------------------
 #define dpp_maxitersize 1000
 #define dpp_invaliditerval -1
@@ -95,6 +99,20 @@ new dpp_switchedvar;
 #include <open.mp>
 //-----------------------------------------------------------
 new dpp_lastvalueprcfunc;
+//-----------------------------------------------------------
+new dpp_enuminterpreter = 1;
+new dpp_currentenumid = -1;
+new dpp_nextenumval = 0;
+
+new dpp_validenum[dpp_maxenum];
+new dpp_enumname[dpp_maxenum][dpp_maxsymbolchar];
+enum __dpp_valcache
+{
+    e_valid,
+    e_valname[dpp_maxsymbolchar],
+    e_value
+}
+new dpp_enumvalues[dpp_maxenum][dpp_maxenumvals][__dpp_valcache];
 //-----------------------------------------------------------
 new dpp_validtypedef[dpp_maxtypedef];
 new dpp_typedefname[dpp_maxtypedef][dpp_maxstrsize];
@@ -240,6 +258,7 @@ new dpp_event = 0;
 #define dpp_event_task 1
 #define dpp_event_class 2
 #define dpp_event_inline 3
+#define dpp_event_enum 4
 //-----------------------------------------------------------
 //includes
 #include "dpp_modules/dpp_header.inc"
@@ -254,6 +273,7 @@ new dpp_event = 0;
 #include "dpp_modules/dpp_iter.inc"
 #include "dpp_modules/dpp_objects.inc"
 #include "dpp_modules/dpp_typedef.inc"
+#include "dpp_modules/dpp_enum.inc"
 
 #include "dpp_modules/dpp_interpreter.inc"
 //-----------------------------------------------------------

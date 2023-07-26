@@ -3,13 +3,13 @@ using.system;
 using.samp;
 using.console;
 
-pragma::option.allspc,true;
+#pragma:allspc,true;
 
-pragma::option.warnings,default;
+#pragma:warnings,default;
 
 const*new.bool,DEBUG_OPTION=false;
 
-pragma::option.debug,DEBUG_OPTION;
+#pragma:debug,DEBUG_OPTION;
 
 #include:test;
 
@@ -100,3 +100,4 @@ extern&struct*public.OnGameModeExit;
 #include:struct;
 #include:iter;
 #include:data;
+#include:enum;
