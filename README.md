@@ -47,6 +47,7 @@
 - [Inline forms](doc/dpp_inline.md)
 - [`typedef` keyword](doc/dpp_typedef.md)
 - [Enumerators](doc/dpp_enum.md)
+- [Static variables](doc/dpp_static.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info

@@ -1394,6 +1394,11 @@ stock dpp_process(line[])
             }
             if(!strcmp(funcgroup[1], "double"))
             {
+                if(!dpp_isfloat(vargroup[1]))
+                {
+                    dpp_error("Argument error; argument must be a double.",);
+                    return 1;
+                }
                 dpp_createdoubleconst(vargroup[0],floatstr(vargroup[1]));
                 return 1;
             }
@@ -1571,6 +1576,11 @@ stock dpp_process(line[])
         }
         if(!strcmp(funcgroup[1], "double"))
         {
+            if(!dpp_isfloat(vargroup[1]))
+            {
+                dpp_error("Argument error; argument must be a double.",);
+                return 1;
+            }
             dpp_createdoublevar(vargroup[0],floatstr(vargroup[1]));
             return 1;
         }
@@ -1602,6 +1612,114 @@ stock dpp_process(line[])
             dpp_error("Unknown symbol type \"%s\".", funcgroup[1]);
             return 0;
         }
+    }
+
+    if(!strcmp(structgroup[0], "static"))
+    {
+        if(dpp_processfunc == DPP_INVALID_FORM_ID)
+        {
+            dpp_error("Expression \"static\" can be only used inside a form code block.",);
+            return 1;
+        }
+        if(!strcmp(structgroup[1], "new"))
+        {
+            if(!strcmp(funcgroup[1], "int"))
+            {
+                if(!dpp_isnumeric(vargroup[1]))
+                {
+                    dpp_error("Argument error; value must be an integer.",);
+                    return 0;
+                }
+
+                dpp_createintvar(vargroup[0],strval(vargroup[1]), .staticvar = 1, .baseform = dpp_processfunc);
+                return 1;
+            }
+            if(!strcmp(funcgroup[1], "bool"))
+            {
+                if(strcmp(vargroup[1],"true") && strcmp(vargroup[1],"false"))
+                {
+                    dpp_error("Argument error; value must be either 'true' or 'false'.",);
+                    return 0;
+                }
+
+                new dpp_boolval;
+
+
+
+                if(!strcmp(vargroup[1], "false"))
+                {
+                    dpp_boolval = 0;
+                }
+                if(!strcmp(vargroup[1], "true"))
+                {
+                    dpp_boolval = 1;
+                }
+
+                dpp_createboolvar(vargroup[0],dpp_boolval, .staticvar = 1, .baseform = dpp_processfunc);
+                return 1;
+            }
+            if(!strcmp(funcgroup[1], "str"))
+            {
+                new mul2, str2[dpp_argcharsize];
+                strmid(str2, vargroup[1], 0, dpp_argcharsize);
+                for(new i; i < strlen(vargroup[1]); i++)
+                {
+                    if(vargroup[1][i] == '\"') mul2++, strdel(vargroup[1], i, i+1);
+                }
+                if(mul2 == 0)
+                {
+                    dpp_error("You need to use '\"' to start a string.",);
+                    return 0;
+                }
+                if(mul2 != 2)
+                {
+                    dpp_error("Argument error; [%i] \"%s\"", mul2, vargroup[1]);
+                    return 0;
+                }
+
+                dpp_createstrvar(vargroup[0],vargroup[1], .staticvar = 1, .baseform = dpp_processfunc);
+                return 1;
+            }
+            if(!strcmp(funcgroup[1], "double"))
+            {
+                if(!dpp_isfloat(vargroup[1]))
+                {
+                    dpp_error("Argument error; argument must be a double.",);
+                    return 1;
+                }
+                dpp_createdoublevar(vargroup[0],floatstr(vargroup[1]), .staticvar = 1, .baseform = dpp_processfunc);
+                return 1;
+            }
+            if(!strcmp(funcgroup[1], "char"))
+            {
+                new mul2, str2[dpp_argcharsize];
+                strmid(str2, vargroup[1], 0, dpp_argcharsize);
+                for(new i; i < strlen(vargroup[1]); i++)
+                {
+                    if(vargroup[1][i] == '\'') mul2++, strdel(vargroup[1], i, i+1);
+                }
+                if(mul2 == 0)
+                {
+                    dpp_error("You need to use \"'\" to start a char.",);
+                    return 0;
+                }
+                if(mul2 != 2)
+                {
+                    dpp_error("Argument error; [%i] \"%s\"", mul2, vargroup[1]);
+                    return 0;
+                }
+
+                dpp_createcharvar(vargroup[0],vargroup[1][0], .staticvar = 1, .baseform = dpp_processfunc);
+                return 1;
+            }
+            
+            else
+            {
+                dpp_error("Unknown symbol type \"%s\".", funcgroup[1]);
+                return 0;
+            }
+        }
+        return 1;
     }
 
     /*if(!strcmp(funcgroup[0], "undef"))
@@ -2535,6 +2653,7 @@ public dpp_processuser(funcgroup[][],args[][],args_const[][])
                         }
                     }
                     dpp_clearformstack(dpp_processfunc); 
+                    dpp_deletestaticvars(dpp_processfunc);
                     dpp_processfunc = DPP_INVALID_FORM_ID;
                     return 1;
                 }

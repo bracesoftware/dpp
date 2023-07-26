@@ -156,7 +156,10 @@ enum __dpp_var_val
     /*bool:*/boolvalue,
     Float:floatvalue,
     stringvalue[dpp_maxstrsize],
-    charvalue
+    charvalue,
+    //func
+    var_static,
+    var_baseformid
 }
 
 new dpp_vardata[dpp_maxvar][__dpp_var_val];
