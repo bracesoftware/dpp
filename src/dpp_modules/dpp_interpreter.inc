@@ -49,6 +49,8 @@ stock dpp_process(line[])
     {
         return 1;
     }
+    
+
     new codeblockline[1024];
     new
         args[dpp_maxargsc][dpp_argcharsize], 
@@ -81,6 +83,13 @@ stock dpp_process(line[])
     dpp_parseline(line,nativegroup, '(');
 
     dpp_parseline(line, args, ',');
+    for(new i; i < dpp_maxtypedef; i++)
+    {
+        if(dpp_validtypedef[i] == 1)
+        {
+            dpp_strreplace(args[0], dpp_typedefname[i], dpp_typedefrepl[i], .maxlength = dpp_maxstrsize);
+        }
+    }
     dpp_parseline(args[0], funcgroup, '.');
     dpp_parseline(args[1], vargroup, '=');
 
@@ -155,36 +164,9 @@ stock dpp_process(line[])
     }
     if(dpp_compiling_pass == 2)
     {
-        /*if(!strcmp(dirgroup[0], "#include"))
-        {
-            new filename[64];
-         
-            format(filename, sizeof filename, "modules/%s.dpp", dirgroup[1]);
-            if(fexist(filename))// return dpp_executefile(filename);
-            {
-                new File:file = fopen(filename, io_read), rlen;
-                new codelines[dpp_maxcodelines][1024];
-                if(file)
-                {
-                    while(rlen = fread(file, subcontent))
-                    {
-                        for(new i; i < strlen(subcontent); i++)
-                        {
-                            if(subcontent[i] == ';' && subcontent[i+1] == ' ') strdel(subcontent, i+1, i+2);
-                            if(subcontent[i] == '\t') strdel(subcontent, i, i+1);
-                            if(subcontent[i] == '\n') subcontent[i] = ';';
-                        }
-                        dpp_writecompileddata("index.dppc", subcontent);
-                    }
-                }
-            }
-            else
-            {
-                dpp_error("Cannot read from module: \"%s\"", filename);
-                return 1;
-            }
-            return 1;
-        }*/
+        new dirargs[3][dpp_maxargsc];
+        dpp_parseline(dirgroup[1],dirargs,',');
+        dpp_processpragma(dirgroup,dirargs);
         return 1;
     }
 
@@ -544,6 +526,27 @@ stock dpp_process(line[])
             return 1;
         }
         dpp_error("Unknown form structure type [\"%s\"].",structgroup[1]);
+        return 1;
+    }
+
+    ///////////////////////////////////////////////////////
+    ////
+    ////
+    ////            TYPEDEF SYS
+    ////
+    ////
+    ///////////////////////////////////////////////////////
+
+
+    if(!strcmp(funcgroup[0], "typedef"))
+    {
+        if(isnull(args_const[1]) || isnull(args_const[2]))
+        {
+            dpp_error("Invalid expression.",);
+            return 1;
+        }
+        //typedef,const*new.int,newintconst;
+        dpp_createtypedef(args_const[2],args_const[1]);
         return 1;
     }
 
@@ -1635,6 +1638,28 @@ stock dpp_process(line[])
             dpp_setdoublevar(vargroup[0],floatstr(vargroup[1]));
             return 1;
         }
+        if(!strcmp(funcgroup[1], "char"))
+        {
+            new mul2, str2[dpp_argcharsize];
+            strmid(str2, vargroup[1], 0, dpp_argcharsize);
+            for(new i; i < strlen(vargroup[1]); i++)
+            {
+                if(vargroup[1][i] == '\'') mul2++, strdel(vargroup[1], i, i+1);
+            }
+            if(mul2 == 0)
+            {
+                dpp_error("You need to use \"'\" to start a char.",);
+                return 0;
+            }
+            if(mul2 != 2)
+            {
+                dpp_error("Argument error; [%i] \"%s\"", mul2, vargroup[1]);
+                return 0;
+            }
+
+            dpp_setcharvar(vargroup[0],vargroup[1][0]);
+            return 1;
+        }
         
         else
         {
@@ -1651,166 +1676,10 @@ stock dpp_process(line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "pragma::option"))
+    //removed, now it is #pragma
+    if(!strcmp(dirgroup[0], "#pragma"))
     {
-        ////////////////////////////////////////////////
-        //
-        //                  DEBUG OPTION
-        //
-        ////////////////////////////////////////////////
-        if(!strcmp(funcgroup[1], "debug"))
-        {
-            dpp_argarraycheck(args[1]);
-            if(!strcmp(args[1], "false"))
-            {
-                dpp_option_debug = 0;
-                dpp_print("Debug has been disabled.");
-                return 1;
-            }
-            if(!strcmp(args[1], "true"))
-            {
-                dpp_option_debug = 1;
-                dpp_print("Debug has been enabled.");
-                return 1;
-            }
-
-            if(!strcmp(args[1], "default"))
-            {
-                dpp_option_debug = 0;
-                dpp_print("Debug has been disabled.");
-                return 1;
-            }
-            else
-            {
-                dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
-            }
-            return 1;
-        }
-        ////////////////////////////////////////////////
-        //
-        //                  warnings OPTION
-        //
-        ////////////////////////////////////////////////
-        if(!strcmp(funcgroup[1], "warnings"))
-        {
-            dpp_argarraycheck(args[1]);
-            if(!strcmp(args[1], "false"))
-            {
-                dpp_option_warnings = 0;
-                dpp_print("Warning system has been disabled.");
-                return 1;
-            }
-            if(!strcmp(args[1], "true"))
-            {
-                dpp_option_warnings = 1;
-                dpp_print("Warning system has been enabled.");
-                return 1;
-            }
-
-            if(!strcmp(args[1], "default"))
-            {
-                dpp_option_warnings = 1;
-                dpp_print("Warning system has been enabled.");
-                return 1;
-            }
-            else
-            {
-                dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
-            }
-            return 1;
-        }
-        ////////////////////////////////////////////////
-        //
-        //                  HOOKING OPTION
-        //
-        ////////////////////////////////////////////////
-        if(!strcmp(funcgroup[1], "hooking"))
-        {
-            dpp_argarraycheck(args[1]);
-            if(!strcmp(args[1], "false"))
-            {
-                dpp_option_hooking = 0;
-                dpp_print("Hooking system has been disabled.");
-                return 1;
-            }
-            if(!strcmp(args[1], "true"))
-            {
-                dpp_option_hooking = 1;
-                dpp_print("Hooking system has been enabled.");
-                return 1;
-            }
-
-            if(!strcmp(args[1], "default"))
-            {
-                dpp_option_hooking = 1;
-                dpp_print("Hooking system has been enabled.");
-                return 1;
-            }
-            else
-            {
-                dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
-            }
-            return 1;
-        }
-        ////////////////////////////////////////////////
-        //
-        //                  ctrl char OPTION
-        //
-        ////////////////////////////////////////////////
-        //dpp_option_escapechar
-        if(!strcmp(funcgroup[1], "ctrlchar"))
-        {
-            dpp_argarraycheck(args[1]);
-
-            if(!strcmp(args[1], "default"))
-            {
-                dpp_option_escapechar = '\\';
-                return 1;
-            }
-            dpp_option_escapechar = args[1][0];
-            return 1;
-        }
-
-
-        ////////////////////////////////////////////////
-        //
-        //                  allspc OPTION
-        //
-        ////////////////////////////////////////////////
-        if(!strcmp(funcgroup[1], "allspc"))
-        {
-            dpp_argarraycheck(args[1]);
-            if(!strcmp(args[1], "false"))
-            {
-                dpp_option_allspc = 0;
-                dpp_print("Excessive space-tolerance disabled.");
-                return 1;
-            }
-            if(!strcmp(args[1], "true"))
-            {
-                dpp_option_allspc = 1;
-                dpp_print("Excessive space-tolerance enabled.");
-                return 1;
-            }
-
-            if(!strcmp(args[1], "default"))
-            {
-                dpp_option_allspc = 0;
-                dpp_print("Excessive space-tolerance disabled.");
-                return 1;
-            }
-            else
-            {
-                dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
-            }
-            return 1;
-        }
-
-        else
-        {
-            dpp_error("Unknown option \"%s\".", funcgroup[1]);
-            return 0;
-        }
+        return 1;
     }
 
     ///////////////////////////////////////////////////////
@@ -2535,15 +2404,14 @@ stock dpp_process(line[])
     ///////////////////////////////////////////////////////
 
     
-    CallRemoteFunction("dppcord_codeprocess", "sss", funcgroup,args,args_const);
-    CallRemoteFunction("dppcord_process", "sss", funcgroup_form,args_form,args_fconst);
+    CallRemoteFunction("dppcord_process", "ssssss", funcgroup_form,args_form,args_fconst,funcgroup,args,args_const);
 
     ////////////////////
     if(dpp_funcfound == 0)
     {
         if(strlen(line) > 5)
         {
-            dpp_error("Unknown element \"%s\".", line);
+            dpp_error("Invalid code line: \"%s\".", line);
         }
     }
     return 1;
@@ -2639,4 +2507,173 @@ public dpp_processuser(funcgroup[][],args[][],args_const[][])
         return 0;
     }
     return 0;
+}
+
+dpp_processpragma(dirgroup[][],dirargs[][]);
+public dpp_processpragma(dirgroup[][],dirargs[][])
+{
+    //#pragma:debug,false;
+    if(!strcmp(dirgroup[0], "#pragma"))
+    {
+        ////////////////////////////////////////////////
+        //
+        //                  DEBUG OPTION
+        //
+        ////////////////////////////////////////////////
+        if(!strcmp(dirargs[0], "debug"))
+        {
+            dpp_argarraycheck(dirargs[1]);
+            if(!strcmp(dirargs[1], "false"))
+            {
+                dpp_option_debug = 0;
+                dpp_info("Debug has been disabled.");
+                return 1;
+            }
+            if(!strcmp(dirargs[1], "true"))
+            {
+                dpp_option_debug = 1;
+                dpp_info("Debug has been enabled.");
+                return 1;
+            }
+
+            if(!strcmp(dirargs[1], "default"))
+            {
+                dpp_option_debug = 0;
+                dpp_info("Debug has been disabled.");
+                return 1;
+            }
+            else
+            {
+                //dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
+            }
+            return 1;
+        }
+        ////////////////////////////////////////////////
+        //
+        //                  warnings OPTION
+        //
+        ////////////////////////////////////////////////
+        if(!strcmp(dirargs[0], "warnings"))
+        {
+            dpp_argarraycheck(dirargs[1]);
+            if(!strcmp(dirargs[1], "false"))
+            {
+                dpp_option_warnings = 0;
+                dpp_info("Warning system has been disabled.");
+                return 1;
+            }
+            if(!strcmp(dirargs[1], "true"))
+            {
+                dpp_option_warnings = 1;
+                dpp_info("Warning system has been enabled.");
+                return 1;
+            }
+
+            if(!strcmp(dirargs[1], "default"))
+            {
+                dpp_option_warnings = 1;
+                dpp_info("Warning system has been enabled.");
+                return 1;
+            }
+            else
+            {
+                //dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
+            }
+            return 1;
+        }
+        ////////////////////////////////////////////////
+        //
+        //                  HOOKING OPTION
+        //
+        ////////////////////////////////////////////////
+        if(!strcmp(dirargs[0], "hooking"))
+        {
+            dpp_argarraycheck(dirargs[1]);
+            if(!strcmp(dirargs[1], "false"))
+            {
+                dpp_option_hooking = 0;
+                dpp_info("Hooking system has been disabled.");
+                return 1;
+            }
+            if(!strcmp(dirargs[1], "true"))
+            {
+                dpp_option_hooking = 1;
+                dpp_info("Hooking system has been enabled.");
+                return 1;
+            }
+
+            if(!strcmp(dirargs[1], "default"))
+            {
+                dpp_option_hooking = 1;
+                dpp_info("Hooking system has been enabled.");
+                return 1;
+            }
+            else
+            {
+                //dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
+            }
+            return 1;
+        }
+        ////////////////////////////////////////////////
+        //
+        //                  ctrl char OPTION
+        //
+        ////////////////////////////////////////////////
+        //dpp_option_escapechar
+        if(!strcmp(dirargs[0], "ctrlchar"))
+        {
+            dpp_argarraycheck(dirargs[1]);
+
+            if(!strcmp(dirargs[1], "default"))
+            {
+                dpp_option_escapechar = '\\';
+                return 1;
+            }
+            dpp_option_escapechar = dirargs[1][0];
+            dpp_info("Control character updated to: %c", dpp_option_escapechar);
+            return 1;
+        }
+
+
+        ////////////////////////////////////////////////
+        //
+        //                  allspc OPTION
+        //
+        ////////////////////////////////////////////////
+        if(!strcmp(dirargs[0], "allspc"))
+        {
+            dpp_argarraycheck(dirargs[1]);
+            if(!strcmp(dirargs[1], "false"))
+            {
+                dpp_option_allspc = 0;
+                dpp_info("Excessive space-tolerance disabled.");
+                return 1;
+            }
+            if(!strcmp(dirargs[1], "true"))
+            {
+                dpp_option_allspc = 1;
+                dpp_info("Excessive space-tolerance enabled.");
+                return 1;
+            }
+
+            if(!strcmp(dirargs[1], "default"))
+            {
+                dpp_option_allspc = 0;
+                dpp_info("Excessive space-tolerance disabled.");
+                return 1;
+            }
+            else
+            {
+                //dpp_error("Wrong option value at \"%s\"; value can be either 'true' or 'false'.\nCurrent value: '%s'", line,args[1]);
+            }
+            return 1;
+        }
+
+        else
+        {
+            dpp_error("Unknown option \"%s\".", dirargs[0]);
+            return 0;
+        }
+    }
+    return 1;
 }

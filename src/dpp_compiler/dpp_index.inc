@@ -73,7 +73,7 @@ stock dpp_compile(const script[])
 
 
     dpp_compilerprint("Going through the 2nd compiler pass.");
-    file = fopen(script, io_read);
+    file = fopen("index.dppc", io_read);
     new rlen2;
     new codelines[dpp_maxcodelines][1024];
     if(file)
@@ -98,6 +98,8 @@ stock dpp_compile(const script[])
     }
 
     dpp_compiling_pass = 3;
+    dpp_isobjinit = 0;
+    dpp_isconditional = 0;
 
     dpp_nullcomment();
     print("                                        ");

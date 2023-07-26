@@ -46,6 +46,7 @@
 #define dpp_maxtasks 50
 #define dpp_maxiter 50
 #define dpp_maxobj 100
+#define dpp_maxtypedef 50
 //-----------------------------------------------------------
 #define dpp_maxitersize 1000
 #define dpp_invaliditerval -1
@@ -94,6 +95,10 @@ new dpp_switchedvar;
 #include <open.mp>
 //-----------------------------------------------------------
 new dpp_lastvalueprcfunc;
+//-----------------------------------------------------------
+new dpp_validtypedef[dpp_maxtypedef];
+new dpp_typedefname[dpp_maxtypedef][dpp_maxstrsize];
+new dpp_typedefrepl[dpp_maxtypedef][dpp_maxstrsize];
 //-----------------------------------------------------------
 enum dpp_enumset
 {
@@ -189,7 +194,7 @@ new Float:dpp_funcreturn_double[dpp_maxfuncs];
 new dpp_funcreturn_char[dpp_maxfuncs];
 //-----------------------------------------------------------
 new dpp_objectid = -1;
-new dpp_isobjinit;
+new dpp_isobjinit = 0;
 new dpp_validobj[dpp_maxobj];
 new dpp_objname[dpp_maxobj][dpp_maxsymbolchar];
 //-----------------------------------------------------------
@@ -248,6 +253,7 @@ new dpp_event = 0;
 #include "dpp_modules/dpp_tasks.inc"
 #include "dpp_modules/dpp_iter.inc"
 #include "dpp_modules/dpp_objects.inc"
+#include "dpp_modules/dpp_typedef.inc"
 
 #include "dpp_modules/dpp_interpreter.inc"
 //-----------------------------------------------------------

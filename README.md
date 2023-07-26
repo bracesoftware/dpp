@@ -45,6 +45,7 @@
 - [Form methods](doc/dpp_methods.md)
 - [Objects](doc/dpp_obj.md)
 - [Inline forms](doc/dpp_inline.md)
+- [`typedef` keyword](doc/dpp_typedef.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info

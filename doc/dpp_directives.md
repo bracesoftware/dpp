@@ -35,3 +35,7 @@ Output:
 ```
 undeftest is defined
 ```
+
+## `#pragma`
+
+Read more about it [here](dpp_options.md).

@@ -1,14 +1,14 @@
 # Interpreter options
-You can modify some interpreter options using `pragma::option`. You may use `default` instead of `true` and `false` in order to reset the value to its default one.
+You can modify some interpreter options using `#pragma`. You may use `default` instead of `true` and `false` in order to reset the value to its default one.
 
 ## `debug`
 - Default value: `false`
 
 You can toggle D++ debugging on or off.
 
-```pawn
-pragma::option.debug,false;
-pragma::option.debug,true;
+```cpp
+#pragma:debug,false;
+#pragma:debug,true;
 ```
 
 ## `warnings`
@@ -16,9 +16,9 @@ pragma::option.debug,true;
 
 You can toggle D++ warning system on or off.
 
-```pawn
-pragma::option.warnings,false;
-pragma::option.warnings,true;
+```cpp
+#pragma:warnings,false;
+#pragma:warnings,true;
 ```
 
 ## `hooking`
@@ -26,9 +26,9 @@ pragma::option.warnings,true;
 
 You can toggle D++ hooking system on or off.
 
-```pawn
-pragma::option.hooking,false;
-pragma::option.hooking,true;
+```cpp
+#pragma:hooking,false;
+#pragma:hooking,true;
 ```
 
 ## `ctrlchar`
@@ -36,8 +36,8 @@ pragma::option.hooking,true;
 
 Change the parsing escape character.
 
-```pawn
-pragma::option.ctrlchar,*;
+```cpp
+#pragma:ctrlchar,*;
 ```
 
 ## `allspc`
@@ -52,15 +52,15 @@ if.equ,1,1->while.equ,testvar,11->var::set.int,testvar,add?testvar:1&using::cons
 
 Enabling `allspc` option with:
 
-```pawn
-pragma::option.allspc,true;
+```cpp
+#pragma:allspc,true;
 ```
 
 Enables crazy syntax like this:
 
 ```pawn
 system . rem,    "Example code"   ;
-if. equ, 1 , 1-> while.equ, testvar, 11 -> var::set . int , testvar,add?testvar:1 & using :: console. println, "This should   be printed again!"   ;
+if. equ, 1 , 1-> while.equ, testvar, 11 -> var::set . int , testvar,add?testvar:1 & using :: console. println("This should   be printed again!"   ) ;
 ```
 
 Which can be really buggy and can bring negative side-effects with it, such as for example wrong value reading. But the most important thing to note is that your code will slow down a lot. There are also high chances of such code getting somewhy ignored by the interpreter.
