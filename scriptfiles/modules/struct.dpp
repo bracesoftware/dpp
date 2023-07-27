@@ -21,7 +21,6 @@ if.ge,1,2->console.println("1 is greater or equal to 2");
 if.le,2,1->console.println("2 is less or equal to 1");
 else->if.equ,1,1->console.println("Lmao else works!");
 
-
 system.rem("Another else test");
 
 int*form.ElseTest;
@@ -63,3 +62,4 @@ int*form.ForTest2?num;
 
 set.int,forlooptestvar=0;
 for.int&var,forlooptestvar,5->user.ForTest2(forlooptestvar);
+

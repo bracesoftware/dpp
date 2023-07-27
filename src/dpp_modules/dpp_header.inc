@@ -108,7 +108,7 @@ stock dpp_parseline(const code[], destln[][], delimiter)
 
     while(i <= strlen(code))
     {
-        if((code[i-1] != dpp_option_escapechar && code[i] == delimiter) || i == strlen(code))
+        if((code[i+1] != delimiter && code[i-1] != dpp_option_escapechar && code[i] == delimiter) || i == strlen(code))
         {
             len = strmid(destln[index], code, start, i, 128);
             destln[index][len] = 0;
@@ -361,7 +361,7 @@ stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0, struc
     }
     return 1;
 }
-
+/*
 stock dpp_execute(const script[])
 {
     new content[dpp_maxstrsize*DPP_CELLMAX];
@@ -390,8 +390,13 @@ stock dpp_execute(const script[])
     {
         while(fread(file, content))
         {
-            dpp_codetrim(content);
-            dpp_process(content);
+            dpp_codetrim(content, .edge = edge_right);
+            new split_buffer[dpp_buffersize][dpp_buffersize];
+            dpp_parseline(content, split_buffer, ';');
+            for(new i; i < dpp_buffersize; i++)
+            {
+                dpp_process(split_buffer[i]);
+            }
         }
         CallLocalFunction("DPP_ENTRYPOINT", "");
     }
@@ -402,6 +407,68 @@ stock dpp_execute(const script[])
     }
     return 1;
 }
+*/
+
+
+stock dpp_execute(const script[])
+{
+    new content[16000];
+    format(content,sizeof content, "\t");
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("         Interpreter is loading...      ");
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("                                        ");
+    //dpp_print("Interpreter version %i.%i.%i-R%i - by: DEntisT",DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
+    #if DPP_DEBUG == 1
+    dpp_print("Debug component loaded...");
+    #endif
+    dpp_nullcomment();
+    dpp_prepareproject("config.dppproj");
+    dpp_print("Project file for '%s' project loaded.",dpp_projname);
+    dpp_print("Executing the entry script...");
+    dpp_nullcomment();
+    dpp_execheader("index.dppc");
+    dpp_nullcomment();
+
+    new File:file = fopen(script, io_read), rlen;
+    new codelines[dpp_maxcodelines][1024];
+    if(file)
+    {
+        while(rlen = fread(file, content))
+        {
+            for(new i; i < strlen(content); i++)
+            {
+                if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
+                if(content[i] == '\t') strdel(content, i, i+1);
+                if(content[i] == '\n') strdel(content, i, i+1);
+            }
+            dpp_debug("content: '%s'", content);
+            dpp_parsecode(content, codelines);
+            //dpp_debug("Executing:\n\n%s", content);
+            for(new i; i < dpp_maxcodelines; i++)
+            {
+                if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
+                if(dpp_terminated == 1)
+                {
+                    break;
+                }
+                dpp_process(codelines[i]);
+            }
+        }
+        CallLocalFunction("DPP_ENTRYPOINT", "");
+    }
+
+    else if(!file)
+    {
+        dpp_error("Invalid file.",);
+    }
+    return 1;
+}
+
 /*
 stock dpp_executefile(const script[])
 {
@@ -432,6 +499,7 @@ stock dpp_executefile(const script[])
     return 1;
 }
 */
+
 stock dpp_subexecute(const code[], funcid = -1)
 {
     #pragma unused funcid
@@ -445,6 +513,7 @@ stock dpp_subexecute(const code[], funcid = -1)
         {
             if(dpp_returned[funcid] == 1) return 1;
         }
+        dpp_codetrim(__codelines[i]);
         dpp_subprocess(__codelines[i]);
     }
     return 1;

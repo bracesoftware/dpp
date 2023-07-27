@@ -52,9 +52,9 @@ str*form.yieldreturntest;
 
 console.println(yieldreturntest);
 
-if.equ, 5 ,   5 ->console.println("Syntax works!");
+if.equ,5,5->console.println("Syntax works!");
 
-if . equ , 1, 1->console.println("OmG");
+if.equ,1,1->console.println("OmG");
 
 system.rem("Example code");
 new.int,syntax_test=1;
@@ -68,4 +68,3 @@ void*form.whilelooptest;
 if.equ,1,1->while.notequ,syntax_test,11->user.whilelooptest;
 
 console.println.log("This is still runnin right? {syntax_test}");
-

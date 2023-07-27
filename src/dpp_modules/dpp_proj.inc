@@ -11,10 +11,9 @@
  */
 
 
-new dpp_proj_file_content[8000];
-
 stock dpp_prepareproject(const script[])
 {
+    new dpp_proj_file_content[8000];
     dpp_print("Reading the project file.");
 
     new File:file = fopen(script, io_read), rlen;
@@ -45,8 +44,9 @@ stock dpp_prepareproject(const script[])
     return 1;
 }
 
-stock dpp_projfileprocess(const line[])
+stock dpp_projfileprocess(line[])
 {
+    dpp_codetrim(line);
     //PROJECT_NAME=D++ testing
     new address[2][512];
     dpp_parseline(line,address,'=');

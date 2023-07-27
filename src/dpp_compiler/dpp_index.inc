@@ -12,13 +12,17 @@
 
 stock void:dpp_writecompileddata(const file[],const data[]) 
 {
-    new File:LogFile = fopen(file, io_append);
+    new 
+        File:LogFile = fopen(file, io_append), 
+        fixed_data[dpp_maxstrsize*DPP_CELLMAX];
 
-    fwrite(LogFile, data);
+    format(fixed_data, sizeof fixed_data, "%s", data);
+
+    fwrite(LogFile, fixed_data);
 
     fclose(LogFile);
 }
-
+/*
 stock dpp_compile(const script[])
 {
     new content[dpp_maxstrsize*DPP_CELLMAX];
@@ -47,8 +51,13 @@ stock dpp_compile(const script[])
     {
         while(fread(file, content))
         {
-            dpp_codetrim(content);
-            dpp_process(content);
+            dpp_codetrim(content, .edge = edge_right);
+            new split_buffer[dpp_buffersize][dpp_buffersize];
+            dpp_parseline(content, split_buffer, ';');
+            for(new i; i < dpp_buffersize; i++)
+            {
+                dpp_process(split_buffer[i]);
+            }
         }
     }
 
@@ -70,8 +79,106 @@ stock dpp_compile(const script[])
     {
         while(fread(file, content))
         {
-            dpp_codetrim(content);
+            dpp_codetrim(content, .edge = edge_right);
+            new split_buffer[dpp_buffersize][dpp_buffersize];
+            dpp_parseline(content, split_buffer, ';');
+            for(new i; i < dpp_buffersize; i++)
+            {
+                dpp_process(split_buffer[i]);
+            }
+        }
+    }
+
+    dpp_compiling_pass = 3;
+    dpp_isobjinit = 0;
+    dpp_isconditional = 0;
+
+    dpp_nullcomment();
+    print("                                        ");
+    print("                                        ");
+    dpp_print("File \"%s\" and imported modules compiled successfully.",script);
+    print("                                        ");
+    print("                                        ");
+    return 1;
+}
+*/
+
+stock dpp_compile(const script[])
+{
+    new content[16000];
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("                   D++                  ");
+    print("         Compiler is loading...         ");
+    print("                                        ");
+    printf("         Version: %i.%i.%i-R%i         ", DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
+    print("                                        ");
+    print("               By: DEntisT              ");
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("                                        ");
+    //dpp_print("Interpreter version %i.%i.%i-R%i - by: DEntisT",DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
+    if(fexist("index.dppc")) fremove("index.dppc");
+    dpp_print("Compiling \"%s\"...",script);
+    print("                                        ");
+    print("                                        ");
+    dpp_compilerprint("Going through the 1st compiler pass.");
+    new File:file = fopen(script, io_read), rlen;
+    //new codelines[dpp_maxcodelines][1024];
+    if(file)
+    {
+        while(rlen = fread(file, content))
+        {
+            for(new i; i < strlen(content); i++)
+            {
+                //if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
+                if(content[i] == '\t') strdel(content, i, i+1);
+                if(content[i] == '\n') strdel(content, i, i+1);
+            }
+            dpp_debug("content: '%s'", content);
+            //dpp_parsecode(content, codelines);
+            //dpp_debug("Executing:\n\n%s", content);
+            //dpp_writecompileddata("index.dppc", content);
             dpp_process(content);
+        }
+    }
+
+    else if(!file)
+    {
+        dpp_error("Invalid file.",);
+        return 1;
+    }
+    
+
+
+    dpp_compiled = 1;
+    dpp_compiling_pass = 2;
+
+
+    dpp_compilerprint("Going through the 2nd compiler pass.");
+    file = fopen("index.dppc", io_read);
+    new rlen2;
+    new codelines[dpp_maxcodelines][1024];
+    if(file)
+    {
+        while(rlen2 = fread(file, content))
+        {
+            /*for(new i; i < strlen(content); i++)
+            {
+                if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
+                if(content[i] == '\t') strdel(content, i, i+1);
+                if(content[i] == '\n') strdel(content, i, i+1);
+            }*/
+            dpp_debug("content: '%s'", content);
+            dpp_parsecode(content, codelines);
+            //dpp_debug("Executing:\n\n%s", content);
+            for(new i; i < dpp_maxcodelines; i++)
+            {
+                if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
+                dpp_process(codelines[i]);
+            }
         }
     }
 
@@ -88,6 +195,7 @@ stock dpp_compile(const script[])
     return 1;
 }
 
+/*
 stock dpp_compilemodule(const script[], const dest[])
 {
     //dpp_print("Compiling module: \"%s\"",script);
@@ -119,6 +227,7 @@ stock dpp_compilemodule(const script[], const dest[])
     }
     return 1;
 }
+*/
 
 stock dpp_formatarg(argument[]) // creds DEntisT
 {

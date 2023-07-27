@@ -85,9 +85,8 @@
 #define dpp_maxsymbolchar 64
 #define dpp_maxstrsize 256
 #define dpp_maxargsc 20
-//-----------------------------------------------------------
-//new content[dpp_maxstrsize*DPP_CELLMAX];
-//new subcontent[dpp_maxstrsize*DPP_CELLMAX];
+
+#define dpp_buffersize 1024
 //-----------------------------------------------------------
 new dpp_skipelse = 0;
 //-----------------------------------------------------------
@@ -101,6 +100,10 @@ new dpp_switchedvar;
 // REQUIRED.
 #include <open.mp>
 //-----------------------------------------------------------
+//new content[16000];
+//new subcontent[16000];
+//-----------------------------------------------------------
+
 new dpp_lastvalueprcfunc;
 //-----------------------------------------------------------
 new dpp_enuminterpreter = 1;
@@ -268,9 +271,9 @@ new dpp_event = 0;
 #define dpp_event_enum 4
 //-----------------------------------------------------------
 //includes
+#include "dpp_modules/dpp_utils.inc"
 #include "dpp_modules/dpp_header.inc"
 #include "dpp_modules/dpp_proj.inc"
-#include "dpp_modules/dpp_utils.inc"
 #include "dpp_modules/dpp_const.inc"
 #include "dpp_modules/dpp_vars.inc"
 #include "dpp_modules/dpp_mathimpl.inc"
@@ -450,11 +453,18 @@ public OnGameModeExit()
 main()
 {
     /*new File:file = fopen("test.txt");
-    new buffer[256];
+    new buffer[256], funcgroup[3][64];
     while(fread(file, buffer))
     {
+        printf("Buffer: '%s'", buffer);
         dpp_codetrim(buffer);
-        printf("'%s'",buffer);
+        dpp_parseline(buffer, funcgroup, '\32');
+        dpp_codetrim(funcgroup[0]);
+        dpp_codetrim(funcgroup[1]);
+        dpp_codetrim(funcgroup[2]);
+        printf("Keyword 1: '%s'",funcgroup[0]);
+        printf("Keyword 2: '%s'",funcgroup[1]);
+        printf("Keyword 3: '%s'",funcgroup[2]);
     }*/
     SetTimer("dpp_main", 1000, false);
 }

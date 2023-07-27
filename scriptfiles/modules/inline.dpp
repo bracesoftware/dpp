@@ -5,7 +5,7 @@ int*form.InlineTestFunc;
 	new.int,formid=__proccessed_form_id;
 	console.println("'InlineTestFunc' is {formid}");
 	
-	inline&form.inlineformtest; 
+	inline&form.inlineformtest;
 		do->console.println("Inline works.");
 		do->console.println.log("The inline finally works!");
 
@@ -16,5 +16,8 @@ int*form.InlineTestFunc;
 	yield&return,1;
 };
 
+console.println("Debug: Wtf is goin on");
+
 user.InlineTestFunc;
+console.println.log("LMAO WHAT IS THIS ");
 user.InlineTestFunc;

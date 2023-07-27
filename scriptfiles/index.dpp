@@ -1,16 +1,14 @@
-
-
 using.system;
 using.samp;
 using.console;
 
 #pragma:allspc,true;
-
 #pragma:warnings,default;
 
 const*new.bool,DEBUG_OPTION=false;
 
 #pragma:debug,DEBUG_OPTION;
+#pragma:ctrlchar,*;
 
 #include:test;
 
