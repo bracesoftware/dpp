@@ -21,6 +21,7 @@
 #define DPP_VERSION_MINOR 0
 #define DPP_VERSION_PATCH 0
 #define DPP_VERSION_RELEASE 4
+#define DPP_CELLMAX 8
 
 #define DPP_VERSION_BETA 0
 
@@ -79,8 +80,14 @@
 #define dpp_rtn_type_double 4
 #define dpp_rtn_type_char 5
 //-----------------------------------------------------------
-new content[18000];
-new subcontent[16000];
+#define DPP_LOGPROCESSES 0
+//-----------------------------------------------------------
+#define dpp_maxsymbolchar 64
+#define dpp_maxstrsize 256
+#define dpp_maxargsc 20
+//-----------------------------------------------------------
+//new content[dpp_maxstrsize*DPP_CELLMAX];
+//new subcontent[dpp_maxstrsize*DPP_CELLMAX];
 //-----------------------------------------------------------
 new dpp_skipelse = 0;
 //-----------------------------------------------------------
@@ -88,12 +95,6 @@ new dpp_skipcase = 0;
 new dpp_switchedvar;
 //-----------------------------------------------------------
 // PREDEFINES
-//-----------------------------------------------------------
-#define DPP_LOGPROCESSES 0
-//-----------------------------------------------------------
-#define dpp_maxsymbolchar 64
-#define dpp_maxstrsize 256
-#define dpp_maxargsc 20
 //-----------------------------------------------------------
 #define dpp_null "null"
 //-----------------------------------------------------------
@@ -445,7 +446,15 @@ public OnGameModeExit()
 
 //-----------------------------------------------------------
 
+
 main()
 {
-    CallLocalFunction("dpp_main", "");
+    /*new File:file = fopen("test.txt");
+    new buffer[256];
+    while(fread(file, buffer))
+    {
+        dpp_codetrim(buffer);
+        printf("'%s'",buffer);
+    }*/
+    SetTimer("dpp_main", 1000, false);
 }

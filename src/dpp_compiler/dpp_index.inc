@@ -21,6 +21,7 @@ stock void:dpp_writecompileddata(const file[],const data[])
 
 stock dpp_compile(const script[])
 {
+    new content[dpp_maxstrsize*DPP_CELLMAX];
     print("                                        ");
     print("|======================================|");
     print("                                        ");
@@ -34,30 +35,20 @@ stock dpp_compile(const script[])
     print("|======================================|");
     print("                                        ");
     print("                                        ");
-    //dpp_print("Interpreter version %i.%i.%i-R%i - by: DEntisT",DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
+
     if(fexist("index.dppc")) fremove("index.dppc");
+
     dpp_print("Compiling \"%s\"...",script);
     print("                                        ");
     print("                                        ");
     dpp_compilerprint("Going through the 1st compiler pass.");
-    new File:file = fopen(script, io_read), rlen;
-    //new codelines[dpp_maxcodelines][1024];
+    new File:file = fopen(script, io_read);
     if(file)
     {
-        while(rlen = fread(file, content))
+        while(fread(file, content))
         {
-            for(new i; i < strlen(content); i++)
-            {
-                //if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
-                if(content[i] == '\t') strdel(content, i, i+1);
-                if(content[i] == '\n') content[i] = ';'; //strdel(content, i, i+1);
-            }
-            dpp_debug("content: '%s'", content);
-            //dpp_parsecode(content, codelines);
-            //dpp_debug("Executing:\n\n%s", content);
-            //dpp_writecompileddata("index.dppc", content);
+            dpp_codetrim(content);
             dpp_process(content);
-            //strmid(content, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
         }
     }
 
@@ -72,31 +63,15 @@ stock dpp_compile(const script[])
     dpp_compiled = 1;
     dpp_compiling_pass = 2;
 
-    //strmid(content, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
 
     dpp_compilerprint("Going through the 2nd compiler pass.");
     file = fopen("index.dppc", io_read);
-    new rlen2;
-    new codelines[dpp_maxcodelines][1024];
     if(file)
     {
-        while(rlen2 = fread(file, content))
+        while(fread(file, content))
         {
-            /*for(new i; i < strlen(content); i++)
-            {
-                if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
-                if(content[i] == '\t') strdel(content, i, i+1);
-                if(content[i] == '\n') strdel(content, i, i+1);
-            }*/
-            dpp_debug("content: '%s'", content);
-            dpp_parsecode(content, codelines);
-            //dpp_debug("Executing:\n\n%s", content);
-            for(new i; i < dpp_maxcodelines; i++)
-            {
-                if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
-                dpp_process(codelines[i]);
-                //strmid(content, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
-            }
+            dpp_codetrim(content);
+            dpp_process(content);
         }
     }
 

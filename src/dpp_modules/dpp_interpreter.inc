@@ -127,6 +127,7 @@ stock dpp_process(line[])
 
     if(dpp_compiling_pass == 1)
     {
+        new subcontent[dpp_maxstrsize*DPP_CELLMAX];
         if(!strcmp(dirgroup[0], "#include"))
         {
             new filename[64], garbage[2][64];
@@ -136,18 +137,12 @@ stock dpp_process(line[])
 
             if(fexist(filename))// return dpp_executefile(filename);
             {
-                new File:file = fopen(filename, io_read), rlen;
-                new codelines[dpp_maxcodelines][1024];
+                new File:file = fopen(filename, io_read);
                 if(file)
                 {
-                    while(rlen = fread(file, subcontent))
+                    while(fread(file, subcontent))
                     {
-                        for(new i; i < strlen(subcontent); i++)
-                        {
-                            if(subcontent[i] == ';' && subcontent[i+1] == ' ') strdel(subcontent, i+1, i+2);
-                            if(subcontent[i] == '\t') strdel(subcontent, i, i+1);
-                            if(subcontent[i] == '\n') subcontent[i] = ';';
-                        }
+                        dpp_codetrim(subcontent);
                         dpp_writecompileddata("index.dppc", subcontent);
                     }
                 }

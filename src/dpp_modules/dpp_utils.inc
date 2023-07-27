@@ -14,6 +14,109 @@
 #define dpp_isinrange(%0,%1,%2) (((%0)-((%1)+cellmin))<((%2)-((%1)+cellmin))) 
 // creds Y_Less
 
+
+enum string_edges {
+    edge_left  = 1,
+    edge_right = 2,
+    edge_both = edge_left | edge_right
+};
+
+// Big thanks to Slice (oscar broman), without him
+// D++ would not exist the way it does now
+stock dpp_codetrim(string[], const chars[] = !"", string_edges:edge = edge_both) 
+{
+    new bool:packed = ispacked(string);
+    
+    // If "chars" is empty, trim whitespace
+    if (!(ispacked(chars) ? chars{0} : chars[0])) {
+        // Should the left side be trimmed?
+        if (edge & edge_left) {
+            new i = 0;
+            
+            if (packed)
+                while (0 < string{i} <= ' ') i++;
+            else
+                while (0 < string[i] <= ' ') i++;
+            
+            if (i) {
+                strdel(string, 0, i);
+            }
+        }
+        
+        // Should the right side be trimmed?
+        if (edge & edge_right) {
+            new i = strlen(string);
+            
+            if (i) {
+                if (packed) {
+                    while (--i && 0 < string{i} <= ' ') {}
+                    
+                    string{i + 1} = '\0';
+                } else {
+                    while (--i && 0 < string[i] <= ' ') {}
+                    
+                    string[i + 1] = '\0';
+                }
+            }
+        }
+    } else {
+        // Should the left side be trimmed?
+        if (edge & edge_left) {
+            new i = 0, sub[2];
+            
+            if (packed) {
+                while ((sub[0] = string{i})) {
+                    if (strfind(chars, sub) == -1)
+                        break;
+                    
+                    i++;
+                }
+                
+                if (i) {
+                    strdel(string, 0, i);
+                }
+            } else {
+                while ((sub[0] = string[i])) {
+                    if (strfind(chars, sub) == -1)
+                        break;
+                    
+                    i++;
+                }
+                
+                if (i) strdel(string, 0, i);
+            }
+        }
+        
+        // Should the right side be trimmed?
+        if (edge & edge_right) {
+            new i = strlen(string), sub[2];
+            
+            if (i >= 0) {
+                if (packed) {
+                    while (i--) {
+                        sub[0] = string{i};
+                        
+                        if (strfind(chars, sub) == -1)
+                            break;
+                    }
+                    
+                    string{i + 1} = '\0';
+                } else {
+                    while (i--) {
+                        sub[0] = string[i];
+                        
+                        if (strfind(chars, sub) == -1)
+                            break;
+                    }
+                    
+                    string[i + 1] = '\0';
+                }
+            }
+        }
+    }
+}
+
+
 stock bool:dpp_isnumeric(const str[]) // creds Y_Less
 {
     new

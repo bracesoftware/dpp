@@ -364,7 +364,7 @@ stock dpp_createfunc(funcname[], const args[], autoform = 0, hookform = 0, struc
 
 stock dpp_execute(const script[])
 {
-    format(content,sizeof content, "\t");
+    new content[dpp_maxstrsize*DPP_CELLMAX];
     print("                                        ");
     print("|======================================|");
     print("                                        ");
@@ -385,31 +385,13 @@ stock dpp_execute(const script[])
     dpp_execheader("index.dppc");
     dpp_nullcomment();
 
-    new File:file = fopen(script, io_read), rlen;
-    new codelines[dpp_maxcodelines][1024];
+    new File:file = fopen(script, io_read);
     if(file)
     {
-        while(rlen = fread(file, content))
+        while(fread(file, content))
         {
-            for(new i; i < strlen(content); i++)
-            {
-                if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
-                if(content[i] == '\t') strdel(content, i, i+1);
-                if(content[i] == '\n') strdel(content, i, i+1);
-            }
-            dpp_debug("content: '%s'", content);
-            dpp_parsecode(content, codelines);
-            //dpp_debug("Executing:\n\n%s", content);
-            for(new i; i < dpp_maxcodelines; i++)
-            {
-                if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
-                if(dpp_terminated == 1)
-                {
-                    break;
-                }
-                dpp_process(codelines[i]);
-                //strmid(content, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
-            }
+            dpp_codetrim(content);
+            dpp_process(content);
         }
         CallLocalFunction("DPP_ENTRYPOINT", "");
     }
@@ -420,7 +402,7 @@ stock dpp_execute(const script[])
     }
     return 1;
 }
-
+/*
 stock dpp_executefile(const script[])
 {
     new File:file = fopen(script, io_read), rlen;
@@ -439,7 +421,7 @@ stock dpp_executefile(const script[])
             for(new i; i < dpp_maxcodelines; i++)
             {
                 dpp_process(codelines[i]);
-                strmid(subcontent, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
+                //strmid(subcontent, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
             }
         }
     }
@@ -449,7 +431,7 @@ stock dpp_executefile(const script[])
     }
     return 1;
 }
-
+*/
 stock dpp_subexecute(const code[], funcid = -1)
 {
     #pragma unused funcid
