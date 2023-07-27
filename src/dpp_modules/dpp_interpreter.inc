@@ -1638,6 +1638,12 @@ stock dpp_process(line[])
                     return 0;
                 }
 
+                if(!strcmp(funcgroup[2], "unsigned"))
+                {
+                    dpp_createintvar(vargroup[0],strval(vargroup[1]) < 0 ? strval(vargroup[1])*(-1) : strval(vargroup[1]), .unsigned = 1);
+                    return 1;
+                }
+
                 dpp_createintvar(vargroup[0],strval(vargroup[1]), .staticvar = 1, .baseform = dpp_processfunc);
                 return 1;
             }

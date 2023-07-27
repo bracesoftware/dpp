@@ -366,6 +366,11 @@ stock dpp_setintvar(const name[], value)
         if(!strcmp(dpp_vardata[i][var_name], name) && dpp_vardata[i][var_valid] == 1)
         {
             dpp_debug("\"%s\" value changed to \"%i\"", name, value);
+            if(dpp_vardata[i][var_unsigned])
+            {
+                dpp_vardata[i][integervalue] = value < 0 ? value*(-1) : value;
+                return 1;    
+            }
             dpp_vardata[i][integervalue] = value;
             return 1;
         }
