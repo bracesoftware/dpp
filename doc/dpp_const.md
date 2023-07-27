@@ -3,14 +3,14 @@
 
 - You also may make constants in D++:
 
-```pawn
+```cpp
 const*new.int,MY_FIRST_CONST=1;
 ```
 
 
 You also may create boolean and string constants:
 
-```pawn
+```cpp
 const*new.bool,MY_FIRST_CONST=true;
 
 const*new.str,MY_FIRST_CONST="string";

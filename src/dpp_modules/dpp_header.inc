@@ -120,6 +120,34 @@ stock dpp_parseline(const code[], destln[][], delimiter)
     return 1;
 }
 
+stock dpp_parseline_2(const code[], destln[][], const delimiter[])
+{
+    if(strlen(delimiter) != 2)
+    {
+        dpp_error("Parse error; delimiter isn't 2 chars long.",);
+        return 1;
+    }
+    new 
+        i, 
+        start,
+        index,
+        len;
+
+    while(i <= strlen(code))
+    {
+        if((code[i] == delimiter[0] && code[i+1] == delimiter[1]) || i == strlen(code))
+        {
+            len = strmid(destln[index], code, start, i, 128);
+            destln[index][len] = 0;
+            destln[index][len+1] = 0;
+            start = i+2;
+            index++;
+        }
+        i++;
+    }
+    return 1;
+}
+
 stock dpp_removeslashes(arg[])
 {
     for(new i; i < strlen(arg); i++)

@@ -85,7 +85,7 @@ stock dpp_findvar(const name[], dest)
 
 ///////////////////////////CREATE/////////////////////////////
 
-stock dpp_createintvar(name[], value, obj = -1, staticvar = 0, baseform = -1)
+stock dpp_createintvar(name[], value, obj = -1, staticvar = 0, baseform = -1, unsigned = 0)
 {
     for(new i; i < dpp_maxvar; i++)
     {
@@ -124,9 +124,10 @@ stock dpp_createintvar(name[], value, obj = -1, staticvar = 0, baseform = -1)
             dpp_vardata[i][var_baseformid] = baseform;
             if(staticvar == 1)
             {
-                dpp_warning("Created a static var '%s' [%i]",dpp_vardata[i][var_name],i);
+                //dpp_warning("Created a static var '%s' [%i]",dpp_vardata[i][var_name],i);
             }
 
+            dpp_vardata[i][var_unsigned] = unsigned;
             
             if(dpp_objectid != -1)
             {
@@ -179,7 +180,7 @@ stock dpp_createboolvar(name[], value, obj = -1, staticvar = 0, baseform = -1)
             dpp_vardata[i][var_baseformid] = baseform;
             if(staticvar == 1)
             {
-                dpp_warning("Created a static var '%s' [%i]",dpp_vardata[i][var_name],i);
+                //dpp_warning("Created a static var '%s' [%i]",dpp_vardata[i][var_name],i);
             }
 
             
@@ -233,7 +234,7 @@ stock dpp_createstrvar(name[], const value[], obj = -1, staticvar = 0, baseform 
             dpp_vardata[i][var_baseformid] = baseform;
             if(staticvar == 1)
             {
-                dpp_warning("Created a static var '%s' [%i]",dpp_vardata[i][var_name],i);
+                //dpp_warning("Created a static var '%s' [%i]",dpp_vardata[i][var_name],i);
             }
 
             
@@ -287,7 +288,7 @@ stock dpp_createdoublevar(name[], Float:value, obj = -1, staticvar = 0, baseform
             dpp_vardata[i][var_baseformid] = baseform;
             if(staticvar == 1)
             {
-                dpp_warning("Created a static var '%s' [%i]",dpp_vardata[i][var_name],i);
+                //dpp_warning("Created a static var '%s' [%i]",dpp_vardata[i][var_name],i);
             }
 
             
@@ -341,7 +342,7 @@ stock dpp_createcharvar(name[], value, obj = -1, staticvar = 0, baseform = -1)
             dpp_vardata[i][var_baseformid] = baseform;
             if(staticvar == 1)
             {
-                dpp_warning("Created a static var '%s' [%i]",dpp_vardata[i][var_name],i);
+                //dpp_warning("Created a static var '%s' [%i]",dpp_vardata[i][var_name],i);
             }
 
             if(dpp_objectid != -1)
@@ -564,16 +565,16 @@ stock dpp_deletecharvar(const name[])
 
 ///////////////////
 
-stock dpp_deletestaticvars(formid)
+stock dpp_deletestaticvars()
 {
     for(new i; i < dpp_maxvar; i++)
     {
         if(dpp_vardata[i][var_valid] == 1)
         {
-            if(dpp_vardata[i][var_static] == 1 && dpp_vardata[i][var_baseformid] == formid)
+            if(dpp_vardata[i][var_static] == 1)
             {
                 dpp_vardata[i][var_valid] = 0;
-                dpp_warning("Deleted a static var '%s' [%i]",dpp_vardata[i][var_name],i);
+                //dpp_warning("Deleted a static var '%s' [%i]",dpp_vardata[i][var_name],i);
             }
         }
     }

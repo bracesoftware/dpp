@@ -18,16 +18,16 @@ console.cout.log(sizeof?testiter);
 
 console.cout(1); console.println("Lmao ok");
 
-public&class.IterClass;
+namespace,IterClass;
 <;
 	iter::define,iter,10;
 >;
 
-iter::add,IterClass:iter,364;
-foreach.int&var,foreachtestvar,IterClass:iter->console.println("foreach test #3 {foreachtestvar}");
+iter::add,IterClass::iter,364;
+foreach.int&var,foreachtestvar,IterClass::iter->console.println("foreach test #3 {foreachtestvar}");
 
-if.equ,defined?IterClass:iter,1->console.println("IterClass:iter is defined!");
-if.equ,defined?IterClass:iter,0->console.println("IterClass:iter is NOT defined!");
+if.equ,defined?IterClass::iter,1->console.println("IterClass::iter is defined!");
+if.equ,defined?IterClass::iter,0->console.println("IterClass::iter is NOT defined!");
 if.equ,defined?foreachtestvar,1->console.println("foreachtestvar is defined!");
 if.equ,defined?dummyvar,1->console.println.log("This should not be printed!!");
 
@@ -49,17 +49,17 @@ form&method.TestMethod?text;
 console.println.TestMethod("Method test #1");
 
 
-public&class.MethodClass;
+namespace,MethodClass;
 <;
 	form&method.TestMethod?text;
 	{;
-		console.println.log("Printed: {text@MethodClass:TestMethod}");
+		console.println.log("Printed: {text@MethodClass::TestMethod}");
 		return.int,1;
 	};
 >;
 
 
-console.println.MethodClass:TestMethod("Method test #2");
+console.println.MethodClass::TestMethod("Method test #2");
 
 int*form.MegaFormBoo?text;
 {;
@@ -69,23 +69,23 @@ int*form.MegaFormBoo?text;
 
 user.MegaFormBoo("MegaFormBoo was sucessfully called");
 
-public&class.SAMP;
+namespace,SAMP;
 <;
 	iter::define,Player,MAX_PLAYERS;
 >;
 
 hook&form.OnPlayerConnect?playerid;
 {;
-	iter::add,SAMP:Player,playerid@OnPlayerConnect;
+	iter::add,SAMP::Player,playerid@OnPlayerConnect;
 };
 
 hook&form.OnPlayerDisconnect?playerid;
 {;
-	iter::remove,SAMP:Player,playerid@OnPlayerConnect;
+	iter::remove,SAMP::Player,playerid@OnPlayerConnect;
 };
 
 public&task.PrintPlayers#1000;
 {;
-	foreach.int&var,foreachtestvar,SAMP:Player->console.println("foreach test #4 {foreachtestvar}");
+	foreach.int&var,foreachtestvar,SAMP::Player->console.println("foreach test #4 {foreachtestvar}");
 
 };

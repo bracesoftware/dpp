@@ -8,20 +8,20 @@
 
 - Assigning a `TestObj` object to a variable.
 
-```pawn
+```cpp
 object,TestObj;
 TestObj<-new.int,testvar=10;
 ```
 
 ## Example `#2`
 
-- Objects inside classes.
+- Objects inside namespaces.
 
-```pawn
-public&class.ObjectTest;
+```cpp
+namespace,ObjectTest;
 <;
 	object,TestObj;
 >;
 
-ObjectTest:TestObj<-new.int,testvar=1;
+ObjectTest::TestObj<-new.int,testvar=1;
 ```

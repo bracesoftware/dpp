@@ -33,7 +33,7 @@
 - [`while`-loops](doc/dpp_while.md)
 - [Instructions](doc/dpp_instruct.md)
 - [Operators](doc/dpp_oper.md)
-- [Classes](doc/dpp_class.md)
+- [Namespaces](doc/dpp_namespace.md)
 - [Passing arguments to user forms](doc/dpp_userargs.md)
 - [`return` and `yield&return`](doc/dpp_return.md)
 - [System values](doc/dpp_sysval.md)
@@ -48,6 +48,7 @@
 - [`typedef` keyword](doc/dpp_typedef.md)
 - [Enumerators](doc/dpp_enum.md)
 - [Static variables](doc/dpp_static.md)
+- [Persistent data management](doc/dpp_persistent.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info

@@ -16,7 +16,7 @@ stock dpp_argclasscheck(arg[])
         newvalue[dpp_argcharsize],
         classvalid = 0,
         funcgroup[2][100];
-    dpp_parseline(arg, funcgroup, ':');
+    dpp_parseline_2(arg, funcgroup, "::");
 
     for(new i; i < dpp_maxclass; i++)
     {
@@ -29,7 +29,7 @@ stock dpp_argclasscheck(arg[])
 
     if(classvalid == 0)
     {
-        dpp_debug("Class is not a valid class.");
+        dpp_debug("Specified namespace is not a valid namespace.");
         return 1;
     }
 
@@ -96,7 +96,7 @@ stock dpp_argclasscheck(arg[])
     //dpp_debug("Class backtrace 4:\n\tclassvalid : '%i'\n\tclasselementvalid[0] : '%i'\n\tclasselementvalid[1] : '%i'\n\tclasselementvalid[2] : '%i'",classvalid,classelementvalid[0],classelementvalid[1],classelementvalid[2]);
 
 
-    dpp_debug("Class backtrace 4:\n\tfuncgroup[0] : '%s'\n\tfuncgroup[1] : '%s'\n\targ : '%s'",funcgroup[0],funcgroup[1],arg);
+    dpp_debug("Namespace backtrace 4:\n\tfuncgroup[0] : '%s'\n\tfuncgroup[1] : '%s'\n\targ : '%s'",funcgroup[0],funcgroup[1],arg);
     return 1;
 }
 
@@ -117,7 +117,7 @@ stock dpp_createclass(const name[])
             if(dpp_isnumeric(name)) name_error = 1;
             if(name_error == 1)
             {
-                dpp_error("Invalid class name.",);
+                dpp_error("Invalid namespace name.",);
                 return 1;
             }
 
@@ -140,6 +140,6 @@ stock dpp_hookclass(const name[])
             return 1;
         }
     }
-    dpp_error("Class \"%s\" does not exist.",name);
+    dpp_error("Namespace \"%s\" does not exist.",name);
     return 1;
 }

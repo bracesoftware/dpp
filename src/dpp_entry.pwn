@@ -20,7 +20,7 @@
 #define DPP_VERSION_MAJOR 1
 #define DPP_VERSION_MINOR 0
 #define DPP_VERSION_PATCH 0
-#define DPP_VERSION_RELEASE 3
+#define DPP_VERSION_RELEASE 4
 
 #define DPP_VERSION_BETA 0
 
@@ -152,6 +152,7 @@ enum __dpp_var_val
     var_name[dpp_maxsymbolchar],
     var_type,
     var_object,
+    var_unsigned,
     integervalue,
     /*bool:*/boolvalue,
     Float:floatvalue,
@@ -270,7 +271,7 @@ new dpp_event = 0;
 #include "dpp_modules/dpp_const.inc"
 #include "dpp_modules/dpp_vars.inc"
 #include "dpp_modules/dpp_mathimpl.inc"
-#include "dpp_modules/dpp_class.inc"
+#include "dpp_modules/dpp_namespace.inc"
 #include "dpp_modules/dpp_inline.inc"
 #include "dpp_modules/dpp_tasks.inc"
 #include "dpp_modules/dpp_iter.inc"

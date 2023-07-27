@@ -25,12 +25,12 @@ console.cout(scanftest6);
 object,TestObj;
 TestObj<-new.int,testvar=10;
 
-public&class.ObjectTest;
+namespace,ObjectTest;
 <;
 	object,TestObj;
 >;
 
-ObjectTest:TestObj<-new.int,testvar=1;
+ObjectTest::TestObj<-new.int,testvar=1;
 
 
 

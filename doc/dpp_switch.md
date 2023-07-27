@@ -2,7 +2,7 @@
 
 - A case or switch statement is a type of selection control mechanism used to allow the value of a variable or expression to change the control flow of program execution via a multiway branch.
 
-```pawn
+```cpp
 new.int,switchtest=23;
 
 switch,switchtest;

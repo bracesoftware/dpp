@@ -3,13 +3,13 @@
 
 - If-expressions are also possible in D++:
 
-```pawn
+```cpp
 if.equ,1,1->console.println("1 is 1");
 ```
 
 You also may compare variables, consants and vice-versa.
 
-```pawn
+```cpp
 new.str,myvar="myvar worked.";
 
 if.equ,myvar,"myvar worked."->console.println(myvar);

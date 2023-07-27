@@ -79,13 +79,13 @@ Output:
 
 Little example:
 
-```pawn
+```cpp
 if.equ,5/5,1+0->console.println,"Math test passed!";
 ```
 
 You may also use constants, variables and user forms as an Operator arguments:
 
-```pawn
+```cpp
 new.int,MATHVAR=1+1;
 console.cout(MATHVAR);
 

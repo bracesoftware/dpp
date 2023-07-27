@@ -742,18 +742,20 @@ stock dpp_process(line[])
     ////
     ///////////////////////////////////////////////////////
 
-    if(!strcmp(funcgroup[0], "public&class"))
+    if(!strcmp(funcgroup[0], "namespace"))
     {
-        dpp_createclass(funcgroup[1]);
+        dpp_createclass(args[1]);
 
         dpp_event = dpp_event_class;
         return 1;
     }
-    if(!strcmp(funcgroup[0], "hook&class"))
+    if(!strcmp(structgroup[0], "using"))
     {
-        dpp_hookclass(funcgroup[1]);
-
-        dpp_event = dpp_event_class;
+        if(!strcmp(structgroup[1], "namespace"))
+        {
+            dpp_hookclass(args[1]);
+            dpp_event = dpp_event_class;
+        }
         return 1;
     }
 
@@ -1523,6 +1525,11 @@ stock dpp_process(line[])
             {
                 dpp_error("Argument error; value must be an integer.",);
                 return 0;
+            }
+            if(!strcmp(funcgroup[2], "unsigned"))
+            {
+                dpp_createintvar(vargroup[0],strval(vargroup[1]) < 0 ? strval(vargroup[1])*(-1) : strval(vargroup[1]), .unsigned = 1);
+                return 1;
             }
 
             dpp_createintvar(vargroup[0],strval(vargroup[1]));
@@ -2653,7 +2660,7 @@ public dpp_processuser(funcgroup[][],args[][],args_const[][])
                         }
                     }
                     dpp_clearformstack(dpp_processfunc); 
-                    dpp_deletestaticvars(dpp_processfunc);
+                    dpp_deletestaticvars();
                     dpp_processfunc = DPP_INVALID_FORM_ID;
                     return 1;
                 }

@@ -3,7 +3,7 @@
 
 - While loops are also possible in D++:
 
-```pawn
+```cpp
 new.int,testvar=0;
 while.notequ,testvar,10->set.int,testvar=testvar+1&console.println("{testvar}");
 ```
@@ -12,7 +12,7 @@ Code above is going to count from 1 to 10.
 
 You may also combine other statements; such as if-expressions; with while-loops.
 
-```pawn
+```cpp
 if.equ,1,1->while.equ,testvar,11->var::set.int,testvar=testvar+1&console.println("This should be printed again!");
 ```
 

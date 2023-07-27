@@ -2,7 +2,7 @@
 - In Pawn, you can include files. In D++, those files are called your script modules. If you want to make your `*.dpp` file a module, just make a `modules` folder in your `scriptfiles` and move it there.
 
 Afterwards you may import your module:
-```pawn
+```cpp
 #include:module_name;
 ```
 

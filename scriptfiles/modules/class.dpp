@@ -1,6 +1,6 @@
 console.println("========================== class.dpp ==========================");
 
-public&class.dogInfo;
+namespace,dogInfo;
 <;
 	new.str,name="Alexander";
 
@@ -13,31 +13,31 @@ public&class.dogInfo;
 	};
 >;
 
-console.println(dogInfo:name);
-user.dogInfo:dogRace;
+console.println(dogInfo::name);
+user.dogInfo::dogRace;
 
-console.cout(dogInfo:age);
+console.cout(dogInfo::age);
 
-public&class.manInfo;
+namespace,manInfo;
 <;
 	new.str,name="Alex";
 >;
 
-hook&class.dogInfo;
+using*namespace,dogInfo;
 <;
 	new.str,owner="Tommy";
 >;
 
-console.println(dogInfo:owner);
+console.println(dogInfo::owner);
 
-	if.equ,1,1->	set.str,dogInfo:owner="Y_Less";
+	if.equ,1,1->	set.str,dogInfo::owner="Y_Less";
 
-	console.println(dogInfo:owner);
+	console.println(dogInfo::owner);
 
-hook&class.manInfo;
+using*namespace,manInfo;
 <;
 	new.int,age=86;
 >;
 
-console.println(manInfo:name);
-console.cout(manInfo:age);
+console.println(manInfo::name);
+console.cout(manInfo::age);

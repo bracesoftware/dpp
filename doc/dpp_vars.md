@@ -3,13 +3,13 @@
 
 - Like constants, variables may be integers, booleans and strings.
 
-```pawn
+```cpp
 new.str,myvar="myvar worked.";
 ```
 
 To change its value, use:
 
-```pawn
+```cpp
 set.str,myvar="myvar worked again.";
 ```
 
@@ -55,3 +55,13 @@ new.double,decimal_point=3.14;
 ```cpp
 new.char,character='b';
 ```
+
+### `unsigned int`
+
+- Integers that can't have a negative value.
+
+```cpp
+new.int.unsigned,positivealways=-1;
+```
+
+**NOTE**: If you assign a negative value, it'll be replaced with a positive value; in this case - the variable will have a value of 1 instead.

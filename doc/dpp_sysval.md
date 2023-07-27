@@ -8,7 +8,7 @@ Return type: `int`
 
 - Returns a processed form id.
 
-```pawn
+```cpp
 new.int,formid=__proccessed_form_id;
 console.println("'inlinetest' is {formid}");
 ```

@@ -4,7 +4,7 @@
 
 ## Example
 
-```pawn
+```cpp
 new.int,forlooptestvar=0;
 if.equ,1,1->for.int&var,forlooptestvar,10->console.println("For loop id {forlooptestvar}");
 ```

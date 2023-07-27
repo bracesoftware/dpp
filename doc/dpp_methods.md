@@ -4,7 +4,7 @@
 
 ## User methods
 
-```pawn
+```cpp
 form&method.TestMethod?text;
 {;
 	console.println("Printed: {text@TestMethod}");
@@ -14,16 +14,16 @@ form&method.TestMethod?text;
 console.println.TestMethod("Method test #1");
 
 
-public&class.MethodClass;
+namespace,MyNameSpace;
 <;
 	form&method.TestMethod?text;
 	{;
-		console.println.log("Printed: {text@MethodClass:TestMethod}");
+		console.println.log("Printed: {text@MyNameSpace::TestMethod}");
 		return.int,1;
 	};
 >;
 
-console.println.MethodClass:TestMethod("Method test #2");
+console.println.MyNameSpace::TestMethod("Method test #2");
 ```
 
 Output:

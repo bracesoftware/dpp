@@ -4,7 +4,7 @@
 
 ## Example
 
-```pawn
+```cpp
 iter::define,testiter,100;
 new.int,foreachtestvar=0;
 
@@ -33,14 +33,14 @@ foreach test #2 10
 
 - Iterators inside classes.
 
-```pawn
-public&class.IterClass;
+```cpp
+namespace,IterClass;
 <;
 	iter::define,iter,10;
 >;
 
-iter::add,IterClass:iter,364;
-foreach.int&var,foreachtestvar,IterClass:iter->console.println("foreach test #3 {foreachtestvar}");
+iter::add,IterClass::iter,364;
+foreach.int&var,foreachtestvar,IterClass::iter->console.println("foreach test #3 {foreachtestvar}");
 ```
 
 Output:
@@ -54,7 +54,7 @@ foreach test #3 364
 - `sizeof` is a keyword you may have seen in a huge variety of programming languages. In D++, `sizeof` is by-default enabled instruction which returns the size of an iterator.
 
 
-```pawn
+```cpp
 console.cout(sizeof?testiter);
 ```
 

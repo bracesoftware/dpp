@@ -27,3 +27,25 @@ console.cout.log(Months.february-Months.december);
 console.cout.log(Months.january%WeekDays.monday);
 
 console.println("Test?");
+
+console.println.log(statictest);
+console.println.log("LOCAL DEBUG: Tried to print the static var");
+
+int*form.StaticTest;
+{;
+	static*new.str,statictest="Static works here";
+	console.println.log(statictest);
+	console.println.log("LOCAL DEBUG: Printed static var");
+	return,1;
+};
+user.StaticTest;
+console.println.log("LOCAL DEBUG: Called statictest for the first time");
+console.println.log(statictest);
+console.println.log("LOCAL DEBUG: Printed static again");
+user.StaticTest;
+console.println.log("LOCAL DEBUG: Called statictest for the second time");
+
+new.int.unsigned,unsignedinteger=-3645;
+console.cout(unsignedinteger);
+new.int.unsigned,anotherunsignedint=9823;
+console.cout(anotherunsignedint);
