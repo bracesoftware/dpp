@@ -57,6 +57,7 @@ stock dpp_compile(const script[])
             //dpp_debug("Executing:\n\n%s", content);
             //dpp_writecompileddata("index.dppc", content);
             dpp_process(content);
+            //strmid(content, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
         }
     }
 
@@ -71,6 +72,7 @@ stock dpp_compile(const script[])
     dpp_compiled = 1;
     dpp_compiling_pass = 2;
 
+    //strmid(content, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
 
     dpp_compilerprint("Going through the 2nd compiler pass.");
     file = fopen("index.dppc", io_read);
@@ -93,6 +95,7 @@ stock dpp_compile(const script[])
             {
                 if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
                 dpp_process(codelines[i]);
+                //strmid(content, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
             }
         }
     }

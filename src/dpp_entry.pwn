@@ -79,8 +79,8 @@
 #define dpp_rtn_type_double 4
 #define dpp_rtn_type_char 5
 //-----------------------------------------------------------
+new content[18000];
 new subcontent[16000];
-new content[16000];
 //-----------------------------------------------------------
 new dpp_skipelse = 0;
 //-----------------------------------------------------------
@@ -94,6 +94,8 @@ new dpp_switchedvar;
 #define dpp_maxsymbolchar 64
 #define dpp_maxstrsize 256
 #define dpp_maxargsc 20
+//-----------------------------------------------------------
+#define dpp_null "null"
 //-----------------------------------------------------------
 // REQUIRED.
 #include <open.mp>
@@ -278,6 +280,7 @@ new dpp_event = 0;
 #include "dpp_modules/dpp_objects.inc"
 #include "dpp_modules/dpp_typedef.inc"
 #include "dpp_modules/dpp_enum.inc"
+#include "dpp_modules/dpp_persistent.inc"
 
 #include "dpp_modules/dpp_interpreter.inc"
 //-----------------------------------------------------------

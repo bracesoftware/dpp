@@ -408,6 +408,7 @@ stock dpp_execute(const script[])
                     break;
                 }
                 dpp_process(codelines[i]);
+                //strmid(content, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
             }
         }
         CallLocalFunction("DPP_ENTRYPOINT", "");
@@ -438,6 +439,7 @@ stock dpp_executefile(const script[])
             for(new i; i < dpp_maxcodelines; i++)
             {
                 dpp_process(codelines[i]);
+                strmid(subcontent, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
             }
         }
     }
