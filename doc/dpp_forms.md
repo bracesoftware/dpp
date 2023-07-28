@@ -86,13 +86,15 @@ int*form.functobehooked;
 	return,1;
 };
 
-hook&form.functobehooked;
+@hook;
+int*form.functobehooked;
 {;
 	console.println("HOOKED 1");
 	return.int,1;
 };
 
-hook&form.functobehooked;
+@hook;
+int*form.functobehooked;
 {;
 	console.println("HOOKED 2");
 	return.int,1;

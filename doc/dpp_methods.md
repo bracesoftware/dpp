@@ -5,7 +5,8 @@
 ## User methods
 
 ```cpp
-form&method.TestMethod?text;
+@method;
+int*form.TestMethod?text;
 {;
 	console.println("Printed: {text@TestMethod}");
 	return.int,1;
@@ -16,7 +17,8 @@ console.println.TestMethod("Method test #1");
 
 namespace,MyNameSpace;
 <;
-	form&method.TestMethod?text;
+	@method;
+	int*form.TestMethod?text;
 	{;
 		console.println.log("Printed: {text@MyNameSpace::TestMethod}");
 		return.int,1;

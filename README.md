@@ -49,6 +49,7 @@
 - [Enumerators](doc/dpp_enum.md)
 - [Static variables](doc/dpp_static.md)
 - [Persistent data management](doc/dpp_persistent.md)
+- [Decorators](doc/dpp_decorators.md)
 - [Miscellaneous](doc/dpp_misc.md)
 
 ### Other info

@@ -440,11 +440,12 @@ stock dpp_execute(const script[])
     {
         while(rlen = fread(file, content))
         {
+            dpp_codetrim(content);
             for(new i; i < strlen(content); i++)
             {
                 if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
-                if(content[i] == '\t') strdel(content, i, i+1);
-                if(content[i] == '\n') strdel(content, i, i+1);
+                //if(content[i] == '\t') strdel(content, i, i+1);
+                //if(content[i] == '\n') strdel(content, i, i+1);
             }
             dpp_debug("content: '%s'", content);
             dpp_parsecode(content, codelines);
@@ -469,36 +470,44 @@ stock dpp_execute(const script[])
     return 1;
 }
 
-/*
+
 stock dpp_executefile(const script[])
 {
     new File:file = fopen(script, io_read), rlen;
     new codelines[dpp_maxcodelines][1024];
     if(file)
     {
-        while(rlen = fread(file, subcontent))
+        while(rlen = fread(file, content))
         {
-            for(new i; i < strlen(subcontent); i++)
+            dpp_codetrim(content);
+            for(new i; i < strlen(content); i++)
             {
-                if(subcontent[i] == ';' && subcontent[i+1] == ' ') strdel(subcontent, i+1, i+2);
-                if(subcontent[i] == '\t') strdel(subcontent, i, i+1);
-                if(subcontent[i] == '\n') strdel(subcontent, i, i+1);
+                if(content[i] == ';' && content[i+1] == ' ') strdel(content, i+1, i+2);
+                //if(content[i] == '\t') strdel(content, i, i+1);
+                //if(content[i] == '\n') strdel(content, i, i+1);
             }
-            dpp_parsecode(subcontent, codelines);
+            dpp_debug("content: '%s'", content);
+            dpp_parsecode(content, codelines);
+            //dpp_debug("Executing:\n\n%s", content);
             for(new i; i < dpp_maxcodelines; i++)
             {
+                if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
+                if(dpp_terminated == 1)
+                {
+                    break;
+                }
                 dpp_process(codelines[i]);
-                //strmid(subcontent, dpp_null, 0, strlen(dpp_null), strlen(dpp_null));
             }
         }
+        CallLocalFunction("DPP_ENTRYPOINT", "");
     }
+
     else if(!file)
     {
         dpp_error("Invalid file.",);
     }
     return 1;
 }
-*/
 
 stock dpp_subexecute(const code[], funcid = -1)
 {

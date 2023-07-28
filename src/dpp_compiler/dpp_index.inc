@@ -141,7 +141,7 @@ stock dpp_compile(const script[])
             //dpp_parsecode(content, codelines);
             //dpp_debug("Executing:\n\n%s", content);
             //dpp_writecompileddata("index.dppc", content);
-            dpp_process(content);
+            //dpp_process(content);
         }
     }
 
@@ -177,7 +177,7 @@ stock dpp_compile(const script[])
             for(new i; i < dpp_maxcodelines; i++)
             {
                 if(!isnull(codelines[i])) dpp_debug("codelines[%i]: '%s'",i, codelines[i]);
-                dpp_process(codelines[i]);
+                //dpp_process(codelines[i]);
             }
         }
     }

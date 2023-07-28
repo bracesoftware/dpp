@@ -93,6 +93,11 @@ new dpp_skipelse = 0;
 new dpp_skipcase = 0;
 new dpp_switchedvar;
 //-----------------------------------------------------------
+#define dpp_deco_invalid 0
+#define dpp_deco_hook 1
+#define dpp_deco_method 2
+new dpp_lastdeco = dpp_deco_invalid;
+//-----------------------------------------------------------
 // PREDEFINES
 //-----------------------------------------------------------
 #define dpp_null "null"
@@ -316,7 +321,7 @@ public main_again()
 {
     if(dpp_compiled == 1)
     {
-        dpp_execute("index.dppc");
+        dpp_execute("index.dpp");
     }
 
     CallLocalFunction("DPP_GAMEMODEINIT", "");
