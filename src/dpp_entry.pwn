@@ -430,13 +430,8 @@ public OnGameModeExit()
 {
     CallLocalFunction("dpp_sampexitcall", "");
     dpp_nullcomment();
-    dpp_comment();
-    dpp_nullcomment();
-    dpp_print("The interpreter reached the EOS point.");
+    //dpp_print("The interpreter reached the EOS point.");
     dpp_print("Process finished with %i errors and %i warnings.", dpp_errorcount,dpp_warningcount);
-    dpp_nullcomment();
-    dpp_nullcomment();
-    dpp_comment();
     //dpp_print("The SA:MP/open.mp script will continue running in the background.");
     if(dpp_stackoutput == 1)
     {
@@ -446,7 +441,6 @@ public OnGameModeExit()
     {
         dpp_print("System stack output is disabled.");
     }
-    dpp_comment();
     dpp_nullcomment();
     dpp_nullcomment();
     return 1;

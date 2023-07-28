@@ -412,9 +412,11 @@ stock dpp_execute(const script[])
 
 stock dpp_execute(const script[])
 {
+    dpp_prepareproject("config.dppproj");
+    dpp_print("Executing project: '%s'",dpp_projname);
     new content[16000];
     format(content,sizeof content, "\t");
-    print("                                        ");
+    /*print("                                        ");
     print("|======================================|");
     print("                                        ");
     print("         Interpreter is loading...      ");
@@ -427,12 +429,11 @@ stock dpp_execute(const script[])
     dpp_print("Debug component loaded...");
     #endif
     dpp_nullcomment();
-    dpp_prepareproject("config.dppproj");
     dpp_print("Project file for '%s' project loaded.",dpp_projname);
     dpp_print("Executing the entry script...");
     dpp_nullcomment();
     dpp_execheader("index.dppc");
-    dpp_nullcomment();
+    dpp_nullcomment();*/
 
     new File:file = fopen(script, io_read), rlen;
     new codelines[dpp_maxcodelines][1024];

@@ -3016,20 +3016,20 @@ public dpp_processpragma(dirgroup[][],dirargs[][])
             if(!strcmp(dirargs[1], "false"))
             {
                 dpp_option_debug = 0;
-                dpp_info("Debug has been disabled.");
+                //dpp_info("Debug has been disabled.");
                 return 1;
             }
             if(!strcmp(dirargs[1], "true"))
             {
                 dpp_option_debug = 1;
-                dpp_info("Debug has been enabled.");
+                // dpp_info("Debug has been enabled.");
                 return 1;
             }
 
             if(!strcmp(dirargs[1], "default"))
             {
                 dpp_option_debug = 0;
-                dpp_info("Debug has been disabled.");
+                //dpp_info("Debug has been disabled.");
                 return 1;
             }
             else
@@ -3049,20 +3049,20 @@ public dpp_processpragma(dirgroup[][],dirargs[][])
             if(!strcmp(dirargs[1], "false"))
             {
                 dpp_option_warnings = 0;
-                dpp_info("Warning system has been disabled.");
+                //dpp_info("Warning system has been disabled.");
                 return 1;
             }
             if(!strcmp(dirargs[1], "true"))
             {
                 dpp_option_warnings = 1;
-                dpp_info("Warning system has been enabled.");
+                //dpp_info("Warning system has been enabled.");
                 return 1;
             }
 
             if(!strcmp(dirargs[1], "default"))
             {
                 dpp_option_warnings = 1;
-                dpp_info("Warning system has been enabled.");
+                //dpp_info("Warning system has been enabled.");
                 return 1;
             }
             else
@@ -3082,20 +3082,20 @@ public dpp_processpragma(dirgroup[][],dirargs[][])
             if(!strcmp(dirargs[1], "false"))
             {
                 dpp_option_hooking = 0;
-                dpp_info("Hooking system has been disabled.");
+                //dpp_info("Hooking system has been disabled.");
                 return 1;
             }
             if(!strcmp(dirargs[1], "true"))
             {
                 dpp_option_hooking = 1;
-                dpp_info("Hooking system has been enabled.");
+                //dpp_info("Hooking system has been enabled.");
                 return 1;
             }
 
             if(!strcmp(dirargs[1], "default"))
             {
                 dpp_option_hooking = 1;
-                dpp_info("Hooking system has been enabled.");
+                //dpp_info("Hooking system has been enabled.");
                 return 1;
             }
             else
@@ -3120,7 +3120,7 @@ public dpp_processpragma(dirgroup[][],dirargs[][])
                 return 1;
             }
             dpp_option_escapechar = dirargs[1][0];
-            dpp_info("Control character updated to: %c", dpp_option_escapechar);
+            //dpp_info("Control character updated to: %c", dpp_option_escapechar);
             return 1;
         }
 
@@ -3136,20 +3136,20 @@ public dpp_processpragma(dirgroup[][],dirargs[][])
             if(!strcmp(dirargs[1], "false"))
             {
                 dpp_option_allspc = 0;
-                dpp_info("Excessive space-tolerance disabled.");
+                //dpp_info("Excessive space-tolerance disabled.");
                 return 1;
             }
             if(!strcmp(dirargs[1], "true"))
             {
                 dpp_option_allspc = 1;
-                dpp_info("Excessive space-tolerance enabled.");
+                //dpp_info("Excessive space-tolerance enabled.");
                 return 1;
             }
 
             if(!strcmp(dirargs[1], "default"))
             {
                 dpp_option_allspc = 0;
-                dpp_info("Excessive space-tolerance disabled.");
+                //dpp_info("Excessive space-tolerance disabled.");
                 return 1;
             }
             else

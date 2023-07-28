@@ -105,26 +105,15 @@ stock dpp_compile(const script[])
 
 stock dpp_compile(const script[])
 {
+    print("                                        ");
     new content[16000];
-    print("                                        ");
-    print("|======================================|");
-    print("                                        ");
-    print("                   D++                  ");
-    print("         Compiler is loading...         ");
-    print("                                        ");
-    printf("         Version: %i.%i.%i-R%i         ", DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
-    print("                                        ");
-    print("               By: DEntisT              ");
-    print("                                        ");
-    print("|======================================|");
-    print("                                        ");
-    print("                                        ");
+    printf("\tD++ Interpreter %i.%i.%i-R%i\t\tBraceTM Inc.", DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
     //dpp_print("Interpreter version %i.%i.%i-R%i - by: DEntisT",DPP_VERSION_MAJOR,DPP_VERSION_MINOR,DPP_VERSION_PATCH,DPP_VERSION_RELEASE);
     if(fexist("index.dppc")) fremove("index.dppc");
-    dpp_print("Compiling \"%s\"...",script);
+    //dpp_print("Compiling \"%s\"...",script);
     print("                                        ");
     print("                                        ");
-    dpp_compilerprint("Going through the 1st compiler pass.");
+    //dpp_compilerprint("Going through the 1st compiler pass.");
     new File:file = fopen(script, io_read), rlen;
     //new codelines[dpp_maxcodelines][1024];
     if(file)
@@ -157,7 +146,7 @@ stock dpp_compile(const script[])
     dpp_compiling_pass = 2;
 
 
-    dpp_compilerprint("Going through the 2nd compiler pass.");
+    //dpp_compilerprint("Going through the 2nd compiler pass.");
     file = fopen("index.dppc", io_read);
     new rlen2;
     new codelines[dpp_maxcodelines][1024];
@@ -186,12 +175,7 @@ stock dpp_compile(const script[])
     dpp_isobjinit = 0;
     dpp_isconditional = 0;
 
-    dpp_nullcomment();
-    print("                                        ");
-    print("                                        ");
-    dpp_print("File \"%s\" and imported modules compiled successfully.",script);
-    print("                                        ");
-    print("                                        ");
+    //dpp_print("File \"%s\" and imported modules compiled successfully.",script);
     return 1;
 }
 
